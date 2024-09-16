@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
             velocity.x = (float)Math.Round(horizontalInput)*playerSpeed;
         }
         
-
         else if(isTopdown){
             velocity.y = (float)Math.Round(verticalInput)*playerSpeed;
         }

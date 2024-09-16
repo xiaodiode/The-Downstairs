@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClockController : MonoBehaviour
 {
-    public float secondsForHour;
+    [SerializeField] [Range(30f, 100f)] private float secondsForHour;
 
     [SerializeField] private GameObject hourHand;
     [SerializeField] private GameObject minuteHand;
