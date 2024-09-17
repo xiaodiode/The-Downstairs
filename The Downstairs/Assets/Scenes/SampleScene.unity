@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
@@ -348,6 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 219800949}
+  - component: {fileID: 219800950}
   m_Layer: 5
   m_Name: Toilet Meter
   m_TagString: Untagged
@@ -376,6 +377,23 @@ RectTransform:
   m_AnchoredPosition: {x: -618, y: 377}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &219800950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219800948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3922ede71107b045a9a579f075405eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEmpty: 0
+  meterEnabled: 0
+  meter: {fileID: 176490803}
+  meterValue: {fileID: 980501603}
+  secondsToEmpty: 30
 --- !u!1 &261719179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2083,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2780,7 +2798,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2794,6 +2812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440978706}
+  - component: {fileID: 1440978707}
   m_Layer: 5
   m_Name: Hunger Meter
   m_TagString: Untagged
@@ -2822,6 +2841,23 @@ RectTransform:
   m_AnchoredPosition: {x: -618, y: 469}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1440978707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440978705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3922ede71107b045a9a579f075405eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEmpty: 0
+  meterEnabled: 0
+  meter: {fileID: 1364070454}
+  meterValue: {fileID: 758527716}
+  secondsToEmpty: 10
 --- !u!1 &1570475996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3042,6 +3078,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1641966538}
+  - component: {fileID: 1641966539}
   m_Layer: 5
   m_Name: Sanity Meter
   m_TagString: Untagged
@@ -3070,6 +3107,23 @@ RectTransform:
   m_AnchoredPosition: {x: -618, y: 324}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1641966539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641966537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3922ede71107b045a9a579f075405eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEmpty: 0
+  meterEnabled: 0
+  meter: {fileID: 139368328}
+  meterValue: {fileID: 1025355764}
+  secondsToEmpty: 60
 --- !u!1 &1662535577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,6 +3694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2053027334}
+  - component: {fileID: 2053027335}
   m_Layer: 5
   m_Name: Thirst Meter
   m_TagString: Untagged
@@ -3668,6 +3723,23 @@ RectTransform:
   m_AnchoredPosition: {x: -618, y: 427}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2053027335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053027333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3922ede71107b045a9a579f075405eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEmpty: 0
+  meterEnabled: 0
+  meter: {fileID: 998198920}
+  meterValue: {fileID: 803178493}
+  secondsToEmpty: 10
 --- !u!1 &2053527654
 GameObject:
   m_ObjectHideFlags: 0
