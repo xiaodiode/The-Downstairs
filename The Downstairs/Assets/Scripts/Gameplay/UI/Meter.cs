@@ -9,7 +9,7 @@ public class Meter : MonoBehaviour
 {
     public bool isEmpty, meterEnabled;
     [SerializeField] private Slider meter;
-    [SerializeField] private TextMeshProUGUI meterValue;
+    [SerializeField] private TextMeshProUGUI meterValue; //debugging
     [SerializeField] private float secondsToEmpty;
 
     private float startTime, timePassed;
@@ -29,10 +29,10 @@ public class Meter : MonoBehaviour
         meterValue.text = Mathf.CeilToInt(meter.value).ToString();
 
         //debugging
-        // meter.value = 80;
-        // startDecreasing();
+        meter.value = 80;
+        startDecreasing();
 
-        // StartCoroutine(waitForSeconds(2));
+        StartCoroutine(waitForSeconds(2));
 
         
     }
