@@ -13,10 +13,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 cameraXRange;
     [SerializeField] private float playerSpeed;
     [SerializeField] private bool isTopdown;
+
+    [SerializeField] private bool moveLocked;
     
     private float horizontalInput, verticalInput;
+    private bool interactInput;
     private Vector3 velocity;
     private Vector3 newPosition;
+
 
 
     // Start is called before the first frame update
@@ -30,20 +34,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move();
+        if (!moveLocked) {
+            Move();
+        }
     }
-
-    private void move(){
+    private void Move(){
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if(!isTopdown){
-            velocity.x = (float)Math.Round(horizontalInput)*playerSpeed;
-        }
-        
-        else if(isTopdown){
+        if(isTopdown){
             velocity.y = (float)Math.Round(verticalInput)*playerSpeed;
         }
+        velocity.x = (float)Math.Round(horizontalInput)*playerSpeed;
 
         playerRB.velocity = velocity;
 
@@ -54,5 +56,12 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.position = newPosition;
     }
 
+    public void SetInteract(){
+        moveLocked = true;
+    }
+
+    public void UnsetInteract(){
+        moveLocked = false;
+    }
 
 }
