@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnInteract(){
-        Debug.Log("spacebar pressed");
+        // Debug.Log("spacebar pressed");
 
         interactInput = true;
     }

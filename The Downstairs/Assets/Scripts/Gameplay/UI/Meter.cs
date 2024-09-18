@@ -34,12 +34,12 @@ public class Meter : MonoBehaviour
         meterEnabled = false;
 
         currValue = 100;
-        meterValue.text = Mathf.CeilToInt(meter.value).ToString();
+        updateMeterUI(currValue);
 
         secondsToEmpty = newSecondsToEmpty;
 
         //debugging
-        meter.value = 80;
+        // meter.value = 80;
         startDecreasing();
 
         // StartCoroutine(waitForSeconds(2));
@@ -61,7 +61,7 @@ public class Meter : MonoBehaviour
     public void makeMeterFull(){
         stopDecreasing();
 
-        meter.value = meter.maxValue;
+        updateMeterUI(meter.maxValue);
     }
 
     public void changeByAmount(float amount){
@@ -69,17 +69,17 @@ public class Meter : MonoBehaviour
         stopDecreasing();
 
         if(amount < 0){
-            meter.value -= amount;
+            updateMeterUI(meter.value - amount);
 
             if(meterEnabled){
                 startDecreasing();
             }
         }
         else{
-            meter.value += amount;
+            updateMeterUI(meter.value + amount);
 
             if(meter.value > meter.maxValue){
-                meter.value = meter.maxValue;
+                updateMeterUI(meter.maxValue);
             }
         }
     }
@@ -88,11 +88,10 @@ public class Meter : MonoBehaviour
         timePassed = (secondsToEmpty*(meter.maxValue - currValue)/meter.maxValue) + (Time.time - startTime);
 
         if(meter.value >= 0){
-            meter.value = meter.maxValue - (timePassed/secondsToEmpty)*meter.maxValue;
-            meterValue.text = Mathf.CeilToInt(meter.value).ToString();
+            updateMeterUI(meter.maxValue*(1 - (timePassed/secondsToEmpty)));
         }
         else{
-            meter.value = 0;
+            updateMeterUI(0);
             isEmpty = true;
 
             stopDecreasing(); 
@@ -106,5 +105,10 @@ public class Meter : MonoBehaviour
         //debugging
         changeByAmount(20);
         startDecreasing();
+    }
+
+    private void updateMeterUI(float newValue){
+        meter.value = newValue;
+        meterValue.text = Mathf.CeilToInt(meter.value).ToString();
     }
 }

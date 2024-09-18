@@ -17,7 +17,7 @@ public class InteractableObject : MonoBehaviour
 
     [Header("Dependencies")]
     [SerializeField] private PlayerController player;
-    [SerializeField] private MetersController meterController;
+    [SerializeField] private MetersController metersController;
 
     private bool triggerable;
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class InteractableObject : MonoBehaviour
     void Update()
     {
         if(triggerable && Input.GetKeyDown(KeyCode.Space)){
-            Debug.Log("object is being interacted with");
+            metersController.adjustMeters(hungerChange, thirstChange, toiletChange, sanityChange);
         }
     }
 
