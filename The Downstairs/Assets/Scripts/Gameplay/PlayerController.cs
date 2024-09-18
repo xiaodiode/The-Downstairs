@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float playerSpeed;
+    [SerializeField] private bool inBedroom;
     [SerializeField] private bool isTopdown;
 
     [SerializeField] private bool moveLocked;
     
     private float horizontalInput, verticalInput;
+    private float cameraBedroomY;
     private Vector3 velocity;
     private Vector3 newPosition;
 
@@ -20,6 +22,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(inBedroom){
+            cameraBedroomY = playerCamera.transform.position.y;
+        }
+        
         velocity = Vector3.zero;
     }
 
@@ -36,13 +42,13 @@ public class PlayerController : MonoBehaviour
 
         newPosition = playerRB.transform.position;
 
-        if(!isTopdown){
-            newPosition.y = playerCamera.transform.position.y;
+        if(inBedroom){
+            newPosition.y = cameraBedroomY;
         }
         else if(isTopdown){
             velocity.y = (float)Math.Round(verticalInput)*playerSpeed;
         }
-        
+
         velocity.x = (float)Math.Round(horizontalInput)*playerSpeed;
 
         playerRB.velocity = velocity;
