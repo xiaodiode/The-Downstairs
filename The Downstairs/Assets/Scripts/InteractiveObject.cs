@@ -6,6 +6,10 @@ public class InteractiveObject : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
     // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
     public void OnTriggerStay2D(Collider2D other)
     {
         //print("triggered");
