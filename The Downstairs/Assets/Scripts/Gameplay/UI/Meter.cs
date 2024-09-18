@@ -10,53 +10,39 @@ public class Meter : MonoBehaviour
     public bool isEmpty, meterEnabled;
     [SerializeField] private Slider meter;
     [SerializeField] private TextMeshProUGUI meterValue; //debugging
-    [SerializeField] private float secondsToEmpty;
-
+    
+    private float secondsToEmpty;
     private float startTime, timePassed;
     private float currValue;
-
-    private bool inCoroutine;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        isEmpty = false;
-        meterEnabled = false;
-
-        currValue = 100;
-
-        meterValue.text = Mathf.CeilToInt(meter.value).ToString();
-
-        //debugging
-        meter.value = 80;
-        startDecreasing();
-
-        StartCoroutine(waitForSeconds(2));
-
         
-    }
-
-    private IEnumerator waitForSeconds(float seconds){
-        // inCoroutine = true;
-        
-        yield return new WaitForSeconds(seconds);
-        changeByAmount(true, 20);
-        startDecreasing();
-
-        // inCoroutine = false;
-        // startDecreasing();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if(!inCoroutine){
-            if(!isEmpty && meterEnabled){
-                decreaseMeter();
-            }  
-        // }
-        
+        if(!isEmpty && meterEnabled){
+            decreaseMeter();
+        }  
+    }
+
+    public void initializeMeter(float newSecondsToEmpty){
+        isEmpty = false;
+        meterEnabled = false;
+
+        currValue = 100;
+        meterValue.text = Mathf.CeilToInt(meter.value).ToString();
+
+        secondsToEmpty = newSecondsToEmpty;
+
+        //debugging
+        meter.value = 80;
+        startDecreasing();
+
+        // StartCoroutine(waitForSeconds(2));
     }
 
     public void startDecreasing(){
@@ -78,11 +64,11 @@ public class Meter : MonoBehaviour
         meter.value = meter.maxValue;
     }
 
-    public void changeByAmount(bool decrease, float amount){
+    public void changeByAmount(float amount){
         
         stopDecreasing();
 
-        if(decrease){
+        if(amount < 0){
             meter.value -= amount;
 
             if(meterEnabled){
@@ -113,4 +99,12 @@ public class Meter : MonoBehaviour
         }
         
     }   
+
+    private IEnumerator waitForSeconds(float seconds){
+        yield return new WaitForSeconds(seconds);
+
+        //debugging
+        changeByAmount(20);
+        startDecreasing();
+    }
 }

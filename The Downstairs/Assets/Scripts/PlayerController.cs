@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D playerRB;
+    [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 cameraXRange;
     [SerializeField] private float playerSpeed;
@@ -17,17 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool moveLocked;
     
     private float horizontalInput, verticalInput;
-    private bool interactInput;
+    public bool interactInput;
     private Vector3 velocity;
     private Vector3 newPosition;
-
 
 
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody2D>(); 
-
         velocity = Vector3.zero;
     }
 
@@ -62,6 +56,12 @@ public class PlayerController : MonoBehaviour
 
     public void UnsetInteract(){
         moveLocked = false;
+    }
+
+    private void OnInteract(){
+        Debug.Log("spacebar pressed");
+
+        interactInput = true;
     }
 
 }

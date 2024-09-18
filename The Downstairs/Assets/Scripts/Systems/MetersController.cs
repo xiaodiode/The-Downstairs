@@ -7,18 +7,41 @@ using TMPro;
 public class MetersController : MonoBehaviour
 {
     [Header("Hunger Meter")]
-    [SerializeField] private Slider hungerMeter;
-    [SerializeField] private float hungerDecreaseRate;
+    [SerializeField] private Meter hungerMeter;
+    [SerializeField] private float hungerSecondsToEmpty;
+
+    [Header("Thirst Meter")]
+    [SerializeField] private Meter thirstMeter;
+    [SerializeField] private float thirstSecondsToEmpty;
+
+    [Header("Toilet Meter")]
+    [SerializeField] private Meter toiletMeter;
+    [SerializeField] private float toiletSecondsToEmpty;
+
+    [Header("Sanity Meter")]
+    [SerializeField] private Meter sanityMeter;
+    [SerializeField] private float sanitySecondsToEmpty;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        initializeMeters();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void adjustMeters(float hungerchange, float thirstChange, float toiletChange, float sanityChange){
+        
+    }
+
+    private void initializeMeters(){
+        hungerMeter.initializeMeter(hungerSecondsToEmpty);
+        thirstMeter.initializeMeter(thirstSecondsToEmpty);
+        toiletMeter.initializeMeter(toiletSecondsToEmpty);
+        sanityMeter.initializeMeter(sanitySecondsToEmpty);
     }
 }
