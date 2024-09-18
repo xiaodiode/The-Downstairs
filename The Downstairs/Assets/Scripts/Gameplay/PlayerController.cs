@@ -7,14 +7,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private Vector2 cameraXRange;
     [SerializeField] private float playerSpeed;
+    [SerializeField] private bool inBedroom;
     [SerializeField] private bool isTopdown;
 
     [SerializeField] private bool moveLocked;
     
     private float horizontalInput, verticalInput;
-    public bool interactInput;
+    private float cameraBedroomY;
     private Vector3 velocity;
     private Vector3 newPosition;
 
@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(inBedroom){
+            cameraBedroomY = playerCamera.transform.position.y;
+        }
+        
         velocity = Vector3.zero;
     }
 
@@ -36,15 +40,19 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if(isTopdown){
+        newPosition = playerRB.transform.position;
+
+        if(inBedroom){
+            newPosition.y = cameraBedroomY;
+        }
+        else if(isTopdown){
             velocity.y = (float)Math.Round(verticalInput)*playerSpeed;
         }
+
         velocity.x = (float)Math.Round(horizontalInput)*playerSpeed;
 
         playerRB.velocity = velocity;
 
-        newPosition = playerRB.transform.position;
-        newPosition.y = playerCamera.transform.position.y;
         newPosition.z = playerCamera.transform.position.z;
 
         playerCamera.transform.position = newPosition;
@@ -59,9 +67,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnInteract(){
-        Debug.Log("spacebar pressed");
+        // Debug.Log("spacebar pressed");
 
-        interactInput = true;
     }
 
 }
