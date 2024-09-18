@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+[RequireComponent(typeof(BoxCollider2D))]
+public class InteractableObject : MonoBehaviour
+{
+    [Header("Object Structure")]
+    [SerializeField] private BoxCollider2D interactCollider;
+
+    [Header("Meter Effects")]
+    [SerializeField] private float hungerChange;
+    [SerializeField] private float thirstChange;
+    [SerializeField] private float toiletChange; 
+    [SerializeField] private float sanityChange;
+
+    [Header("Dependencies")]
+    [SerializeField] private PlayerController player;
+    [SerializeField] private MetersController meterController;
+
+    private bool triggerable;
+    // Start is called before the first frame update
+    void Start()
+    {
+        interactCollider.isTrigger = true;
+
+        triggerable = false;
+        
+    }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        if(triggerable && Input.GetKeyDown(KeyCode.Space)){
+            Debug.Log("object is being interacted with");
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject == player.gameObject){
+            triggerable = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other){
+        if (other.gameObject == player.gameObject){
+            triggerable = false;
+        }
+    }
+}
