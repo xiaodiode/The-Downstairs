@@ -42,7 +42,7 @@ public class MatchController : MonoBehaviour
     }
 
     public void pickUpMatches(){
-        randomCount = UnityEngine.Random.Range(minMatchPickup, maxMatchPickup);
+        randomCount = Random.Range(minMatchPickup, maxMatchPickup);
 
         if(matchCount + randomCount > matchCap){
             for(int i = matchCount; i <matchUI.Count; i++){
