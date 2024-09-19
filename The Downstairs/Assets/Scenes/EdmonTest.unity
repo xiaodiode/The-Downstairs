@@ -270,7 +270,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 955048423
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -5819607302060572194, guid: 047871260511c944eb926f8dc9f4cab0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1294724927
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1008,7 +1008,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1294724927
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1093,7 +1093,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 955048423
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1599,7 +1599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c615e7b0e862944aa3e10840053eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2053527656}
 --- !u!61 &1702900042
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1834,9 +1833,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07871429bf0a7274ca32ffc51988302b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
-  cameraXRange: {x: 0, y: 0}
+  playerRB: {fileID: 1928606109}
+  playerCamera: {fileID: 519420031}
   playerSpeed: 0
+  inBedroom: 0
   isTopdown: 0
   moveLocked: 0
 --- !u!70 &1928606108
@@ -2005,7 +2005,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 955048423
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -2737730786443091369, guid: 047871260511c944eb926f8dc9f4cab0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2065,9 +2065,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07871429bf0a7274ca32ffc51988302b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRB: {fileID: 2053527658}
   playerCamera: {fileID: 519420031}
-  cameraXRange: {x: 0, y: 16.5}
   playerSpeed: 3
+  inBedroom: 0
   isTopdown: 0
   moveLocked: 0
 --- !u!70 &2053527657
