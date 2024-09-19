@@ -1,14 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-public class QTEs : MonoBehaviour
-{
-    [Header("Dialogue File")]
-    [SerializeField] private TextAsset testing;
 
-    [Header("Dialogue Appearance")]
-    [SerializeField] private TextMeshProUGUI dialogueUI;
+public class QTESystem : MonoBehaviour
+{
     // Start is called before the first frame update
     void Start()
     {
