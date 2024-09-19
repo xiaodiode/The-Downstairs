@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MatchController : MonoBehaviour
 {
+    [SerializeField] private int matchCount, matchCap;
+    [SerializeField] private int minMatchPickup, maxMatchPickup;
     [SerializeField] private List<GameObject> matchUI = new();
     [SerializeField] private CandleController candleController;
 
-    public int matchCount, matchCap;
+    private int randomCount;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,20 @@ public class MatchController : MonoBehaviour
     }
 
     public void pickUpMatches(){
+        randomCount = UnityEngine.Random.Range(minMatchPickup, maxMatchPickup);
 
+        if(matchCount + randomCount > matchCap){
+            for(int i = matchCount; i <matchUI.Count; i++){
+                matchUI[i].SetActive(true);
+            }
+            matchCount = matchCap;
+        }
+        else{
+            for(int i = matchCount; i < matchCount + randomCount; i++){
+                matchUI[i].SetActive(true);
+            }
+            matchCount += randomCount;
+        }
     }
 
 
