@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Systems")]
     [SerializeField] private MouseController mouseController;
+    [SerializeField] private AudioController audioController;
 
     private bool inGame;
     // Start is called before the first frame update
@@ -31,10 +32,14 @@ public class GameManager : MonoBehaviour
         if(inGame){
             screensCanvas.SetActive(false);
             gameplayCanvas.SetActive(true);
+
+            audioController.playGameplayMusic();
         }
         else{
             screensCanvas.SetActive(true);
             gameplayCanvas.SetActive(false);
+
+            audioController.playMainMenuMusic();
         }
     }
 

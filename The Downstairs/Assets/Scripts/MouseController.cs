@@ -13,7 +13,7 @@ public class MouseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mouseLightOn = true;
     }
 
     // Update is called once per frame

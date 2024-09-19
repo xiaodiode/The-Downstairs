@@ -32,4 +32,25 @@ public class AudioController : MonoBehaviour
     {
         
     }
+
+    public void playGameplayMusic(){
+
+        transitionMusic(gameplayMusicClip);
+        musicSource.loop = false;
+    }
+
+    public void playMainMenuMusic(){
+        transitionMusic(mmMusicClip);
+        musicSource.loop = true;
+    }
+
+    private void transitionMusic(AudioClip newClip){
+        musicSource.Stop();
+
+        musicSource.clip = newClip;
+        currMusicClip = newClip;
+
+        musicSource.volume = musicVolume;
+        musicSource.Play();
+    }
 }
