@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool moveLocked;
     [SerializeField] private float cameraBedroomY;
+
+    [Header("Dependencies")]
+    [SerializeField] private MatchController matchController;
+    [SerializeField] private CandleController candleController;
     private float horizontalInput, verticalInput;
     
     private Vector3 velocity;
@@ -64,7 +68,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(){
         // Debug.Log("spacebar pressed");
+    }
 
+    private void OnUseMatch(){
+        matchController.useMatch();
     }
 
 }
