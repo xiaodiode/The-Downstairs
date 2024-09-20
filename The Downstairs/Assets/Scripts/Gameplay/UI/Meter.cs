@@ -109,6 +109,6 @@ public class Meter : MonoBehaviour
 
     private void updateMeterUI(float newValue){
         meter.value = newValue;
-        meterValue.text = Mathf.CeilToInt(meter.value).ToString();
+        //meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
     }
 }

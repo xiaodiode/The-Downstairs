@@ -26,7 +26,7 @@ public class RingRenderer : MonoBehaviour
 
     }
     
-     private IEnumerator shrinkRing(float time)
+    private IEnumerator shrinkRing(float time)
     {
         float timeLeft = time;
         while (timeLeft >= 0.0f){
