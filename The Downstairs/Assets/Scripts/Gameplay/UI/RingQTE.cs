@@ -16,7 +16,7 @@ public class RingQTEs : MonoBehaviour
     [SerializeField] private RingController ring;
     [SerializeField] private float ringStartRad;
     [SerializeField] private float ringEndRad;
-    [Header ("In Coordinate Units, Reasonable Values Start From 0.0")]
+    [Header ("In Coordinate Units")]
     [SerializeField] private float ringThickness;
     [SerializeField] private float QTELength;
     [SerializeField] private float QTEZoneOuterRad;
@@ -42,10 +42,10 @@ public class RingQTEs : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            Debug.Log("keypressed");
+            //Debug.Log("keypressed");
             calculateQTE();
             ring.Pressed(fail);
-            Debug.Log("sent");
+           // Debug.Log("sent");
         }
     }
 
@@ -56,12 +56,16 @@ public class RingQTEs : MonoBehaviour
     
     private void calculateQTE() {        
         float ringPos = ring.GetAvgX();
-        if (ringPos <= QTEZoneOuterRad && ringPos >= QTEZoneInnerRad) {
+       /*  Debug.Log("RingPosition: " + ringPos);
+        Debug.Log("QTES localscale: " + QTESuccessZone.transform.localScale.x);
+        Debug.Log("QTEF localscale: " + QTEFailZone.transform.localScale.x); */
+        if (ringPos <= QTESuccessZone.transform.localScale.x && ringPos >= QTEFailZone.transform.localScale.x) {
             fail = false;
         } else {
+          //  Debug.Log("failed");
             fail = true;
         }
-        Debug.Log("QTEFailed calculated" + fail);
+       // Debug.Log("QTEFailed calculated" + fail);
 
     }
 }
