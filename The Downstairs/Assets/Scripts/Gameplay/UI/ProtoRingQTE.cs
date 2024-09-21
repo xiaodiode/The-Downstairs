@@ -4,24 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class RingQTEs : MonoBehaviour
+public class ProtoRingQTEs : MonoBehaviour
 {
+    public float Time;
 
     [Header("InputList File")]
     [SerializeField] private TextAsset inputList;
-    [Header("")]
-    [SerializeField] private GameObject QTESuccessZone;
-    [SerializeField] private GameObject QTEFailZone;
     [SerializeField] private Image buttonui;
-    [SerializeField] private RingController ring;
-    [SerializeField] private float ringStartRad;
-    [SerializeField] private float ringEndRad;
-    [Header ("In Coordinate Units, Reasonable Values Start From 0.0")]
-    [SerializeField] private float ringThickness;
+    [SerializeField] private LineRenderer ringRenderer;
+    [SerializeField] private RingRenderer ring;
+    [SerializeField] private RectTransform circle;
+    [SerializeField] private RectTransform innerCircle;
     [SerializeField] private float QTELength;
     [SerializeField] private float QTEZoneOuterRad;
     [SerializeField] private float QTEZoneInnerRad;
-    [SerializeField] private Color ringColour, failColour, successColour;
  
 
     private bool fail;
@@ -33,7 +29,7 @@ public class RingQTEs : MonoBehaviour
     {
 
         InitialiseCircle(QTEZoneOuterRad,QTEZoneInnerRad);
-        ring.InitialiseRing(ringStartRad, ringEndRad, ringThickness, QTELength, ringColour, failColour, successColour);
+        ring.InitialiseRing(ringRenderer, 2f, 0.5f, QTELength, this.transform);
         
     }
 
@@ -50,13 +46,22 @@ public class RingQTEs : MonoBehaviour
     }
 
     void InitialiseCircle(float radius, float innerRadius){
-        QTEFailZone.transform.localScale = new Vector3(innerRadius,innerRadius,innerRadius);
-        QTESuccessZone.transform.localScale = new Vector3(radius,radius,radius);
+        circle.sizeDelta = new Vector2(radius,radius);
+        innerCircle.sizeDelta = new Vector2(innerRadius,innerRadius);
     }
     
-    private void calculateQTE() {        
-        float ringPos = ring.GetAvgX();
-        if (ringPos <= QTEZoneOuterRad && ringPos >= QTEZoneInnerRad) {
+    private void calculateQTE() {
+        float ringX = ringRenderer.GetPosition(0).x;
+        Vector3[] v1 = new Vector3[4];
+        Vector3[] v2 = new Vector3[4];
+        circle.GetWorldCorners(v1);
+        innerCircle.GetWorldCorners(v2);
+        float outerX = v1[2].x;
+        float innerX = v2[2].x;
+        Debug.Log("Ring" + ringX);
+        Debug.Log("Outer" + outerX);
+        Debug.Log("Inner" + innerX);
+        if (ringX <= outerX && ringX >= innerX) {
             fail = false;
         } else {
             fail = true;
