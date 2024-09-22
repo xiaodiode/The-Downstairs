@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 velocity;
     private Vector3 newPosition;
+    
+    
+    
 
 
     // Start is called before the first frame update
