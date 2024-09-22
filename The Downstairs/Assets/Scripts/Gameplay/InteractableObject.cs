@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class InteractableObject : MonoBehaviour
@@ -15,8 +16,9 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private float toiletChange; 
     [SerializeField] private float sanityChange;
 
+    [FormerlySerializedAs("topDownPlayer")]
     [Header("Dependencies")]
-    [SerializeField] private PlayerController player;
+    [SerializeField] private TopdownPlayerController player;
     [SerializeField] private MetersController metersController;
 
     private bool triggerable;

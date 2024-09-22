@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Candle : MonoBehaviour
@@ -8,8 +9,9 @@ public class Candle : MonoBehaviour
     [Header("Object Structure")]
     [SerializeField] private BoxCollider2D interactCollider;
 
+    [FormerlySerializedAs("topDownPlayer")]
     [Header("Dependencies")]
-    [SerializeField] private PlayerController player;
+    [SerializeField] private TopdownPlayerController player;
     [SerializeField] private CandleController candleController;
 
     private bool triggerable;

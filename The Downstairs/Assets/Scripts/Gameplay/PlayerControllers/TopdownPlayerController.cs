@@ -4,12 +4,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
-public class PlayerController : MonoBehaviour
+public class TopdownPlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float playerSpeed;
-    [SerializeField] private bool inBedroom;
     [SerializeField] private bool isTopdown;
 
     [SerializeField] private bool moveLocked;
@@ -23,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 newPosition;
     private bool idle;
+
+    private Vector3 input;
     
     
     enum Direction {North, East, South, West};
@@ -46,15 +47,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!moveLocked) {
-            Move();
-        }
+        input = new Vector2(horizontalInput, verticalInput);
+        Move();
         if (isTopdown)
         {
             var mousePos = playerCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             var angle = Mathf.Atan2(mousePos.y, mousePos.x);
             lightEclipse.angle = angle;
         }
+
         Debug.Log("Dir" + currentDirection);
     }
     private void Move(){
@@ -71,14 +72,7 @@ public class PlayerController : MonoBehaviour
 
         newPosition = playerRB.transform.position;
 
-        if(inBedroom){
-            newPosition.y = cameraBedroomY;
-        }
-        else if(isTopdown){
-            velocity.y = (float)Math.Round(verticalInput)*playerSpeed;
-        }
-
-        velocity.x = (float)Math.Round(horizontalInput)*playerSpeed;
+        velocity = new Vector3(horizontalInput, verticalInput, 0).normalized * playerSpeed;
 
         playerRB.velocity = velocity;
 
@@ -87,13 +81,6 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.position = newPosition;
     }
 
-    public void SetInteract(){
-        moveLocked = true;
-    }
-
-    public void UnsetInteract(){
-        moveLocked = false;
-    }
 
     private void OnInteract(){
         // Debug.Log("spacebar pressed");

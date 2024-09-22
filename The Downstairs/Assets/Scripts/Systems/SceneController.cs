@@ -45,7 +45,7 @@ public class SceneController : MonoBehaviour
             { ScenesType.StairsUpDown, stairsUpDown },
             { ScenesType.Downstairs, downstairs }
         };
-        switchScenes(ScenesType.Upstairs);
+        switchScenes(ScenesType.Basement);
     }
 
     // Update is called once per frame
