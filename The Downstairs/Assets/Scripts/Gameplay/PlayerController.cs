@@ -21,12 +21,19 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 velocity;
     private Vector3 newPosition;
+    private bool idle;
+    
+    
+    enum Direction {North, East, South, West};
+    private Direction currentDirection = Direction.South;
 
 
     // Start is called before the first frame update
     void Start()
     {
         velocity = Vector3.zero;
+
+        idle = true;
     }
 
     // Update is called once per frame
@@ -35,10 +42,19 @@ public class PlayerController : MonoBehaviour
         if (!moveLocked) {
             Move();
         }
+        Debug.Log("Dir" + currentDirection);
     }
     private void Move(){
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+
+        if(horizontalInput == 0 && verticalInput == 0){
+            idle = true;
+        }
+        if (horizontalInput == 0 ^ verticalInput == 0) { //Updates Directional Enum taking into account the 
+            SetDirection(horizontalInput,verticalInput);
+        }        
+
 
         newPosition = playerRB.transform.position;
 
@@ -72,6 +88,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnUseMatch(){
         matchController.useMatch();
+    }
+
+    private void SetDirection(float xaxis, float yaxis){
+        if (xaxis > 0) {
+            currentDirection = Direction.East;
+        } else if (xaxis < 0) {
+            currentDirection = Direction.West;
+        } else if (yaxis > 0) {
+            currentDirection = Direction.North;
+        } else {
+            currentDirection = Direction.South;
+        }
     }
 
 }
