@@ -11,7 +11,8 @@ public class PlayerLightEclipse : MonoBehaviour
 
     public float angle
     {
-        set => candleTransform.localPosition = new Vector3(Mathf.Cos(value) * lenLongAxis, Mathf.Sin(value) * lenShortAxis, 0f);
+        set => candleTransform.localPosition 
+            = new Vector3(Mathf.Cos(value) * lenLongAxis, Mathf.Sin(value) * lenShortAxis, 0f);
     }
     
     [SerializeField] private Transform candleTransform;

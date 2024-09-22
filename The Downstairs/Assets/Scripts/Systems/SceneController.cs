@@ -17,10 +17,35 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject upstairs;
     [SerializeField] private GameObject downstairs;
     [SerializeField] private GameObject basement;
+
+    private Dictionary<ScenesType, GameObject> scenesDict;
+
+    public enum ScenesType
+    {
+        Upstairs,
+        Bedroom,
+        StairsBedUp,
+        StairsUpDown,
+        StairsDownBase,
+        Downstairs,
+        Basement,
+    }
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        switchScenes("upstairs");
+        scenesDict = new()
+        {
+            { ScenesType.Upstairs, upstairs },
+            { ScenesType.Basement, basement},
+            { ScenesType.Bedroom, bedroom},
+            { ScenesType.StairsBedUp, stairsBedUp },
+            { ScenesType.StairsDownBase, stairsDownBase },
+            { ScenesType.StairsUpDown, stairsUpDown },
+            { ScenesType.Downstairs, downstairs }
+        };
+        switchScenes(ScenesType.Upstairs);
     }
 
     // Update is called once per frame
@@ -29,42 +54,9 @@ public class SceneController : MonoBehaviour
         
     }
 
-    public void switchScenes(string scene){
+    public void switchScenes(ScenesType scene){
         disableAllScenes();
-
-        switch(scene){
-            case "bedroom":
-                bedroom.SetActive(true);
-                break;
-
-            case "stairsBedUp":
-                stairsBedUp.SetActive(true);
-                break;
-
-            case "stairsUpDown":
-                stairsUpDown.SetActive(true);
-                break;
-
-            case "stairsDownBase":
-                stairsDownBase.SetActive(true);
-                break;
-
-            case "upstairs":
-                upstairs.SetActive(true);
-                break;
-
-            case "downstairs":
-                downstairs.SetActive(true);
-                break;
-
-            case "basement":
-                basement.SetActive(true);
-                break;
-            
-            default:
-                bedroom.SetActive(true);
-                break;
-        }
+        scenesDict[scene].SetActive(true);
     }
 
     private void disableAllScenes(){
