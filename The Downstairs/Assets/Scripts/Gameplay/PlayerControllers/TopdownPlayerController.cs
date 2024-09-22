@@ -21,6 +21,9 @@ public class TopdownPlayerController : MonoBehaviour
     
     private Vector3 velocity;
     private Vector3 newPosition;
+    
+    
+    
     private bool idle;
 
     private Vector3 input;
