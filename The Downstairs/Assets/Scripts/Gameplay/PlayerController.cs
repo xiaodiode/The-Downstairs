@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.SymbolStore;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -22,11 +23,18 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 newPosition;
 
+    [SerializeField] private PlayerLightEclipse lightEclipse;
+
 
     // Start is called before the first frame update
     void Start()
     {
         velocity = Vector3.zero;
+
+        if (isTopdown)
+        {
+            lightEclipse = GetComponent<PlayerLightEclipse>();
+        }
     }
 
     // Update is called once per frame
@@ -34,6 +42,13 @@ public class PlayerController : MonoBehaviour
     {
         if (!moveLocked) {
             Move();
+        }
+
+        if (isTopdown)
+        {
+            var mousePos = playerCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            var angle = Mathf.Atan2(mousePos.y, mousePos.x);
+            lightEclipse.angle = angle;
         }
     }
     private void Move(){
