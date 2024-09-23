@@ -41,7 +41,6 @@ public class SidescrollPlayerController : MonoBehaviour
     }
     private void Move(){
         horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
 
         if(horizontalInput == 0){
             idle = true;
@@ -51,7 +50,7 @@ public class SidescrollPlayerController : MonoBehaviour
         newPosition.y = cameraBedroomY;
         
 
-        velocity.x = Mathf.Sign(horizontalInput) * playerSpeed;
+        velocity = new Vector3(horizontalInput, 0, 0).normalized * playerSpeed;
         playerRB.velocity = velocity;
 
         newPosition.z = playerCamera.transform.position.z;

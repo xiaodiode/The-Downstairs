@@ -11,7 +11,7 @@ public class Match : MonoBehaviour
 
     [FormerlySerializedAs("topDownPlayer")]
     [Header("Dependencies")]
-    [SerializeField] private TopdownPlayerController player;
+    [SerializeField] private SidescrollPlayerController player;
     [SerializeField] private MatchController matchController;
 
     private bool triggerable;

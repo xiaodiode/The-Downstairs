@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -11,7 +12,12 @@ public class Door : MonoBehaviour
     [SerializeField] private SceneController sceneController;
 
     private bool triggerable;
-    private string nextScene;
+
+    void Start()
+    {
+        triggerable = false;
+    }
+
 
     void Update()
     {
@@ -21,14 +27,16 @@ public class Door : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>() != null){
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null){
             triggerable = true;
         }
     }
 
     public void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>() != null){
-            triggerable = false;
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null){
+            triggerable = true;
         }
     }
 }

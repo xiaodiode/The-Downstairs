@@ -18,7 +18,7 @@ public class InteractableObject : MonoBehaviour
 
     [FormerlySerializedAs("topDownPlayer")]
     [Header("Dependencies")]
-    [SerializeField] private TopdownPlayerController player;
+    [SerializeField] private SidescrollPlayerController player;
     [SerializeField] private MetersController metersController;
 
     private bool triggerable;

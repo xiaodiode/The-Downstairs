@@ -2643,7 +2643,7 @@ MonoBehaviour:
   thirstChange: 0
   toiletChange: 0
   sanityChange: 0
-  player: {fileID: 0}
+  player: {fileID: 2053527658}
   metersController: {fileID: 1823247669}
 --- !u!61 &473806302
 BoxCollider2D:
@@ -2993,7 +2993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactCollider: {fileID: 520515055}
-  player: {fileID: 0}
+  player: {fileID: 2053527658}
   candleController: {fileID: 1398248479}
 --- !u!61 &520515055
 BoxCollider2D:
@@ -5981,7 +5981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactCollider: {fileID: 919572538}
-  player: {fileID: 0}
+  player: {fileID: 2053527658}
   candleController: {fileID: 1398248479}
 --- !u!61 &919572538
 BoxCollider2D:
@@ -7390,7 +7390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactCollider: {fileID: 1050740142}
-  player: {fileID: 0}
+  player: {fileID: 2053527658}
   candleController: {fileID: 1398248479}
 --- !u!61 &1050740142
 BoxCollider2D:
@@ -7568,8 +7568,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7878350318863792628}
-  - {fileID: 473806298}
   - {fileID: 1244613068}
+  - {fileID: 473806298}
   m_Father: {fileID: 1570475997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1054528009
@@ -8404,7 +8404,7 @@ MonoBehaviour:
   thirstChange: 100
   toiletChange: 0
   sanityChange: 0
-  player: {fileID: 0}
+  player: {fileID: 2053527658}
   metersController: {fileID: 1823247669}
 --- !u!212 &1244613071
 SpriteRenderer:
@@ -11984,6 +11984,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8402992537712319978, guid: edc159acd1ae06395842822088e329f1, type: 3}
   m_PrefabInstance: {fileID: 1006381007383667258}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2053527658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+  m_PrefabInstance: {fileID: 1006381007383667258}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266702af16510cb8cb835d21b55f5b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2078827975
 GameObject:
   m_ObjectHideFlags: 0
@@ -12335,7 +12346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactCollider: {fileID: 2085746654}
-  player: {fileID: 0}
+  player: {fileID: 2053527658}
   candleController: {fileID: 1398248479}
 --- !u!61 &2085746654
 BoxCollider2D:
@@ -12481,7 +12492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactCollider: {fileID: 2101949415}
-  player: {fileID: 0}
+  player: {fileID: 2053527658}
   candleController: {fileID: 1398248479}
 --- !u!61 &2101949415
 BoxCollider2D:

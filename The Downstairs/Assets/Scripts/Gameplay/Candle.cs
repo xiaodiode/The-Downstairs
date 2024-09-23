@@ -11,7 +11,7 @@ public class Candle : MonoBehaviour
 
     [FormerlySerializedAs("topDownPlayer")]
     [Header("Dependencies")]
-    [SerializeField] private TopdownPlayerController player;
+    [SerializeField] private SidescrollPlayerController player;
     [SerializeField] private CandleController candleController;
 
     private bool triggerable;
