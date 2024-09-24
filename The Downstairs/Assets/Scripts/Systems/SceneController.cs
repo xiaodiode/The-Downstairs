@@ -54,19 +54,15 @@ public class SceneController : MonoBehaviour
         
     }
 
-    public void switchScenes(ScenesType scene){
-        disableAllScenes();
-        scenesDict[scene].SetActive(true);
+    public void switchScenes(ScenesType newScene)
+    {
+        foreach (ScenesType scene in System.Enum.GetValues(typeof(ScenesType)))
+        {
+            scenesDict[scene].SetActive(false);
+        }
+
+        scenesDict[newScene].SetActive(true);
     }
 
-    private void disableAllScenes(){
-        bedroom.SetActive(false);
-        stairsBedUp.SetActive(false);
-        stairsUpDown.SetActive(false);
-        stairsDownBase.SetActive(false);
-        upstairs.SetActive(false);
-        downstairs.SetActive(false);
-        basement.SetActive(false);
-    }
 
 }

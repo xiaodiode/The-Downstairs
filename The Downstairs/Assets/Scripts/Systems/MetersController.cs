@@ -22,10 +22,20 @@ public class MetersController : MonoBehaviour
     [SerializeField] private Meter sanityMeter;
     [SerializeField] private float sanitySecondsToEmpty;
 
+
+    public static MetersController instance {get; private set;}
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        initializeMeters();
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+        
     }
 
     // Update is called once per frame
@@ -34,7 +44,7 @@ public class MetersController : MonoBehaviour
         
     }
 
-    private void initializeMeters(){
+    public void initializeMeters(){
         hungerMeter.initializeMeter(hungerSecondsToEmpty);
         thirstMeter.initializeMeter(thirstSecondsToEmpty);
         toiletMeter.initializeMeter(toiletSecondsToEmpty);

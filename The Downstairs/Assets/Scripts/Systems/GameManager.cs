@@ -5,21 +5,34 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Main Menu")]
-    [SerializeField] private GameObject screensCanvas;
+    [SerializeField] private GameObject mainMenuScreen;
 
     [Header("Gameplay")]
-    [SerializeField] private GameObject gameplayCanvas;
+    [SerializeField] private GameObject gameplayScreen;
+
+    private Dictionary<ScreenType, GameObject> screensDict;
+
+    public enum ScreenType
+    {
+        MainMenu,
+        Gameplay
+    }
 
     [Header("Systems")]
     [SerializeField] private MouseController mouseController;
-    [SerializeField] private AudioController audioController;
 
     private bool inGame;
     // Start is called before the first frame update
     void Start()
     {
-        inGame = false;
-        switchMode();
+        screensDict = new()
+        {
+            { ScreenType.MainMenu, mainMenuScreen },
+            { ScreenType.Gameplay, gameplayScreen},
+        };
+
+        switchScreen(ScreenType.MainMenu);
+        AudioController.instance.playMainMenuMusic();
     }
 
     // Update is called once per frame
@@ -28,24 +41,24 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void switchMode(){
-        if(inGame){
-            screensCanvas.SetActive(false);
-            gameplayCanvas.SetActive(true);
+    private void switchScreen(ScreenType newScreen)
+    {
 
-            audioController.playGameplayMusic();
+        foreach (ScreenType screen in System.Enum.GetValues(typeof(ScreenType)))
+        {
+            screensDict[screen].SetActive(false);
         }
-        else{
-            screensCanvas.SetActive(true);
-            gameplayCanvas.SetActive(false);
 
-            audioController.playMainMenuMusic();
-        }
+        screensDict[newScreen].SetActive(true);
     }
 
-    public void playGame(){
-        inGame = true;
-        switchMode();
+
+    public void playGame()
+    {
+        switchScreen(ScreenType.Gameplay);
+
+        AudioController.instance.playGameplayMusic();
+        MetersController.instance.initializeMeters();
     }
     
 }
