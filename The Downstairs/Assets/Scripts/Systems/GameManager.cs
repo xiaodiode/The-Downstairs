@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
 
     public enum ScreenType
     {
-        ScreensCanvas,
         MainMenu,
         Gameplay
     }
@@ -32,11 +31,10 @@ public class GameManager : MonoBehaviour
         {
             { ScreenType.MainMenu, mainMenuScreen },
             { ScreenType.Gameplay, gameplayScreen},
-            { ScreenType.ScreensCanvas, screensCanvas}
         };
 
         OpenMainMenu();
-        AudioController.instance.playMainMenuMusic();
+        
     }
 
     // Update is called once per frame
@@ -65,13 +63,15 @@ public class GameManager : MonoBehaviour
     public void OpenMainMenu()
     {
         switchScreen(ScreenType.MainMenu);
-        enableScreen(ScreenType.ScreensCanvas, true);
+        screensCanvas.SetActive(true);
+
+        AudioController.instance.playMainMenuMusic();
     }
 
 
     public void playGame()
     {
-        enableScreen(ScreenType.ScreensCanvas, false);
+        screensCanvas.SetActive(false);
 
         switchScreen(ScreenType.Gameplay);
 
