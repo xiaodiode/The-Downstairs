@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Main Menu")]
+    [Header("UI Screens")]
+    [SerializeField] private GameObject screensCanvas;
     [SerializeField] private GameObject mainMenuScreen;
 
     [Header("Gameplay")]
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public enum ScreenType
     {
+        ScreensCanvas,
         MainMenu,
         Gameplay
     }
@@ -29,9 +32,10 @@ public class GameManager : MonoBehaviour
         {
             { ScreenType.MainMenu, mainMenuScreen },
             { ScreenType.Gameplay, gameplayScreen},
+            { ScreenType.ScreensCanvas, screensCanvas}
         };
 
-        switchScreen(ScreenType.MainMenu);
+        OpenMainMenu();
         AudioController.instance.playMainMenuMusic();
     }
 
@@ -53,8 +57,22 @@ public class GameManager : MonoBehaviour
     }
 
 
+    private void enableScreen(ScreenType screen, bool enable)
+    {
+        screensDict[screen].SetActive(enable);
+    }
+
+    public void OpenMainMenu()
+    {
+        switchScreen(ScreenType.MainMenu);
+        enableScreen(ScreenType.ScreensCanvas, true);
+    }
+
+
     public void playGame()
     {
+        enableScreen(ScreenType.ScreensCanvas, false);
+
         switchScreen(ScreenType.Gameplay);
 
         AudioController.instance.playGameplayMusic();
