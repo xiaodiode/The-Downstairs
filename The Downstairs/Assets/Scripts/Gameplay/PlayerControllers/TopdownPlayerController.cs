@@ -62,8 +62,8 @@ public class TopdownPlayerController : MonoBehaviour
         Debug.Log("Dir" + currentDirection);
     }
     private void Move(){
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
         if(horizontalInput == 0 && verticalInput == 0){
             idle = true;
@@ -75,7 +75,8 @@ public class TopdownPlayerController : MonoBehaviour
 
         newPosition = playerRB.transform.position;
 
-        velocity = new Vector3(horizontalInput, verticalInput, 0).normalized * playerSpeed;
+        velocity.x = horizontalInput * playerSpeed;
+        velocity.y = verticalInput * playerSpeed;
 
         playerRB.velocity = velocity;
 
