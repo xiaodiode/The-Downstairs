@@ -44,12 +44,12 @@ public class Supplies : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider){
-        Debug.Log("is triggered " + gameObject);
+        // Debug.Log("is triggered " + gameObject);
         if(collider.gameObject.GetComponent<SidescrollPlayerController>() != null ||
             collider.gameObject.GetComponent<TopdownPlayerController>() != null)
         {
             isTriggered = true;
-            Debug.Log("is triggered " + gameObject);
+            // Debug.Log("is triggered " + gameObject);
         }
     }
 

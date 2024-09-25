@@ -59,7 +59,7 @@ public class TopdownPlayerController : MonoBehaviour
             lightEclipse.angle = angle;
         }
 
-        Debug.Log("Dir" + currentDirection);
+        // Debug.Log("Dir" + currentDirection);
     }
     private void Move(){
         horizontalInput = Input.GetAxisRaw("Horizontal");

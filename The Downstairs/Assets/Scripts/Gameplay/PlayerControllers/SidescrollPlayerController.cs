@@ -26,6 +26,19 @@ public class SidescrollPlayerController : MonoBehaviour
     private Direction currentDirection = Direction.Right;
 
 
+    public static SidescrollPlayerController instance {get; private set;}
+
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {

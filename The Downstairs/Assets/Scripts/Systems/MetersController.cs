@@ -47,7 +47,9 @@ public class MetersController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkToilet();
+        if(SidescrollPlayerController.instance.gameObject.activeInHierarchy){
+            resetSanityMeter();
+        }
     }
 
     public void initializeMeters(){
@@ -55,6 +57,8 @@ public class MetersController : MonoBehaviour
         thirstMeter.initializeMeter(thirstSecondsToEmpty);
         toiletMeter.initializeMeter(toiletSecondsToEmpty);
         sanityMeter.initializeMeter(sanitySecondsToEmpty);
+
+        toiletMeter.startDecreasing();
     }
 
     public void adjustMeters(float hungerchange, float thirstChange, float toiletChange, float sanityChange){
@@ -76,18 +80,11 @@ public class MetersController : MonoBehaviour
         
     }
 
-    private void checkToilet(){
-        if(toiletMeter.isEmpty && !sanityMeter.toiletEffect)
-        {
-            Debug.Log("toilet is empty");
-            sanityMeter.changeDecreaseMultiplier(sanitySecondsToEmpty, 0.5f);
-        }
-    }
-
     public void resetSanityMeter()
     {
         if(!lockBedroom)
         {
+            Debug.Log("resetting sanity");
             sanityMeter.makeMeterFull();
             sanityMeter.initializeMeter(sanitySecondsToEmpty);
         }

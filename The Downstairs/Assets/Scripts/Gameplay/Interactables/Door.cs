@@ -24,13 +24,17 @@ public class Door : MonoBehaviour
     {
         if(triggerable && Input.GetKeyDown(KeyCode.Space))
         {
-            if(selfScene == SceneController.ScenesType.StairsBedUp)
+            // if(selfScene == SceneController.ScenesType.StairsBedUp)
+            // {
+            //     MetersController.instance.resetSanityMeter();  
+            // }
+            if(selfScene == SceneController.ScenesType.Bedroom)
             {
-                MetersController.instance.resetSanityMeter();  
-            }
-            else if(selfScene == SceneController.ScenesType.Bedroom)
-            {
-                MetersController.instance.sanityMeter.startDecreasing();
+                if(!MetersController.instance.sanityMeter.meterEnabled)
+                {
+                    MetersController.instance.sanityMeter.startDecreasing();
+                    Debug.Log("entered darkness");
+                }
             }
             sceneController.switchScenes(target.selfScene);
         }
@@ -50,8 +54,9 @@ public class Door : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other){
         if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null){
-            triggerable = true;
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        {
+            triggerable = false;
         }
     }
 }

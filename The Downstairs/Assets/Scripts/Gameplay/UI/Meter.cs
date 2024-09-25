@@ -62,7 +62,7 @@ public class Meter : MonoBehaviour
 
         updateMeterUI(meter.maxValue);
 
-        toiletEffect = false;
+        // toiletEffect = false;
     }
 
     public void changeByAmount(float amount){
@@ -92,7 +92,7 @@ public class Meter : MonoBehaviour
     private void decreaseMeter()
     {
         timePassed = Time.time - startTime;
-        // Debug.Log("time passed: " + timePassed);
+        Debug.Log("decreasing");
 
         if(meter.value > 0){
             updateMeterUI(meter.maxValue*(1 - (timePassed/secondsToEmpty)));
