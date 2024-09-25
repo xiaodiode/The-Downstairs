@@ -13,6 +13,20 @@ public class Timer : MonoBehaviour
     private int hours, minutes, seconds;
     private int secondsStarted, secondsPassed;
     
+    public static Timer instance {get; private set;}
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +34,6 @@ public class Timer : MonoBehaviour
         leadingZeroM = "0";
         leadingZeroS = "0";
 
-        startCountUp();
     }
 
     // Update is called once per frame

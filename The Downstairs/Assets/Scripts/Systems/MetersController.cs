@@ -7,20 +7,20 @@ using TMPro;
 public class MetersController : MonoBehaviour
 {
     [Header("Hunger Meter")]
-    [SerializeField] private Meter hungerMeter;
-    [SerializeField] private float hungerSecondsToEmpty;
+    [SerializeField] public Meter hungerMeter;
+    [SerializeField] public float hungerSecondsToEmpty;
 
     [Header("Thirst Meter")]
-    [SerializeField] private Meter thirstMeter;
-    [SerializeField] private float thirstSecondsToEmpty;
+    [SerializeField] public Meter thirstMeter;
+    [SerializeField] public float thirstSecondsToEmpty;
 
     [Header("Toilet Meter")]
-    [SerializeField] private Meter toiletMeter;
-    [SerializeField] private float toiletSecondsToEmpty;
+    [SerializeField] public Meter toiletMeter;
+    [SerializeField] public float toiletSecondsToEmpty;
 
     [Header("Sanity Meter")]
-    [SerializeField] private Meter sanityMeter;
-    [SerializeField] private float sanitySecondsToEmpty;
+    [SerializeField] public Meter sanityMeter;
+    [SerializeField] public float sanitySecondsToEmpty;
 
 
     public static MetersController instance {get; private set;}
@@ -35,13 +35,12 @@ public class MetersController : MonoBehaviour
             instance = this;
         }
 
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        checkToilet();
     }
 
     public void initializeMeters(){
@@ -68,6 +67,14 @@ public class MetersController : MonoBehaviour
             sanityMeter.changeByAmount(sanityChange);
         }
         
+    }
+
+    private void checkToilet(){
+        if(toiletMeter.isEmpty && !thirstMeter.multiplierUpdated)
+        {
+            Debug.Log("toilet is empty");
+            thirstMeter.changeDecreaseMultiplier(thirstSecondsToEmpty, 0.5f);
+        }
     }
 
     

@@ -11073,7 +11073,7 @@ MonoBehaviour:
   thirstMeter: {fileID: 2053027335}
   thirstSecondsToEmpty: 10
   toiletMeter: {fileID: 219800950}
-  toiletSecondsToEmpty: 30
+  toiletSecondsToEmpty: 2
   sanityMeter: {fileID: 1641966539}
   sanitySecondsToEmpty: 60
 --- !u!1 &1840439873

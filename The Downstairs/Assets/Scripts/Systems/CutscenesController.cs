@@ -55,13 +55,15 @@ public class CutscenesController : MonoBehaviour
         for(int i=0; i<introCutscene.Count; i++)
         {
             cutsceneImage.texture = introCutscene[i];
-            Debug.Log("in here");
             yield return new WaitForSeconds(secondsPerIntroScene[i]);
         }
-        
+
         GameManager.instance.screensCanvas.SetActive(false);
         GameManager.instance.switchScreen(GameManager.ScreenType.Gameplay);
+
         AudioController.instance.playGameplayMusic();
         MetersController.instance.initializeMeters();
+
+        Timer.instance.startCountUp();
     }
 }

@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
         OpenMainMenu();
 
-        isNewGame = true;
+        isNewGame = false; // change to true to play intro cutscene
     }
 
     // Update is called once per frame
@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour
 
             AudioController.instance.playGameplayMusic();
             MetersController.instance.initializeMeters();
+
+            Timer.instance.startCountUp();
         }
         
         

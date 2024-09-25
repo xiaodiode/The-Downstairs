@@ -13,12 +13,13 @@ public class Meter : MonoBehaviour
     
     private float secondsToEmpty;
     private float startTime, timePassed;
-    private float currValue;
+
+    public bool multiplierUpdated;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        multiplierUpdated = false;
     }
 
     // Update is called once per frame
@@ -33,8 +34,7 @@ public class Meter : MonoBehaviour
         isEmpty = false;
         meterEnabled = false;
 
-        currValue = 100;
-        updateMeterUI(currValue);
+        updateMeterUI(meter.maxValue);
 
         secondsToEmpty = newSecondsToEmpty;
 
@@ -47,7 +47,6 @@ public class Meter : MonoBehaviour
 
     public void startDecreasing(){
         startTime = Time.time;
-        currValue = meter.value;
 
         meterEnabled = true;
     }
@@ -62,6 +61,8 @@ public class Meter : MonoBehaviour
         stopDecreasing();
 
         updateMeterUI(meter.maxValue);
+
+        multiplierUpdated = false;
     }
 
     public void changeByAmount(float amount){
@@ -72,9 +73,10 @@ public class Meter : MonoBehaviour
             updateMeterUI(meter.value + amount);
 
             if(meter.value < 0){
+                isEmpty = true;
                 updateMeterUI(0);
             }
-            
+
             startDecreasing();
             
         }
@@ -87,10 +89,12 @@ public class Meter : MonoBehaviour
         }
     }
 
-    private void decreaseMeter(){
-        timePassed = (secondsToEmpty*(meter.maxValue - currValue)/meter.maxValue) + (Time.time - startTime);
+    private void decreaseMeter()
+    {
+        timePassed = Time.time - startTime;
+        // Debug.Log("time passed: " + timePassed);
 
-        if(meter.value >= 0){
+        if(meter.value > 0){
             updateMeterUI(meter.maxValue*(1 - (timePassed/secondsToEmpty)));
         }
         else{
@@ -99,10 +103,20 @@ public class Meter : MonoBehaviour
 
             stopDecreasing(); 
         }
-        
     }   
 
-    private IEnumerator waitForSeconds(float seconds){
+    public void changeDecreaseMultiplier(float originalRate, float multiplier)
+    {
+        // stopDecreasing();
+        startTime += timePassed*multiplier;
+        secondsToEmpty = originalRate * multiplier;
+
+        multiplierUpdated = true;
+        // startDecreasing();
+    }
+
+    private IEnumerator waitForSeconds(float seconds)
+    {
         yield return new WaitForSeconds(seconds);
 
         //debugging
@@ -110,7 +124,12 @@ public class Meter : MonoBehaviour
         startDecreasing();
     }
 
-    private void updateMeterUI(float newValue){
+    private void updateMeterUI(float newValue)
+    {
+        if(newValue == 0){
+            isEmpty = true;
+        }
+
         meter.value = newValue;
         meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
     }
