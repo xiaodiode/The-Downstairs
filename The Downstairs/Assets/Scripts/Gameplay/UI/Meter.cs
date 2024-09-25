@@ -14,12 +14,12 @@ public class Meter : MonoBehaviour
     private float secondsToEmpty;
     private float startTime, timePassed;
 
-    public bool multiplierUpdated;
+    public bool toiletEffect;
 
     // Start is called before the first frame update
     void Start()
     {
-        multiplierUpdated = false;
+        toiletEffect = false;
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class Meter : MonoBehaviour
 
         //debugging
         // meter.value = 80;
-        startDecreasing();
+        // startDecreasing();
 
         // StartCoroutine(waitForSeconds(2));
     }
@@ -62,7 +62,7 @@ public class Meter : MonoBehaviour
 
         updateMeterUI(meter.maxValue);
 
-        multiplierUpdated = false;
+        toiletEffect = false;
     }
 
     public void changeByAmount(float amount){
@@ -111,7 +111,7 @@ public class Meter : MonoBehaviour
         startTime += timePassed*multiplier;
         secondsToEmpty = originalRate * multiplier;
 
-        multiplierUpdated = true;
+        toiletEffect = true;
         // startDecreasing();
     }
 

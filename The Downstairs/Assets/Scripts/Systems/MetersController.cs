@@ -22,10 +22,10 @@ public class MetersController : MonoBehaviour
     [SerializeField] public Meter sanityMeter;
     [SerializeField] public float sanitySecondsToEmpty;
 
+    public bool lockBedroom;
 
     public static MetersController instance {get; private set;}
 
-    // Start is called before the first frame update
     void Awake()
     {
         if(instance != null && instance != this){
@@ -35,6 +35,13 @@ public class MetersController : MonoBehaviour
             instance = this;
         }
 
+    }
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        lockBedroom = false;
     }
 
     // Update is called once per frame
@@ -70,10 +77,19 @@ public class MetersController : MonoBehaviour
     }
 
     private void checkToilet(){
-        if(toiletMeter.isEmpty && !thirstMeter.multiplierUpdated)
+        if(toiletMeter.isEmpty && !sanityMeter.toiletEffect)
         {
             Debug.Log("toilet is empty");
-            thirstMeter.changeDecreaseMultiplier(thirstSecondsToEmpty, 0.5f);
+            sanityMeter.changeDecreaseMultiplier(sanitySecondsToEmpty, 0.5f);
+        }
+    }
+
+    public void resetSanityMeter()
+    {
+        if(!lockBedroom)
+        {
+            sanityMeter.makeMeterFull();
+            sanityMeter.initializeMeter(sanitySecondsToEmpty);
         }
     }
 

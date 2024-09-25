@@ -978,6 +978,7 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 176490803}
   meterValue: {fileID: 980501603}
+  toiletEffect: 0
 --- !u!4 &231522437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3135741602100635737, guid: fea51ac59f54d3a2abe5117d83547715, type: 3}
@@ -2195,6 +2196,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 51178990}
     - target: {fileID: 8385300035810415963, guid: fea51ac59f54d3a2abe5117d83547715, type: 3}
+      propertyPath: isBedroom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385300035810415963, guid: fea51ac59f54d3a2abe5117d83547715, type: 3}
       propertyPath: selfScene
       value: 1
       objectReference: {fileID: 0}
@@ -2660,12 +2665,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472772078}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.08, y: 1.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1762733200}
+  m_Father: {fileID: 1785658360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &473806297
 GameObject:
@@ -4581,12 +4586,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741952267}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1762733200}
+  m_Father: {fileID: 1785658360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &746717295
 GameObject:
@@ -6810,6 +6815,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1710579424}
     - target: {fileID: 8385300035810415963, guid: fea51ac59f54d3a2abe5117d83547715, type: 3}
+      propertyPath: isBedroom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385300035810415963, guid: fea51ac59f54d3a2abe5117d83547715, type: 3}
       propertyPath: selfScene
       value: 2
       objectReference: {fileID: 0}
@@ -8658,12 +8667,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206968932}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.84, y: 1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1762733200}
+  m_Father: {fileID: 1785658360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1223357793
 GameObject:
@@ -8865,12 +8874,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242706581}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.57, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.5700006, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1762733200}
+  m_Father: {fileID: 1785658360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244613067
 GameObject:
@@ -9867,6 +9876,7 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 1364070454}
   meterValue: {fileID: 758527716}
+  toiletEffect: 0
 --- !u!1 &1449761510
 GameObject:
   m_ObjectHideFlags: 0
@@ -10206,6 +10216,7 @@ Transform:
   - {fileID: 528399326}
   - {fileID: 810730473}
   - {fileID: 837593388}
+  - {fileID: 1785658360}
   m_Father: {fileID: 1762733200}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574928421
@@ -10477,6 +10488,7 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 139368328}
   meterValue: {fileID: 1025355764}
+  toiletEffect: 0
 --- !u!1001 &1643906896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10856,11 +10868,6 @@ Transform:
   - {fileID: 368462179}
   - {fileID: 1877877158}
   - {fileID: 2078827979}
-  - {fileID: 1206968933}
-  - {fileID: 472772079}
-  - {fileID: 741952268}
-  - {fileID: 1890758142}
-  - {fileID: 1242706582}
   m_Father: {fileID: 1122749101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1767442229
@@ -10938,6 +10945,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767442229}
   m_CullTransparentMesh: 1
+--- !u!1 &1785658359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1785658360}
+  m_Layer: 0
+  m_Name: Spawn Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1785658360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785658359}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1206968933}
+  - {fileID: 472772079}
+  - {fileID: 741952268}
+  - {fileID: 1890758142}
+  - {fileID: 1242706582}
+  m_Father: {fileID: 1570475997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788855181
 GameObject:
   m_ObjectHideFlags: 0
@@ -11076,6 +11119,7 @@ MonoBehaviour:
   toiletSecondsToEmpty: 2
   sanityMeter: {fileID: 1641966539}
   sanitySecondsToEmpty: 60
+  lockBedroom: 0
 --- !u!1 &1840439873
 GameObject:
   m_ObjectHideFlags: 0
@@ -11454,12 +11498,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890758141}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: 2.44, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.2399998, y: 2.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1762733200}
+  m_Father: {fileID: 1785658360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1894504568 stripped
 Transform:
@@ -12178,6 +12222,7 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 998198920}
   meterValue: {fileID: 803178493}
+  toiletEffect: 0
 --- !u!4 &2053527655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8402992537712319978, guid: edc159acd1ae06395842822088e329f1, type: 3}
