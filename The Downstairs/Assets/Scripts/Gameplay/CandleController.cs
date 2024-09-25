@@ -7,6 +7,19 @@ public class CandleController : MonoBehaviour
     public int candleCount, candleCap;
     [SerializeField] private List<GameObject> candleUI = new();
 
+    public static CandleController instance {get; private set;}
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -69,9 +69,12 @@ public class Meter : MonoBehaviour
         stopDecreasing();
 
         if(amount < 0){
-            updateMeterUI(meter.value - amount);
+            updateMeterUI(meter.value + amount);
 
-            if(meterEnabled){
+            if(meter.value < 0){
+                updateMeterUI(0);
+            }
+            else if(meterEnabled){
                 startDecreasing();
             }
         }
@@ -109,6 +112,6 @@ public class Meter : MonoBehaviour
 
     private void updateMeterUI(float newValue){
         meter.value = newValue;
-        //meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
+        meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
     }
 }
