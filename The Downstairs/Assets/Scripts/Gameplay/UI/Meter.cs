@@ -74,9 +74,9 @@ public class Meter : MonoBehaviour
             if(meter.value < 0){
                 updateMeterUI(0);
             }
-            else if(meterEnabled){
-                startDecreasing();
-            }
+            
+            startDecreasing();
+            
         }
         else{
             updateMeterUI(meter.value + amount);
