@@ -11,7 +11,6 @@ public class Candle : MonoBehaviour
 
     [FormerlySerializedAs("topDownPlayer")]
     [Header("Dependencies")]
-    [SerializeField] private SidescrollPlayerController player;
     [SerializeField] private CandleController candleController;
 
     private bool triggerable;
@@ -34,13 +33,17 @@ public class Candle : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject == player.gameObject){
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        {
             triggerable = true;
         }
     }
 
     public void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject == player.gameObject){
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        {
             triggerable = false;
         }
     }

@@ -11,7 +11,6 @@ public class Match : MonoBehaviour
 
     [FormerlySerializedAs("topDownPlayer")]
     [Header("Dependencies")]
-    [SerializeField] private SidescrollPlayerController player;
     [SerializeField] private MatchController matchController;
 
     private bool triggerable;
@@ -34,13 +33,17 @@ public class Match : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject == player.gameObject){
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        {
             triggerable = true;
         }
     }
 
     public void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject == player.gameObject){
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        {
             triggerable = false;
         }
     }
