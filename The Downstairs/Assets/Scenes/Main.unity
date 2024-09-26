@@ -8161,7 +8161,12 @@ MonoBehaviour:
   dialogueUI: {fileID: 424967135}
   clearTime: 0
   printSpeed: 0.015
-  displaySeconds: 3
+  printDisplaySeconds: 0
+  fadeInTime: 2
+  fadeOutTime: 3
+  fadeDisplayTime: 3
+  minTextAlpha: 0
+  maxTextAlpha: 1
 --- !u!1 &1054528007
 GameObject:
   m_ObjectHideFlags: 0

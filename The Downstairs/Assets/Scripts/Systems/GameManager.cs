@@ -113,9 +113,8 @@ public class GameManager : MonoBehaviour
 
         Timer.instance.startCountUp();
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
-        yield return new WaitForSeconds(20);
         Dialogue.instance.addToDialogue("second dialogue incoming");
 
     }
