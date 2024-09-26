@@ -113,9 +113,11 @@ public class GameManager : MonoBehaviour
 
         Timer.instance.startCountUp();
 
+        MetersController.instance.hungerMeter.startDecreasing();
+
         yield return new WaitForSeconds(3);
-        Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
-        Dialogue.instance.addToDialogue("second dialogue incoming");
+        // Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
+        // Dialogue.instance.addToDialogue("second dialogue incoming");
 
     }
     

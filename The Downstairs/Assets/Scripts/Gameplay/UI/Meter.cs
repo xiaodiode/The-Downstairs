@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +14,10 @@ public class Meter : MonoBehaviour
     
     private float secondsToEmpty;
     private float startTime, timePassed;
-
+    public bool hit80, hit50, hit20, hit10;
     public bool toiletEffect;
+
+    private float oldValue = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,11 @@ public class Meter : MonoBehaviour
         if(!isEmpty && meterEnabled){
             decreaseMeter();
         }  
+
+        //checkIncrements();
+        if (meter.value < 50 && oldValue >= 50){
+            hit50 = true;
+        }
     }
 
     public void initializeMeter(float newSecondsToEmpty){
@@ -129,5 +137,42 @@ public class Meter : MonoBehaviour
 
         meter.value = newValue;
         meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
+    }
+
+    public float getValue()
+    {
+        return meter.value;
+    }
+
+    private void checkIncrements()
+    {
+        if(meter.value <= 10)
+        {
+            hit10 = true;
+            hit20 = false;
+            hit50 = false;
+            hit80 = false;
+        } 
+        else if(meter.value <= 20)
+        {
+            hit10 = false;
+            hit20 = true;
+            hit50 = false;
+            hit80 = false;
+        } 
+        else if(meter.value <= 50)
+        {
+            hit10 = false;
+            hit20 = false;
+            hit50 = true;
+            hit80 = false;
+        } 
+        else if(meter.value <= 80)
+        {
+            hit10 = false;
+            hit20 = false;
+            hit50 = false;
+            hit80 = true;
+        } 
     }
 }

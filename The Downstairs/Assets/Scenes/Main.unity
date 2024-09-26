@@ -978,6 +978,10 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 176490803}
   meterValue: {fileID: 980501603}
+  hit80: 0
+  hit50: 0
+  hit20: 0
+  hit10: 0
   toiletEffect: 0
 --- !u!4 &231522437 stripped
 Transform:
@@ -2397,14 +2401,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.6
+  m_fontSize: 25.3
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 25.3
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8159,10 +8163,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testing: {fileID: 4900000, guid: 65c64e57202bf2541a02bf20cc6f47b1, type: 3}
   dialogueUI: {fileID: 424967135}
+  fadeInAnimation: 1
   clearTime: 0
-  printSpeed: 0.015
-  printDisplaySeconds: 0
-  fadeInTime: 2
+  printSpeed: 0.025
+  printDisplaySeconds: 5
+  fadeInTime: 3
   fadeOutTime: 3
   fadeDisplayTime: 3
   minTextAlpha: 0
@@ -10025,6 +10030,10 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 1364070454}
   meterValue: {fileID: 758527716}
+  hit80: 0
+  hit50: 0
+  hit20: 0
+  hit10: 0
   toiletEffect: 0
 --- !u!1 &1449761510
 GameObject:
@@ -10638,6 +10647,10 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 139368328}
   meterValue: {fileID: 1025355764}
+  hit80: 0
+  hit50: 0
+  hit20: 0
+  hit10: 0
   toiletEffect: 0
 --- !u!1001 &1643906896
 PrefabInstance:
@@ -10756,6 +10769,7 @@ Transform:
   - {fileID: 1398248478}
   - {fileID: 400138898}
   - {fileID: 1239363430}
+  - {fileID: 2113750192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663688128
@@ -12372,6 +12386,10 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 998198920}
   meterValue: {fileID: 803178493}
+  hit80: 0
+  hit50: 0
+  hit20: 0
+  hit10: 0
   toiletEffect: 0
 --- !u!4 &2053527655 stripped
 Transform:
@@ -12982,6 +13000,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2113750191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2113750192}
+  - component: {fileID: 2113750193}
+  m_Layer: 0
+  m_Name: DataLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2113750192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113750191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1662535578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2113750193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113750191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe003d5fee9dcb4a937ce2fee204cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerText: {fileID: 4900000, guid: a15d28e332ad33b46ba72ffcdb9e292d, type: 3}
+  thirstText: {fileID: 4900000, guid: 65c64e57202bf2541a02bf20cc6f47b1, type: 3}
+  toiletText: {fileID: 4900000, guid: 50cc3b9c95c985f488e290d7e6a9fd02, type: 3}
+  sanityText: {fileID: 4900000, guid: 6a82b755a0559ff4aaabece63901f47a, type: 3}
 --- !u!1 &2141846060
 GameObject:
   m_ObjectHideFlags: 0

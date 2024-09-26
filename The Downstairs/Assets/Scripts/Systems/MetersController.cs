@@ -42,6 +42,8 @@ public class MetersController : MonoBehaviour
     void Start()
     {
         lockBedroom = false;
+
+        
     }
 
     // Update is called once per frame
@@ -50,6 +52,8 @@ public class MetersController : MonoBehaviour
         if(SidescrollPlayerController.instance.gameObject.activeInHierarchy){
             resetSanityMeter();
         }
+
+        checkHunger();
     }
 
     public void initializeMeters(){
@@ -90,5 +94,13 @@ public class MetersController : MonoBehaviour
         }
     }
 
-    
+    private void checkHunger()
+    {
+        if(hungerMeter.hit50)
+        {
+            hungerMeter.hit50 = false;
+            Debug.Log("at 50");
+            DataLoader.instance.triggerHungerDialogue50();
+        }
+    }
 }

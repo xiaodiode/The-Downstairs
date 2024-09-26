@@ -12,6 +12,7 @@ public class Dialogue : MonoBehaviour
 
     [Header("Dialogue Appearance")]
     [SerializeField] private TextMeshProUGUI dialogueUI;
+    [SerializeField] private bool fadeInAnimation;
 
     [Header("Printing Animation")]
     [SerializeField] private float clearTime;
@@ -23,7 +24,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private float fadeOutTime;
     [SerializeField] private float fadeDisplayTime;
     [SerializeField] private float minTextAlpha, maxTextAlpha;
-    // private string[] fileLines;
+    private string[] fileLines;
 
     private Color newTextColor = new();
     private bool isPrinting;
@@ -65,24 +66,32 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(dialogueQueue.Count != 0 && !isPrinting){
-            // StartCoroutine(printCharByChar(dialogueQueue.Dequeue()));
-            StartCoroutine(fadeIntoDialogue(dialogueQueue.Dequeue()));
+        if(dialogueQueue.Count != 0 && !isPrinting)
+        {
+            if(fadeInAnimation)
+            {
+                StartCoroutine(fadeIntoDialogue(dialogueQueue.Dequeue()));
+            }
+            else
+            {
+                StartCoroutine(printCharByChar(dialogueQueue.Dequeue()));
+            }
+            
         }
     }
 
-    // public IEnumerator playIntroDialogue(){
+    public IEnumerator playIntroDialogue(){
 
-    //     foreach(string text in fileLines){
+        foreach(string text in fileLines){
 
-    //         StartCoroutine(printCharByChar(text));
+            StartCoroutine(printCharByChar(text));
 
-    //         yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3);
 
-    //         clearDialogue();
-    //     }
+            clearDialogue();
+        }
         
-    // }
+    }
 
     private IEnumerator printCharByChar(string toPrint){
         isPrinting = true;
