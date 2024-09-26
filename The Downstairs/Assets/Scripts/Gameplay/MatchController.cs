@@ -11,6 +11,19 @@ public class MatchController : MonoBehaviour
 
     private int randomCount;
 
+    public static MatchController instance {get; private set;}
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

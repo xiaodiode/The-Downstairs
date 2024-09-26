@@ -2,5 +2,5 @@ w
 a
 s
 d
-right shift
+left shift
 space

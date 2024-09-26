@@ -1,25 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Main Menu")]
-    [SerializeField] private GameObject screensCanvas;
+    public bool isNewGame;
+
+    [Header("UI Screens")]
+    [SerializeField] public GameObject screensCanvas;
+    [SerializeField] private GameObject mainMenuScreen;
+    [SerializeField] private GameObject cutsceneScreen;
 
     [Header("Gameplay")]
-    [SerializeField] private GameObject gameplayCanvas;
+    [SerializeField] private GameObject gameplayScreen;
 
-    [Header("Systems")]
-    [SerializeField] private MouseController mouseController;
-    [SerializeField] private AudioController audioController;
+    private Dictionary<ScreenType, GameObject> screensDict;
 
-    private bool inGame;
+    public enum ScreenType
+    {
+        MainMenu,
+        Cutscene,
+        Gameplay
+    }
+
+    public static GameManager instance {get; private set;}
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        inGame = false;
-        switchMode();
+        screensDict = new()
+        {
+            { ScreenType.MainMenu, mainMenuScreen },
+            { ScreenType.Gameplay, gameplayScreen },
+            { ScreenType.Cutscene, cutsceneScreen }
+        };
+
+        OpenMainMenu();
+
+        isNewGame = false; // change to true to play intro cutscene
     }
 
     // Update is called once per frame
@@ -28,24 +62,63 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void switchMode(){
-        if(inGame){
-            screensCanvas.SetActive(false);
-            gameplayCanvas.SetActive(true);
+    public void switchScreen(ScreenType newScreen)
+    {
 
-            audioController.playGameplayMusic();
+        foreach (ScreenType screen in System.Enum.GetValues(typeof(ScreenType)))
+        {
+            screensDict[screen].SetActive(false);
         }
-        else{
-            screensCanvas.SetActive(true);
-            gameplayCanvas.SetActive(false);
 
-            audioController.playMainMenuMusic();
-        }
+        screensDict[newScreen].SetActive(true);
     }
 
-    public void playGame(){
-        inGame = true;
-        switchMode();
+
+    private void enableScreen(ScreenType screen, bool enable)
+    {
+        screensDict[screen].SetActive(enable);
+    }
+
+    public void OpenMainMenu()
+    {
+        switchScreen(ScreenType.MainMenu);
+        screensCanvas.SetActive(true);
+
+        AudioController.instance.playMainMenuMusic();
+    }
+
+
+    public void playGame()
+    {
+        if(isNewGame)
+        {
+            StartCoroutine(CutscenesController.instance.playIntroCutscene());    
+        }
+        else
+        {
+            StartCoroutine(intiializeGameStart());
+        }
+        
+        
+    }
+
+    public IEnumerator intiializeGameStart()
+    {
+        screensCanvas.SetActive(false);
+
+        switchScreen(ScreenType.Gameplay);
+
+        AudioController.instance.playGameplayMusic();
+        MetersController.instance.initializeMeters();
+
+        Timer.instance.startCountUp();
+
+        MetersController.instance.hungerMeter.startDecreasing();
+
+        yield return new WaitForSeconds(3);
+        // Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
+        // Dialogue.instance.addToDialogue("second dialogue incoming");
+
     }
     
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,12 +14,15 @@ public class Meter : MonoBehaviour
     
     private float secondsToEmpty;
     private float startTime, timePassed;
-    private float currValue;
+    public bool hit80, hit50, hit20, hit10;
+    public bool toiletEffect;
+
+    private float oldValue = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        toiletEffect = false;
     }
 
     // Update is called once per frame
@@ -27,27 +31,30 @@ public class Meter : MonoBehaviour
         if(!isEmpty && meterEnabled){
             decreaseMeter();
         }  
+
+        //checkIncrements();
+        if (meter.value < 50 && oldValue >= 50){
+            hit50 = true;
+        }
     }
 
     public void initializeMeter(float newSecondsToEmpty){
         isEmpty = false;
         meterEnabled = false;
 
-        currValue = 100;
-        updateMeterUI(currValue);
+        updateMeterUI(meter.maxValue);
 
         secondsToEmpty = newSecondsToEmpty;
 
         //debugging
         // meter.value = 80;
-        startDecreasing();
+        // startDecreasing();
 
         // StartCoroutine(waitForSeconds(2));
     }
 
     public void startDecreasing(){
         startTime = Time.time;
-        currValue = meter.value;
 
         meterEnabled = true;
     }
@@ -62,6 +69,8 @@ public class Meter : MonoBehaviour
         stopDecreasing();
 
         updateMeterUI(meter.maxValue);
+
+        // toiletEffect = false;
     }
 
     public void changeByAmount(float amount){
@@ -69,11 +78,15 @@ public class Meter : MonoBehaviour
         stopDecreasing();
 
         if(amount < 0){
-            updateMeterUI(meter.value - amount);
+            updateMeterUI(meter.value + amount);
 
-            if(meterEnabled){
-                startDecreasing();
+            if(meter.value < 0){
+                isEmpty = true;
+                updateMeterUI(0);
             }
+
+            startDecreasing();
+            
         }
         else{
             updateMeterUI(meter.value + amount);
@@ -84,10 +97,11 @@ public class Meter : MonoBehaviour
         }
     }
 
-    private void decreaseMeter(){
-        timePassed = (secondsToEmpty*(meter.maxValue - currValue)/meter.maxValue) + (Time.time - startTime);
+    private void decreaseMeter()
+    {
+        timePassed = Time.time - startTime;
 
-        if(meter.value >= 0){
+        if(meter.value > 0){
             updateMeterUI(meter.maxValue*(1 - (timePassed/secondsToEmpty)));
         }
         else{
@@ -96,10 +110,18 @@ public class Meter : MonoBehaviour
 
             stopDecreasing(); 
         }
-        
     }   
 
-    private IEnumerator waitForSeconds(float seconds){
+    public void changeDecreaseMultiplier(float originalRate, float multiplier)
+    {
+        startTime += timePassed*multiplier;
+        secondsToEmpty = originalRate * multiplier;
+
+        toiletEffect = true;
+    }
+
+    private IEnumerator waitForSeconds(float seconds)
+    {
         yield return new WaitForSeconds(seconds);
 
         //debugging
@@ -107,8 +129,50 @@ public class Meter : MonoBehaviour
         startDecreasing();
     }
 
-    private void updateMeterUI(float newValue){
+    private void updateMeterUI(float newValue)
+    {
+        if(newValue == 0){
+            isEmpty = true;
+        }
+
         meter.value = newValue;
-        //meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
+        meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
+    }
+
+    public float getValue()
+    {
+        return meter.value;
+    }
+
+    private void checkIncrements()
+    {
+        if(meter.value <= 10)
+        {
+            hit10 = true;
+            hit20 = false;
+            hit50 = false;
+            hit80 = false;
+        } 
+        else if(meter.value <= 20)
+        {
+            hit10 = false;
+            hit20 = true;
+            hit50 = false;
+            hit80 = false;
+        } 
+        else if(meter.value <= 50)
+        {
+            hit10 = false;
+            hit20 = false;
+            hit50 = true;
+            hit80 = false;
+        } 
+        else if(meter.value <= 80)
+        {
+            hit10 = false;
+            hit20 = false;
+            hit50 = false;
+            hit80 = true;
+        } 
     }
 }

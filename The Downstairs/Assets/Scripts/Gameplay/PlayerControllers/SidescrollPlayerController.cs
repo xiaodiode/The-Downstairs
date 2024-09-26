@@ -26,6 +26,19 @@ public class SidescrollPlayerController : MonoBehaviour
     private Direction currentDirection = Direction.Right;
 
 
+    public static SidescrollPlayerController instance {get; private set;}
+
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +53,7 @@ public class SidescrollPlayerController : MonoBehaviour
         Move();
     }
     private void Move(){
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
 
         if(horizontalInput == 0){
             idle = true;
@@ -50,7 +63,7 @@ public class SidescrollPlayerController : MonoBehaviour
         newPosition.y = cameraBedroomY;
         
 
-        velocity = new Vector3(horizontalInput, 0, 0).normalized * playerSpeed;
+        velocity.x = horizontalInput* playerSpeed;
         playerRB.velocity = velocity;
 
         newPosition.z = playerCamera.transform.position.z;
