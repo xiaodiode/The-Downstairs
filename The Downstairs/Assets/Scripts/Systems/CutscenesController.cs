@@ -58,12 +58,6 @@ public class CutscenesController : MonoBehaviour
             yield return new WaitForSeconds(secondsPerIntroScene[i]);
         }
 
-        GameManager.instance.screensCanvas.SetActive(false);
-        GameManager.instance.switchScreen(GameManager.ScreenType.Gameplay);
-
-        AudioController.instance.playGameplayMusic();
-        MetersController.instance.initializeMeters();
-
-        Timer.instance.startCountUp();
+        StartCoroutine(GameManager.instance.intiializeGameStart());
     }
 }

@@ -35,10 +35,10 @@ public class MeterQTE : MonoBehaviour
     {
          if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            Debug.Log("keypressed");
+            // Debug.Log("keypressed");
             calculateQTE();
             input = true;
-            Debug.Log("sent");
+            // Debug.Log("sent");
         }
         if (!input){
             cursorSlider.value += speed;

@@ -84,7 +84,7 @@ public class MetersController : MonoBehaviour
     {
         if(!lockBedroom)
         {
-            Debug.Log("resetting sanity");
+            // Debug.Log("resetting sanity");
             sanityMeter.makeMeterFull();
             sanityMeter.initializeMeter(sanitySecondsToEmpty);
         }

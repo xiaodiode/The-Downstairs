@@ -90,21 +90,34 @@ public class GameManager : MonoBehaviour
 
     public void playGame()
     {
-        if(isNewGame){
+        if(isNewGame)
+        {
             StartCoroutine(CutscenesController.instance.playIntroCutscene());    
         }
-        else{
-            screensCanvas.SetActive(false);
-
-            switchScreen(ScreenType.Gameplay);
-
-            AudioController.instance.playGameplayMusic();
-            MetersController.instance.initializeMeters();
-
-            Timer.instance.startCountUp();
+        else
+        {
+            StartCoroutine(intiializeGameStart());
         }
         
         
+    }
+
+    public IEnumerator intiializeGameStart()
+    {
+        screensCanvas.SetActive(false);
+
+        switchScreen(ScreenType.Gameplay);
+
+        AudioController.instance.playGameplayMusic();
+        MetersController.instance.initializeMeters();
+
+        Timer.instance.startCountUp();
+
+        yield return new WaitForSeconds(5);
+        Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
+        yield return new WaitForSeconds(20);
+        Dialogue.instance.addToDialogue("second dialogue incoming");
+
     }
     
 }

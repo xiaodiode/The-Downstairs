@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Dialogue : MonoBehaviour
 {
@@ -14,27 +15,46 @@ public class Dialogue : MonoBehaviour
     [Header("Printing Animation")]
     [SerializeField] private float clearTime;
     [SerializeField] private float printSpeed;
-
+    [SerializeField] private float displaySeconds;
     private string[] fileLines;
-    private bool isReset, isFinished, finishPrinting;
-    private int currLineIndex;
+    private bool isPrinting;
 
+    private Queue<string> dialogueQueue = new();
+
+
+    public static Dialogue instance {get; private set;}
+
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        currLineIndex = 0;
-        fileLines = testing.text.Split('\n');
+        isPrinting = false;
+
+        // currLineIndex = 0;
+        // fileLines = testing.text.Split('\n');
 
         clearDialogue();
 
-        StartCoroutine(playIntroDialogue());
+        // StartCoroutine(playIntroDialogue());
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(dialogueQueue.Count != 0 && !isPrinting){
+            StartCoroutine(printToDialogue(dialogueQueue.Dequeue()));
+        }
     }
 
     public IEnumerator playIntroDialogue(){
@@ -51,27 +71,29 @@ public class Dialogue : MonoBehaviour
     }
 
     private IEnumerator printToDialogue(string toPrint){
-        isReset = false;
-        foreach(char character in toPrint){
+        isPrinting = true;
+        foreach(char character in toPrint)
+        {
             dialogueUI.text += character;
             
-            if(finishPrinting){
-                dialogueUI.text = toPrint;
-                break;
-            }
-            else{
-                yield return new WaitForSeconds(printSpeed);
-            }
+            yield return new WaitForSeconds(printSpeed);
         }
 
-        finishPrinting = false;
-        isFinished = true;
+        yield return new WaitForSeconds(displaySeconds);
+        clearDialogue();
+
+        isPrinting = false;
         
     }
 
     private void clearDialogue(){
 
         dialogueUI.text = "";
+    }
+
+    public void addToDialogue(string newDialogue)
+    {
+        dialogueQueue.Enqueue(newDialogue);
     }
 
     

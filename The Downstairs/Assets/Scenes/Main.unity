@@ -2125,7 +2125,7 @@ Transform:
   m_GameObject: {fileID: 402128692}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4460545, y: 0.17778677, z: -0.0014367667}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0014367667}
   m_LocalScale: {x: 1.7032124, y: 1.7032124, z: 1.7032124}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2639,7 +2639,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!1 &472772078
 GameObject:
@@ -3176,7 +3176,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.16, z: -100}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6186,7 +6186,7 @@ Transform:
   m_GameObject: {fileID: 843867366}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.8439455, y: -0.16778676, z: 0.0014367667}
+  m_LocalPosition: {x: 6.8439455, y: 0, z: 0.0014367667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8160,7 +8160,8 @@ MonoBehaviour:
   testing: {fileID: 4900000, guid: 65c64e57202bf2541a02bf20cc6f47b1, type: 3}
   dialogueUI: {fileID: 424967135}
   clearTime: 0
-  printSpeed: 0.08
+  printSpeed: 0.015
+  displaySeconds: 3
 --- !u!1 &1054528007
 GameObject:
   m_ObjectHideFlags: 0
@@ -12396,7 +12397,7 @@ GameObject:
   - component: {fileID: 2078827977}
   - component: {fileID: 2078827976}
   m_Layer: 0
-  m_Name: Wall Collider (1)
+  m_Name: Right Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13876,11 +13877,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3379353886877543057, guid: 93ae89bdbf4033247a09156a9e88a097, type: 3}
       propertyPath: m_Name
-      value: Wall Collider
+      value: Left Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6881563636039924580, guid: 93ae89bdbf4033247a09156a9e88a097, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.013946
+      value: -11.72
       objectReference: {fileID: 0}
     - target: {fileID: 6881563636039924580, guid: 93ae89bdbf4033247a09156a9e88a097, type: 3}
       propertyPath: m_LocalPosition.y

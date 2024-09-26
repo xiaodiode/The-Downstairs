@@ -92,7 +92,6 @@ public class Meter : MonoBehaviour
     private void decreaseMeter()
     {
         timePassed = Time.time - startTime;
-        Debug.Log("decreasing");
 
         if(meter.value > 0){
             updateMeterUI(meter.maxValue*(1 - (timePassed/secondsToEmpty)));
@@ -107,12 +106,10 @@ public class Meter : MonoBehaviour
 
     public void changeDecreaseMultiplier(float originalRate, float multiplier)
     {
-        // stopDecreasing();
         startTime += timePassed*multiplier;
         secondsToEmpty = originalRate * multiplier;
 
         toiletEffect = true;
-        // startDecreasing();
     }
 
     private IEnumerator waitForSeconds(float seconds)
