@@ -8166,7 +8166,7 @@ MonoBehaviour:
   fadeOutTime: 3
   fadeDisplayTime: 3
   minTextAlpha: 0
-  maxTextAlpha: 1
+  maxTextAlpha: 0.5
 --- !u!1 &1054528007
 GameObject:
   m_ObjectHideFlags: 0
