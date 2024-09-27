@@ -48,9 +48,6 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // currLineIndex = 0;
-        // fileLines = testing.text.Split('\n');
-
         // StartCoroutine(playIntroDialogue());
 
         isPrinting = false;
@@ -78,7 +75,7 @@ public class Dialogue : MonoBehaviour
             }
             
         }
-        Debug.Log("dialogue queue count: " + dialogueQueue.Count);
+        // Debug.Log("dialogue queue count: " + dialogueQueue.Count);
     }
 
     public IEnumerator playIntroDialogue(){

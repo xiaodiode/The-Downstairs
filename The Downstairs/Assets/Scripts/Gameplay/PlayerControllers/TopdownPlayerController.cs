@@ -51,11 +51,31 @@ public class TopdownPlayerController : MonoBehaviour
     void Update()
     {
         input = new Vector2(horizontalInput, verticalInput);
+
         Move();
+
         if (isTopdown)
         {
             var mousePos = playerCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             var angle = Mathf.Atan2(mousePos.y, mousePos.x);
+
+            switch(currentDirection){
+                case Direction.South:
+                    angle = Mathf.Clamp(angle, -1.8f, -0.8f);
+                    break;
+                case Direction.West:
+                    angle = Mathf.Clamp(angle, 1.8f, 2.8f);
+                    break;
+                case Direction.North:
+                    angle = Mathf.Clamp(angle, 0.8f, 1.8f);
+                    break;
+                case Direction.East:
+                    angle = Mathf.Clamp(angle,-0.8f, 0.8f);
+                    break;
+            }
+
+            Debug.Log("angle of mouse: " + angle);
+
             lightEclipse.angle = angle;
         }
 

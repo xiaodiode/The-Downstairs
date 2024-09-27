@@ -2406,7 +2406,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 25.3
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8161,13 +8161,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testing: {fileID: 4900000, guid: 65c64e57202bf2541a02bf20cc6f47b1, type: 3}
   dialogueUI: {fileID: 424967135}
-  fadeInAnimation: 0
+  fadeInAnimation: 1
   clearTime: 0
   printSpeed: 0.025
   printDisplaySeconds: 3
-  fadeInTime: 3
-  fadeOutTime: 3
-  fadeDisplayTime: 3
+  fadeInTime: 0.25
+  fadeOutTime: 0.25
+  fadeDisplayTime: 1.25
   minTextAlpha: 0
   maxTextAlpha: 0.5
 --- !u!1 &1054528007
