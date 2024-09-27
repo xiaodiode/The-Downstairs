@@ -53,7 +53,7 @@ public class MetersController : MonoBehaviour
             resetSanityMeter();
         }
 
-        checkHunger();
+        checkTriggers();
     }
 
     public void initializeMeters(){
@@ -94,12 +94,19 @@ public class MetersController : MonoBehaviour
         }
     }
 
+    private void checkTriggers()
+    {
+        if(sanityMeter.dataReady)
+        {
+            checkHunger();
+        }
+    }
+
     private void checkHunger()
     {
-        if(hungerMeter.hit50)
+        if(hungerMeter.isTriggered[5])
         {
-            hungerMeter.hit50 = false;
-            Debug.Log("at 50");
+            hungerMeter.isTriggered[5] = false;
             DataLoader.instance.triggerHungerDialogue50();
         }
     }

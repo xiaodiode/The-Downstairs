@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
 
         OpenMainMenu();
 
-        isNewGame = false; // change to true to play intro cutscene
+        // isNewGame = true; // change to true to play intro cutscene
+        isNewGame = false;
     }
 
     // Update is called once per frame
