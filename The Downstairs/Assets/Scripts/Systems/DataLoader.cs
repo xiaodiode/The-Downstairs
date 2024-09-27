@@ -64,6 +64,7 @@ public class DataLoader : MonoBehaviour
         while((fileLine = fileReader.ReadLine()) != null)
         {
             fileLine = fileLine.Trim();
+            if(fileLine == "") continue;
 
             if(fileLine == "50" || fileLine == "10"){
 
@@ -83,39 +84,24 @@ public class DataLoader : MonoBehaviour
     }
 
 
-    public void triggerHungerDialogue50()
+    public void triggerHungerDialogue(int interval)
     {
-        int randomIndex;
-
-        if(hungerDialogue50.Count == 1)
-        {
-            randomIndex = 0;
+        int randomIndex; 
+        string toPrint = "invalid";
+        
+        if(interval == 50){
+            randomIndex = (hungerDialogue50.Count == 1) ?  0 : Random.Range(0, hungerDialogue50.Count);
+            toPrint = hungerDialogue50[randomIndex];
+            Debug.Log("toPrint 50: " + toPrint);
         }
-        else
+        else if(interval == 10)
         {
-            randomIndex = Random.Range(0, hungerDialogue50.Count);
+            randomIndex = (hungerDialogue10.Count == 1) ?  0 : Random.Range(0, hungerDialogue10.Count);
+            toPrint = hungerDialogue10[randomIndex];
+            Debug.Log("toPrint 10: " + toPrint);
         }
         
-        string toPrint = hungerDialogue50[randomIndex];
-
         Dialogue.instance.addToDialogue(toPrint);
     }
 
-    public void triggerHungerDialogue10()
-    {
-        int randomIndex;
-
-        if(hungerDialogue10.Count == 1)
-        {
-            randomIndex = 0;
-        }
-        else
-        {
-            randomIndex = Random.Range(0, hungerDialogue50.Count);
-        }
-
-        string toPrint = hungerDialogue10[randomIndex];
-
-        Dialogue.instance.addToDialogue(toPrint);
-    }
 }

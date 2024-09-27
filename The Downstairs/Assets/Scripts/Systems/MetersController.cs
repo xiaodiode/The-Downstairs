@@ -104,10 +104,15 @@ public class MetersController : MonoBehaviour
 
     private void checkHunger()
     {
-        if(hungerMeter.isTriggered[5])
+        if(hungerMeter.isTriggered[1])
+        {
+            hungerMeter.isTriggered[1] = false;
+            DataLoader.instance.triggerHungerDialogue(10);
+        }
+        else if(hungerMeter.isTriggered[5])
         {
             hungerMeter.isTriggered[5] = false;
-            DataLoader.instance.triggerHungerDialogue50();
+            DataLoader.instance.triggerHungerDialogue(50);
         }
     }
 }
