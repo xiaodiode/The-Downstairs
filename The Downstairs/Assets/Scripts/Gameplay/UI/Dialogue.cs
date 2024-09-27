@@ -97,7 +97,7 @@ public class Dialogue : MonoBehaviour
     private IEnumerator printCharByChar(string toPrint){
         isPrinting = true;
         clearDialogue();
-        
+
         foreach(char character in toPrint)
         {
             dialogueUI.text += character;
@@ -150,8 +150,8 @@ public class Dialogue : MonoBehaviour
         
     }
 
-    private void clearDialogue(){
-
+    private void clearDialogue()
+    {
         dialogueUI.text = "";
     }
 

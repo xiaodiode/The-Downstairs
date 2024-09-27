@@ -978,10 +978,8 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 176490803}
   meterValue: {fileID: 980501603}
-  hit80: 0
-  hit50: 0
-  hit20: 0
-  hit10: 0
+  isTriggered: 
+  dataReady: 0
   toiletEffect: 0
 --- !u!4 &231522437 stripped
 Transform:
@@ -8166,7 +8164,7 @@ MonoBehaviour:
   fadeInAnimation: 0
   clearTime: 0
   printSpeed: 0.025
-  printDisplaySeconds: 5
+  printDisplaySeconds: 3
   fadeInTime: 3
   fadeOutTime: 3
   fadeDisplayTime: 3
@@ -10030,10 +10028,8 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 1364070454}
   meterValue: {fileID: 758527716}
-  hit80: 0
-  hit50: 0
-  hit20: 0
-  hit10: 0
+  isTriggered: 
+  dataReady: 0
   toiletEffect: 0
 --- !u!1 &1449761510
 GameObject:
@@ -10647,10 +10643,8 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 139368328}
   meterValue: {fileID: 1025355764}
-  hit80: 0
-  hit50: 0
-  hit20: 0
-  hit10: 0
+  isTriggered: 
+  dataReady: 0
   toiletEffect: 0
 --- !u!1001 &1643906896
 PrefabInstance:
@@ -11276,11 +11270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hungerMeter: {fileID: 1440978707}
-  hungerSecondsToEmpty: 10
+  hungerSecondsToEmpty: 30
   thirstMeter: {fileID: 2053027335}
   thirstSecondsToEmpty: 10
   toiletMeter: {fileID: 219800950}
-  toiletSecondsToEmpty: 2
+  toiletSecondsToEmpty: 40
   sanityMeter: {fileID: 1641966539}
   sanitySecondsToEmpty: 60
   lockBedroom: 0
@@ -12386,10 +12380,8 @@ MonoBehaviour:
   meterEnabled: 0
   meter: {fileID: 998198920}
   meterValue: {fileID: 803178493}
-  hit80: 0
-  hit50: 0
-  hit20: 0
-  hit10: 0
+  isTriggered: 
+  dataReady: 0
   toiletEffect: 0
 --- !u!4 &2053527655 stripped
 Transform:
