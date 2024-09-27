@@ -10,7 +10,7 @@ public class EnterFont : MonoBehaviour
     private TextMeshProUGUI tmp;
     public float timeDilate = 2.0f;
 
-    void Start()
+    void OnEnable()
     {
         tmp = this.GetComponent<TextMeshProUGUI>();
         this.tmp.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, -1.0f); 
