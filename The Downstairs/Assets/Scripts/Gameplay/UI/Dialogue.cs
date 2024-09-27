@@ -96,7 +96,6 @@ public class Dialogue : MonoBehaviour
 
     private IEnumerator printCharByChar(string toPrint){
         isPrinting = true;
-        clearDialogue();
 
         foreach(char character in toPrint)
         {
@@ -106,6 +105,8 @@ public class Dialogue : MonoBehaviour
         }
 
         yield return new WaitForSeconds(printDisplaySeconds);
+
+        clearDialogue();
         
 
         isPrinting = false;
