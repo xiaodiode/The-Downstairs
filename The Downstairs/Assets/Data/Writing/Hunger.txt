@@ -1,11 +1,10 @@
 50
-starting to get hungry now
-should get food downstairs soon
-still some canned food in the basement
-feeling hungry
-should go to the kitchen soon
-should get something from the fridge
+Starting to get hungry now
+Should get food downstairs soon
+Still some canned food in the basement
+Feeling hungry
+Should go to the kitchen soon
+Should get something from the fridge
 
-10
-feeling light-headed
-
+20
+Feeling light-headed

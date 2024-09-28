@@ -1,8 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:The Downstairs/Assets/Animations/Pause Menu Canvas.controller.meta
 guid: 83e1918a9af6f403e84c23170fb4fb8a
 NativeFormatImporter:
+========
+guid: 222d223e6556ca64690694ccbdd2b8f9
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> main:The Downstairs/Assets/Art/Cutscenes.meta
   externalObjects: {}
-  mainObjectFileID: 9100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

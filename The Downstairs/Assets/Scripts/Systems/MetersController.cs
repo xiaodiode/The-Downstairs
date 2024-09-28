@@ -53,16 +53,16 @@ public class MetersController : MonoBehaviour
             resetSanityMeter();
         }
 
-        checkHunger();
+        checkTriggers();
     }
 
-    public void initializeMeters(){
+    public void initializeMeters()
+    {
         hungerMeter.initializeMeter(hungerSecondsToEmpty);
         thirstMeter.initializeMeter(thirstSecondsToEmpty);
         toiletMeter.initializeMeter(toiletSecondsToEmpty);
         sanityMeter.initializeMeter(sanitySecondsToEmpty);
 
-        toiletMeter.startDecreasing();
     }
 
     public void adjustMeters(float hungerchange, float thirstChange, float toiletChange, float sanityChange){
@@ -94,13 +94,70 @@ public class MetersController : MonoBehaviour
         }
     }
 
+    private void checkTriggers()
+    {
+        if(sanityMeter.dataReady)
+        {
+            checkHunger();
+            checkThirst();
+            checkToilet();
+            checkSanity();
+        }
+    }
+
     private void checkHunger()
     {
-        if(hungerMeter.hit50)
+        if(hungerMeter.isTriggered[2])
         {
-            hungerMeter.hit50 = false;
-            Debug.Log("at 50");
-            DataLoader.instance.triggerHungerDialogue50();
+            hungerMeter.isTriggered[2] = false;
+            DataLoader.instance.triggerHungerDialogue(20);
+        }
+        else if(hungerMeter.isTriggered[5])
+        {
+            hungerMeter.isTriggered[5] = false;
+            DataLoader.instance.triggerHungerDialogue(50);
+        }
+    }
+
+    private void checkThirst()
+    {
+        if(thirstMeter.isTriggered[2])
+        {
+            thirstMeter.isTriggered[2] = false;
+            DataLoader.instance.triggerThirstDialogue(20);
+        }
+        else if(thirstMeter.isTriggered[5])
+        {
+            thirstMeter.isTriggered[5] = false;
+            DataLoader.instance.triggerThirstDialogue(50);
+        }
+    }
+
+    private void checkToilet()
+    {
+        if(toiletMeter.isTriggered[2])
+        {
+            toiletMeter.isTriggered[2] = false;
+            DataLoader.instance.triggerToiletDialogue(20);
+        }
+        else if(toiletMeter.isTriggered[5])
+        {
+            toiletMeter.isTriggered[5] = false;
+            DataLoader.instance.triggerToiletDialogue(50);
+        }
+    }
+
+    private void checkSanity()
+    {
+        if(sanityMeter.isTriggered[1])
+        {
+            sanityMeter.isTriggered[1] = false;
+            DataLoader.instance.triggerSanityDialogue(10);
+        }
+        else if(toiletMeter.isTriggered[5])
+        {
+            sanityMeter.isTriggered[5] = false;
+            DataLoader.instance.triggerSanityDialogue(50);
         }
     }
 }

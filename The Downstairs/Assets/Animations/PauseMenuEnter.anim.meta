@@ -1,8 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:The Downstairs/Assets/Animations/PauseMenuEnter.anim.meta
 guid: 014e95d6281e744d49239570f342ad14
 NativeFormatImporter:
+========
+guid: d7af382cfdfb6d34f9cdada6c50ef6f2
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> main:The Downstairs/Assets/Art/Cutscenes/Placeholders.meta
   externalObjects: {}
-  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

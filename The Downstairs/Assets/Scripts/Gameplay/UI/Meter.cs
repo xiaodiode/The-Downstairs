@@ -11,10 +11,14 @@ public class Meter : MonoBehaviour
     public bool isEmpty, meterEnabled;
     [SerializeField] private Slider meter;
     [SerializeField] private TextMeshProUGUI meterValue; //debugging
+
+    private List<int> intervals = new();
+    public List<bool> isTriggered = new();
+
     
+    public bool dataReady;
     private float secondsToEmpty;
     private float startTime, timePassed;
-    public bool hit80, hit50, hit20, hit10;
     public bool toiletEffect;
 
     private float oldValue = 100;
@@ -23,6 +27,15 @@ public class Meter : MonoBehaviour
     void Start()
     {
         toiletEffect = false;
+        dataReady = false;
+
+        for(int interval = 0; interval < 100; interval += 10)
+        {
+            intervals.Add(interval);
+            isTriggered.Add(false);
+        }
+
+        dataReady = true;
     }
 
     // Update is called once per frame
@@ -32,10 +45,8 @@ public class Meter : MonoBehaviour
             decreaseMeter();
         }  
 
-        //checkIncrements();
-        if (meter.value < 50 && oldValue >= 50){
-            hit50 = true;
-        }
+        checkIncrements();
+        
     }
 
     public void initializeMeter(float newSecondsToEmpty){
@@ -146,33 +157,14 @@ public class Meter : MonoBehaviour
 
     private void checkIncrements()
     {
-        if(meter.value <= 10)
+        for(int i = 0; i < intervals.Count; i++)
         {
-            hit10 = true;
-            hit20 = false;
-            hit50 = false;
-            hit80 = false;
-        } 
-        else if(meter.value <= 20)
-        {
-            hit10 = false;
-            hit20 = true;
-            hit50 = false;
-            hit80 = false;
-        } 
-        else if(meter.value <= 50)
-        {
-            hit10 = false;
-            hit20 = false;
-            hit50 = true;
-            hit80 = false;
-        } 
-        else if(meter.value <= 80)
-        {
-            hit10 = false;
-            hit20 = false;
-            hit50 = false;
-            hit80 = true;
-        } 
+            if(meter.value < intervals[i] && oldValue >= intervals[i])
+            {
+                isTriggered[i] = true;
+                oldValue = meter.value;
+            }
+        }
+
     }
 }

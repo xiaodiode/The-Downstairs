@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
 
         OpenMainMenu();
 
-        isNewGame = false; // change to true to play intro cutscene
+        // isNewGame = true; // change to true to play intro cutscene
+        isNewGame = false;
     }
 
     // Update is called once per frame
@@ -114,6 +115,9 @@ public class GameManager : MonoBehaviour
         Timer.instance.startCountUp();
 
         MetersController.instance.hungerMeter.startDecreasing();
+        MetersController.instance.thirstMeter.startDecreasing();
+        MetersController.instance.toiletMeter.startDecreasing();
+        MetersController.instance.sanityMeter.startDecreasing();
 
         yield return new WaitForSeconds(3);
         // Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
