@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:The Downstairs/Assets/Art/Cutscenes.meta
 guid: 222d223e6556ca64690694ccbdd2b8f9
+========
+guid: d7af382cfdfb6d34f9cdada6c50ef6f2
+>>>>>>>> main:The Downstairs/Assets/Art/Cutscenes/Placeholders.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

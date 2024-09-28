@@ -22,7 +22,10 @@ public class TopdownPlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 newPosition;
     
-    
+    private Vector3 mousePosition;
+    private float angle, newAngle;
+    private bool hitMinAngle, hitMaxAngle;
+    private float oldAngle;
     
     private bool idle;
 
@@ -54,30 +57,7 @@ public class TopdownPlayerController : MonoBehaviour
 
         Move();
 
-        if (isTopdown)
-        {
-            var mousePos = playerCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            var angle = Mathf.Atan2(mousePos.y, mousePos.x);
-
-            switch(currentDirection){
-                case Direction.South:
-                    angle = Mathf.Clamp(angle, -1.8f, -0.8f);
-                    break;
-                case Direction.West:
-                    angle = Mathf.Clamp(angle, 1.8f, 2.8f);
-                    break;
-                case Direction.North:
-                    angle = Mathf.Clamp(angle, 0.8f, 1.8f);
-                    break;
-                case Direction.East:
-                    angle = Mathf.Clamp(angle,-0.8f, 0.8f);
-                    break;
-            }
-
-            Debug.Log("angle of mouse: " + angle);
-
-            lightEclipse.angle = angle;
-        }
+        updateCandleLight();
 
         // Debug.Log("Dir" + currentDirection);
     }
@@ -112,6 +92,69 @@ public class TopdownPlayerController : MonoBehaviour
 
     private void OnUseMatch(){
         matchController.useMatch();
+    }
+
+    private void updateCandleLight(){
+        if (isTopdown)
+        {
+            mousePosition = playerCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            angle = Mathf.Atan2(mousePosition.y, mousePosition.x);
+
+            switch(currentDirection){
+                case Direction.South:
+                    newAngle = clampLightBounds(angle, -1.8f, -0.8f, true);
+
+                    break;
+                case Direction.West:
+                    newAngle = clampLightBounds(angle, -3.1f, -2.4f, true);
+
+                    break;
+                case Direction.North:
+                    newAngle = clampLightBounds(angle, 0.8f, 1.8f, false);
+
+                    break;
+                case Direction.East:
+                    newAngle = Mathf.Clamp(angle,-0.5f, 0.2f);
+                    break;
+            }
+
+            Debug.Log("angle of mouse: " + angle);
+
+            lightEclipse.angle = newAngle;
+        }
+    }
+
+    private float clampLightBounds(float currAngle, float minAngle, float maxAngle, bool checkMinFirst)
+    {
+        if(currAngle < minAngle && oldAngle >= minAngle)
+        {
+            hitMinAngle = true;
+        } 
+        else if(currAngle > maxAngle && oldAngle <= maxAngle)
+        {
+            hitMaxAngle = true;
+        }
+        else
+        {
+            hitMinAngle = false;
+            hitMaxAngle = false;
+        }
+
+        if(checkMinFirst)
+        {
+            if(hitMinAngle) currAngle = minAngle;
+            else if(hitMaxAngle) currAngle = maxAngle;
+        }
+        else
+        {
+            if(hitMaxAngle) currAngle = maxAngle;
+            else if(hitMinAngle) currAngle = minAngle;
+        }
+        
+
+        oldAngle = currAngle;
+
+        return currAngle;
     }
 
     private void SetDirection(float xaxis, float yaxis){
