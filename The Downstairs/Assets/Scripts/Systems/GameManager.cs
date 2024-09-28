@@ -85,25 +85,11 @@ public class GameManager : MonoBehaviour
         switchScreen(ScreenType.MainMenu);
         screensCanvas.SetActive(true);
 
-        AudioController.instance.playMainMenuMusic();
+        MainMenu.instance.startMainMenu();
     }
 
 
-    public void playGame()
-    {
-        if(isNewGame)
-        {
-            StartCoroutine(CutscenesController.instance.playIntroCutscene());    
-        }
-        else
-        {
-            StartCoroutine(intiializeGameStart());
-        }
-        
-        
-    }
-
-    public IEnumerator intiializeGameStart()
+    public IEnumerator intitializeGameStart()
     {
         screensCanvas.SetActive(false);
 

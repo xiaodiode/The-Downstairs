@@ -7,25 +7,34 @@ using TMPro;
 public class EnterFont : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] private float timeDilate;
     private TextMeshProUGUI tmp;
-    public float timeDilate = 2.0f;
 
     void Start()
-    {
-        tmp = this.GetComponent<TextMeshProUGUI>();
-        this.tmp.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, -1.0f); 
+    {   
+        tmp = gameObject.GetComponent<TextMeshProUGUI>();
+        tmp.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, -1.0f); 
 
-
-        DOTween.To(GetFaceDilate, SetFaceDilate, 0.0f, timeDilate);
+        // DOTween.To(GetFaceDilate, SetFaceDilate, 0.0f, timeDilate);
     }
 
     void SetFaceDilate(float x)
     {
-        this.tmp.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, x);
+        tmp.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, x);
     }
     float GetFaceDilate()
     {
-        return this.tmp.fontMaterial.GetFloat(ShaderUtilities.ID_FaceDilate);
+        return tmp.fontMaterial.GetFloat(ShaderUtilities.ID_FaceDilate);
+    }
+
+    public void StartDilation()
+    {
+        DOTween.To(GetFaceDilate, SetFaceDilate, 0.0f, timeDilate);
+    }
+
+    public void EndDilation()
+    {
+        DOTween.To(GetFaceDilate, SetFaceDilate, -1.0f, timeDilate);
     }
 
 }

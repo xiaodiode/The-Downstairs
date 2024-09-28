@@ -58,6 +58,6 @@ public class CutscenesController : MonoBehaviour
             yield return new WaitForSeconds(secondsPerIntroScene[i]);
         }
 
-        StartCoroutine(GameManager.instance.intiializeGameStart());
+        StartCoroutine(GameManager.instance.intitializeGameStart());
     }
 }

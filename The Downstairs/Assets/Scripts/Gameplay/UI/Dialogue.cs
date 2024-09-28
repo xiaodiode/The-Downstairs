@@ -13,6 +13,7 @@ public class Dialogue : MonoBehaviour
     [Header("Dialogue Appearance")]
     [SerializeField] private TextMeshProUGUI dialogueUI;
     [SerializeField] private bool fadeInAnimation;
+    private EnterFont dialogueDilation;
 
     [Header("Printing Animation")]
     [SerializeField] private float clearTime;
@@ -51,6 +52,8 @@ public class Dialogue : MonoBehaviour
         // StartCoroutine(playIntroDialogue());
 
         isPrinting = false;
+
+        dialogueDilation = dialogueUI.gameObject.GetComponent<EnterFont>();
 
         newTextColor = dialogueUI.color;
 
@@ -120,6 +123,8 @@ public class Dialogue : MonoBehaviour
 
         dialogueUI.text = toPrint;
 
+        dialogueDilation.StartDilation();
+
         while(secondsPassed < fadeInTime)
         {
             newTextColor.a = Mathf.Lerp(minTextAlpha, maxTextAlpha, secondsPassed/fadeInTime);
@@ -133,6 +138,8 @@ public class Dialogue : MonoBehaviour
         yield return new WaitForSeconds(fadeDisplayTime);
 
         secondsPassed = 0;
+
+        dialogueDilation.EndDilation();
 
         while(secondsPassed < fadeInTime + fadeOutTime)
         {
