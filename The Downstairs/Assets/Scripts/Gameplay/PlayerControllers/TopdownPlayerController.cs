@@ -106,7 +106,7 @@ public class TopdownPlayerController : MonoBehaviour
 
                     break;
                 case Direction.West:
-                    newAngle = clampLightBounds(angle, -2.8f, -1.8f, true);
+                    newAngle = clampLightBounds(angle, -3.1f, -2.4f, true);
 
                     break;
                 case Direction.North:
@@ -114,7 +114,7 @@ public class TopdownPlayerController : MonoBehaviour
 
                     break;
                 case Direction.East:
-                    newAngle = Mathf.Clamp(angle,-0.8f, 0.8f);
+                    newAngle = Mathf.Clamp(angle,-0.5f, 0.2f);
                     break;
             }
 
