@@ -165,10 +165,10 @@ public class MetersController : MonoBehaviour
 
     public void pauseAllMeters()
     {
-        if(hungerMeter.enabled) pausedMeters.Add(hungerMeter);
-        if(thirstMeter.enabled) pausedMeters.Add(thirstMeter);
-        if(toiletMeter.enabled) pausedMeters.Add(toiletMeter);
-        if(sanityMeter.enabled) pausedMeters.Add(sanityMeter);
+        if(hungerMeter.meterEnabled) pausedMeters.Add(hungerMeter);
+        if(thirstMeter.meterEnabled) pausedMeters.Add(thirstMeter);
+        if(toiletMeter.meterEnabled) pausedMeters.Add(toiletMeter);
+        if(sanityMeter.meterEnabled) pausedMeters.Add(sanityMeter);
 
         foreach(Meter meter in pausedMeters)
         {
