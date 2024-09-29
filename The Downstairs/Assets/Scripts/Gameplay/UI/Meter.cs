@@ -22,7 +22,7 @@ public class Meter : MonoBehaviour
     public bool toiletEffect;
 
     private float oldValue = 100;
-    private float pauseTime, resumeTime;
+    private float pauseTime;
     public bool pause;
 
     // Start is called before the first frame update
@@ -85,7 +85,6 @@ public class Meter : MonoBehaviour
     public void resumeDecreasing()
     {
         startTime += Time.time - pauseTime;
-        resumeTime = Time.time;
 
         meterEnabled = true; 
     }

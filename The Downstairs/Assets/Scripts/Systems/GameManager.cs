@@ -17,7 +17,11 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay")]
     [SerializeField] public GameObject gameCanvas;
     [SerializeField] private GameObject cutsceneScreen;
+    [SerializeField] private GameObject continueScreen;
     [SerializeField] private GameObject gameplayScreen;
+
+    [Header("Game Properties")]
+    [SerializeField] public int nightCount;
 
     public Dictionary<ScreenType, GameObject> screensDict;
 
@@ -25,7 +29,8 @@ public class GameManager : MonoBehaviour
     {
         MainMenu,
         Cutscene,
-        Gameplay
+        Gameplay,
+        Continue
     }
 
     public static GameManager instance {get; private set;}
@@ -50,10 +55,13 @@ public class GameManager : MonoBehaviour
         {
             { ScreenType.MainMenu, mainMenuScreen },
             { ScreenType.Gameplay, gameplayScreen },
-            { ScreenType.Cutscene, cutsceneScreen }
+            { ScreenType.Cutscene, cutsceneScreen },
+            { ScreenType.Continue, continueScreen}
         };
 
         OpenMainMenu();
+
+        nightCount = 1;
 
         isNewGame = true; 
         // isNewGame = false; // change to false to skip intro cutscene
@@ -77,16 +85,16 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void enableScreen(ScreenType screen, bool enable)
+    public void enableScreen(ScreenType screen, bool enable)
     {
         screensDict[screen].SetActive(enable);
     }
 
     public void OpenMainMenu()
     {
-        switchScreen(ScreenType.MainMenu);
         enableGame(false);
-
+        switchScreen(ScreenType.MainMenu);
+        
         MainMenu.instance.startMainMenu();
     }
 
@@ -106,6 +114,7 @@ public class GameManager : MonoBehaviour
         MetersController.instance.initializeMeters();
 
         Timer.instance.startCountUp();
+        ClockController.instance.startRotating();
 
         MetersController.instance.hungerMeter.startDecreasing();
         MetersController.instance.thirstMeter.startDecreasing();
@@ -126,6 +135,35 @@ public class GameManager : MonoBehaviour
     public void playStairsCutscene()
     {
         StartCoroutine(CutscenesController.instance.playStairsCutscene());
+    }
+
+    public void openContinueScreen()
+    {
+        Time.timeScale = 0;
+        enableScreen(ScreenType.Continue, true);
+
+        ContinueScreen.instance.updateText();
+    }
+
+    public void continueGame()
+    {
+        Time.timeScale = 1;
+        enableScreen(ScreenType.Continue, false);
+
+        isNewGame = false;
+        nightCount++;
+        MetersController.instance.initializeMeters();
+
+        Timer.instance.resetTimer();
+        ClockController.instance.resetClockHands(ClockController.instance.resetHour);
+
+        Timer.instance.startCountUp();
+        ClockController.instance.startRotating();
+    }
+
+    public void returnToMainMenu()
+    {
+        OpenMainMenu();
     }
     
 }

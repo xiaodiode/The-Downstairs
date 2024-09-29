@@ -65,7 +65,7 @@ public class CutscenesController : MonoBehaviour
 
     public IEnumerator playStairsCutscene()
     {
-        GameManager.instance.screensDict[GameManager.ScreenType.Cutscene].SetActive(true);
+        GameManager.instance.enableScreen(GameManager.ScreenType.Cutscene, true);
 
         MetersController.instance.pauseAllMeters();
 
@@ -75,7 +75,7 @@ public class CutscenesController : MonoBehaviour
             yield return new WaitForSeconds(secondsPerStairsScene[0]);
         }
 
-        GameManager.instance.screensDict[GameManager.ScreenType.Cutscene].SetActive(false);
+        GameManager.instance.enableScreen(GameManager.ScreenType.Cutscene, false);
 
         MetersController.instance.resumeAllMeters();
 

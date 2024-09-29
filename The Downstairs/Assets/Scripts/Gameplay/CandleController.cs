@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CandleController : MonoBehaviour
 {
-    public int candleCount, candleCap;
+    public int candleCount;
+    [SerializeField] private int candleCap;
     [SerializeField] private List<GameObject> candleUI = new();
 
     public static CandleController instance {get; private set;}

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MatchController : MonoBehaviour
 {
-    [SerializeField] private int matchCount, matchCap;
+    public int matchCount;
+    [SerializeField] private int matchCap;
     [SerializeField] private int minMatchPickup, maxMatchPickup;
     [SerializeField] private List<GameObject> matchUI = new();
     [SerializeField] private CandleController candleController;
