@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         OpenMainMenu();
 
         // isNewGame = true; // change to true to play intro cutscene
-        isNewGame = false;
+        // isNewGame = false;
     }
 
     // Update is called once per frame
@@ -92,7 +92,6 @@ public class GameManager : MonoBehaviour
     public IEnumerator intitializeGameStart()
     {
         screensCanvas.SetActive(false);
-
         switchScreen(ScreenType.Gameplay);
 
         AudioController.instance.playGameplayMusic();
@@ -109,6 +108,11 @@ public class GameManager : MonoBehaviour
         // Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
         // Dialogue.instance.addToDialogue("second dialogue incoming");
 
+    }
+
+    public void playIntroCutscene()
+    {
+        StartCoroutine(CutscenesController.instance.playIntroCutscene());   
     }
     
 }

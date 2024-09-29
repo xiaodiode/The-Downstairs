@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour
     {
         if(GameManager.instance.isNewGame)
         {
-            StartCoroutine(CutscenesController.instance.playIntroCutscene());    
+            GameManager.instance.playIntroCutscene(); 
         }
         else
         {
