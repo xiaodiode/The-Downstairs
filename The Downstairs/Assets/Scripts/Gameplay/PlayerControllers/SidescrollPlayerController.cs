@@ -12,8 +12,7 @@ public class SidescrollPlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed;
     [SerializeField] private float cameraBedroomY;
 
-    [SerializeField]
-    private Animator animController;
+    [SerializeField] private Animator animController;
 
     [Header("Dependencies")]
     [SerializeField] private MatchController matchController;
