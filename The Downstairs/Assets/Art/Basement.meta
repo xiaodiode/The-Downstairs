@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:The Downstairs/Assets/Art/Basement.meta
 guid: 7c4630cea8e63984b8a32a4a2152d5f9
 folderAsset: yes
+========
+guid: 4d98d78a5ba4c564e83e1cab1801c0fb
+>>>>>>>> main-menu:The Downstairs/Assets/Scenes/Intro Cutscene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:The Downstairs/Assets/Scripts/Gameplay/Interactables/WaterPitcher.cs.meta
 guid: 33c7a259130f4e74fa9621238d80244d
+========
+guid: 3bb2124623ecf6740bc18d30bf33390d
+>>>>>>>> main-menu:The Downstairs/Assets/Scripts/Gameplay/Interactables/Supplies.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
