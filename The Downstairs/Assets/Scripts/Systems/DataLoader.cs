@@ -2,34 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DataLoader : MonoBehaviour
 {
     [Header("Text Files")]
+
+    [Header("Meters")]
     [SerializeField] private TextAsset hungerText;
     [SerializeField] private TextAsset thirstText;
     [SerializeField] private TextAsset toiletText;
     [SerializeField] private TextAsset sanityText;
 
+    [Header("Resources")]
+    [SerializeField] private TextAsset emptyFridgeText;
+    [SerializeField] private TextAsset emptyPitcherText;
+    [SerializeField] private TextAsset laundryText;
+
     // hunger data
-    private List<string> hungerDialogue50 = new();
-    private List<string> hungerDialogue20 = new();
+    public List<string> hungerDialogue50 = new();
+    public List<string> hungerDialogue20 = new();
 
     // thirst data
-    private List<string> thirstDialogue50 = new();
-    private List<string> thirstDialogue20 = new();
+    public List<string> thirstDialogue50 = new();
+    public List<string> thirstDialogue20 = new();
 
     // toilet data
-    private List<string> toiletDialogue50 = new();
-    private List<string> toiletDialogue20 = new();
+    public List<string> toiletDialogue50 = new();
+    public List<string> toiletDialogue20 = new();
 
     // sanity data
-    private List<string> sanityDialogue80 = new();
-    private List<string> sanityDialogue50 = new();
-    private List<string> sanityDialogue20 = new();
-    private List<string> sanityDialogue10 = new();
+    public List<string> sanityDialogue80 = new();
+    public List<string> sanityDialogue50 = new();
+    public List<string> sanityDialogue20 = new();
+    public List<string> sanityDialogue10 = new();
 
-    private StringReader fileReader;
+    // empty fridge data
+    public List<string> emptyFridgeDialogue = new();
+
+    // empty water pitcher data
+    public List<string> emptyPitcherDialogue = new();
+
+    // laundry data
+    public List<string> emptyLaundryDialogue = new();
+    public List<string> unusedLaundryDialogue = new();
+
     private string fileLine, dataSection;
 
     public static DataLoader instance {get; private set;}
@@ -48,10 +65,16 @@ public class DataLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // parsing meter dialogue data
         parseHungerData();
         parseThirstData();
         parseToiletData();
         parseSanityData();
+
+        // parsing resource dialogue data
+        parseEmptyFridgeData();
+        parseEmptyPitcherData();
+        parseLaundryData();
     }
 
     // Update is called once per frame
@@ -62,7 +85,7 @@ public class DataLoader : MonoBehaviour
 
     private void parseHungerData()
     {
-        fileReader = new StringReader(hungerText.text);
+        StringReader fileReader = new StringReader(hungerText.text);
 
         while((fileLine = fileReader.ReadLine()) != null)
         {
@@ -89,7 +112,7 @@ public class DataLoader : MonoBehaviour
 
     private void parseThirstData()
     {
-        fileReader = new StringReader(thirstText.text);
+        StringReader fileReader = new StringReader(thirstText.text);
 
         while((fileLine = fileReader.ReadLine()) != null)
         {
@@ -115,7 +138,7 @@ public class DataLoader : MonoBehaviour
 
     private void parseToiletData()
     {
-        fileReader = new StringReader(toiletText.text);
+        StringReader fileReader = new StringReader(toiletText.text);
 
         while((fileLine = fileReader.ReadLine()) != null)
         {
@@ -141,7 +164,7 @@ public class DataLoader : MonoBehaviour
 
     private void parseSanityData()
     {
-        fileReader = new StringReader(sanityText.text);
+        StringReader fileReader = new StringReader(sanityText.text);
 
         while((fileLine = fileReader.ReadLine()) != null)
         {
@@ -166,91 +189,61 @@ public class DataLoader : MonoBehaviour
         }
     }
 
-
-    public void triggerHungerDialogue(int interval)
+    private void parseEmptyFridgeData()
     {
-        int randomIndex; 
-        string toPrint = "invalid";
+        StringReader fileReader = new StringReader(emptyFridgeText.text);
         
-        if(interval == 20)
+        while((fileLine = fileReader.ReadLine()) != null)
         {
-            randomIndex = (hungerDialogue20.Count == 1) ?  0 : Random.Range(0, hungerDialogue20.Count);
-            toPrint = hungerDialogue20[randomIndex];
-            Debug.Log("toPrint 20: " + toPrint);
+            fileLine = fileLine.Trim();
+            if(fileLine == "") continue;
+
+            emptyFridgeDialogue.Add(fileLine);
         }
-        else if(interval == 50)
-        {
-            randomIndex = (hungerDialogue50.Count == 1) ?  0 : Random.Range(0, hungerDialogue50.Count);
-            toPrint = hungerDialogue50[randomIndex];
-            Debug.Log("toPrint 50: " + toPrint);
-        }
-        
-        
-        Dialogue.instance.addToDialogue(toPrint);
     }
 
-    public void triggerThirstDialogue(int interval)
+    private void parseEmptyPitcherData()
     {
-        int randomIndex; 
-        string toPrint = "invalid";
-        
-        if(interval == 20)
+        StringReader fileReader = new StringReader(emptyPitcherText.text);
+
+        while((fileLine = fileReader.ReadLine()) != null)
         {
-            randomIndex = (thirstDialogue20.Count == 1) ?  0 : Random.Range(0, thirstDialogue20.Count);
-            toPrint = thirstDialogue20[randomIndex];
-            Debug.Log("toPrint 20: " + toPrint);
+            fileLine = fileLine.Trim();
+            if(fileLine == "") continue;
+
+            emptyPitcherDialogue.Add(fileLine);
         }
-        else if(interval == 50)
-        {
-            randomIndex = (thirstDialogue50.Count == 1) ?  0 : Random.Range(0, thirstDialogue50.Count);
-            toPrint = thirstDialogue50[randomIndex];
-            Debug.Log("toPrint 50: " + toPrint);
-        }
-        
-        Dialogue.instance.addToDialogue(toPrint);
     }
 
-    public void triggerToiletDialogue(int interval)
+    private void parseLaundryData()
     {
-        int randomIndex; 
-        string toPrint = "invalid";
-        
-        if(interval == 20)
+        StringReader fileReader = new StringReader(laundryText.text);
+
+        while((fileLine = fileReader.ReadLine()) != null)
         {
-            randomIndex = (toiletDialogue20.Count == 1) ?  0 : Random.Range(0, toiletDialogue20.Count);
-            toPrint = toiletDialogue20[randomIndex];
-            Debug.Log("toPrint 20: " + toPrint);
+            fileLine = fileLine.Trim();
+            if(fileLine == "") continue;
+
+            if(fileLine == "empty" || fileLine == "unused"){
+
+                dataSection = fileLine;
+                // Debug.Log("dataSection: " + dataSection);
+            }
+
+            else if(dataSection == "empty")
+            {
+                emptyLaundryDialogue.Add(fileLine);
+            }
+
+            else if(dataSection == "unused")
+            {
+                unusedLaundryDialogue.Add(fileLine);
+            }
         }
-        else if(interval == 50)
-        {
-            randomIndex = (toiletDialogue50.Count == 1) ?  0 : Random.Range(0, toiletDialogue50.Count);
-            toPrint = toiletDialogue50[randomIndex];
-            Debug.Log("toPrint 50: " + toPrint);
-        }
-        
-        Dialogue.instance.addToDialogue(toPrint);
     }
 
-    public void triggerSanityDialogue(int interval)
-    {
-        int randomIndex; 
-        string toPrint = "invalid";
-        
-        if(interval == 10)
-        {
-            randomIndex = (sanityDialogue10.Count == 1) ?  0 : Random.Range(0, sanityDialogue10.Count);
-            toPrint = sanityDialogue10[randomIndex];
-            Debug.Log("toPrint 20: " + toPrint);
-        }
-        else if(interval == 50)
-        {
-            randomIndex = (sanityDialogue50.Count == 1) ?  0 : Random.Range(0, sanityDialogue50.Count);
-            toPrint = sanityDialogue50[randomIndex];
-            Debug.Log("toPrint 50: " + toPrint);
-        }
-        
-        Dialogue.instance.addToDialogue(toPrint);
-    }
+
+    
 
     
 

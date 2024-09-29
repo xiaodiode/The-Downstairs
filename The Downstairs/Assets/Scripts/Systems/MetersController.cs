@@ -110,12 +110,12 @@ public class MetersController : MonoBehaviour
         if(hungerMeter.isTriggered[2])
         {
             hungerMeter.isTriggered[2] = false;
-            DataLoader.instance.triggerHungerDialogue(20);
+            Dialogue.instance.triggerHungerDialogue(20);
         }
         else if(hungerMeter.isTriggered[5])
         {
             hungerMeter.isTriggered[5] = false;
-            DataLoader.instance.triggerHungerDialogue(50);
+            Dialogue.instance.triggerHungerDialogue(50);
         }
     }
 
@@ -124,12 +124,12 @@ public class MetersController : MonoBehaviour
         if(thirstMeter.isTriggered[2])
         {
             thirstMeter.isTriggered[2] = false;
-            DataLoader.instance.triggerThirstDialogue(20);
+            Dialogue.instance.triggerThirstDialogue(20);
         }
         else if(thirstMeter.isTriggered[5])
         {
             thirstMeter.isTriggered[5] = false;
-            DataLoader.instance.triggerThirstDialogue(50);
+            Dialogue.instance.triggerThirstDialogue(50);
         }
     }
 
@@ -138,12 +138,12 @@ public class MetersController : MonoBehaviour
         if(toiletMeter.isTriggered[2])
         {
             toiletMeter.isTriggered[2] = false;
-            DataLoader.instance.triggerToiletDialogue(20);
+            Dialogue.instance.triggerToiletDialogue(20);
         }
         else if(toiletMeter.isTriggered[5])
         {
             toiletMeter.isTriggered[5] = false;
-            DataLoader.instance.triggerToiletDialogue(50);
+            Dialogue.instance.triggerToiletDialogue(50);
         }
     }
 
@@ -152,12 +152,12 @@ public class MetersController : MonoBehaviour
         if(sanityMeter.isTriggered[1])
         {
             sanityMeter.isTriggered[1] = false;
-            DataLoader.instance.triggerSanityDialogue(10);
+            Dialogue.instance.triggerSanityDialogue(10);
         }
         else if(toiletMeter.isTriggered[5])
         {
             sanityMeter.isTriggered[5] = false;
-            DataLoader.instance.triggerSanityDialogue(50);
+            Dialogue.instance.triggerSanityDialogue(50);
         }
     }
 }

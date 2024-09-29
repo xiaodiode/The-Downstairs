@@ -24,10 +24,6 @@ public class Door : MonoBehaviour
     {
         if(triggerable && Input.GetKeyDown(KeyCode.Space))
         {
-            // if(selfScene == SceneController.ScenesType.StairsBedUp)
-            // {
-            //     MetersController.instance.resetSanityMeter();  
-            // }
             if(selfScene == SceneController.ScenesType.Bedroom)
             {
                 if(!MetersController.instance.sanityMeter.meterEnabled)
@@ -41,14 +37,10 @@ public class Door : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
-            triggerable = true;
-        }
-        else if(other.gameObject.GetComponent<SidescrollPlayerController>() != null)
-        {
-            triggerable = true;
-            
+            triggerable = false;
         }
     }
 

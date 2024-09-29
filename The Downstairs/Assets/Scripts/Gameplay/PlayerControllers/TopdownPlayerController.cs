@@ -27,7 +27,7 @@ public class TopdownPlayerController : MonoBehaviour
     private bool hitMinAngle, hitMaxAngle;
     private float oldAngle;
     
-    private bool idle;
+    // private bool idle;
 
     private Vector3 input;
     
@@ -47,7 +47,7 @@ public class TopdownPlayerController : MonoBehaviour
         {
             lightEclipse = GetComponent<PlayerLightEclipse>();
         }
-        idle = true;
+        // idle = true;
     }
 
     // Update is called once per frame
@@ -65,9 +65,9 @@ public class TopdownPlayerController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(horizontalInput == 0 && verticalInput == 0){
-            idle = true;
-        }
+        // if(horizontalInput == 0 && verticalInput == 0){
+        //     idle = true;
+        // }
         if (horizontalInput == 0 ^ verticalInput == 0) { //Updates Directional Enum taking into account the 
             SetDirection(horizontalInput,verticalInput);
         }        
@@ -118,7 +118,7 @@ public class TopdownPlayerController : MonoBehaviour
                     break;
             }
 
-            Debug.Log("angle of mouse: " + angle);
+            // Debug.Log("angle of mouse: " + angle);
 
             lightEclipse.angle = newAngle;
         }

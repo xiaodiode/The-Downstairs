@@ -14,14 +14,13 @@ public class EnterFont : MonoBehaviour
     {   
         tmp = gameObject.GetComponent<TextMeshProUGUI>();
         tmp.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, -1.0f); 
-
-        // DOTween.To(GetFaceDilate, SetFaceDilate, 0.0f, timeDilate);
     }
 
     void SetFaceDilate(float x)
     {
         tmp.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, x);
     }
+    
     float GetFaceDilate()
     {
         return tmp.fontMaterial.GetFloat(ShaderUtilities.ID_FaceDilate);

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
-using System;
 
 public class Dialogue : MonoBehaviour
 {
@@ -165,6 +163,150 @@ public class Dialogue : MonoBehaviour
         dialogueQueue.Enqueue(newDialogue);
     }
 
-    
+
+    public void triggerHungerDialogue(int interval)
+    {
+        int randomIndex; 
+        string toPrint = "invalid";
+
+        switch(interval)
+        {
+            case 20:
+                randomIndex = (DataLoader.instance.hungerDialogue20.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.hungerDialogue20.Count);
+                toPrint = DataLoader.instance.hungerDialogue20[randomIndex];
+                Debug.Log("toPrint 20: " + toPrint);
+
+                break;
+
+            case 50:
+                randomIndex = (DataLoader.instance.hungerDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.hungerDialogue50.Count);
+                toPrint = DataLoader.instance.hungerDialogue50[randomIndex];
+                Debug.Log("toPrint 50: " + toPrint);
+
+                break;
+        }   
+        
+        addToDialogue(toPrint);
+    }
+
+    public void triggerThirstDialogue(int interval)
+    {
+        int randomIndex; 
+        string toPrint = "invalid";
+
+        switch(interval)
+        {
+            case 20:
+                randomIndex = (DataLoader.instance.thirstDialogue20.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.thirstDialogue20.Count);
+                toPrint = DataLoader.instance.thirstDialogue20[randomIndex];
+                Debug.Log("toPrint 20: " + toPrint);
+
+                break;
+
+            case 50:
+                randomIndex = (DataLoader.instance.thirstDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.thirstDialogue50.Count);
+                toPrint = DataLoader.instance.thirstDialogue50[randomIndex];
+                Debug.Log("toPrint 50: " + toPrint);
+
+                break;
+        }
+        
+        addToDialogue(toPrint);
+    }
+
+    public void triggerToiletDialogue(int interval)
+    {
+        int randomIndex; 
+        string toPrint = "invalid";
+        
+        switch(interval)
+        {
+            case 20:
+                randomIndex = (DataLoader.instance.toiletDialogue20.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.toiletDialogue20.Count);
+                toPrint = DataLoader.instance.toiletDialogue20[randomIndex];
+                Debug.Log("toPrint 20: " + toPrint);
+
+                break;
+
+            case 50: 
+                randomIndex = (DataLoader.instance.toiletDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.toiletDialogue50.Count);
+                toPrint = DataLoader.instance.toiletDialogue50[randomIndex];
+                Debug.Log("toPrint 50: " + toPrint);
+
+                break;
+        }
+
+        addToDialogue(toPrint);
+    }
+
+    public void triggerSanityDialogue(int interval)
+    {
+        int randomIndex; 
+        string toPrint = "invalid";
+        
+        switch(interval)
+        {
+            case 10:
+                randomIndex = (DataLoader.instance.sanityDialogue10.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.sanityDialogue10.Count);
+                toPrint = DataLoader.instance.sanityDialogue10[randomIndex];
+                Debug.Log("toPrint 10: " + toPrint);
+                
+                break;
+
+            case 50:
+                randomIndex = (DataLoader.instance.sanityDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.sanityDialogue50.Count);
+                toPrint = DataLoader.instance.sanityDialogue50[randomIndex];
+                Debug.Log("toPrint 50: " + toPrint);
+
+                break;
+        }
+        
+        addToDialogue(toPrint);
+    }
+
+    public void triggerEmptyFridgeDialogue()
+    {
+        int randomIndex;
+        string toPrint;
+
+        randomIndex = (DataLoader.instance.emptyFridgeDialogue.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.emptyFridgeDialogue.Count);
+        toPrint = DataLoader.instance.emptyFridgeDialogue[randomIndex];
+
+        addToDialogue(toPrint);
+    }
+
+    public void triggerEmptyPitcherDialogue()
+    {
+        int randomIndex;
+        string toPrint;
+
+        randomIndex = (DataLoader.instance.emptyPitcherDialogue.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.emptyPitcherDialogue.Count);
+        toPrint = DataLoader.instance.emptyPitcherDialogue[randomIndex];
+
+        addToDialogue(toPrint);
+    }
+
+    public void triggerLaundryDialogue(string state)
+    {
+        int randomIndex;
+        string toPrint = "invalid";
+
+        switch(state)
+        {
+            case "empty":
+                randomIndex = (DataLoader.instance.emptyLaundryDialogue.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.emptyLaundryDialogue.Count);
+                toPrint = DataLoader.instance.emptyLaundryDialogue[randomIndex];
+
+                break;
+
+            case "unused":
+                randomIndex = (DataLoader.instance.unusedLaundryDialogue.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.unusedLaundryDialogue.Count);
+                toPrint = DataLoader.instance.unusedLaundryDialogue[randomIndex];
+
+                break;
+        }
+
+        addToDialogue(toPrint);
+    }
         
 }
