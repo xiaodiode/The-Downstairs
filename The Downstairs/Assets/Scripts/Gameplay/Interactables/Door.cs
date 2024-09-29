@@ -26,10 +26,18 @@ public class Door : MonoBehaviour
         {
             if(selfScene == SceneController.ScenesType.Bedroom)
             {
-                if(!MetersController.instance.sanityMeter.meterEnabled)
+                if(!CutscenesController.instance.stairsCutscenePlayed)
                 {
-                    MetersController.instance.sanityMeter.startDecreasing();
-                    Debug.Log("entered darkness");
+                    Debug.Log("playing stairs cutscene now");
+                    GameManager.instance.playStairsCutscene();
+                }
+                else
+                {
+                    if(!MetersController.instance.sanityMeter.meterEnabled)
+                    {
+                        MetersController.instance.sanityMeter.startDecreasing();
+                        Debug.Log("entered darkness");
+                    }
                 }
             }
             sceneController.switchScenes(target.selfScene);
@@ -40,7 +48,7 @@ public class Door : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
-            triggerable = false;
+            triggerable = true;
         }
     }
 

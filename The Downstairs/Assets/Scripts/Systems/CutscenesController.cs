@@ -22,6 +22,8 @@ public class CutscenesController : MonoBehaviour
 
     public static CutscenesController instance {get; private set;}
 
+    public bool stairsCutscenePlayed;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,7 +40,7 @@ public class CutscenesController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        stairsCutscenePlayed = false;
     }
 
     // Update is called once per frame
@@ -48,9 +50,9 @@ public class CutscenesController : MonoBehaviour
     }
 
     public IEnumerator playIntroCutscene()
-    {
+    {   
+        GameManager.instance.enableGame(true);
         GameManager.instance.switchScreen(GameManager.ScreenType.Cutscene);
-        GameManager.instance.screensCanvas.SetActive(true);
 
         for(int i=0; i<introCutscene.Count; i++)
         {
@@ -59,5 +61,31 @@ public class CutscenesController : MonoBehaviour
         }
 
         StartCoroutine(GameManager.instance.intitializeGameStart());
+    }
+
+    public IEnumerator playStairsCutscene()
+    {
+        GameManager.instance.screensDict[GameManager.ScreenType.Cutscene].SetActive(true);
+
+        MetersController.instance.pauseAllMeters();
+
+        for(int i = 0; i < stairsCutscene.Count; i++)
+        {
+            cutsceneImage.texture = stairsCutscene[0];
+            yield return new WaitForSeconds(secondsPerStairsScene[0]);
+        }
+
+        GameManager.instance.screensDict[GameManager.ScreenType.Cutscene].SetActive(false);
+
+        MetersController.instance.resumeAllMeters();
+
+        if(!MetersController.instance.sanityMeter.meterEnabled)
+        {
+            MetersController.instance.sanityMeter.startDecreasing();
+            Debug.Log("entered darkness");
+        }
+
+        stairsCutscenePlayed = true;
+
     }
 }

@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour
     [Header("UI Screens")]
     [SerializeField] public GameObject screensCanvas;
     [SerializeField] private GameObject mainMenuScreen;
-    [SerializeField] private GameObject cutsceneScreen;
+    
 
     [Header("Gameplay")]
+    [SerializeField] public GameObject gameCanvas;
+    [SerializeField] private GameObject cutsceneScreen;
     [SerializeField] private GameObject gameplayScreen;
 
-    private Dictionary<ScreenType, GameObject> screensDict;
+    public Dictionary<ScreenType, GameObject> screensDict;
 
     public enum ScreenType
     {
@@ -53,8 +55,8 @@ public class GameManager : MonoBehaviour
 
         OpenMainMenu();
 
-        // isNewGame = true; // change to true to play intro cutscene
-        // isNewGame = false;
+        isNewGame = true; 
+        // isNewGame = false; // change to false to skip intro cutscene
     }
 
     // Update is called once per frame
@@ -83,15 +85,21 @@ public class GameManager : MonoBehaviour
     public void OpenMainMenu()
     {
         switchScreen(ScreenType.MainMenu);
-        screensCanvas.SetActive(true);
+        enableGame(false);
 
         MainMenu.instance.startMainMenu();
+    }
+
+    public void enableGame(bool enable)
+    {
+        screensCanvas.SetActive(!enable);
+        gameCanvas.SetActive(enable);
     }
 
 
     public IEnumerator intitializeGameStart()
     {
-        screensCanvas.SetActive(false);
+        enableGame(true);
         switchScreen(ScreenType.Gameplay);
 
         AudioController.instance.playGameplayMusic();
@@ -113,6 +121,11 @@ public class GameManager : MonoBehaviour
     public void playIntroCutscene()
     {
         StartCoroutine(CutscenesController.instance.playIntroCutscene());   
+    }
+
+    public void playStairsCutscene()
+    {
+        StartCoroutine(CutscenesController.instance.playStairsCutscene());
     }
     
 }

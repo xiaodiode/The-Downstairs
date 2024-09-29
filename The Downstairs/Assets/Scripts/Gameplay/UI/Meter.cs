@@ -22,6 +22,8 @@ public class Meter : MonoBehaviour
     public bool toiletEffect;
 
     private float oldValue = 100;
+    private float pauseTime, resumeTime;
+    public bool pause;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,8 @@ public class Meter : MonoBehaviour
             intervals.Add(interval);
             isTriggered.Add(false);
         }
+
+        pause = false;
 
         dataReady = true;
     }
@@ -64,16 +68,26 @@ public class Meter : MonoBehaviour
         // StartCoroutine(waitForSeconds(2));
     }
 
-    public void startDecreasing(){
+    public void startDecreasing()
+    {
         startTime = Time.time;
 
         meterEnabled = true;
     }
 
-    public void stopDecreasing(){
-
+    public void stopDecreasing()
+    {
         meterEnabled = false;
 
+        pauseTime = Time.time;
+    }
+
+    public void resumeDecreasing()
+    {
+        startTime += Time.time - pauseTime;
+        resumeTime = Time.time;
+
+        meterEnabled = true; 
     }
 
     public void makeMeterFull(){
@@ -166,5 +180,23 @@ public class Meter : MonoBehaviour
             }
         }
 
+    }
+
+    public IEnumerator pauseMeter()
+    {
+        if(meterEnabled)
+        {
+            while(pause)
+            {
+                startTime += Time.deltaTime;
+
+                yield return null;
+            }
+        }
+    }
+
+    public void resumeMeter()
+    {
+        pause = false;
     }
 }

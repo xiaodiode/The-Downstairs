@@ -1115,6 +1115,7 @@ MonoBehaviour:
   isTriggered: 
   dataReady: 0
   toiletEffect: 0
+  pause: 0
 --- !u!4 &231522437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3135741602100635737, guid: fea51ac59f54d3a2abe5117d83547715, type: 3}
@@ -2179,10 +2180,12 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0bf1061c605725f4aac8203a599fed9e, type: 3}
   - {fileID: 2800000, guid: d7e22d1d4dce03140b756d907054f9d6, type: 3}
   secondsPerIntroScene: 01000000010000000100000001000000
-  stairsCutscene: []
-  secondsPerStairsScene: 
+  stairsCutscene:
+  - {fileID: 2800000, guid: aab0c9d3b0e176646b0445c10566313d, type: 3}
+  secondsPerStairsScene: 05000000
   endingCutscene: []
   secondsPerEndingScene: 
+  stairsCutscenePlayed: 0
 --- !u!1 &402128692
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2724,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 647024107}
-  m_Father: {fileID: 814091985}
+  m_Father: {fileID: 843867367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2778,18 +2781,18 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 655399384}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -38474651
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &456068196
 GameObject:
@@ -3402,7 +3405,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   m_Layer: 0
-  m_Name: Gameplay Camera
+  m_Name: Game Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4216,6 +4219,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &612173807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 612173808}
+  m_Layer: 0
+  m_Name: Gameplay Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &612173808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612173807}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1122749101}
+  - {fileID: 1574928422}
+  m_Father: {fileID: 843867367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &621732528
 GameObject:
   m_ObjectHideFlags: 0
@@ -6075,7 +6111,6 @@ Transform:
   m_Children:
   - {fileID: 655399387}
   - {fileID: 6722280729450865634}
-  - {fileID: 449763725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &816745248
@@ -6473,7 +6508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 843867367}
   m_Layer: 0
-  m_Name: Gameplay Canvas
+  m_Name: Game Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6493,8 +6528,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 519420032}
-  - {fileID: 1122749101}
-  - {fileID: 1574928422}
+  - {fileID: 449763725}
+  - {fileID: 612173808}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862295314
@@ -8969,7 +9004,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122749100}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8977,7 +9012,7 @@ Transform:
   - {fileID: 1762733200}
   - {fileID: 1185022199}
   - {fileID: 920298614}
-  m_Father: {fileID: 843867367}
+  m_Father: {fileID: 612173808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1130854732
 GameObject:
@@ -10304,8 +10339,9 @@ MonoBehaviour:
   isNewGame: 1
   screensCanvas: {fileID: 814091984}
   mainMenuScreen: {fileID: 2736315174191598200}
+  gameCanvas: {fileID: 843867366}
   cutsceneScreen: {fileID: 449763724}
-  gameplayScreen: {fileID: 843867366}
+  gameplayScreen: {fileID: 612173807}
 --- !u!1 &1420854531
 GameObject:
   m_ObjectHideFlags: 0
@@ -10516,6 +10552,7 @@ MonoBehaviour:
   isTriggered: 
   dataReady: 0
   toiletEffect: 0
+  pause: 0
 --- !u!1 &1449761510
 GameObject:
   m_ObjectHideFlags: 0
@@ -10894,7 +10931,7 @@ RectTransform:
   - {fileID: 83739887}
   - {fileID: 456068199}
   - {fileID: 1155036271}
-  m_Father: {fileID: 843867367}
+  m_Father: {fileID: 612173808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11130,6 +11167,7 @@ MonoBehaviour:
   isTriggered: 
   dataReady: 0
   toiletEffect: 0
+  pause: 0
 --- !u!1001 &1643906896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12873,6 +12911,7 @@ MonoBehaviour:
   isTriggered: 
   dataReady: 0
   toiletEffect: 0
+  pause: 0
 --- !u!4 &2053527655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8402992537712319978, guid: edc159acd1ae06395842822088e329f1, type: 3}

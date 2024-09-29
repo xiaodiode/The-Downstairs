@@ -24,6 +24,8 @@ public class MetersController : MonoBehaviour
 
     public bool lockBedroom;
 
+    private List<Meter> pausedMeters = new();
+
     public static MetersController instance {get; private set;}
 
     void Awake()
@@ -158,6 +160,28 @@ public class MetersController : MonoBehaviour
         {
             sanityMeter.isTriggered[5] = false;
             Dialogue.instance.triggerSanityDialogue(50);
+        }
+    }
+
+    public void pauseAllMeters()
+    {
+        if(hungerMeter.enabled) pausedMeters.Add(hungerMeter);
+        if(thirstMeter.enabled) pausedMeters.Add(thirstMeter);
+        if(toiletMeter.enabled) pausedMeters.Add(toiletMeter);
+        if(sanityMeter.enabled) pausedMeters.Add(sanityMeter);
+
+        foreach(Meter meter in pausedMeters)
+        {
+            meter.stopDecreasing();
+        }
+
+    }
+
+    public void resumeAllMeters()
+    {
+        foreach(Meter meter in pausedMeters)
+        {
+            meter.resumeDecreasing();
         }
     }
 }
