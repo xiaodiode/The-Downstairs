@@ -16,7 +16,6 @@ public class ContinueScreen : MonoBehaviour
 
     public static ContinueScreen instance {get; private set;}
 
-    // Start is called before the first frame update
     void Awake()
     {
         if(instance != null && instance != this){
@@ -26,7 +25,6 @@ public class ContinueScreen : MonoBehaviour
             instance = this;
         }
 
-        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
