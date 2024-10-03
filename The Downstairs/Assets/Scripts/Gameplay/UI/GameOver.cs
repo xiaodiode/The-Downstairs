@@ -21,8 +21,9 @@ public class GameOver : MonoBehaviour
     [SerializeField] private float fadeInTitleTime, fadeOutTitleTime;
     [SerializeField] private Vector2 textAlphaRange;
     private EnterFont titleTextAnim;
-
     private float secondsPassed;
+    private Color newColor;
+
 
     public static GameOver instance {get; private set;}
 
@@ -41,6 +42,13 @@ public class GameOver : MonoBehaviour
     {
         titleTextAnim = titleText.gameObject.GetComponent<EnterFont>();
 
+        newColor = otherText[0].color;
+        newColor.a = 0;
+
+        foreach(TextMeshProUGUI text in otherText)
+        {
+           text.color = newColor;
+        }
         
     }
 
@@ -49,8 +57,7 @@ public class GameOver : MonoBehaviour
     {
         
     }
-
-    private IEnumerator fadeIn(string toPrint)
+    public IEnumerator fadeIn()
     {
         secondsPassed = 0;
         Color newBgColor = background.color;
@@ -62,6 +69,8 @@ public class GameOver : MonoBehaviour
 
             secondsPassed += Time.deltaTime;
 
+            // Debug.Log("bg seconds passed: " + secondsPassed);
+
             yield return null;
         }
 
@@ -70,6 +79,8 @@ public class GameOver : MonoBehaviour
         secondsPassed = 0;
         Color textColor = otherText[0].color;
         Color titleColor = titleText.color;
+
+        titleTextAnim.StartDilation();
 
         while(secondsPassed < (fadeInTextTime + 2*titleDelay))
         {

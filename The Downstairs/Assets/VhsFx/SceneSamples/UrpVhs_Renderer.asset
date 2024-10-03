@@ -86,7 +86,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _active: 1
   _shader: {fileID: 4800000, guid: 074eb04a5009453ea004483946e7c745, type: 3}
+  _singleTape:
+    enabled: 0
+    value: 0
+  _negative: 0
+  _glitch: {r: 1, g: 0, b: 0, a: 1}
   _frameRate: 20
+  _tape: []
+  _noise: []
+  _shades: []
   _clip:
   - {fileID: 2800000, guid: 6cc3565298463314b9a2b63156556e63, type: 3}
   - {fileID: 2800000, guid: 0d8527f69f11eee4784124083e96deb9, type: 3}

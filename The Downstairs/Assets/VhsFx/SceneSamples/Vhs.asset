@@ -40,25 +40,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb2952b95454955ba507c3d96778a76, type: 3}
   m_Name: VhsVol
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   _weight:
     m_OverrideState: 1
-    m_Value: 0.749
+    m_Value: 0.66
   _bleed:
     m_OverrideState: 1
-    m_Value: 2.51
+    m_Value: 4.9
   _rocking:
     m_OverrideState: 1
-    m_Value: 0.0059
+    m_Value: 0
   _tape:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 1.07
   _noise:
+    m_OverrideState: 1
+    m_Value: 0.87
+  _flickering:
     m_OverrideState: 0
-    m_Value: 0.48
+    m_Value: 0
   _glitch:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 0, b: 0, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.06299297, b: 0, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,13 +96,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.51
+    m_Value: 0.85
   intensity:
     m_OverrideState: 1
-    m_Value: 0.57
+    m_Value: 2.13
   scatter:
     m_OverrideState: 1
-    m_Value: 0.28
+    m_Value: 0.22
   clamp:
     m_OverrideState: 0
     m_Value: 65472

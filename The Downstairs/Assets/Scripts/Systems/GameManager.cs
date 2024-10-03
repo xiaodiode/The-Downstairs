@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject gameCanvas;
     [SerializeField] private GameObject cutsceneScreen;
     [SerializeField] private GameObject continueScreen;
+    [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject gameplayScreen;
 
     [Header("Game Properties")]
@@ -30,12 +31,12 @@ public class GameManager : MonoBehaviour
         MainMenu,
         Cutscene,
         Gameplay,
-        Continue
+        Continue,
+        GameOver
     }
 
     public static GameManager instance {get; private set;}
 
-    // Start is called before the first frame update
     void Awake()
     {
         if(instance != null && instance != this){
@@ -56,10 +57,14 @@ public class GameManager : MonoBehaviour
             { ScreenType.MainMenu, mainMenuScreen },
             { ScreenType.Gameplay, gameplayScreen },
             { ScreenType.Cutscene, cutsceneScreen },
-            { ScreenType.Continue, continueScreen}
+            { ScreenType.Continue, continueScreen },
+            { ScreenType.GameOver, gameOverScreen }
         };
 
-        OpenMainMenu();
+        // OpenMainMenu();
+
+        enableGame(true);
+        triggerGameOver();
 
         nightCount = 1;
 
@@ -164,6 +169,14 @@ public class GameManager : MonoBehaviour
     public void returnToMainMenu()
     {
         OpenMainMenu();
+    }
+
+    public void triggerGameOver()
+    {
+        // Time.timeScale = 0;
+        enableScreen(ScreenType.GameOver, true);
+
+        StartCoroutine(GameOver.instance.fadeIn());
     }
     
 }
