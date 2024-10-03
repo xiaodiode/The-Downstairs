@@ -68,6 +68,10 @@ public class TopdownPlayerController : MonoBehaviour
         if(horizontalInput == 0 && verticalInput == 0){
             idle = true;
         }
+        else
+        {
+            idle = false;
+        }
         if (horizontalInput == 0 ^ verticalInput == 0) { //Updates Directional Enum taking into account the 
             SetDirection(horizontalInput,verticalInput);
         }        

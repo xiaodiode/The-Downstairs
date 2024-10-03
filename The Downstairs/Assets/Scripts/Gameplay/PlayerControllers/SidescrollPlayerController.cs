@@ -18,6 +18,7 @@ public class SidescrollPlayerController : MonoBehaviour
     [SerializeField] private MatchController matchController;
     [SerializeField] private CandleController candleController;
     [SerializeField] private GameObject visualObject;
+    [SerializeField] private SpriteRenderer sprite;
     private float horizontalInput, verticalInput;
     
     private Vector3 velocity;
@@ -65,6 +66,7 @@ public class SidescrollPlayerController : MonoBehaviour
         {
             idle = false;
         }
+        sprite.flipX = currentDirection == Direction.Left ? true : false;
         SetDirection(horizontalInput);
         newPosition = playerRB.transform.position;
         newPosition.y = cameraBedroomY;
