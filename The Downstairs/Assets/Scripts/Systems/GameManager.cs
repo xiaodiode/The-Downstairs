@@ -61,10 +61,10 @@ public class GameManager : MonoBehaviour
             { ScreenType.GameOver, gameOverScreen }
         };
 
-        // OpenMainMenu();
+        OpenMainMenu();
 
-        enableGame(true);
-        triggerGameOver();
+        // enableGame(true);
+        // triggerGameOver();
 
         nightCount = 1;
 

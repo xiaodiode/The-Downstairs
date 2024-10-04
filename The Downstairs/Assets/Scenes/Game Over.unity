@@ -12256,6 +12256,7 @@ MonoBehaviour:
   gameCanvas: {fileID: 843867366}
   cutsceneScreen: {fileID: 449763724}
   continueScreen: {fileID: 1047626342}
+  gameOverScreen: {fileID: 0}
   gameplayScreen: {fileID: 612173807}
   nightCount: 1
 --- !u!1 &1420854531

@@ -15188,7 +15188,7 @@ MonoBehaviour:
   clearTime: 0
   printSpeed: 0.025
   printDisplaySeconds: 5
-  fadeInTime: 0.25
+  fadeInTime: 0.5
   fadeOutTime: 0.75
   fadeDisplayTime: 1.75
   minTextAlpha: 0

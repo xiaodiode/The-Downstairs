@@ -1,11 +1,26 @@
+80
+I'm fine, it's ok
+Morning will come soon
+Nighttime will be over soon
+
+
 50
 Think I just heard something
-I feel something behind me
+Felt something behind me
 Could've sworn I saw something
 What was that
+
+20
+Who's there
+Stop following me
+Get away from me
+
 
 10
 STOP CHASING ME
 LEAVE ME ALONE
 WHO'S THERE
+WHERE ARE YOU
 
+5
+KILL ME
