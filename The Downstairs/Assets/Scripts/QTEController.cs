@@ -10,6 +10,8 @@ public class QTEController : MonoBehaviour
     [SerializeField] private int numberKeys;
     [SerializeField] private Slider qteTimerSlider;  
 
+
+
     public Transform qteSquare;
 
     public GameObject[] qteObjects;
@@ -23,8 +25,13 @@ public class QTEController : MonoBehaviour
     private float qteTimer = 0f;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+            current = 0;
+        }
         qteObjects = new GameObject[numberKeys];
         qteKeys = new int[numberKeys];
 
@@ -112,7 +119,8 @@ public class QTEController : MonoBehaviour
         }
         else
         {
-            Debug.Log("QTE Completed");  
+            Debug.Log("QTE Completed");
+            this.gameObject.transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
         }
     }
 
