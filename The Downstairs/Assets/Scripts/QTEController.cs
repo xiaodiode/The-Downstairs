@@ -8,7 +8,9 @@ public class QTEController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> keys;
     [SerializeField] private int numberKeys;
-    [SerializeField] private Slider qteTimerSlider; // Reference to the UI Slider
+    [SerializeField] private Slider qteTimerSlider;  
+
+    public Transform qteSquare;
 
     public GameObject[] qteObjects;
     public int[] qteKeys;
@@ -34,11 +36,11 @@ public class QTEController : MonoBehaviour
             qteKeys[i] = randomIndex;
         }
 
-        qteTimer = qteTimeLimit; // Initialize QTE timer
-        qteTimerSlider.maxValue = qteTimeLimit; // Set slider max value to the QTE time limit
-        qteTimerSlider.value = qteTimeLimit; // Initialize slider to full
+        qteTimer = qteTimeLimit;  
+        qteTimerSlider.maxValue = qteTimeLimit;  
+        qteTimerSlider.value = qteTimeLimit;  
 
-        MoveToCurrentPosition(); // Start at the initial position
+        MoveToCurrentPosition(); 
     }
 
     // Update is called once per frame
@@ -56,24 +58,20 @@ public class QTEController : MonoBehaviour
 
         // Update QTE timer
         qteTimer -= Time.deltaTime;
-        qteTimerSlider.value = qteTimer; // Update slider value to reflect remaining time
-
-        // Check if time limit for the QTE is up
+        qteTimerSlider.value = qteTimer;   
         if (qteTimer <= 0 && current < numberKeys)
         {
-            Debug.Log("FAILED QTE");
-            MoveToNextQTE(); // Move to the next one on failure
+            Debug.Log("FAILED QTE");  
+            MoveToNextQTE(); 
         }
-
-        // Process player movement input
+ 
         Move();
     }
 
     private void Move()
     {
         if (time > 0f)
-        {
-            // Cooldown for movement
+        {  
             time -= Time.deltaTime;
             return;
         }
@@ -107,13 +105,14 @@ public class QTEController : MonoBehaviour
         if (current < numberKeys)
         {
             this.transform.DOLocalMoveX(-current * 85.0f, .5f);
-            qteTimer = qteTimeLimit; // Reset QTE timer for the next QTE
-            qteTimerSlider.value = qteTimeLimit; // Reset slider to full
-            time = timeDelay; // Set delay for next input
+            qteTimer = qteTimeLimit;
+            qteTimerSlider.value = qteTimeLimit; 
+            time = timeDelay; 
+            qteSquare.DOLocalMoveY(10f, 0.25f).From().SetEase(Ease.OutBack);
         }
         else
         {
-            Debug.Log("QTE Completed"); // Log when QTE sequence is done
+            Debug.Log("QTE Completed");  
         }
     }
 
