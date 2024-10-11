@@ -15,6 +15,7 @@ public class QTEController : MonoBehaviour
     public Transform qteSquare;
 
     public GameObject[] qteObjects;
+    public float scaleAmtS, scaleAmtF = 0.8f;
     public int[] qteKeys;
     private float horizontalInput, verticalInput;
     private Vector3 input;
@@ -68,8 +69,8 @@ public class QTEController : MonoBehaviour
         qteTimerSlider.value = qteTimer;   
         if (qteTimer <= 0 && current < numberKeys)
         {
-            Debug.Log("FAILED QTE");  
-            MoveToNextQTE(); 
+            Debug.Log("FAILED QTE");
+            MoveToNextQTE(false); 
         }
  
         Move();
@@ -86,36 +87,46 @@ public class QTEController : MonoBehaviour
         if (horizontalInput == 1 && qteKeys[current] == 3)
         {
             // D key
-            MoveToNextQTE();
+            MoveToNextQTE(true);
         }
         else if (horizontalInput == -1 && qteKeys[current] == 1)
         {
             // A key
-            MoveToNextQTE();
+            MoveToNextQTE(true);
         }
         else if (verticalInput == 1 && qteKeys[current] == 0)
         {
             // W key
-            MoveToNextQTE();
+            MoveToNextQTE(true);
         }
         else if (verticalInput == -1 && qteKeys[current] == 2)
         {
             // S key
-            MoveToNextQTE();
+            MoveToNextQTE(true);
         }
     }
 
-    private void MoveToNextQTE()
+    private void MoveToNextQTE(bool success)
     {
+        if (success)
+        {
+            qteObjects[current].transform.DOScale(scaleAmtS, 0.25f);
+
+        }
+        if (!success)
+        {
+            qteObjects[current].transform.DOScale(-scaleAmtF, 0.25f);  
+        }
+
         current++;
 
         if (current < numberKeys)
         {
+            qteSquare.DOLocalMoveY(10f, 0.25f).From().SetEase(Ease.OutBack);
             this.transform.DOLocalMoveX(-current * 85.0f, .5f);
             qteTimer = qteTimeLimit;
             qteTimerSlider.value = qteTimeLimit; 
             time = timeDelay; 
-            qteSquare.DOLocalMoveY(10f, 0.25f).From().SetEase(Ease.OutBack);
         }
         else
         {

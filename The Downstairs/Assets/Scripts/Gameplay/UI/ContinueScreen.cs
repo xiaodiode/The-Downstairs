@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class ContinueScreen : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI nightCounter;
- 
+    [SerializeField] private TextMeshProUGUI nightCounter1;
+    [SerializeField] private TextMeshProUGUI nightCounter2;
+
     [Header("Resources")]
     [SerializeField] private TextMeshProUGUI fridgeUsage;
     [SerializeField] private TextMeshProUGUI pitcherUsage;
@@ -41,7 +42,8 @@ public class ContinueScreen : MonoBehaviour
 
     public void updateText()
     {
-        nightCounter.text = "Night " + GameManager.instance.nightCount.ToString() + " Survived";
+        nightCounter1.text = "Night " + GameManager.instance.nightCount.ToString() + " Survived";
+        nightCounter2.text = "Night " + GameManager.instance.nightCount.ToString() + " Survived";
 
         fridgeUsage.text = Fridge.instance.foodQuantity.ToString() + "Uses Left";
         pitcherUsage.text = WaterPitcher.instance.waterQuantity.ToString() + "Uses Left";

@@ -23989,6 +23989,14 @@ PrefabInstance:
       propertyPath: settings._roundnessBottomRight
       value: 9.15
       objectReference: {fileID: 0}
+    - target: {fileID: 6901383102977374434, guid: 207680d5c672b4a6fb429516257ef80e, type: 3}
+      propertyPath: scaleAmt
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901383102977374434, guid: 207680d5c672b4a6fb429516257ef80e, type: 3}
+      propertyPath: scaleAmtS
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7030337861068250943, guid: 207680d5c672b4a6fb429516257ef80e, type: 3}
       propertyPath: m_Material
       value: 
