@@ -15,16 +15,50 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 3
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.48
   response:
-    m_OverrideState: 0
-    m_Value: 0.8
+    m_OverrideState: 1
+    m_Value: 1
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+--- !u!114 &-1456777860216135833
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb2952b95454955ba507c3d96778a76, type: 3}
+  m_Name: VhsVol
+  m_EditorClassIdentifier: 
+  active: 1
+  _weight:
+    m_OverrideState: 1
+    m_Value: 0.15
+  _bleed:
+    m_OverrideState: 1
+    m_Value: 10
+  _rocking:
+    m_OverrideState: 0
+    m_Value: 0
+  _tape:
+    m_OverrideState: 1
+    m_Value: 0
+  _noise:
+    m_OverrideState: 1
+    m_Value: 0.85
+  _flickering:
+    m_OverrideState: 1
+    m_Value: 0
+  _glitch:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-1022735590230686218
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -40,7 +74,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.3
   xMultiplier:
     m_OverrideState: 0
     m_Value: 0
@@ -69,6 +103,7 @@ MonoBehaviour:
   - {fileID: 810049453686108546}
   - {fileID: -1022735590230686218}
   - {fileID: -4979319213866825274}
+  - {fileID: -1456777860216135833}
 --- !u!114 &810049453686108546
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -87,16 +122,16 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 16.6
+    m_Value: 14.1
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
   clamp:
     m_OverrideState: 0
-    m_Value: 65472
+    m_Value: 63646
   tint:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
