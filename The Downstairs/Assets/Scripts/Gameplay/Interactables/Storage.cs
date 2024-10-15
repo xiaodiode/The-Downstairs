@@ -47,6 +47,7 @@ public class Storage : MonoBehaviour
         secondsPressed = 0;
 
         screenRect = holdMeterRect.transform.parent as RectTransform;
+
     }
 
     // Update is called once per frame
@@ -126,6 +127,8 @@ public class Storage : MonoBehaviour
 
         else
         {
+            collect();
+
             cooldownStartTime = Time.time;
             secondsPassed = 0;
 
@@ -183,6 +186,24 @@ public class Storage : MonoBehaviour
     {
         holdMeterRect.gameObject.SetActive(false);
         cooldownMeterRect.gameObject.SetActive(false);
+    }
+
+    private void collect()
+    {
+        float randomChance = Random.Range(0.0f, 1.0f);
+        Debug.Log("randomChance: " + randomChance);
+
+        if(randomChance <= matchChance)
+        {
+            MatchController.instance.pickUpMatches();
+            Debug.Log("collected matches");
+        }
+        else
+        {
+            CandleController.instance.pickUpCandle();
+            Debug.Log("collected candle");
+        }
+
     }
 
 }

@@ -56,10 +56,10 @@ public class MatchController : MonoBehaviour
     }
 
     public void pickUpMatches(){
-        randomCount = Random.Range(minMatchPickup, maxMatchPickup);
+        randomCount = Random.Range(minMatchPickup, maxMatchPickup + 1);
 
         if(matchCount + randomCount > matchCap){
-            for(int i = matchCount; i <matchUI.Count; i++){
+            for(int i = matchCount; i < matchUI.Count; i++){
                 matchUI[i].SetActive(true);
             }
             matchCount = matchCap;

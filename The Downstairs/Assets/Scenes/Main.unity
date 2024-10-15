@@ -20164,7 +20164,7 @@ MonoBehaviour:
   matchCount: 0
   matchCap: 15
   minMatchPickup: 1
-  maxMatchPickup: 3
+  maxMatchPickup: 1
   matchUI:
   - {fileID: 217273703}
   - {fileID: 1223357793}
@@ -21489,9 +21489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572b55b68c68c2e439a367c230368d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchChance: 0
+  matchChance: 0.75
   holdMeter: {fileID: 1941504434}
-  holdSeconds: 5
+  holdSeconds: 3
   cooldownMeter: {fileID: 308232627}
   cooldownSeconds: 3
   onCooldown: 0
