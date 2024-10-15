@@ -30,6 +30,7 @@ public class Storage : MonoBehaviour
     private bool triggerable;
 
     private float holdStartTime, secondsPressed;
+    private float cooldownStartTime, secondsPassed;
     private bool pressed;
 
     // Start is called before the first frame update
@@ -86,18 +87,18 @@ public class Storage : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 pressed = true;
-                holdStartTime = Time.time;
+                secondsPressed = 0;
 
                 StartCoroutine(updateHoldMeter());
             }
             else if(Input.GetKeyUp(KeyCode.Space))
             {
                 pressed = false;
-                secondsPressed = 0;
             }
         }
         else
         {
+            pressed = false;
             displayMeter();
         }
     }
@@ -105,6 +106,8 @@ public class Storage : MonoBehaviour
     private IEnumerator updateHoldMeter()
     {
         displayMeter();
+
+        holdStartTime = Time.time;
         holdMeter.value = 0;
 
         while(pressed && secondsPressed < holdSeconds)
@@ -123,9 +126,35 @@ public class Storage : MonoBehaviour
 
         else
         {
-            Debug.Log("pressing completed, on cooldown now");
+            cooldownStartTime = Time.time;
+            secondsPassed = 0;
+
             onCooldown = true;
+
+            StartCoroutine(updateCooldownMeter());
+
+            Debug.Log("pressing completed, on cooldown now");
         }
+    }
+
+    private IEnumerator updateCooldownMeter()
+    {
+        cooldownMeter.value = cooldownMeter.maxValue;
+
+        while(secondsPassed < cooldownSeconds)
+        {
+            secondsPassed = Time.time - cooldownStartTime;
+
+            cooldownMeter.value = cooldownMeter.maxValue*(1 - secondsPassed/cooldownSeconds);
+
+            yield return null;
+        }
+
+        onCooldown = false;
+
+        hideMeters();
+
+        Debug.Log("can interact again");
     }
 
     private void displayMeter()

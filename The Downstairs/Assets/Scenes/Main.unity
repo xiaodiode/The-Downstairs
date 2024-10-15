@@ -21493,7 +21493,7 @@ MonoBehaviour:
   holdMeter: {fileID: 1941504434}
   holdSeconds: 5
   cooldownMeter: {fileID: 308232627}
-  cooldownSeconds: 0
+  cooldownSeconds: 3
   onCooldown: 0
   UICanvas: {fileID: 1574928425}
   gameCamera: {fileID: 519420031}
@@ -22134,7 +22134,7 @@ MonoBehaviour:
   secondsForHour: 30
   startHour: 12
   resetHour: 6
-  morningHour: 1
+  morningHour: 5
   hourHand: {fileID: 1983779464}
   minuteHand: {fileID: 261719179}
 --- !u!1 &1155036268
