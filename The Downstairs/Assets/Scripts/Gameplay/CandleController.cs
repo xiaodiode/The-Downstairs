@@ -5,6 +5,7 @@ using UnityEngine;
 public class CandleController : MonoBehaviour
 {
     public int candleCount;
+    public bool candlesFull;
     [SerializeField] private int candleCap;
     [SerializeField] private List<GameObject> candleUI = new();
 
@@ -34,6 +35,8 @@ public class CandleController : MonoBehaviour
     }
 
     private void initializeCandleUI(){
+        candlesFull = false;
+
         for(int i=0; i < candleCount; i++){
             candleUI[i].SetActive(true);
         }
@@ -44,9 +47,14 @@ public class CandleController : MonoBehaviour
     }
 
     public void pickUpCandle(){
-        if(candleCount + 1 <= candleCap){
+        if(!candlesFull){
             candleUI[candleCount].SetActive(true);
             candleCount++;
+
+            if(candleCount == candleCap)
+            {
+                candlesFull = true;
+            }
         }
     }
 }

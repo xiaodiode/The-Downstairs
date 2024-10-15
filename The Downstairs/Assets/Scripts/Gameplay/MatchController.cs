@@ -5,6 +5,7 @@ using UnityEngine;
 public class MatchController : MonoBehaviour
 {
     public int matchCount;
+    public bool matchesFull;
     [SerializeField] private int matchCap;
     [SerializeField] private int minMatchPickup, maxMatchPickup;
     [SerializeField] private List<GameObject> matchUI = new();
@@ -38,6 +39,8 @@ public class MatchController : MonoBehaviour
     }
 
     private void intializeMatchUI(){
+        matchesFull = false;
+
         for(int i=0; i < matchCount; i++){
             matchUI[i].SetActive(true);
         }
@@ -50,9 +53,13 @@ public class MatchController : MonoBehaviour
     public void useMatch(){
         if(matchCount > 0 && candleController.candleCount > 0){
             matchCount--;
+            matchesFull = false;
             matchUI[matchCount].SetActive(false);
         }
-        Debug.Log("out of matches");
+        else{
+            Debug.Log("out of matches or candles");
+        }
+        
     }
 
     public void pickUpMatches(){
@@ -63,12 +70,18 @@ public class MatchController : MonoBehaviour
                 matchUI[i].SetActive(true);
             }
             matchCount = matchCap;
+            matchesFull = true;
         }
         else{
             for(int i = matchCount; i < matchCount + randomCount; i++){
                 matchUI[i].SetActive(true);
             }
             matchCount += randomCount;
+
+            if(matchCount == matchCap)
+            {
+                matchesFull = true;
+            }
         }
     }
 

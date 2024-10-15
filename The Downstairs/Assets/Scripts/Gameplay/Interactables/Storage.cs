@@ -136,7 +136,7 @@ public class Storage : MonoBehaviour
 
             StartCoroutine(updateCooldownMeter());
 
-            Debug.Log("pressing completed, on cooldown now");
+            // Debug.Log("pressing completed, on cooldown now");
         }
     }
 
@@ -157,7 +157,7 @@ public class Storage : MonoBehaviour
 
         hideMeters();
 
-        Debug.Log("can interact again");
+        // Debug.Log("can interact again");
     }
 
     private void displayMeter()
@@ -193,16 +193,32 @@ public class Storage : MonoBehaviour
         float randomChance = Random.Range(0.0f, 1.0f);
         Debug.Log("randomChance: " + randomChance);
 
-        if(randomChance <= matchChance)
+        if(MatchController.instance.matchesFull && CandleController.instance.candlesFull)
+        {
+            Dialogue.instance.addToDialogue("Don't think I can hold any more");
+        }
+        else if(MatchController.instance.matchesFull)
+        {
+            CandleController.instance.pickUpCandle();
+        }
+        else if(CandleController.instance.candlesFull)
         {
             MatchController.instance.pickUpMatches();
-            Debug.Log("collected matches");
         }
         else
         {
-            CandleController.instance.pickUpCandle();
-            Debug.Log("collected candle");
+            if(randomChance <= matchChance)
+            {
+                MatchController.instance.pickUpMatches();
+                Debug.Log("collected matches");
+            }
+            else
+            {
+                CandleController.instance.pickUpCandle();
+                Debug.Log("collected candle");
+            }
         }
+        
 
     }
 
