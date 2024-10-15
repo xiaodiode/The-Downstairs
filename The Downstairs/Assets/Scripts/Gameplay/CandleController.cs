@@ -17,6 +17,7 @@ public class CandleController : MonoBehaviour
     [SerializeField] private float flashDuration;
     [SerializeField] private int strikeCount;
     private float lightStart, secondsPassed;
+    private float flashStart, secondsFlashPassed;
 
     [Header("Candle UI")]
     [SerializeField] private int candleCap;
@@ -90,7 +91,7 @@ public class CandleController : MonoBehaviour
 
                     useCandle();
 
-                    StartCoroutine(glow());
+                    StartCoroutine(Light(lightDuration));
 
                     strikeCount = 0;
 
@@ -100,43 +101,33 @@ public class CandleController : MonoBehaviour
                 {
                     strikeCount++;
 
-                    StartCoroutine(flash());
+                    flashStart = Time.time;
+
+                    // flash();
+
+                    StartCoroutine(Light(flashDuration));
                 }
             }
         }
         
     }
 
-    private IEnumerator glow()
+    private IEnumerator Light(float duration)
     {
-        enableCandlelight(true);
-
         secondsPassed = 0;
 
         candleInUse = true;
 
-        while(secondsPassed < lightDuration)
+        while(secondsPassed < duration)
         {
             secondsPassed = Time.time - lightStart;
 
             yield return null;
         }
 
-        Debug.Log("stop lighting");
-
-        enableCandlelight(false);
-
         candleInUse = false;
     }
 
-    private IEnumerator flash()
-    {
-        enableCandlelight(true);
-
-        yield return new WaitForSeconds(flashDuration);
-
-        enableCandlelight(false);
-    }
 
     private void useCandle()
     {
