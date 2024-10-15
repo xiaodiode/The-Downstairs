@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
 
         nightCount = 1;
 
-        isNewGame = true; 
-        // isNewGame = false; // change to false to skip intro cutscene
+        // isNewGame = true; 
+        isNewGame = false; // change to false to skip intro cutscene
     }
 
     // Update is called once per frame

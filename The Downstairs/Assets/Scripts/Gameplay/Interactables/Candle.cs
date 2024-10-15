@@ -9,9 +9,6 @@ public class Candle : MonoBehaviour
     [Header("Object Structure")]
     [SerializeField] private BoxCollider2D interactCollider;
 
-    [FormerlySerializedAs("topDownPlayer")]
-    [Header("Dependencies")]
-    [SerializeField] private CandleController candleController;
 
     private bool triggerable;
     
@@ -27,7 +24,7 @@ public class Candle : MonoBehaviour
     void Update()
     {
         if(triggerable && Input.GetKeyDown(KeyCode.Space)){
-            candleController.pickUpCandle();
+            CandleController.instance.pickUpCandle();
             Destroy(gameObject);
         }
     }
@@ -48,7 +45,4 @@ public class Candle : MonoBehaviour
         }
     }
 
-    public void initializeMatch(CandleController newCandleControl){
-        candleController = newCandleControl;
-    }
 }

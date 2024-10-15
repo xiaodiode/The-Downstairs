@@ -6,18 +6,14 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Match : MonoBehaviour
 {
-    [Header("Object Structure")]
-    [SerializeField] private BoxCollider2D interactCollider;
-
-    [FormerlySerializedAs("topDownPlayer")]
-    [Header("Dependencies")]
-    [SerializeField] private MatchController matchController;
+    private BoxCollider2D interactCollider;
 
     private bool triggerable;
     
     // Start is called before the first frame update
     void Start()
     {
+        interactCollider = gameObject.GetComponent<BoxCollider2D>();
         interactCollider.isTrigger = true;
 
         triggerable = false;
@@ -27,7 +23,7 @@ public class Match : MonoBehaviour
     void Update()
     {
         if(triggerable && Input.GetKeyDown(KeyCode.Space)){
-            matchController.pickUpMatches();
+            MatchController.instance.pickUpMatches();
             Destroy(gameObject);
         }
     }
@@ -48,9 +44,6 @@ public class Match : MonoBehaviour
         }
     }
 
-    public void initializeMatch(MatchController newMatchControl){
-        matchController = newMatchControl;
-    }
 
 
 }
