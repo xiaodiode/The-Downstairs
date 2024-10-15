@@ -45,8 +45,6 @@ public class GameManager : MonoBehaviour
         else{
             instance = this;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -182,6 +180,12 @@ public class GameManager : MonoBehaviour
         enableScreen(ScreenType.GameOver, true);
 
         StartCoroutine(GameOver.instance.fadeIn());
+    }
+
+    public void increaseNightCount()
+    {
+        nightCount++;
+        isNewGame = false;
     }
     
 }

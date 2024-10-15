@@ -29,8 +29,6 @@ public class ClockController : MonoBehaviour
         else{
             instance = this;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -54,6 +52,7 @@ public class ClockController : MonoBehaviour
             if(currHourRotation.z <= endGameAngle && oldHourAngle > endGameAngle)
             {
                 Debug.Log("night over");
+
                 GameManager.instance.openContinueScreen();
             }
 

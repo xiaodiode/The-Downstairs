@@ -16,8 +16,6 @@ public class MainMenu : MonoBehaviour
         else{
             instance = this;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -35,7 +33,7 @@ public class MainMenu : MonoBehaviour
     public void startMainMenu()
     {
         RendererController.instance.toggleScreensRenderer(RendererController.RendererType.Light2D);
-        
+
         AudioController.instance.playMainMenuMusic();
 
         foreach(EnterFont text in TextElements)
