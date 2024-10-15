@@ -21491,7 +21491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchChance: 0
   holdMeter: {fileID: 1941504434}
-  holdSeconds: 0
+  holdSeconds: 5
   cooldownMeter: {fileID: 308232627}
   cooldownSeconds: 0
   onCooldown: 0

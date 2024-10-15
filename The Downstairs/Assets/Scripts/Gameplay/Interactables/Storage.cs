@@ -29,15 +29,21 @@ public class Storage : MonoBehaviour
 
     private bool triggerable;
 
+    private float holdStartTime, secondsPressed;
+    private bool pressed;
+
     // Start is called before the first frame update
     void Start()
     {
         BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
         collider.isTrigger = true;
-        
+
         triggerable = false;
 
         onCooldown = false;
+
+        pressed = true;
+        secondsPressed = 0;
 
         screenRect = holdMeterRect.transform.parent as RectTransform;
     }
@@ -47,7 +53,7 @@ public class Storage : MonoBehaviour
     {
         if(triggerable)
         {
-            displayMeter();
+            checkInteraction();
         }
         else
         {
@@ -68,6 +74,57 @@ public class Storage : MonoBehaviour
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
             triggerable = false;
+
+            secondsPressed = 0;
+        }
+    }
+
+    private void checkInteraction()
+    {
+        if(!onCooldown)
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                pressed = true;
+                holdStartTime = Time.time;
+
+                StartCoroutine(updateHoldMeter());
+            }
+            else if(Input.GetKeyUp(KeyCode.Space))
+            {
+                pressed = false;
+                secondsPressed = 0;
+            }
+        }
+        else
+        {
+            displayMeter();
+        }
+    }
+
+    private IEnumerator updateHoldMeter()
+    {
+        displayMeter();
+        holdMeter.value = 0;
+
+        while(pressed && secondsPressed < holdSeconds)
+        {
+            secondsPressed = Time.time - holdStartTime;
+
+            holdMeter.value = holdMeter.maxValue*(secondsPressed/holdSeconds);
+
+            yield return null;
+        }
+
+        if(!pressed)
+        {
+            hideMeters();
+        }
+
+        else
+        {
+            Debug.Log("pressing completed, on cooldown now");
+            onCooldown = true;
         }
     }
 
