@@ -9476,10 +9476,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Night # Survived
+  m_text: Night 1 Survived
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 82cb514fa9fb3ff408a8373f97eb7767, type: 2}
-  m_sharedMaterial: {fileID: -7662634973366577195, guid: 82cb514fa9fb3ff408a8373f97eb7767, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 46f4d175a02804a5c98144ed394a26e4, type: 2}
+  m_sharedMaterial: {fileID: 9061266316396664677, guid: 46f4d175a02804a5c98144ed394a26e4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19342,8 +19342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7a527b76e17cb48a82455a02bf8e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightCounter1: {fileID: 0}
-  nightCounter2: {fileID: 0}
+  nightCounter1: {fileID: 555978903}
+  nightCounter2: {fileID: 555978903}
   fridgeUsage: {fileID: 2033795332}
   pitcherUsage: {fileID: 32573884}
   laundryUsage: {fileID: 1866572283}

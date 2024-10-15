@@ -34,6 +34,8 @@ public class MainMenu : MonoBehaviour
 
     public void startMainMenu()
     {
+        RendererController.instance.toggleScreensRenderer(RendererController.RendererType.Light2D);
+        
         AudioController.instance.playMainMenuMusic();
 
         foreach(EnterFont text in TextElements)

@@ -118,6 +118,8 @@ public class GameManager : MonoBehaviour
         AudioController.instance.playGameplayMusic();
         MetersController.instance.initializeMeters();
 
+        RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
+
         Timer.instance.startCountUp();
         ClockController.instance.startRotating();
 
@@ -146,6 +148,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         enableScreen(ScreenType.Continue, true);
+        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
         ContinueScreen.instance.updateText();
     }
@@ -153,7 +156,9 @@ public class GameManager : MonoBehaviour
     public void continueGame()
     {
         Time.timeScale = 1;
+        
         enableScreen(ScreenType.Continue, false);
+        RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
         isNewGame = false;
         nightCount++;
