@@ -76,7 +76,7 @@ public class SidescrollPlayerController : MonoBehaviour
     }
 
     private void OnUseMatch(){
-        matchController.useMatch();
+        CandleController.instance.lightCandle();
     }
 
     private void SetDirection(float xaxis)

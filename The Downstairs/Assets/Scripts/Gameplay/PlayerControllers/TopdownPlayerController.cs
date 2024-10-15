@@ -14,9 +14,6 @@ public class TopdownPlayerController : MonoBehaviour
     [SerializeField] private bool moveLocked;
     [SerializeField] private float cameraBedroomY;
 
-    [Header("Dependencies")]
-    [SerializeField] private MatchController matchController;
-    [SerializeField] private CandleController candleController;
     private float horizontalInput, verticalInput;
     
     private Vector3 velocity;
@@ -57,7 +54,10 @@ public class TopdownPlayerController : MonoBehaviour
 
         Move();
 
-        updateCandleLight();
+        if(lightEclipse.gameObject.activeSelf) 
+        {
+            updateCandleLight();
+        }
 
         // Debug.Log("Dir" + currentDirection);
     }
@@ -91,7 +91,7 @@ public class TopdownPlayerController : MonoBehaviour
     }
 
     private void OnUseMatch(){
-        matchController.useMatch();
+        CandleController.instance.lightCandle();
     }
 
     private void updateCandleLight(){

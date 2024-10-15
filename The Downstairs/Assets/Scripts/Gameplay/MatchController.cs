@@ -9,7 +9,6 @@ public class MatchController : MonoBehaviour
     [SerializeField] private int matchCap;
     [SerializeField] private int minMatchPickup, maxMatchPickup;
     [SerializeField] private List<GameObject> matchUI = new();
-    [SerializeField] private CandleController candleController;
 
     private int randomCount;
 
@@ -51,14 +50,25 @@ public class MatchController : MonoBehaviour
     }
 
     public void useMatch(){
-        if(matchCount > 0 && candleController.candleCount > 0){
-            matchCount--;
-            matchesFull = false;
-            matchUI[matchCount].SetActive(false);
+        if(CandleController.instance.candleInUse)
+        {
+            Dialogue.instance.addToDialogue("Should save my matches");
         }
-        else{
-            Debug.Log("out of matches or candles");
+        else
+        {
+            if(matchCount > 0 && CandleController.instance.candleCount > 0)
+            {
+                matchCount--;
+
+                matchesFull = false;
+
+                matchUI[matchCount].SetActive(false);
+            }
+            else{
+                Debug.Log("out of matches or candles");
+            }
         }
+        
         
     }
 
