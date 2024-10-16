@@ -7,12 +7,13 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class SidescrollPlayerController : MonoBehaviour
 {
+    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float playerSpeed;
     [SerializeField] private float cameraBedroomY;
 
-    [SerializeField] private Animator animController;
+    [SerializeField] private Animator animator;
 
     [Header("Dependencies")]
     [SerializeField] private MatchController matchController;
@@ -73,7 +74,7 @@ public class SidescrollPlayerController : MonoBehaviour
         newPosition.z = playerCamera.transform.position.z;
 
         playerCamera.transform.position = newPosition;
-        animController.SetBool("IsMoving", !idle);
+        animator.SetBool(IsMoving, !idle);
     }
 
     private void OnInteract(){

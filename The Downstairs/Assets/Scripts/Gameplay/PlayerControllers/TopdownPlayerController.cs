@@ -8,6 +8,8 @@ public class TopdownPlayerController : MonoBehaviour
 {
     private static readonly int Horizontal = Animator.StringToHash("Horizontal");
     private static readonly int Vertical = Animator.StringToHash("Vertical");
+    private static readonly int Idle = Animator.StringToHash("Idle");
+    private static readonly int Direction1 = Animator.StringToHash("Direction");
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float playerSpeed;
@@ -26,7 +28,7 @@ public class TopdownPlayerController : MonoBehaviour
     private bool hitMinAngle, hitMaxAngle;
     private float oldAngle;
     
-    // private bool idle;
+    private bool idle;
 
     private Vector3 input;
     
@@ -67,14 +69,7 @@ public class TopdownPlayerController : MonoBehaviour
     private void Move(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
-        if(horizontalInput == 0 && verticalInput == 0){
-            idle = true;
-        }
-        else
-        {
-            idle = false;
-        }
+        idle = horizontalInput == 0 && verticalInput == 0;
         if (horizontalInput == 0 ^ verticalInput == 0) { //Updates Directional Enum taking into account the 
             SetDirection(horizontalInput,verticalInput);
         }        
@@ -171,7 +166,7 @@ public class TopdownPlayerController : MonoBehaviour
             currentDirection = Direction.West;
         } else if (yaxis > 0) {
             currentDirection = Direction.North;
-        } else {
+        } else if (yaxis < 0) {
             currentDirection = Direction.South;
         }
     }
@@ -180,6 +175,8 @@ public class TopdownPlayerController : MonoBehaviour
     {
         animator.SetFloat(Horizontal, horizontalInput);
         animator.SetFloat(Vertical, verticalInput);
+        animator.SetBool(Idle, idle);
+        animator.SetInteger(Direction1, (int)currentDirection);
         //Debug.Log("animating");
     }
 

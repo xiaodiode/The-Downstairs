@@ -4024,6 +4024,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4b0a3ce882f894c8873564e2c5c238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &245577025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8282729628409866394, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+  m_PrefabInstance: {fileID: 449254481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &246437229
 GameObject:
   m_ObjectHideFlags: 0
@@ -7849,6 +7854,10 @@ PrefabInstance:
       value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1894504575}
+    - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 519420031}
@@ -7915,7 +7924,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8282729628409866394, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1894504575}
   m_SourcePrefab: {fileID: 100100000, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
 --- !u!1 &449763724
 GameObject:
@@ -12720,6 +12732,7 @@ MonoBehaviour:
   moveLocked: 0
   cameraBedroomY: 0
   lightEclipse: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!50 &746717297
 Rigidbody2D:
   serializedVersion: 4
@@ -13034,6 +13047,7 @@ MonoBehaviour:
   moveLocked: 0
   cameraBedroomY: 0
   lightEclipse: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!212 &749805168
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32806,6 +32820,7 @@ MonoBehaviour:
   moveLocked: 0
   cameraBedroomY: 0
   lightEclipse: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!212 &1842923822
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34292,6 +34307,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8922836266759345146, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
   m_PrefabInstance: {fileID: 449254481}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1894504575
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245577025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5f73c2b73871f240afc0847962996fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1904089707
 GameObject:
   m_ObjectHideFlags: 0
@@ -38739,6 +38775,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bedroom Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 2053527662}
+    - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2053527663}
     - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
       propertyPath: playerCamera
       value: 
