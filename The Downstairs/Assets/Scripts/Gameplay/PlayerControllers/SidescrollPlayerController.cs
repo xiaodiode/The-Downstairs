@@ -55,17 +55,12 @@ public class SidescrollPlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        //Debug.Log(currentDirection.ToString());
     }
     private void Move(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        if(horizontalInput == 0){
-            idle = true;
-        }
-        else
-        {
-            idle = false;
-        }
+        idle = horizontalInput == 0;
         sprite.flipX = currentDirection == Direction.Left ? true : false;
         SetDirection(horizontalInput);
         newPosition = playerRB.transform.position;
@@ -91,7 +86,12 @@ public class SidescrollPlayerController : MonoBehaviour
 
     private void SetDirection(float xaxis)
     {
-        currentDirection = xaxis < 0 ? Direction.Left : Direction.Right;
+        currentDirection = xaxis switch
+        {
+            < 0 => Direction.Left,
+            > 0 => Direction.Right,
+            _ => currentDirection
+        };
         var scale = visualObject.transform.localScale;
         scale.z = Mathf.Sign(xaxis);
         visualObject.transform.localScale = scale;
