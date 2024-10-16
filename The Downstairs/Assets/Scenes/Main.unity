@@ -22133,10 +22133,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hourHand: {fileID: 1983779464}
   minuteHand: {fileID: 261719179}
-  secondsForHour: 5
-  startHour: 9
+  secondsForHour: 2
+  startHour: 12
   resetHour: 6
-  morningHour: 2
+  morningHour: 1
   totalHours: 0
 --- !u!1 &1155036268
 GameObject:
@@ -28862,7 +28862,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 402128694}
-  - {fileID: 7878350318863792628}
   - {fileID: 1054528008}
   - {fileID: 1857248466}
   - {fileID: 36524826}
@@ -30244,6 +30243,7 @@ Transform:
   - {fileID: 400138898}
   - {fileID: 1239363430}
   - {fileID: 2113750192}
+  - {fileID: 7878350318863792628}
   - {fileID: 1014737589}
   - {fileID: 997351111}
   m_Father: {fileID: 0}
@@ -41962,6 +41962,7 @@ MonoBehaviour:
   - {fileID: 1099672520}
   - {fileID: 1695711691}
   - {fileID: 1133313555}
+  animator: {fileID: 574323468}
 --- !u!114 &6722638806070522822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42347,7 +42348,7 @@ GameObject:
   - component: {fileID: 3626916396345939485}
   - component: {fileID: 1154369276}
   m_Layer: 0
-  m_Name: alarm_clock
+  m_Name: ClockController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42849,13 +42850,13 @@ Transform:
   m_GameObject: {fileID: 6969460405965001105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.33, y: 2.38, z: 0}
+  m_LocalPosition: {x: -0.5697794, y: 2.6153865, z: -0.013753928}
   m_LocalScale: {x: 3.33, y: 3.33, z: 3.33}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1983779465}
   - {fileID: 261719180}
-  m_Father: {fileID: 1570475997}
+  m_Father: {fileID: 1662535578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7910532154761239510
 GameObject:

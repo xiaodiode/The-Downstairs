@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public IEnumerator intitializeGameStart()
+    public IEnumerator initializeGameStart()
     {
         enableGame(true);
         switchScreen(ScreenType.Gameplay);
@@ -127,8 +127,6 @@ public class GameManager : MonoBehaviour
         MetersController.instance.sanityMeter.startDecreasing();
 
         yield return new WaitForSeconds(3);
-        // Dialogue.instance.addToDialogue("this is the first dialogue that i am printing");
-        // Dialogue.instance.addToDialogue("second dialogue incoming");
 
     }
 
@@ -145,10 +143,12 @@ public class GameManager : MonoBehaviour
     public void openContinueScreen()
     {
         Time.timeScale = 0;
+
         enableScreen(ScreenType.Continue, true);
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
         ContinueScreen.instance.updateText();
+
     }
 
     public void continueGame()

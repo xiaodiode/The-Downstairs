@@ -6,6 +6,7 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private List<EnterFont> TextElements = new();
+
     public static MainMenu instance {get; private set;}
 
     void Awake()
@@ -21,7 +22,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -32,25 +33,35 @@ public class MainMenu : MonoBehaviour
 
     public void startMainMenu()
     {
+        Time.timeScale = 1;
+
         RendererController.instance.toggleScreensRenderer(RendererController.RendererType.Light2D);
 
         AudioController.instance.playMainMenuMusic();
 
-        foreach(EnterFont text in TextElements)
-        {
-            text.StartDilation();
-        }
+        animateTextEnter();
     }
 
     public void playGame()
     {
+        // animateTextEnter(true);
+
         if(GameManager.instance.isNewGame)
         {
             GameManager.instance.playIntroCutscene(); 
         }
         else
         {
-            StartCoroutine(GameManager.instance.intitializeGameStart());
+            StartCoroutine(GameManager.instance.initializeGameStart());
         }
     }
+
+    private void animateTextEnter()
+    {
+        foreach(EnterFont text in TextElements)
+        {
+            text.StartDilation();
+        }
+    }
+
 }

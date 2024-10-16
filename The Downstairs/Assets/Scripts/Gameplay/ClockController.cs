@@ -95,7 +95,8 @@ public class ClockController : MonoBehaviour
             
             yield return null;
         }
-        
+
+        GameManager.instance.openContinueScreen();
     }
 
     public void resetClockHands(int hour)
