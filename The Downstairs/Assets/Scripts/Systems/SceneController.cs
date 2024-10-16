@@ -64,6 +64,8 @@ public class SceneController : MonoBehaviour
 
         scenesDict[newScene].SetActive(true);
 
+        Debug.Log("changed scene");
+
         CandleController.instance.checkActiveLight();
     }
 

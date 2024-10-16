@@ -1050,6 +1050,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 737517661}
     m_Modifications:
     - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: playerSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 519420031}
@@ -1104,6 +1108,10 @@ PrefabInstance:
     - target: {fileID: 8922836266759345146, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053069093908239411, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: m_Name
+      value: Downstairs Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3222,6 +3230,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152377635}
   m_CullTransparentMesh: 1
+--- !u!1 &155352080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8282729628409866394, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+  m_PrefabInstance: {fileID: 1433355096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!21 &158286145
 Material:
   serializedVersion: 8
@@ -7849,6 +7862,10 @@ PrefabInstance:
       value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: playerSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 519420031}
@@ -7866,7 +7883,7 @@ PrefabInstance:
       objectReference: {fileID: -1862574647, guid: 1c3a20c4aea62984c87571464046af0c, type: 3}
     - target: {fileID: 8282729628409866394, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_Name
-      value: Downstairs Player
+      value: Upstairs Player
       objectReference: {fileID: 0}
     - target: {fileID: 8922836266759345146, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7907,6 +7924,10 @@ PrefabInstance:
     - target: {fileID: 8922836266759345146, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053069093908239411, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: m_Name
+      value: Upstairs Light
       objectReference: {fileID: 0}
     - target: {fileID: 9053069093908239411, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_IsActive
@@ -12715,7 +12736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRB: {fileID: 746717297}
   playerCamera: {fileID: 519420031}
-  playerSpeed: 3
+  playerSpeed: 20
   isTopdown: 0
   moveLocked: 0
   cameraBedroomY: 0
@@ -13029,7 +13050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRB: {fileID: 749805165}
   playerCamera: {fileID: 519420031}
-  playerSpeed: 3
+  playerSpeed: 20
   isTopdown: 0
   moveLocked: 0
   cameraBedroomY: 0
@@ -15876,6 +15897,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &855402689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8282729628409866394, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+  m_PrefabInstance: {fileID: 449254481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &858682677
 GameObject:
   m_ObjectHideFlags: 0
@@ -22133,10 +22159,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hourHand: {fileID: 1983779464}
   minuteHand: {fileID: 261719179}
-  secondsForHour: 2
+  secondsForHour: 60
   startHour: 12
   resetHour: 6
-  morningHour: 1
+  morningHour: 6
   totalHours: 0
 --- !u!1 &1155036268
 GameObject:
@@ -25969,7 +25995,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ae05afdd0847e4d973ff64f7897dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alwaysLit: 1
+  alwaysLit: 0
+  candlesFull: 0
+  candleCount: 3
+  candleCap: 5
+  candleUI:
+  - {fileID: 604867862}
+  - {fileID: 1420854531}
+  - {fileID: 1076344097}
+  - {fileID: 1449761510}
+  - {fileID: 816745248}
   candleInUse: 0
   candleLights:
   - {fileID: 2037725507}
@@ -25980,9 +26015,9 @@ MonoBehaviour:
   - 0.2
   - 0.5
   - 1
-  lightDuration: 5
+  lightDuration: 10
   maxIntensity: 2
-  flashDuration: 0.35
+  flashDuration: 0.07
   strikeCount: 0
   botWest: -140
   topWest: 140
@@ -25992,15 +26027,6 @@ MonoBehaviour:
   rightSouth: 0
   leftNorth: 120
   rightNorth: 0
-  candlesFull: 0
-  candleCount: 3
-  candleCap: 5
-  candleUI:
-  - {fileID: 604867862}
-  - {fileID: 1420854531}
-  - {fileID: 1076344097}
-  - {fileID: 1449761510}
-  - {fileID: 816745248}
 --- !u!1 &1399637912
 GameObject:
   m_ObjectHideFlags: 0
@@ -26463,6 +26489,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 767878597}
     m_Modifications:
     - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: playerSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 519420031}
@@ -26476,7 +26506,7 @@ PrefabInstance:
       objectReference: {fileID: 1398248479}
     - target: {fileID: 8282729628409866394, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_Name
-      value: Downstairs Player
+      value: Basement Player
       objectReference: {fileID: 0}
     - target: {fileID: 8922836266759345146, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26517,6 +26547,10 @@ PrefabInstance:
     - target: {fileID: 8922836266759345146, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053069093908239411, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: m_Name
+      value: Basement Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28028,13 +28062,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcdd6cf253c3cb641931878cddcd1fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bedroom: {fileID: 1762733199}
-  stairsBedUp: {fileID: 492879736}
-  stairsUpDown: {fileID: 904057566}
-  stairsDownBase: {fileID: 816900666}
-  upstairs: {fileID: 913686739}
-  downstairs: {fileID: 737517660}
-  basement: {fileID: 767878596}
+  bedroom: {fileID: 1644104885}
+  stairsBedUp: {fileID: 746717295}
+  stairsUpDown: {fileID: 749805162}
+  stairsDownBase: {fileID: 1842923816}
+  upstairs: {fileID: 855402689}
+  downstairs: {fileID: 1925097047}
+  basement: {fileID: 155352080}
 --- !u!1 &1530611637
 GameObject:
   m_ObjectHideFlags: 0
@@ -32810,7 +32844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRB: {fileID: 1842923819}
   playerCamera: {fileID: 519420031}
-  playerSpeed: 3
+  playerSpeed: 20
   isTopdown: 0
   moveLocked: 0
   cameraBedroomY: 0
@@ -34435,6 +34469,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917971268}
   m_CullTransparentMesh: 1
+--- !u!1 &1925097047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8282729628409866394, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+  m_PrefabInstance: {fileID: 78120041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1930553692
 GameObject:
   m_ObjectHideFlags: 0
@@ -38747,6 +38786,10 @@ PrefabInstance:
     - target: {fileID: 3827026444103281075, guid: edc159acd1ae06395842822088e329f1, type: 3}
       propertyPath: m_Name
       value: Bedroom Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+      propertyPath: playerSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
       propertyPath: playerCamera

@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class CandleController : MonoBehaviour
-{
+{   
     [Header("Debug")]
-    [SerializeField] private bool alwaysLit;
+    [SerializeField] public bool alwaysLit;
+
+    [Header("Candle UI")]
+    [SerializeField] public bool candlesFull;
+    [SerializeField] public int candleCount;
+    [SerializeField] private int candleCap;
+    [SerializeField] private List<GameObject> candleUI = new();
 
     [Header("Light Mechanics")]
     [SerializeField] public bool candleInUse;
@@ -17,6 +23,7 @@ public class CandleController : MonoBehaviour
     [SerializeField] private float flashDuration;
     [SerializeField] private int strikeCount;
     private float lightStart, secondsPassed;
+    private Light2D currentLight;
 
     [Header("Candlelight Constraints")]
 
@@ -35,14 +42,6 @@ public class CandleController : MonoBehaviour
     [Header("North Pose")]
     [SerializeField] [Range(90, 120)] public float leftNorth;
     [SerializeField] [Range(60, 90)] public float rightNorth;
-
-    [Header("Candle UI")]
-    [SerializeField] public bool candlesFull;
-    [SerializeField] public int candleCount;
-    [SerializeField] private int candleCap;
-    [SerializeField] private List<GameObject> candleUI = new();
-
-    private Light2D currentLight;
 
     public static CandleController instance {get; private set;}
 
@@ -64,17 +63,16 @@ public class CandleController : MonoBehaviour
         candleInUse = false;
 
         strikeCount = 0;
-
-        StartCoroutine(FindActiveLight());
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!alwaysLit) checkActiveLight();   
+        
     }
 
-    private IEnumerator FindActiveLight()
+    public IEnumerator FindActiveLight()
     {
         while(currentLight == null)
         {
@@ -89,7 +87,7 @@ public class CandleController : MonoBehaviour
             yield return null;
         }
 
-        enableCandlelight(alwaysLit); 
+        enableCandlelight(candleInUse); 
     }
 
     public void checkActiveLight()
@@ -99,6 +97,8 @@ public class CandleController : MonoBehaviour
             if(light.activeInHierarchy)
             {
                 currentLight = light.GetComponent<Light2D>();
+
+                Debug.Log("currentlight: " + currentLight);
 
                 enableCandlelight(candleInUse);
             }
@@ -123,9 +123,10 @@ public class CandleController : MonoBehaviour
                 if(randomChance <= strikeChances[strikeCount])
                 {
                     // Debug.Log("strikechances[strikecount]: " + strikeChances[strikeCount]);
-                    lightStart = Time.time;
-
+                
                     useCandle();
+
+                    lightStart = Time.time;
 
                     StartCoroutine(Light(lightDuration));
 
@@ -136,6 +137,8 @@ public class CandleController : MonoBehaviour
                 else
                 {
                     strikeCount++;
+
+                    lightStart = Time.time;
 
                     StartCoroutine(Light(flashDuration));
                 }
@@ -149,6 +152,7 @@ public class CandleController : MonoBehaviour
         secondsPassed = 0;
 
         candleInUse = true;
+        enableCandlelight(true);
 
         while(secondsPassed < duration)
         {
@@ -156,7 +160,8 @@ public class CandleController : MonoBehaviour
 
             yield return null;
         }
-
+        
+        enableCandlelight(false);
         candleInUse = false;
     }
 
@@ -172,7 +177,9 @@ public class CandleController : MonoBehaviour
 
     private void enableCandlelight(bool enable)
     {
-        currentLight.intensity = enable ? maxIntensity : 0;
+        if(!alwaysLit) currentLight.intensity = enable ? maxIntensity : 0;
+        
+        else currentLight.intensity = maxIntensity;
     }
 
     private void initializeCandleUI(){

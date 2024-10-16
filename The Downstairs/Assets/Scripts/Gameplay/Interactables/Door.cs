@@ -22,6 +22,27 @@ public class Door : MonoBehaviour
 
     void Update()
     {
+        checkInteraction();
+    }
+
+    public void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        {
+            triggerable = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other){
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
+            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        {
+            triggerable = false;
+        }
+    }
+
+    private void checkInteraction()
+    {
         if(triggerable && Input.GetKeyDown(KeyCode.Space))
         {
             if(selfScene == SceneController.ScenesType.Bedroom)
@@ -41,22 +62,6 @@ public class Door : MonoBehaviour
                 }
             }
             sceneController.switchScenes(target.selfScene);
-        }
-    }
-
-    public void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
-        {
-            triggerable = true;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
-        {
-            triggerable = false;
         }
     }
 }

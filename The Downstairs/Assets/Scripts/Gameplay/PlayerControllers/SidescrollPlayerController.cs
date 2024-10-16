@@ -15,11 +15,10 @@ public class SidescrollPlayerController : MonoBehaviour
     [SerializeField] private MatchController matchController;
     [SerializeField] private CandleController candleController;
     [SerializeField] private GameObject visualObject;
-    private float horizontalInput, verticalInput;
+    private float horizontalInput;
     
     private Vector3 velocity;
     private Vector3 newPosition;
-    private bool idle;
     
     
     enum Direction {Left, Right};
@@ -43,8 +42,6 @@ public class SidescrollPlayerController : MonoBehaviour
     void Start()
     {
         velocity = Vector3.zero;
-
-        idle = true;
     }
 
     // Update is called once per frame
@@ -55,9 +52,6 @@ public class SidescrollPlayerController : MonoBehaviour
     private void Move(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        if(horizontalInput == 0){
-            idle = true;
-        }
         SetDirection(horizontalInput);
         newPosition = playerRB.transform.position;
         newPosition.y = cameraBedroomY;

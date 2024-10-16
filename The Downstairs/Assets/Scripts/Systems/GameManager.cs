@@ -126,6 +126,8 @@ public class GameManager : MonoBehaviour
         MetersController.instance.toiletMeter.startDecreasing();
         MetersController.instance.sanityMeter.startDecreasing();
 
+        StartCoroutine(CandleController.instance.FindActiveLight());
+
         yield return new WaitForSeconds(3);
 
     }

@@ -55,7 +55,7 @@ public class TopdownPlayerController : MonoBehaviour
 
         Move();
 
-        if(lightEclipse.gameObject.activeSelf) 
+        if(isTopdown && lightEclipse.gameObject.activeSelf) 
         {
             updateCandleLight();
         }
