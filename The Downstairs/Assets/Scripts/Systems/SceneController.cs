@@ -19,7 +19,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject basement;
 
     private Dictionary<ScenesType, GameObject> scenesDict;
-    private ScenesType currentScene;
+    public ScenesType currentScene;
     //private int numberOfScenes = System.Enum.GetValues(typeof(ScenesType)).Length;
     public enum ScenesType
     {
@@ -45,7 +45,9 @@ public class SceneController : MonoBehaviour
             { ScenesType.StairsUpDown, stairsUpDown },
             { ScenesType.Downstairs, downstairs }
         };
-        currentScene = ScenesType.Upstairs;
+
+        currentScene = ScenesType.Bedroom;
+
         switchScenes(currentScene);
     }
 
@@ -63,6 +65,8 @@ public class SceneController : MonoBehaviour
         }
 
         scenesDict[newScene].SetActive(true);
+
+        currentScene = newScene;
 
         CandleController.instance.checkActiveLight();
     }

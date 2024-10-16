@@ -24,7 +24,6 @@ public class ClockController : MonoBehaviour
     
     public static ClockController instance {get; private set;}
 
-    // Start is called before the first frame update
     void Awake()
     {
         if(instance != null && instance != this){
@@ -34,7 +33,6 @@ public class ClockController : MonoBehaviour
             instance = this;
         }
     }
-
 
     // Start is called before the first frame update
     void Start()

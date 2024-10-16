@@ -10640,7 +10640,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1122749101}
-  - {fileID: 1107843930}
   - {fileID: 1574928422}
   m_Father: {fileID: 843867367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21513,7 +21512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 612173808}
+  m_Father: {fileID: 1122749101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1107843931
 MonoBehaviour:
@@ -21527,16 +21526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572b55b68c68c2e439a367c230368d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchChance: 0.75
-  holdMeter: {fileID: 1941504434}
-  holdSeconds: 3
-  cooldownMeter: {fileID: 308232627}
-  cooldownSeconds: 3
+  cooldownTotalSeconds: 4
+  cooldownCurrValue: 0
   onCooldown: 0
-  UICanvas: {fileID: 1574928425}
-  gameCamera: {fileID: 519420031}
-  holdMeterRect: {fileID: 1904089708}
-  cooldownMeterRect: {fileID: 2146224952}
+  cooldownStartTime: 0
+  cooldownTimePassed: 0
 --- !u!61 &1107843932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21825,6 +21819,7 @@ Transform:
   - {fileID: 1762733200}
   - {fileID: 1185022199}
   - {fileID: 920298614}
+  - {fileID: 1107843930}
   m_Father: {fileID: 612173808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1130854732
@@ -28088,6 +28083,7 @@ MonoBehaviour:
   upstairs: {fileID: 855402689}
   downstairs: {fileID: 1925097047}
   basement: {fileID: 155352080}
+  currentScene: 0
 --- !u!1 &1530611637
 GameObject:
   m_ObjectHideFlags: 0
@@ -30286,6 +30282,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1402673701}
+  - {fileID: 1945793177}
   - {fileID: 1053272604}
   - {fileID: 1823247668}
   - {fileID: 1525635058}
@@ -34935,6 +34932,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942576454}
   m_CullTransparentMesh: 1
+--- !u!1 &1945793176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1945793177}
+  - component: {fileID: 1945793178}
+  m_Layer: 0
+  m_Name: StorageController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1945793177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945793176}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1662535578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1945793178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945793176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab0603933723d824d87f206fcd5feecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStorage: {fileID: 0}
+  storageObjects:
+  - {fileID: 1107843931}
+  matchChance: 0.75
+  holdMeter: {fileID: 1941504434}
+  holdSeconds: 3
+  cooldownMeter: {fileID: 308232627}
+  UICanvas: {fileID: 1574928425}
+  gameCamera: {fileID: 519420031}
+  holdMeterRect: {fileID: 1904089708}
+  cooldownMeterRect: {fileID: 2146224952}
 --- !u!21 &1953258196
 Material:
   serializedVersion: 8
@@ -38806,6 +38858,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bedroom Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 2053527662}
+    - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2053527663}
     - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
       propertyPath: playerSpeed
       value: 10
