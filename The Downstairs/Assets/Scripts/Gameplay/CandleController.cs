@@ -42,7 +42,7 @@ public class CandleController : MonoBehaviour
     {
         initializeCandleUI();
 
-        enableCandlelight(false);
+        enableCandlelight(true);
 
         candleInUse = false;
 
@@ -52,7 +52,7 @@ public class CandleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkActiveLight();
+        // checkActiveLight();
     }
 
     public void checkActiveLight()
