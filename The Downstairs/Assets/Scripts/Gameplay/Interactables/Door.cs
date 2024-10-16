@@ -44,6 +44,7 @@ public class Door : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
         {
             triggerable = true;
+            Debug.Log("trigger entered");
         }
         else if(other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {

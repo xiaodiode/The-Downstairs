@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aba736dcc7e9579439728086885e1431
+guid: e82b5ba1e6a949a46b178911e2496082
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,7 +134,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: FungerWalkingSpritesWest_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 7
+        width: 57
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a272ba11661d9c444a2e31fe8b2a63a9
+      internalID: -1658441688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FungerWalkingSpritesWest_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 7
+        width: 42
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 770eac39dc4f4ba4489344b6e4efaa6c
+      internalID: 1844138700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FungerWalkingSpritesWest_2
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 4
+        width: 47
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2daa7fb5533eb64bb298202527af60e
+      internalID: 158997427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +208,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FungerWalkingSpritesWest_0: -1658441688
+      FungerWalkingSpritesWest_1: 1844138700
+      FungerWalkingSpritesWest_2: 158997427
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

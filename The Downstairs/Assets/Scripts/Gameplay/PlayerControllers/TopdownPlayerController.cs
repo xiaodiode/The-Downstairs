@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class TopdownPlayerController : MonoBehaviour
 {
+    private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+    private static readonly int Vertical = Animator.StringToHash("Vertical");
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float playerSpeed;
@@ -36,7 +38,7 @@ public class TopdownPlayerController : MonoBehaviour
     private Direction currentDirection = Direction.South;
 
     [SerializeField] private PlayerLightEclipse lightEclipse;
-
+    [SerializeField] private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,7 @@ public class TopdownPlayerController : MonoBehaviour
         {
             lightEclipse = GetComponent<PlayerLightEclipse>();
         }
+
         idle = true;
     }
 
@@ -58,7 +61,7 @@ public class TopdownPlayerController : MonoBehaviour
         Move();
 
         updateCandleLight();
-
+        Animate();
         // Debug.Log("Dir" + currentDirection);
     }
     private void Move(){
@@ -122,7 +125,7 @@ public class TopdownPlayerController : MonoBehaviour
                     break;
             }
 
-            Debug.Log("angle of mouse: " + angle);
+            //Debug.Log("angle of mouse: " + angle);
 
             lightEclipse.angle = newAngle;
         }
@@ -171,6 +174,13 @@ public class TopdownPlayerController : MonoBehaviour
         } else {
             currentDirection = Direction.South;
         }
+    }
+
+    private void Animate()
+    {
+        animator.SetFloat(Horizontal, horizontalInput);
+        animator.SetFloat(Vertical, verticalInput);
+        //Debug.Log("animating");
     }
 
 }
