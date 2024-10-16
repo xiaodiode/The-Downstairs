@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class TopdownPlayerController : MonoBehaviour
 {
+    [Header("Player Properties")]
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float playerSpeed;
@@ -14,21 +15,20 @@ public class TopdownPlayerController : MonoBehaviour
     [SerializeField] private bool moveLocked;
     [SerializeField] private float cameraBedroomY;
 
-    private float horizontalInput, verticalInput;
-    
     private Vector3 velocity;
     private Vector3 newPosition;
-    
+    private float horizontalInput, verticalInput;
+    private Vector3 input;
+
+    // Candlelight Constraints
+    private float botWest, topWest;
+    private float botEast, topEast;
+    private float leftSouth, rightSouth;
+    private float leftNorth, rightNorth;
     private Vector3 mousePosition;
     private float angle, newAngle;
-    private bool hitMinAngle, hitMaxAngle, clampAngle;
-    private float oldAngle;
-    
-    // private bool idle;
+    private bool clampAngle;
 
-    private Vector3 input;
-    
-    
     enum Direction {North, East, South, West};
     private Direction currentDirection = Direction.South;
 
@@ -44,9 +44,8 @@ public class TopdownPlayerController : MonoBehaviour
         {
             lightEclipse = GetComponent<PlayerLightEclipse>();
         }
-
-        clampAngle = false;
-        // idle = true;
+        
+        setLightConstraints();
     }
 
     // Update is called once per frame
@@ -63,6 +62,7 @@ public class TopdownPlayerController : MonoBehaviour
 
         // Debug.Log("Dir" + currentDirection);
     }
+
     private void Move(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
@@ -87,12 +87,8 @@ public class TopdownPlayerController : MonoBehaviour
         playerCamera.transform.position = newPosition;
     }
 
-
-    private void OnInteract(){
-        // Debug.Log("spacebar pressed");
-    }
-
-    private void OnUseMatch(){
+    private void OnUseMatch()
+    {
         CandleController.instance.lightCandle();
     }
 
@@ -104,32 +100,32 @@ public class TopdownPlayerController : MonoBehaviour
 
             switch(currentDirection){
                 case Direction.North:
-                    if(angle <= 120 && angle >= 60)
+                    if(angle <= leftNorth && angle >= rightNorth)
                     {
                         newAngle = angle;
                         clampAngle = false;
                     }
                     else if(!clampAngle)
                     {
-                        if(angle < 60 && angle >= -90) newAngle = 60;
+                        if(angle < rightNorth && angle >= -90) newAngle = rightNorth;
                     
-                        else if((angle > 120 && angle <= 180) || (angle >= -180 && angle < 90)) newAngle = 120;
+                        else if((angle > leftNorth && angle <= 180) || (angle >= -180 && angle < 90)) newAngle = leftNorth;
 
                         clampAngle = true;
                     }
 
                     break;
                 case Direction.South:
-                    if(angle <= -60 && angle >= -120)
+                    if(angle <= rightSouth && angle >= leftSouth)
                     {
                         newAngle = angle;
                         clampAngle = false;
                     }
                     else if(!clampAngle)
                     {
-                        if(angle > -60 && angle <= 90) newAngle = -60;
+                        if(angle > rightSouth && angle <= 90) newAngle = rightSouth;
                     
-                        else if((angle < -120 && angle >= -180) || (angle <= 180 && angle > 90)) newAngle = -120;
+                        else if((angle < leftSouth && angle >= -180) || (angle <= 180 && angle > 90)) newAngle = leftSouth;
 
                         clampAngle = true;
                     }
@@ -137,32 +133,32 @@ public class TopdownPlayerController : MonoBehaviour
                     break;
 
                 case Direction.East:
-                    if(angle <= 60 && angle >= -60)
+                    if(angle <= topEast && angle >= botEast)
                     {
                         newAngle = angle;
                         clampAngle = false;
                     }
                     else if(!clampAngle)
                     {
-                        if(angle > 60 && angle <= 180) newAngle = 60;
+                        if(angle > topEast && angle <= 180) newAngle = topEast;
                     
-                        else if(angle < -60 && angle >= -180) newAngle = -60;
+                        else if(angle < botEast && angle >= -180) newAngle = botEast;
 
                         clampAngle = true;
                     }
                     break;
 
                 case Direction.West:
-                    if((angle <= 180 && angle >= 120) || (angle >= -180 && angle <= -120))
+                    if((angle <= 180 && angle >= topWest) || (angle >= -180 && angle <= botWest))
                     {
                         newAngle = angle;
                         clampAngle = false;
                     }
                     else if(!clampAngle)
                     {
-                        if(angle < 120 && angle >= 0) newAngle = 120;
+                        if(angle < topWest && angle >= 0) newAngle = topWest;
                     
-                        else if(angle > -120 && angle < 0) newAngle = -120;
+                        else if(angle > botWest && angle < 0) newAngle = botWest;
 
                         clampAngle = true;
                     }
@@ -170,46 +166,26 @@ public class TopdownPlayerController : MonoBehaviour
                 
             }
 
-            // Debug.Log("angle of mouse: " + angle);
-
             lightEclipse.angle = newAngle * Mathf.Deg2Rad;
         }
     }
 
-    private float clampLightBounds(float currAngle, float minAngle, float maxAngle, bool checkMinFirst)
+    private void setLightConstraints()
     {
-        if(currAngle < minAngle && oldAngle >= minAngle)
-        {
-            hitMinAngle = true;
-        } 
-        else if(currAngle > maxAngle && oldAngle <= maxAngle)
-        {
-            hitMaxAngle = true;
-        }
-        else
-        {
-            hitMinAngle = false;
-            hitMaxAngle = false;
-        }
+        clampAngle = false;
 
-        if(checkMinFirst)
-        {
-            if(hitMinAngle) currAngle = minAngle;
-            else if(hitMaxAngle) currAngle = maxAngle;
-        }
-        else
-        {
-            if(hitMaxAngle) currAngle = maxAngle;
-            else if(hitMinAngle) currAngle = minAngle;
-        }
-        
-
-        oldAngle = currAngle;
-
-        return currAngle;
+        botWest = CandleController.instance.botWest;
+        topWest = CandleController.instance.topWest;
+        botEast = CandleController.instance.botEast;
+        topEast = CandleController.instance.topEast;
+        leftSouth = CandleController.instance.leftSouth;
+        rightSouth = CandleController.instance.rightSouth;
+        leftNorth = CandleController.instance.leftNorth;
+        rightNorth = CandleController.instance.rightNorth;
     }
 
-    private void SetDirection(float xaxis, float yaxis){
+    private void SetDirection(float xaxis, float yaxis)
+    {
         if (xaxis > 0) {
             currentDirection = Direction.East;
         } else if (xaxis < 0) {

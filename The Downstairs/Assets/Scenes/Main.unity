@@ -25984,6 +25984,14 @@ MonoBehaviour:
   maxIntensity: 2
   flashDuration: 0.35
   strikeCount: 0
+  botWest: -140
+  topWest: 140
+  botEast: -40
+  topEast: 40
+  leftSouth: -120
+  rightSouth: 0
+  leftNorth: 120
+  rightNorth: 0
   candlesFull: 0
   candleCount: 3
   candleCap: 5

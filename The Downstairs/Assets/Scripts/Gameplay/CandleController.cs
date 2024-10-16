@@ -18,6 +18,24 @@ public class CandleController : MonoBehaviour
     [SerializeField] private int strikeCount;
     private float lightStart, secondsPassed;
 
+    [Header("Candlelight Constraints")]
+
+    [Header("West Pose")]
+    [SerializeField] [Range(-120, -180)] public float botWest;
+    [SerializeField] [Range(120, 180)] public float topWest;
+
+    [Header("East Pose")]
+    [SerializeField] [Range(-60, 0)] public float botEast;
+    [SerializeField] [Range(0, 60)] public float topEast;
+
+    [Header("South Pose")]
+    [SerializeField] [Range(-120, -90)] public float leftSouth;
+    [SerializeField] [Range(-90, -60)] public float rightSouth;
+
+    [Header("North Pose")]
+    [SerializeField] [Range(90, 120)] public float leftNorth;
+    [SerializeField] [Range(60, 90)] public float rightNorth;
+
     [Header("Candle UI")]
     [SerializeField] public bool candlesFull;
     [SerializeField] public int candleCount;
