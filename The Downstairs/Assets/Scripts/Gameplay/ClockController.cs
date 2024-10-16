@@ -19,7 +19,7 @@ public class ClockController : MonoBehaviour
 
     Vector3 currHourRotation, currMinuteRotation;
 
-    private float rotateStart, timePassed;
+    private float rotateStart;
     
     public static ClockController instance {get; private set;}
 
@@ -68,15 +68,18 @@ public class ClockController : MonoBehaviour
 
     public void startRotating()
     {
-        isRotating = true;
-
         rotateStart = Time.time;
 
         StartCoroutine(rotateHourHand());
+        StartCoroutine(rotateMinuteHand());
     }
 
     private IEnumerator rotateHourHand()
     {
+        float timePassed = 0;
+
+        isRotating = true;
+        
         while(timePassed < secondsForHour*totalHours)
         {
             timePassed = Time.time - rotateStart;
@@ -86,6 +89,29 @@ public class ClockController : MonoBehaviour
             currHourRotation.z = startGameAngle - (totalHours*30)*(timePassed/(secondsForHour*totalHours));
 
             hourHand.transform.rotation = Quaternion.Euler(currHourRotation);
+            
+            yield return null;
+        }
+
+        isRotating = false;
+
+        Debug.Log("done");
+        
+    }
+
+    private IEnumerator rotateMinuteHand()
+    {
+        float timePassed = 0;
+
+        while(isRotating)
+        {
+            timePassed = Time.time - rotateStart;
+
+            currMinuteRotation = minuteHand.transform.rotation.eulerAngles;
+
+            currMinuteRotation.z = -360*(timePassed/secondsForHour);
+
+            minuteHand.transform.rotation = Quaternion.Euler(currMinuteRotation);
             
             yield return null;
         }

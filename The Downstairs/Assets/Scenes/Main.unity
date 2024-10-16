@@ -22131,10 +22131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927007b10ab55c44daf40f27a00d7656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsForHour: 40
-  startHour: 12
+  secondsForHour: 5
+  startHour: 9
   resetHour: 6
-  morningHour: 1
+  morningHour: 2
   totalHours: 0
   hourHand: {fileID: 1983779464}
   minuteHand: {fileID: 261719179}
