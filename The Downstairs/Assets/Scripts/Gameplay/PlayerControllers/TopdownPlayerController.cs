@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class TopdownPlayerController : MonoBehaviour
 {
+    private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+    private static readonly int Vertical = Animator.StringToHash("Vertical");
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float playerSpeed;
@@ -33,7 +35,7 @@ public class TopdownPlayerController : MonoBehaviour
     private Direction currentDirection = Direction.South;
 
     [SerializeField] private PlayerLightEclipse lightEclipse;
-
+    [SerializeField] private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,8 @@ public class TopdownPlayerController : MonoBehaviour
         {
             lightEclipse = GetComponent<PlayerLightEclipse>();
         }
-        // idle = true;
+
+        idle = true;
     }
 
     // Update is called once per frame
@@ -58,16 +61,20 @@ public class TopdownPlayerController : MonoBehaviour
         {
             updateCandleLight();
         }
-
+        Animate();
         // Debug.Log("Dir" + currentDirection);
     }
     private void Move(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // if(horizontalInput == 0 && verticalInput == 0){
-        //     idle = true;
-        // }
+        if(horizontalInput == 0 && verticalInput == 0){
+            idle = true;
+        }
+        else
+        {
+            idle = false;
+        }
         if (horizontalInput == 0 ^ verticalInput == 0) { //Updates Directional Enum taking into account the 
             SetDirection(horizontalInput,verticalInput);
         }        
@@ -167,6 +174,13 @@ public class TopdownPlayerController : MonoBehaviour
         } else {
             currentDirection = Direction.South;
         }
+    }
+
+    private void Animate()
+    {
+        animator.SetFloat(Horizontal, horizontalInput);
+        animator.SetFloat(Vertical, verticalInput);
+        //Debug.Log("animating");
     }
 
 }

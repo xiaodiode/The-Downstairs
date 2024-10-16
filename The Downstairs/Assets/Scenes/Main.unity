@@ -38740,9 +38740,17 @@ PrefabInstance:
       value: Bedroom Player
       objectReference: {fileID: 0}
     - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 2053527662}
+    - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
+      propertyPath: animController
+      value: 
+      objectReference: {fileID: 2053527663}
     - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
       propertyPath: matchController
       value: 
@@ -43570,3 +43578,7 @@ SceneRoots:
   - {fileID: 843867367}
   - {fileID: 814091985}
   - {fileID: 1662535578}
+  - {fileID: 1954522476}
+  - {fileID: 156559487}
+  - {fileID: 345786566}
+  - {fileID: 1817825396}

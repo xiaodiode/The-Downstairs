@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.SymbolStore;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,10 +12,13 @@ public class SidescrollPlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed;
     [SerializeField] private float cameraBedroomY;
 
+    [SerializeField] private Animator animController;
+
     [Header("Dependencies")]
     [SerializeField] private MatchController matchController;
     [SerializeField] private CandleController candleController;
     [SerializeField] private GameObject visualObject;
+    [SerializeField] private SpriteRenderer sprite;
     private float horizontalInput, verticalInput;
     
     private Vector3 velocity;
@@ -58,6 +62,11 @@ public class SidescrollPlayerController : MonoBehaviour
         if(horizontalInput == 0){
             idle = true;
         }
+        else
+        {
+            idle = false;
+        }
+        sprite.flipX = currentDirection == Direction.Left ? true : false;
         SetDirection(horizontalInput);
         newPosition = playerRB.transform.position;
         newPosition.y = cameraBedroomY;
@@ -69,6 +78,7 @@ public class SidescrollPlayerController : MonoBehaviour
         newPosition.z = playerCamera.transform.position.z;
 
         playerCamera.transform.position = newPosition;
+        animController.SetBool("IsMoving", !idle);
     }
 
     private void OnInteract(){
@@ -81,9 +91,7 @@ public class SidescrollPlayerController : MonoBehaviour
 
     private void SetDirection(float xaxis)
     {
-        if (Mathf.Abs(xaxis) < 0.1) return;
-
-        currentDirection = xaxis > 0 ? Direction.Left : Direction.Right;
+        currentDirection = xaxis < 0 ? Direction.Left : Direction.Right;
         var scale = visualObject.transform.localScale;
         scale.z = Mathf.Sign(xaxis);
         visualObject.transform.localScale = scale;
