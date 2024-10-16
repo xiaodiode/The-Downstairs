@@ -61,17 +61,35 @@ public class CandleController : MonoBehaviour
     {
         initializeCandleUI();
 
-        enableCandlelight(alwaysLit); 
-
         candleInUse = false;
 
         strikeCount = 0;
+
+        StartCoroutine(FindActiveLight());
     }
 
     // Update is called once per frame
     void Update()
     {
         if(!alwaysLit) checkActiveLight();   
+    }
+
+    private IEnumerator FindActiveLight()
+    {
+        while(currentLight == null)
+        {
+            foreach(GameObject light in candleLights)
+            {
+                if(light.activeInHierarchy)
+                {
+                    currentLight = light.GetComponent<Light2D>();
+                }
+            }
+
+            yield return null;
+        }
+
+        enableCandlelight(alwaysLit); 
     }
 
     public void checkActiveLight()
