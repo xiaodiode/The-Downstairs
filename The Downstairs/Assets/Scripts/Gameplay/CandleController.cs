@@ -8,20 +8,32 @@ public class CandleController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] public bool alwaysLit;
 
+    [Header("Light Mechanics")]
+    
+    [Header("Light Features")]
+    [SerializeField] private float lightingDuration;
+    [SerializeField] private float glowDuration;
+    [SerializeField] private float lightDuration;
+    [SerializeField] private float lightInnerRadius;
+    [SerializeField] private float lightOuterRadius;
+    
+    [Header("Flash Features")]
+    [SerializeField] private float flashDuration;
+    [SerializeField] private float flashRadius;
+
+    [Header("General Lighting")]
+    [SerializeField] public bool candleInUse;
+    [SerializeField] private List<GameObject> candleLights;
+    [SerializeField] private float maxIntensity;
+    [SerializeField] private List<float> strikeChances;
+    [SerializeField] private int strikeCount;
+
     [Header("Candle UI")]
     [SerializeField] public bool candlesFull;
     [SerializeField] public int candleCount;
     [SerializeField] private int candleCap;
     [SerializeField] private List<GameObject> candleUI = new();
-
-    [Header("Light Mechanics")]
-    [SerializeField] public bool candleInUse;
-    [SerializeField] private List<GameObject> candleLights;
-    [SerializeField] private List<float> strikeChances;
-    [SerializeField] private float lightDuration;
-    [SerializeField] private float maxIntensity;
-    [SerializeField] private float flashDuration;
-    [SerializeField] private int strikeCount;
+    
     private float lightStart, secondsPassed;
     private Light2D currentLight;
 
@@ -126,9 +138,7 @@ public class CandleController : MonoBehaviour
                 
                     useCandle();
 
-                    lightStart = Time.time;
-
-                    StartCoroutine(Light(lightDuration));
+                    StartCoroutine(Light(lightDuration, true));
 
                     strikeCount = 0;
 
@@ -138,21 +148,44 @@ public class CandleController : MonoBehaviour
                 {
                     strikeCount++;
 
-                    lightStart = Time.time;
-
-                    StartCoroutine(Light(flashDuration));
+                    StartCoroutine(Light(flashDuration, false));
                 }
             }
         }
         
     }
 
-    private IEnumerator Light(float duration)
+    private IEnumerator Light(float duration, bool glow)
     {
-        secondsPassed = 0;
+        enableCandlelight(true);
+
+        currentLight.pointLightInnerRadius = lightInnerRadius;
+        currentLight.pointLightOuterRadius = flashRadius;
 
         candleInUse = true;
-        enableCandlelight(true);
+
+        if(glow)
+        {
+            yield return new WaitForSeconds(lightingDuration);
+
+            secondsPassed = 0;
+
+            lightStart = Time.time;
+
+            while(secondsPassed < glowDuration)
+            {
+                secondsPassed = Time.time - lightStart;
+
+                currentLight.pointLightOuterRadius = Mathf.Lerp(flashRadius, lightOuterRadius, secondsPassed/glowDuration);
+
+                yield return null;
+            }
+        }
+
+        secondsPassed = 0;
+
+        lightStart = Time.time;
+
 
         while(secondsPassed < duration)
         {
