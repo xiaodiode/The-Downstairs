@@ -25996,6 +25996,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysLit: 0
+  lightingDuration: 0.25
+  glowDuration: 5
+  lightDuration: 10
+  lightInnerRadius: 0
+  lightOuterRadius: 6
+  flashDuration: 0.07
+  flashRadius: 0.6
+  candleInUse: 0
+  candleLights:
+  - {fileID: 2037725507}
+  - {fileID: 1625563876}
+  - {fileID: 1251602066}
+  maxIntensity: 2
+  strikeChances:
+  - 0.2
+  - 0.2
+  - 0.5
+  - 1
+  strikeCount: 0
   candlesFull: 0
   candleCount: 3
   candleCap: 5
@@ -26005,20 +26024,6 @@ MonoBehaviour:
   - {fileID: 1076344097}
   - {fileID: 1449761510}
   - {fileID: 816745248}
-  candleInUse: 0
-  candleLights:
-  - {fileID: 2037725507}
-  - {fileID: 1625563876}
-  - {fileID: 1251602066}
-  strikeChances:
-  - 0.2
-  - 0.2
-  - 0.5
-  - 1
-  lightDuration: 10
-  maxIntensity: 2
-  flashDuration: 0.07
-  strikeCount: 0
   botWest: -140
   topWest: 140
   botEast: -40
@@ -38791,9 +38796,6 @@ PrefabInstance:
       propertyPath: playerSpeed
       value: 10
       objectReference: {fileID: 0}
-      propertyPath: sprite
-      value: 
-      objectReference: {fileID: 2053527662}
     - target: {fileID: 6070632725236993144, guid: edc159acd1ae06395842822088e329f1, type: 3}
       propertyPath: playerCamera
       value: 
@@ -43629,7 +43631,3 @@ SceneRoots:
   - {fileID: 843867367}
   - {fileID: 814091985}
   - {fileID: 1662535578}
-  - {fileID: 1954522476}
-  - {fileID: 156559487}
-  - {fileID: 345786566}
-  - {fileID: 1817825396}
