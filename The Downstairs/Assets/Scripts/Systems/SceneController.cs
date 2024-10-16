@@ -46,7 +46,7 @@ public class SceneController : MonoBehaviour
             { ScenesType.Downstairs, downstairs }
         };
 
-        switchScenes(ScenesType.Upstairs);
+        switchScenes(ScenesType.Bedroom);
     }
 
     // Update is called once per frame

@@ -17,7 +17,6 @@ public class CandleController : MonoBehaviour
     [SerializeField] private float flashDuration;
     [SerializeField] private int strikeCount;
     private float lightStart, secondsPassed;
-    private float flashStart, secondsFlashPassed;
 
     [Header("Candle UI")]
     [SerializeField] private int candleCap;
@@ -100,10 +99,6 @@ public class CandleController : MonoBehaviour
                 else
                 {
                     strikeCount++;
-
-                    flashStart = Time.time;
-
-                    // flash();
 
                     StartCoroutine(Light(flashDuration));
                 }

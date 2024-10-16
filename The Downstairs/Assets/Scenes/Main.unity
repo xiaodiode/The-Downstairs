@@ -22131,10 +22131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927007b10ab55c44daf40f27a00d7656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsForHour: 30
+  secondsForHour: 40
   startHour: 12
   resetHour: 6
-  morningHour: 5
+  morningHour: 1
+  totalHours: 0
   hourHand: {fileID: 1983779464}
   minuteHand: {fileID: 261719179}
 --- !u!1 &1155036268
@@ -42840,8 +42841,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.33, y: 2.38, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3.33, y: 3.33, z: 3.33}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1983779465}
   - {fileID: 261719180}

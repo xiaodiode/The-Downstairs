@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class ClockController : MonoBehaviour
 {
-    [SerializeField] [Range(30f, 100f)] private float secondsForHour;
+    [SerializeField] private float secondsForHour;
     [SerializeField] public int startHour, resetHour;
     [SerializeField] public int morningHour;
+    [SerializeField] private int totalHours;
 
     [SerializeField] private GameObject hourHand;
     [SerializeField] private GameObject minuteHand;
     private float rotationSpeed;
-    private float endGameAngle;
+    private float startGameAngle, endGameAngle;
     private float oldHourAngle;
 
     private bool isRotating;
 
     Vector3 currHourRotation, currMinuteRotation;
+
+    private float rotateStart, timePassed;
     
     public static ClockController instance {get; private set;}
 
@@ -47,16 +50,18 @@ public class ClockController : MonoBehaviour
     {
         if(isRotating)
         {
-            rotateClockHands();
+            // rotateClockHands();
 
-            if(currHourRotation.z <= endGameAngle && oldHourAngle > endGameAngle)
-            {
-                Debug.Log("night over");
+            // if(currHourRotation.z <= endGameAngle && oldHourAngle > endGameAngle)
+            // {
+            //     Debug.Log("night over");
 
-                GameManager.instance.openContinueScreen();
-            }
+            //     GameManager.instance.openContinueScreen();
+            // }
 
-            oldHourAngle = currHourRotation.z;
+            // oldHourAngle = currHourRotation.z;
+
+
         }
         
     }
@@ -64,9 +69,32 @@ public class ClockController : MonoBehaviour
     public void startRotating()
     {
         isRotating = true;
+
+        rotateStart = Time.time;
+
+        StartCoroutine(rotateHourHand());
     }
 
-    public void rotateClockHands()
+    private IEnumerator rotateHourHand()
+    {
+        while(timePassed < secondsForHour*totalHours)
+        {
+            timePassed = Time.time - rotateStart;
+
+            currHourRotation = hourHand.transform.rotation.eulerAngles;
+
+            currHourRotation.z = startGameAngle - (totalHours*30)*(timePassed/(secondsForHour*totalHours));
+
+            hourHand.transform.rotation = Quaternion.Euler(currHourRotation);
+            
+            yield return null;
+        }
+
+        Debug.Log("done");
+        
+    }
+
+    private void rotateClockHands()
     {
         currHourRotation = hourHand.transform.rotation.eulerAngles;
         currMinuteRotation = minuteHand.transform.rotation.eulerAngles;
@@ -86,12 +114,16 @@ public class ClockController : MonoBehaviour
         if(hour == 12)
         {
             currHourRotation.z = 0;
+            startGameAngle = 0;
         }
         else{
             currHourRotation.z = 30*(12-hour);
+            startGameAngle = 30*(12-hour);
         }
 
         currMinuteRotation.z = 0;
+
+        totalHours = morningHour + (12 - hour);
 
         hourHand.transform.rotation = Quaternion.Euler(currHourRotation);
         minuteHand.transform.rotation = Quaternion.Euler(currMinuteRotation);
