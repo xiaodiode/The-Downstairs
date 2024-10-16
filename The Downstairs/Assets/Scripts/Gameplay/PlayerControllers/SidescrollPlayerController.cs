@@ -29,6 +29,7 @@ public class SidescrollPlayerController : MonoBehaviour
     
     enum Direction {Left, Right};
     private Direction currentDirection = Direction.Right;
+    private bool idle = true;
 
 
     public static SidescrollPlayerController instance {get; private set;}
