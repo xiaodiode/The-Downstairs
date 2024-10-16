@@ -16,10 +16,12 @@ public class CandleController : MonoBehaviour
     [SerializeField] private float lightDuration;
     [SerializeField] private float lightInnerRadius;
     [SerializeField] private float lightOuterRadius;
+    [SerializeField] private float lightIntensity;
     
     [Header("Flash Features")]
     [SerializeField] private float flashDuration;
     [SerializeField] private float flashRadius;
+    [SerializeField] private float flashIntensity;
 
     [Header("General Lighting")]
     [SerializeField] public bool candleInUse;
@@ -141,8 +143,6 @@ public class CandleController : MonoBehaviour
                     StartCoroutine(Light(lightDuration, true));
 
                     strikeCount = 0;
-
-                    // Debug.Log("candle is lit");
                 }
                 else
                 {
@@ -161,15 +161,25 @@ public class CandleController : MonoBehaviour
 
         currentLight.pointLightInnerRadius = lightInnerRadius;
         currentLight.pointLightOuterRadius = flashRadius;
+        currentLight.intensity = flashIntensity;
 
         candleInUse = true;
 
         if(glow)
         {
-            yield return new WaitForSeconds(lightingDuration);
+            secondsPassed = 0;
+            lightStart = Time.time;
+
+            while(secondsPassed < lightingDuration)
+            {
+                secondsPassed = Time.time - lightStart;
+
+                currentLight.intensity = Mathf.Lerp(flashIntensity, lightIntensity, secondsPassed/lightingDuration);
+
+                yield return null;
+            }
 
             secondsPassed = 0;
-
             lightStart = Time.time;
 
             while(secondsPassed < glowDuration)
@@ -183,9 +193,7 @@ public class CandleController : MonoBehaviour
         }
 
         secondsPassed = 0;
-
         lightStart = Time.time;
-
 
         while(secondsPassed < duration)
         {

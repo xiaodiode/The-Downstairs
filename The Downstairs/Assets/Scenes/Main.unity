@@ -7861,6 +7861,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.33
       objectReference: {fileID: 0}
+    - target: {fileID: 4070176119418631917, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: m_Intensity
+      value: 36.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070176119418631917, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070176119418631917, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.84
+      objectReference: {fileID: 0}
     - target: {fileID: 5854961757923880803, guid: e3ec779870b743a3f98b1fe5a5e74d2d, type: 3}
       propertyPath: playerSpeed
       value: 10
@@ -26001,8 +26013,10 @@ MonoBehaviour:
   lightDuration: 10
   lightInnerRadius: 0
   lightOuterRadius: 6
+  lightIntensity: 2
   flashDuration: 0.07
-  flashRadius: 0.6
+  flashRadius: 0.9
+  flashIntensity: 36
   candleInUse: 0
   candleLights:
   - {fileID: 2037725507}
@@ -26029,9 +26043,9 @@ MonoBehaviour:
   botEast: -40
   topEast: 40
   leftSouth: -120
-  rightSouth: 0
+  rightSouth: -65
   leftNorth: 120
-  rightNorth: 0
+  rightNorth: 63
 --- !u!1 &1399637912
 GameObject:
   m_ObjectHideFlags: 0
