@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class ClockController : MonoBehaviour
 {
+    [Header("Clock Structure")]
+    [SerializeField] private GameObject hourHand;
+    [SerializeField] private GameObject minuteHand;
+
+    [Header("Rotation Mechanics")]
     [SerializeField] private float secondsForHour;
     [SerializeField] public int startHour, resetHour;
     [SerializeField] public int morningHour;
     [SerializeField] private int totalHours;
 
-    [SerializeField] private GameObject hourHand;
-    [SerializeField] private GameObject minuteHand;
-    private float rotationSpeed;
-    private float startGameAngle, endGameAngle;
-    private float oldHourAngle;
+    private float startGameAngle;
 
     private bool isRotating;
 
@@ -38,31 +39,12 @@ public class ClockController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rotationSpeed = secondsForHour/30;
-
-        endGameAngle = 360 + (-30*morningHour);
-
         resetClockHands(startHour);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isRotating)
-        {
-            // rotateClockHands();
-
-            // if(currHourRotation.z <= endGameAngle && oldHourAngle > endGameAngle)
-            // {
-            //     Debug.Log("night over");
-
-            //     GameManager.instance.openContinueScreen();
-            // }
-
-            // oldHourAngle = currHourRotation.z;
-
-
-        }
         
     }
 
@@ -94,8 +76,6 @@ public class ClockController : MonoBehaviour
         }
 
         isRotating = false;
-
-        Debug.Log("done");
         
     }
 
@@ -115,21 +95,7 @@ public class ClockController : MonoBehaviour
             
             yield return null;
         }
-
-        Debug.Log("done");
         
-    }
-
-    private void rotateClockHands()
-    {
-        currHourRotation = hourHand.transform.rotation.eulerAngles;
-        currMinuteRotation = minuteHand.transform.rotation.eulerAngles;
-
-        currHourRotation.z -= rotationSpeed*Time.deltaTime;
-        currMinuteRotation.z -= rotationSpeed*12*Time.deltaTime;
-        
-        hourHand.transform.rotation = Quaternion.Euler(currHourRotation);
-        minuteHand.transform.rotation = Quaternion.Euler(currMinuteRotation);
     }
 
     public void resetClockHands(int hour)

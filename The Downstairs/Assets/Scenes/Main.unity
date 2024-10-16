@@ -22131,13 +22131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927007b10ab55c44daf40f27a00d7656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hourHand: {fileID: 1983779464}
+  minuteHand: {fileID: 261719179}
   secondsForHour: 5
   startHour: 9
   resetHour: 6
   morningHour: 2
   totalHours: 0
-  hourHand: {fileID: 1983779464}
-  minuteHand: {fileID: 261719179}
 --- !u!1 &1155036268
 GameObject:
   m_ObjectHideFlags: 0
@@ -25969,8 +25969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ae05afdd0847e4d973ff64f7897dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candleCount: 3
-  candlesFull: 0
+  alwaysLit: 1
   candleInUse: 0
   candleLights:
   - {fileID: 2037725507}
@@ -25985,6 +25984,8 @@ MonoBehaviour:
   maxIntensity: 2
   flashDuration: 0.35
   strikeCount: 0
+  candlesFull: 0
+  candleCount: 3
   candleCap: 5
   candleUI:
   - {fileID: 604867862}

@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class CandleController : MonoBehaviour
 {
-    public int candleCount;
-    public bool candlesFull, candleInUse;
+    [Header("Debug")]
+    [SerializeField] private bool alwaysLit;
 
     [Header("Light Mechanics")]
+    [SerializeField] public bool candleInUse;
     [SerializeField] private List<GameObject> candleLights;
     [SerializeField] private List<float> strikeChances;
     [SerializeField] private float lightDuration;
@@ -19,6 +19,8 @@ public class CandleController : MonoBehaviour
     private float lightStart, secondsPassed;
 
     [Header("Candle UI")]
+    [SerializeField] public bool candlesFull;
+    [SerializeField] public int candleCount;
     [SerializeField] private int candleCap;
     [SerializeField] private List<GameObject> candleUI = new();
 
@@ -26,7 +28,6 @@ public class CandleController : MonoBehaviour
 
     public static CandleController instance {get; private set;}
 
-    // Start is called before the first frame update
     void Awake()
     {
         if(instance != null && instance != this){
@@ -42,7 +43,7 @@ public class CandleController : MonoBehaviour
     {
         initializeCandleUI();
 
-        enableCandlelight(false);
+        enableCandlelight(alwaysLit); 
 
         candleInUse = false;
 
@@ -52,7 +53,7 @@ public class CandleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkActiveLight();
+        if(!alwaysLit) checkActiveLight();   
     }
 
     public void checkActiveLight()
@@ -85,7 +86,7 @@ public class CandleController : MonoBehaviour
 
                 if(randomChance <= strikeChances[strikeCount])
                 {
-                    Debug.Log("strikechances[strikecount]: " + strikeChances[strikeCount]);
+                    // Debug.Log("strikechances[strikecount]: " + strikeChances[strikeCount]);
                     lightStart = Time.time;
 
                     useCandle();
@@ -94,7 +95,7 @@ public class CandleController : MonoBehaviour
 
                     strikeCount = 0;
 
-                    Debug.Log("candle is lit");
+                    // Debug.Log("candle is lit");
                 }
                 else
                 {

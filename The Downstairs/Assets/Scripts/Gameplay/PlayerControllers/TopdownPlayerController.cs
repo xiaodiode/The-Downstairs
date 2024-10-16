@@ -21,7 +21,7 @@ public class TopdownPlayerController : MonoBehaviour
     
     private Vector3 mousePosition;
     private float angle, newAngle;
-    private bool hitMinAngle, hitMaxAngle;
+    private bool hitMinAngle, hitMaxAngle, clampAngle;
     private float oldAngle;
     
     // private bool idle;
@@ -44,6 +44,8 @@ public class TopdownPlayerController : MonoBehaviour
         {
             lightEclipse = GetComponent<PlayerLightEclipse>();
         }
+
+        clampAngle = false;
         // idle = true;
     }
 
@@ -98,29 +100,79 @@ public class TopdownPlayerController : MonoBehaviour
         if (isTopdown)
         {
             mousePosition = playerCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            angle = Mathf.Atan2(mousePosition.y, mousePosition.x);
+            angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
 
             switch(currentDirection){
-                case Direction.South:
-                    newAngle = clampLightBounds(angle, -1.8f, -0.8f, true);
-
-                    break;
-                case Direction.West:
-                    newAngle = clampLightBounds(angle, -3.1f, -2.4f, true);
-
-                    break;
                 case Direction.North:
-                    newAngle = clampLightBounds(angle, 0.8f, 1.8f, false);
+                    if(angle <= 120 && angle >= 60)
+                    {
+                        newAngle = angle;
+                        clampAngle = false;
+                    }
+                    else if(!clampAngle)
+                    {
+                        if(angle < 60 && angle >= -90) newAngle = 60;
+                    
+                        else if((angle > 120 && angle <= 180) || (angle >= -180 && angle < 90)) newAngle = 120;
+
+                        clampAngle = true;
+                    }
 
                     break;
-                case Direction.East:
-                    newAngle = Mathf.Clamp(angle,-0.5f, 0.2f);
+                case Direction.South:
+                    if(angle <= -60 && angle >= -120)
+                    {
+                        newAngle = angle;
+                        clampAngle = false;
+                    }
+                    else if(!clampAngle)
+                    {
+                        if(angle > -60 && angle <= 90) newAngle = -60;
+                    
+                        else if((angle < -120 && angle >= -180) || (angle <= 180 && angle > 90)) newAngle = -120;
+
+                        clampAngle = true;
+                    }
+
                     break;
+
+                case Direction.East:
+                    if(angle <= 60 && angle >= -60)
+                    {
+                        newAngle = angle;
+                        clampAngle = false;
+                    }
+                    else if(!clampAngle)
+                    {
+                        if(angle > 60 && angle <= 180) newAngle = 60;
+                    
+                        else if(angle < -60 && angle >= -180) newAngle = -60;
+
+                        clampAngle = true;
+                    }
+                    break;
+
+                case Direction.West:
+                    if((angle <= 180 && angle >= 120) || (angle >= -180 && angle <= -120))
+                    {
+                        newAngle = angle;
+                        clampAngle = false;
+                    }
+                    else if(!clampAngle)
+                    {
+                        if(angle < 120 && angle >= 0) newAngle = 120;
+                    
+                        else if(angle > -120 && angle < 0) newAngle = -120;
+
+                        clampAngle = true;
+                    }
+                    break;
+                
             }
 
             // Debug.Log("angle of mouse: " + angle);
 
-            lightEclipse.angle = newAngle;
+            lightEclipse.angle = newAngle * Mathf.Deg2Rad;
         }
     }
 
