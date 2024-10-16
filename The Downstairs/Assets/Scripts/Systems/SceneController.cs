@@ -19,7 +19,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject basement;
 
     private Dictionary<ScenesType, GameObject> scenesDict;
-
+    private ScenesType currentScene;
+    //private int numberOfScenes = System.Enum.GetValues(typeof(ScenesType)).Length;
     public enum ScenesType
     {
         Upstairs,
@@ -30,7 +31,6 @@ public class SceneController : MonoBehaviour
         Downstairs,
         Basement,
     }
-    
     
     // Start is called before the first frame update
     void Start()
@@ -45,14 +45,14 @@ public class SceneController : MonoBehaviour
             { ScenesType.StairsUpDown, stairsUpDown },
             { ScenesType.Downstairs, downstairs }
         };
-
-        switchScenes(ScenesType.Upstairs);
+        currentScene = ScenesType.Upstairs;
+        switchScenes(currentScene);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //DebugSwitchScenes();
     }
 
     public void switchScenes(ScenesType newScene)
@@ -69,5 +69,27 @@ public class SceneController : MonoBehaviour
         CandleController.instance.checkActiveLight();
     }
 
+    /*private void DebugSwitchScenes()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            currentScene ++;
+            Debug.Log("pressed j");
+            if (currentScene > (ScenesType)numberOfScenes)
+            {
+                currentScene = 0;
+            }
+            switchScenes(currentScene);
+        } else if (Input.GetKeyDown(KeyCode.K))
+        {
+            currentScene --;
+            Debug.Log("pressed k");
+            if (currentScene < 0)
+            {
+                currentScene = (ScenesType)numberOfScenes;
+            }
+            switchScenes(currentScene);
+        }
+    }*/
 
 }
