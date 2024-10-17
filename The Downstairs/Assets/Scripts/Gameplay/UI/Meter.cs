@@ -20,7 +20,6 @@ public class Meter : MonoBehaviour
     private float secondsToEmpty;
 
     private float currMultiplier;
-    private bool newMultiplier;
 
     private float currValueChange;
     private bool newValueChange;
@@ -61,7 +60,7 @@ public class Meter : MonoBehaviour
 
         secondsPassed = 0;
 
-        newSecondsPassed = secondsPassed * currMultiplier;
+        newSecondsPassed *= currMultiplier;
         newSecondsToEmpty = secondsToEmpty * currMultiplier;
 
         while(newSecondsPassed <= newSecondsToEmpty && !isIdle)
@@ -70,15 +69,7 @@ public class Meter : MonoBehaviour
             
             else
             {
-                if(newMultiplier)
-                {
-                    newMultiplier = false;
-
-                    newSecondsPassed = secondsPassed * currMultiplier; 
-                    newSecondsToEmpty = secondsToEmpty * currMultiplier;
-                }
-
-                else if(newValueChange)
+                if(newValueChange)
                 {
                     newValueChange = false;
 
@@ -86,9 +77,9 @@ public class Meter : MonoBehaviour
                 }
                 else 
                 {
-                    meter.value = meter.maxValue * (1 - (newSecondsPassed/newSecondsToEmpty));
+                    meter.value = meter.maxValue * (1 - (secondsPassed/secondsToEmpty));
 
-                    newSecondsPassed += Time.deltaTime;
+                    secondsPassed += Time.deltaTime * currMultiplier;
 
                     meterValue.text = Mathf.FloorToInt(meter.value).ToString();
 
@@ -122,7 +113,6 @@ public class Meter : MonoBehaviour
         secondsToEmpty = newSecondsToEmpty;
 
         currMultiplier = 1;
-        newMultiplier = false;
     }
 
     public void makeMeterFull()
@@ -144,7 +134,6 @@ public class Meter : MonoBehaviour
     public void changeMultiplier(float multiplier)
     {
         currMultiplier = multiplier;
-        newMultiplier = true;
 
         toiletEffect = true;
     }
@@ -171,7 +160,7 @@ public class Meter : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.E))
         {
-            changeMultiplier(2);
+            changeMultiplier(2f);
         }
     }
 
