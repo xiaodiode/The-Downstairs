@@ -33,8 +33,6 @@ public class MainMenu : MonoBehaviour
 
     public void startMainMenu()
     {
-        Time.timeScale = 1;
-
         RendererController.instance.toggleScreensRenderer(RendererController.RendererType.Light2D);
 
         AudioController.instance.playMainMenuMusic();

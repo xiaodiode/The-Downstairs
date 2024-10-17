@@ -24,8 +24,6 @@ public class InstantCharByChar : MonoBehaviour
 
     private IEnumerator PrintText()
     {
-        Debug.Log("trying to animate: " + this);
-
         dialogueUI.text = "";
         yield return new WaitForSeconds(waitToPrint);
 

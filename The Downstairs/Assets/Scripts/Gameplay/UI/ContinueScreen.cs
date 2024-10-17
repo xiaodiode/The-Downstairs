@@ -42,8 +42,8 @@ public class ContinueScreen : MonoBehaviour
 
     public void updateText()
     {
-        nightCounter1.text = "Night " + GameManager.instance.nightCount.ToString() + " Survived";
-        nightCounter2.text = "Night " + GameManager.instance.nightCount.ToString() + " Survived";
+        nightCounter1.text = GameManager.instance.nightCount.ToString() + " NIGHTS \nSURVIVED";
+        nightCounter2.text = GameManager.instance.nightCount.ToString() + " NIGHTS \nSURVIVED";
 
         fridgeUsage.text = Fridge.instance.foodQuantity.ToString() + "Uses Left";
         pitcherUsage.text = WaterPitcher.instance.waterQuantity.ToString() + "Uses Left";
