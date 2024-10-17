@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public bool isNewGame;
     public bool gamePaused;
+    public bool gameReset;
 
     [Header("UI Screens")]
     [SerializeField] public GameObject screensCanvas;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
 
         // isNewGame = true; 
         isNewGame = false; // change to false to skip intro cutscene
+
     }
 
     // Update is called once per frame
@@ -101,8 +103,8 @@ public class GameManager : MonoBehaviour
         enableGame(false);
         switchScreen(ScreenType.MainMenu);
 
-        gamePaused = true;
-        
+        resetGame();
+
         MainMenu.instance.startMainMenu();
     }
 
@@ -118,14 +120,14 @@ public class GameManager : MonoBehaviour
         enableGame(true);
         switchScreen(ScreenType.Gameplay);
 
-        gamePaused = false;
+        playGame();
 
         AudioController.instance.playGameplayMusic();
         MetersController.instance.initializeMeters();
 
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
-        Timer.instance.startCountUp();
+        StartCoroutine(Timer.instance.startTimer());
         ClockController.instance.startRotating();
 
         MetersController.instance.hungerMeter.startDecreasing();
@@ -162,8 +164,8 @@ public class GameManager : MonoBehaviour
 
     public void continueGame()
     {
-        Time.timeScale = 1;
-        
+        resumeGame();
+
         enableScreen(ScreenType.Continue, false);
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
@@ -174,7 +176,6 @@ public class GameManager : MonoBehaviour
         Timer.instance.resetTimer();
         ClockController.instance.resetClockHands(ClockController.instance.resetHour);
 
-        Timer.instance.startCountUp();
         ClockController.instance.startRotating();
     }
 
@@ -185,7 +186,7 @@ public class GameManager : MonoBehaviour
 
     public void triggerGameOver()
     {
-        gamePaused = true;
+        pauseGame();
 
         enableScreen(ScreenType.GameOver, true);
 
@@ -208,6 +209,17 @@ public class GameManager : MonoBehaviour
     {
         gamePaused = false;
     }
+    
+    public void resetGame()
+    {
+        gamePaused = true;
+        gameReset = true;
+    }
 
+    public void playGame()
+    {
+        gameReset = false;
+        gamePaused = false;
+    }
     
 }
