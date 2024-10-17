@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public bool isNewGame;
+    public bool gamePaused;
 
     [Header("UI Screens")]
     [SerializeField] public GameObject screensCanvas;
@@ -97,6 +95,8 @@ public class GameManager : MonoBehaviour
     {
         enableGame(false);
         switchScreen(ScreenType.MainMenu);
+
+        gamePaused = true;
         
         MainMenu.instance.startMainMenu();
     }
@@ -112,6 +112,8 @@ public class GameManager : MonoBehaviour
     {
         enableGame(true);
         switchScreen(ScreenType.Gameplay);
+
+        gamePaused = false;
 
         AudioController.instance.playGameplayMusic();
         MetersController.instance.initializeMeters();
@@ -144,7 +146,7 @@ public class GameManager : MonoBehaviour
 
     public void openContinueScreen()
     {
-        Time.timeScale = 0;
+        gamePaused = true;
 
         enableScreen(ScreenType.Continue, true);
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
@@ -178,7 +180,8 @@ public class GameManager : MonoBehaviour
 
     public void triggerGameOver()
     {
-        // Time.timeScale = 0;
+        gamePaused = true;
+
         enableScreen(ScreenType.GameOver, true);
 
         StartCoroutine(GameOver.instance.fadeIn());
@@ -188,6 +191,11 @@ public class GameManager : MonoBehaviour
     {
         nightCount++;
         isNewGame = false;
+    }
+
+    public void pauseGame()
+    {
+        MetersController.instance.pauseAllMeters();
     }
     
 }

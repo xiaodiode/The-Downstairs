@@ -48,8 +48,6 @@ public class ClockController : MonoBehaviour
 
     public void startRotating()
     {
-        rotateStart = Time.time;
-
         StartCoroutine(rotateHourHand());
         StartCoroutine(rotateMinuteHand());
     }
@@ -62,15 +60,20 @@ public class ClockController : MonoBehaviour
         
         while(timePassed < secondsForHour*totalHours)
         {
-            timePassed = Time.time - rotateStart;
+            if(GameManager.instance.gamePaused) yield return null;
 
-            currHourRotation = hourHand.transform.rotation.eulerAngles;
+            else
+            {
+                timePassed += Time.deltaTime;
 
-            currHourRotation.z = startGameAngle - (totalHours*30)*(timePassed/(secondsForHour*totalHours));
+                currHourRotation = hourHand.transform.rotation.eulerAngles;
 
-            hourHand.transform.rotation = Quaternion.Euler(currHourRotation);
-            
-            yield return null;
+                currHourRotation.z = startGameAngle - (totalHours*30)*(timePassed/(secondsForHour*totalHours));
+
+                hourHand.transform.rotation = Quaternion.Euler(currHourRotation);
+                
+                yield return null;
+            }
         }
 
         isRotating = false;
@@ -83,15 +86,20 @@ public class ClockController : MonoBehaviour
 
         while(isRotating)
         {
-            timePassed = Time.time - rotateStart;
+            if(GameManager.instance.gamePaused) yield return null;
 
-            currMinuteRotation = minuteHand.transform.rotation.eulerAngles;
+            else
+            {
+                timePassed += Time.deltaTime;
 
-            currMinuteRotation.z = -360*(timePassed/secondsForHour);
+                currMinuteRotation = minuteHand.transform.rotation.eulerAngles;
 
-            minuteHand.transform.rotation = Quaternion.Euler(currMinuteRotation);
-            
-            yield return null;
+                currMinuteRotation.z = -360*(timePassed/secondsForHour);
+
+                minuteHand.transform.rotation = Quaternion.Euler(currMinuteRotation);
+                
+                yield return null;
+            }
         }
 
         GameManager.instance.openContinueScreen();

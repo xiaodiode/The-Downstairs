@@ -168,38 +168,50 @@ public class CandleController : MonoBehaviour
         if(glow)
         {
             secondsPassed = 0;
-            lightStart = Time.time;
 
             while(secondsPassed < lightingDuration)
             {
-                secondsPassed = Time.time - lightStart;
+                if(GameManager.instance.gamePaused) yield return null;
 
-                currentLight.intensity = Mathf.Lerp(flashIntensity, lightIntensity, secondsPassed/lightingDuration);
+                else
+                {
+                    secondsPassed += Time.deltaTime;
 
-                yield return null;
+                    currentLight.intensity = Mathf.Lerp(flashIntensity, lightIntensity, secondsPassed/lightingDuration);
+
+                    yield return null;
+                }
             }
 
             secondsPassed = 0;
-            lightStart = Time.time;
 
             while(secondsPassed < glowDuration)
             {
-                secondsPassed = Time.time - lightStart;
+                if(GameManager.instance.gamePaused) yield return null;
 
-                currentLight.pointLightOuterRadius = Mathf.Lerp(flashRadius, lightOuterRadius, secondsPassed/glowDuration);
+                else
+                {
+                    secondsPassed += Time.deltaTime;
 
-                yield return null;
+                    currentLight.pointLightOuterRadius = Mathf.Lerp(flashRadius, lightOuterRadius, secondsPassed/glowDuration);
+
+                    yield return null;
+                }
             }
         }
 
         secondsPassed = 0;
-        lightStart = Time.time;
 
         while(secondsPassed < duration)
         {
-            secondsPassed = Time.time - lightStart;
+            if(GameManager.instance.gamePaused) yield return null;
 
-            yield return null;
+            else
+            {
+                secondsPassed += Time.deltaTime;
+
+                yield return null;
+            }
         }
         
         enableCandlelight(false);

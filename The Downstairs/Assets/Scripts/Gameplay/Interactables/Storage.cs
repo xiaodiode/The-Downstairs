@@ -22,6 +22,7 @@ public class Storage : MonoBehaviour
 
         cooldownTimePassed = 0;
         cooldownCurrValue = 0;
+
     }
 
     // Update is called once per frame
@@ -48,17 +49,21 @@ public class Storage : MonoBehaviour
 
     public IEnumerator updateCooldownMeter()
     {
-        cooldownStartTime = Time.time;
         cooldownTimePassed = 0;
 
         onCooldown = true;
         while(cooldownTimePassed < cooldownTotalSeconds)
         {
-            cooldownTimePassed = Time.time - cooldownStartTime;
+            if(GameManager.instance.gamePaused) yield return null;
 
-            cooldownCurrValue = StorageController.instance.cooldownMeter.maxValue*(1 - cooldownTimePassed/cooldownTotalSeconds);
+            else
+            {
+                cooldownTimePassed += Time.deltaTime;
 
-            yield return null;
+                cooldownCurrValue = StorageController.instance.cooldownMeter.maxValue*(1 - cooldownTimePassed/cooldownTotalSeconds);
+
+                yield return null;
+            }
         }
 
         onCooldown = false;

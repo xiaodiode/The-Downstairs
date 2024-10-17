@@ -55,8 +55,6 @@ public class Dialogue : MonoBehaviour
 
         newTextColor = dialogueUI.color;
 
-        secondsPassed = 0;
-
         clearDialogue();
         
     }
@@ -64,7 +62,7 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(dialogueQueue.Count != 0 && !isPrinting)
+        if(dialogueQueue.Count != 0 && !isPrinting && !GameManager.instance.gamePaused)
         {
             if(fadeInAnimation)
             {
@@ -76,20 +74,6 @@ public class Dialogue : MonoBehaviour
             }
             
         }
-        // Debug.Log("dialogue queue count: " + dialogueQueue.Count);
-    }
-
-    public IEnumerator playIntroDialogue(){
-
-        foreach(string text in fileLines){
-
-            StartCoroutine(printCharByChar(text));
-
-            yield return new WaitForSeconds(3);
-
-            clearDialogue();
-        }
-        
     }
 
     private IEnumerator printCharByChar(string toPrint){
@@ -97,6 +81,8 @@ public class Dialogue : MonoBehaviour
 
         foreach(char character in toPrint)
         {
+            if(GameManager.instance.gamePaused) yield return null; // lock coroutine when game is paused
+
             dialogueUI.text += character;
             
             yield return new WaitForSeconds(printSpeed);
@@ -125,12 +111,18 @@ public class Dialogue : MonoBehaviour
 
         while(secondsPassed < fadeInTime)
         {
-            newTextColor.a = Mathf.Lerp(minTextAlpha, maxTextAlpha, secondsPassed/fadeInTime);
-            dialogueUI.color = newTextColor;
+            if(GameManager.instance.gamePaused) yield return null; // lock coroutine when game is paused
+            
+            else
+            {
+                newTextColor.a = Mathf.Lerp(minTextAlpha, maxTextAlpha, secondsPassed/fadeInTime);
+                dialogueUI.color = newTextColor;
 
-            secondsPassed += Time.deltaTime;
+                secondsPassed += Time.deltaTime;
 
-            yield return null;
+                yield return null;
+            }
+            
         }
 
         yield return new WaitForSeconds(fadeDisplayTime);
@@ -141,12 +133,18 @@ public class Dialogue : MonoBehaviour
 
         while(secondsPassed < fadeInTime + fadeOutTime)
         {
-            newTextColor.a = Mathf.Lerp(maxTextAlpha, minTextAlpha, secondsPassed/fadeOutTime);
-            dialogueUI.color = newTextColor;
+            if(GameManager.instance.gamePaused) yield return null; // lock coroutine when game is paused
 
-            secondsPassed += Time.deltaTime;
+            else
+            {
+                newTextColor.a = Mathf.Lerp(maxTextAlpha, minTextAlpha, secondsPassed/fadeOutTime);
+                dialogueUI.color = newTextColor;
 
-            yield return null;
+                secondsPassed += Time.deltaTime;
+
+                yield return null;                
+            }
+
         }
 
         isPrinting = false;

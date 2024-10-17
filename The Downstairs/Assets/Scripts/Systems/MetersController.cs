@@ -24,6 +24,8 @@ public class MetersController : MonoBehaviour
 
     public bool lockBedroom;
 
+    public bool pauseMeters;
+
     private List<Meter> pausedMeters = new();
 
     public static MetersController instance {get; private set;}

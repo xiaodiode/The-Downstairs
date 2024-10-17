@@ -30,6 +30,7 @@ public class InstantFont : MonoBehaviour
     public void StartDilation()
     {
         DOTween.To(GetFaceDilate, SetFaceDilate, 0.0f, timeDilate);
+        Debug.Log("trying to animate: " + this);
     }
 
     public void EndDilation()

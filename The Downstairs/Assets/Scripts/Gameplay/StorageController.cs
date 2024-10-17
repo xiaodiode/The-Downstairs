@@ -118,16 +118,20 @@ public class StorageController : MonoBehaviour
     {
         displayMeter();
 
-        holdStartTime = Time.time;
         holdMeter.value = 0;
 
         while(pressed && secondsPressed < holdSeconds)
         {
-            secondsPressed = Time.time - holdStartTime;
+            if(GameManager.instance.gamePaused) yield return null;
 
-            holdMeter.value = holdMeter.maxValue*(secondsPressed/holdSeconds);
+            else
+            {
+                secondsPressed += Time.deltaTime;
 
-            yield return null;
+                holdMeter.value = holdMeter.maxValue*(secondsPressed/holdSeconds);
+
+                yield return null;
+            }
         }
 
         if(!pressed)

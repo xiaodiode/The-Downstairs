@@ -23,7 +23,6 @@ public class Meter : MonoBehaviour
 
     private float oldValue = 100;
     private float pauseTime;
-    public bool pause;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +35,6 @@ public class Meter : MonoBehaviour
             intervals.Add(interval);
             isTriggered.Add(false);
         }
-
-        pause = false;
 
         dataReady = true;
     }
@@ -185,7 +182,7 @@ public class Meter : MonoBehaviour
     {
         if(meterEnabled)
         {
-            while(pause)
+            while(MetersController.instance.pauseMeters)
             {
                 startTime += Time.deltaTime;
 
@@ -194,8 +191,4 @@ public class Meter : MonoBehaviour
         }
     }
 
-    public void resumeMeter()
-    {
-        pause = false;
-    }
 }
