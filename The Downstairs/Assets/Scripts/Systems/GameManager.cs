@@ -71,7 +71,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!gamePaused) pauseGame();
+
+            else resumeGame();
+        }
     }
 
     public void switchScreen(ScreenType newScreen)
@@ -195,7 +200,14 @@ public class GameManager : MonoBehaviour
 
     public void pauseGame()
     {
+        gamePaused = true;
         MetersController.instance.pauseAllMeters();
     }
+
+    public void resumeGame()
+    {
+        gamePaused = false;
+    }
+
     
 }
