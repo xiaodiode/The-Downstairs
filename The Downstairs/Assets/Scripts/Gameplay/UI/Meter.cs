@@ -60,10 +60,7 @@ public class Meter : MonoBehaviour
 
         secondsPassed = 0;
 
-        newSecondsPassed *= currMultiplier;
-        newSecondsToEmpty = secondsToEmpty * currMultiplier;
-
-        while(newSecondsPassed <= newSecondsToEmpty && !isIdle)
+        while(secondsPassed <= secondsToEmpty && !isIdle)
         {
             if(GameManager.instance.gamePaused) yield return null;
             
@@ -73,7 +70,7 @@ public class Meter : MonoBehaviour
                 {
                     newValueChange = false;
 
-                    newSecondsPassed -= newSecondsToEmpty * (currValueChange/meter.maxValue);
+                    secondsPassed -= secondsToEmpty * (currValueChange/meter.maxValue);
                 }
                 else 
                 {
