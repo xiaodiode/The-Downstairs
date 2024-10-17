@@ -10,16 +10,11 @@ public class QTEController : MonoBehaviour
     [SerializeField] private int numberKeys;
     [SerializeField] private Slider qteTimerSlider;  
 
-
-
     public Transform qteSquare;
 
     public GameObject[] qteObjects;
     public float scaleAmtS, scaleAmtF = 0.8f;
     public int[] qteKeys;
-    private float horizontalInput, verticalInput;
-    private Vector3 input;
-    float time = 0f;
     public float timeDelay = 1.0f;
     public int current = 0;
     public float qteTimeLimit = 3.0f; // Time limit for each QTE
@@ -60,10 +55,6 @@ public class QTEController : MonoBehaviour
             return;
         }
 
-        // Gather player input
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
         // Update QTE timer
         qteTimer -= Time.deltaTime;
         qteTimerSlider.value = qteTimer;   
@@ -73,35 +64,16 @@ public class QTEController : MonoBehaviour
             MoveToNextQTE(false); 
         }
  
-        Move();
+        checkInput();
     }
 
-    private void Move()
+    private void checkInput()
     {
-        if (time > 0f)
-        {  
-            time -= Time.deltaTime;
-            return;
-        }
-
-        if (horizontalInput == 1 && qteKeys[current] == 3)
+        if ((Input.GetKeyDown(KeyCode.W) && qteKeys[current] == 0)
+            || (Input.GetKeyDown(KeyCode.A) && qteKeys[current] == 1)
+            || (Input.GetKeyDown(KeyCode.S) && qteKeys[current] == 2)
+            || (Input.GetKeyDown(KeyCode.D) && qteKeys[current] == 3))
         {
-            // D key
-            MoveToNextQTE(true);
-        }
-        else if (horizontalInput == -1 && qteKeys[current] == 1)
-        {
-            // A key
-            MoveToNextQTE(true);
-        }
-        else if (verticalInput == 1 && qteKeys[current] == 0)
-        {
-            // W key
-            MoveToNextQTE(true);
-        }
-        else if (verticalInput == -1 && qteKeys[current] == 2)
-        {
-            // S key
             MoveToNextQTE(true);
         }
     }
@@ -126,7 +98,6 @@ public class QTEController : MonoBehaviour
             this.transform.DOLocalMoveX(-current * 85.0f, .5f);
             qteTimer = qteTimeLimit;
             qteTimerSlider.value = qteTimeLimit; 
-            time = timeDelay; 
         }
         else
         {
