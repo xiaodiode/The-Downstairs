@@ -32,7 +32,6 @@ public class Timer : MonoBehaviour
         leadingZeroM = "0";
         leadingZeroS = "0";
 
-        resetTimer();
     }
 
     // Update is called once per frame
@@ -53,8 +52,6 @@ public class Timer : MonoBehaviour
 
             else
             {
-                timePassed += Time.deltaTime;
-
                 secondsPassed = Mathf.FloorToInt(timePassed);
                 
                 seconds = secondsPassed % 60;
@@ -83,14 +80,12 @@ public class Timer : MonoBehaviour
             
                 time.text = timeText;
 
+                timePassed += Time.deltaTime;
+
                 yield return null;
             }
 
         }
     }
 
-    public void resetTimer()
-    {
-        hours = 0; minutes = 0; seconds = 0;
-    }
 }

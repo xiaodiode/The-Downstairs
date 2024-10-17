@@ -175,9 +175,9 @@ public class CandleController : MonoBehaviour
 
                 else
                 {
-                    secondsPassed += Time.deltaTime;
-
                     currentLight.intensity = Mathf.Lerp(flashIntensity, lightIntensity, secondsPassed/lightingDuration);
+
+                    secondsPassed += Time.deltaTime;
 
                     yield return null;
                 }
@@ -191,9 +191,9 @@ public class CandleController : MonoBehaviour
 
                 else
                 {
-                    secondsPassed += Time.deltaTime;
-
                     currentLight.pointLightOuterRadius = Mathf.Lerp(flashRadius, lightOuterRadius, secondsPassed/glowDuration);
+
+                    secondsPassed += Time.deltaTime;
 
                     yield return null;
                 }

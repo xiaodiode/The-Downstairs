@@ -54,11 +54,7 @@ public class Door : MonoBehaviour
                 }
                 else
                 {
-                    if(!MetersController.instance.sanityMeter.meterEnabled)
-                    {
-                        MetersController.instance.sanityMeter.startDecreasing();
-                        Debug.Log("entered darkness");
-                    }
+                    StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
                 }
             }
             sceneController.switchScenes(target.selfScene);

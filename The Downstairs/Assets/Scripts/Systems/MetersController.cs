@@ -60,12 +60,12 @@ public class MetersController : MonoBehaviour
         checkTriggers();
     }
 
-    public void initializeMeters()
+    public void resetMeters()
     {
-        hungerMeter.initializeMeter(hungerSecondsToEmpty);
-        thirstMeter.initializeMeter(thirstSecondsToEmpty);
-        toiletMeter.initializeMeter(toiletSecondsToEmpty);
-        sanityMeter.initializeMeter(sanitySecondsToEmpty);
+        hungerMeter.resetMeter(hungerSecondsToEmpty);
+        thirstMeter.resetMeter(thirstSecondsToEmpty);
+        toiletMeter.resetMeter(toiletSecondsToEmpty);
+        sanityMeter.resetMeter(sanitySecondsToEmpty);
 
     }
 
@@ -94,7 +94,7 @@ public class MetersController : MonoBehaviour
         {
             // Debug.Log("resetting sanity");
             sanityMeter.makeMeterFull();
-            sanityMeter.initializeMeter(sanitySecondsToEmpty);
+            sanityMeter.resetMeter(sanitySecondsToEmpty);
         }
     }
 
@@ -165,25 +165,4 @@ public class MetersController : MonoBehaviour
         }
     }
 
-    public void pauseAllMeters()
-    {
-        if(hungerMeter.meterEnabled) pausedMeters.Add(hungerMeter);
-        if(thirstMeter.meterEnabled) pausedMeters.Add(thirstMeter);
-        if(toiletMeter.meterEnabled) pausedMeters.Add(toiletMeter);
-        if(sanityMeter.meterEnabled) pausedMeters.Add(sanityMeter);
-
-        foreach(Meter meter in pausedMeters)
-        {
-            meter.stopDecreasing();
-        }
-
-    }
-
-    public void resumeAllMeters()
-    {
-        foreach(Meter meter in pausedMeters)
-        {
-            meter.resumeDecreasing();
-        }
-    }
 }

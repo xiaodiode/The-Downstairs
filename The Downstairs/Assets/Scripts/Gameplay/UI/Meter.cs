@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Meter : MonoBehaviour
 {
-    public bool isEmpty, meterEnabled;
+    public bool isEmpty, isIdle;
     [SerializeField] private Slider meter;
     [SerializeField] private TextMeshProUGUI meterValue; //debugging
 
@@ -18,11 +18,16 @@ public class Meter : MonoBehaviour
     
     public bool dataReady;
     private float secondsToEmpty;
-    private float startTime, timePassed;
+
+    private float currMultiplier;
+    private bool newMultiplier;
+
+    private float currValueChange;
+    private bool newValueChange;
+
     public bool toiletEffect;
 
     private float oldValue = 100;
-    private float pauseTime;
 
     // Start is called before the first frame update
     void Start()
@@ -37,135 +42,100 @@ public class Meter : MonoBehaviour
         }
 
         dataReady = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isEmpty && meterEnabled){
-            decreaseMeter();
-        }  
-
-        checkIncrements();
-        
+        checkDialogueIncrements();
     }
 
-    public void initializeMeter(float newSecondsToEmpty){
-        isEmpty = false;
-        meterEnabled = false;
+    public IEnumerator decreaseMeter()
+    {
+        isIdle = false;
 
-        updateMeterUI(meter.maxValue);
+        float secondsPassed = 0;
+
+        float newSecondsPassed = secondsPassed * currMultiplier;
+        float newSecondsToEmpty = secondsToEmpty * currMultiplier;
+
+        while(newSecondsPassed <= newSecondsToEmpty)
+        {
+            if(GameManager.instance.gamePaused) yield return null;
+            
+            else
+            {
+                if(newMultiplier)
+                {
+                    newMultiplier = false;
+
+                    newSecondsPassed = secondsPassed * currMultiplier; 
+                    newSecondsToEmpty = secondsToEmpty * currMultiplier;
+                }
+
+                if(newValueChange)
+                {
+                    newValueChange = false;
+
+                    newSecondsPassed += newSecondsToEmpty * (currValueChange/meter.maxValue);
+                }
+
+                meter.value = meter.maxValue * (1 - (newSecondsPassed/newSecondsToEmpty));
+
+                newSecondsPassed += Time.deltaTime;
+
+                meterValue.text = Mathf.CeilToInt(meter.value).ToString();
+
+                yield return null;                
+            }
+
+            
+        }
+
+        isEmpty = true;
+
+        Debug.Log("meter is empty");
+    }
+
+    public void resetMeter(float newSecondsToEmpty)
+    {
+        isEmpty = false;
+        isIdle = true;
+
+        meter.value = meter.maxValue;
 
         secondsToEmpty = newSecondsToEmpty;
 
-        //debugging
-        // meter.value = 80;
-        // startDecreasing();
-
-        // StartCoroutine(waitForSeconds(2));
+        currMultiplier = 1;
+        newMultiplier = false;
     }
 
-    public void startDecreasing()
+    public void makeMeterFull()
     {
-        startTime = Time.time;
+        StopCoroutine(decreaseMeter());
 
-        meterEnabled = true;
+        isIdle = true;
+
+        meter.value = meter.maxValue;
     }
 
-    public void stopDecreasing()
+    public void changeByAmount(float amount)
     {
-        meterEnabled = false;
-
-        pauseTime = Time.time;
+        currValueChange = amount;
+        newValueChange = true;
     }
 
-    public void resumeDecreasing()
+
+    public void changeMultiplier(float multiplier)
     {
-        startTime += Time.time - pauseTime;
-
-        meterEnabled = true; 
-    }
-
-    public void makeMeterFull(){
-        stopDecreasing();
-
-        updateMeterUI(meter.maxValue);
-
-        // toiletEffect = false;
-    }
-
-    public void changeByAmount(float amount){
-        
-        stopDecreasing();
-
-        if(amount < 0){
-            updateMeterUI(meter.value + amount);
-
-            if(meter.value < 0){
-                isEmpty = true;
-                updateMeterUI(0);
-            }
-
-            startDecreasing();
-            
-        }
-        else{
-            updateMeterUI(meter.value + amount);
-
-            if(meter.value > meter.maxValue){
-                updateMeterUI(meter.maxValue);
-            }
-        }
-    }
-
-    private void decreaseMeter()
-    {
-        timePassed = Time.time - startTime;
-
-        if(meter.value > 0){
-            updateMeterUI(meter.maxValue*(1 - (timePassed/secondsToEmpty)));
-        }
-        else{
-            updateMeterUI(0);
-            isEmpty = true;
-
-            stopDecreasing(); 
-        }
-    }   
-
-    public void changeDecreaseMultiplier(float originalRate, float multiplier)
-    {
-        startTime += timePassed*multiplier;
-        secondsToEmpty = originalRate * multiplier;
+        currMultiplier = multiplier;
+        newMultiplier = true;
 
         toiletEffect = true;
     }
 
-    private IEnumerator waitForSeconds(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-
-        //debugging
-        changeByAmount(20);
-        startDecreasing();
-    }
-
-    private void updateMeterUI(float newValue)
-    {
-        if(newValue == 0){
-            isEmpty = true;
-        }
-
-        meter.value = newValue;
-        meterValue.text = Mathf.CeilToInt(meter.value).ToString(); //TextGUI update
-    }
-
-    public float getValue()
-    {
-        return meter.value;
-    }
-
-    private void checkIncrements()
+    private void checkDialogueIncrements()
     {
         for(int i = 0; i < intervals.Count; i++)
         {
@@ -176,19 +146,6 @@ public class Meter : MonoBehaviour
             }
         }
 
-    }
-
-    public IEnumerator pauseMeter()
-    {
-        if(meterEnabled)
-        {
-            while(MetersController.instance.pauseMeters)
-            {
-                startTime += Time.deltaTime;
-
-                yield return null;
-            }
-        }
     }
 
 }

@@ -67,7 +67,7 @@ public class CutscenesController : MonoBehaviour
     {
         GameManager.instance.enableScreen(GameManager.ScreenType.Cutscene, true);
 
-        MetersController.instance.pauseAllMeters();
+        GameManager.instance.pauseGame();
 
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
@@ -81,13 +81,9 @@ public class CutscenesController : MonoBehaviour
 
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
-        MetersController.instance.resumeAllMeters();
+        GameManager.instance.resumeGame();
 
-        if(!MetersController.instance.sanityMeter.meterEnabled)
-        {
-            MetersController.instance.sanityMeter.startDecreasing();
-            Debug.Log("entered darkness");
-        }
+        StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
 
         stairsCutscenePlayed = true;
 

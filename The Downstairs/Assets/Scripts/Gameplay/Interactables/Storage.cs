@@ -58,10 +58,10 @@ public class Storage : MonoBehaviour
 
             else
             {
-                cooldownTimePassed += Time.deltaTime;
-
                 cooldownCurrValue = StorageController.instance.cooldownMeter.maxValue*(1 - cooldownTimePassed/cooldownTotalSeconds);
 
+                cooldownTimePassed += Time.deltaTime;
+                
                 yield return null;
             }
         }

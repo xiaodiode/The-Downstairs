@@ -55,13 +55,10 @@ public class Laundry : MonoBehaviour
         {
             Debug.Log("toilet is empty");
             
-            MetersController.instance.sanityMeter.changeDecreaseMultiplier(MetersController.instance.sanitySecondsToEmpty, 0.5f);
+            MetersController.instance.sanityMeter.changeMultiplier(0.5f);
             MetersController.instance.lockBedroom = true;
 
-            if(!MetersController.instance.sanityMeter.meterEnabled)
-            {
-                MetersController.instance.sanityMeter.startDecreasing();
-            }
+            StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
         }
     }
 

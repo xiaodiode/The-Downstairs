@@ -64,13 +64,13 @@ public class ClockController : MonoBehaviour
 
             else
             {
-                timePassed += Time.deltaTime;
-
                 currHourRotation = hourHand.transform.rotation.eulerAngles;
 
                 currHourRotation.z = startGameAngle - (totalHours*30)*(timePassed/(secondsForHour*totalHours));
 
                 hourHand.transform.rotation = Quaternion.Euler(currHourRotation);
+                
+                timePassed += Time.deltaTime;
                 
                 yield return null;
             }
@@ -90,14 +90,14 @@ public class ClockController : MonoBehaviour
 
             else
             {
-                timePassed += Time.deltaTime;
-
                 currMinuteRotation = minuteHand.transform.rotation.eulerAngles;
 
                 currMinuteRotation.z = -360*(timePassed/secondsForHour);
 
                 minuteHand.transform.rotation = Quaternion.Euler(currMinuteRotation);
                 
+                timePassed += Time.deltaTime;
+
                 yield return null;
             }
         }

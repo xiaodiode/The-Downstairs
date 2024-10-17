@@ -123,17 +123,17 @@ public class GameManager : MonoBehaviour
         playGame();
 
         AudioController.instance.playGameplayMusic();
-        MetersController.instance.initializeMeters();
+        MetersController.instance.resetMeters();
 
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
         StartCoroutine(Timer.instance.startTimer());
         ClockController.instance.startRotating();
 
-        MetersController.instance.hungerMeter.startDecreasing();
-        MetersController.instance.thirstMeter.startDecreasing();
-        MetersController.instance.toiletMeter.startDecreasing();
-        MetersController.instance.sanityMeter.startDecreasing();
+        StartCoroutine(MetersController.instance.hungerMeter.decreaseMeter());
+        StartCoroutine(MetersController.instance.thirstMeter.decreaseMeter());
+        StartCoroutine(MetersController.instance.toiletMeter.decreaseMeter());
+        StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
 
         StartCoroutine(CandleController.instance.FindActiveLight());
 
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void openContinueScreen()
     {
-        gamePaused = true;
+        resetGame();
 
         enableScreen(ScreenType.Continue, true);
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
@@ -164,16 +164,15 @@ public class GameManager : MonoBehaviour
 
     public void continueGame()
     {
-        resumeGame();
+        playGame();
 
         enableScreen(ScreenType.Continue, false);
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
         isNewGame = false;
         nightCount++;
-        MetersController.instance.initializeMeters();
+        MetersController.instance.resetMeters();
 
-        Timer.instance.resetTimer();
         ClockController.instance.resetClockHands(ClockController.instance.resetHour);
 
         ClockController.instance.startRotating();
@@ -202,7 +201,6 @@ public class GameManager : MonoBehaviour
     public void pauseGame()
     {
         gamePaused = true;
-        MetersController.instance.pauseAllMeters();
     }
 
     public void resumeGame()

@@ -30,7 +30,6 @@ public class Dialogue : MonoBehaviour
     private float secondsPassed;
     private Queue<string> dialogueQueue = new();
 
-
     public static Dialogue instance {get; private set;}
 
     void Awake()
@@ -47,8 +46,6 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // StartCoroutine(playIntroDialogue());
-
         isPrinting = false;
 
         dialogueDilation = dialogueUI.gameObject.GetComponent<EnterFont>();
@@ -172,14 +169,14 @@ public class Dialogue : MonoBehaviour
             case 20:
                 randomIndex = (DataLoader.instance.hungerDialogue20.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.hungerDialogue20.Count);
                 toPrint = DataLoader.instance.hungerDialogue20[randomIndex];
-                Debug.Log("toPrint 20: " + toPrint);
+                // Debug.Log("toPrint 20: " + toPrint);
 
                 break;
 
             case 50:
                 randomIndex = (DataLoader.instance.hungerDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.hungerDialogue50.Count);
                 toPrint = DataLoader.instance.hungerDialogue50[randomIndex];
-                Debug.Log("toPrint 50: " + toPrint);
+                // Debug.Log("toPrint 50: " + toPrint);
 
                 break;
         }   
@@ -197,14 +194,14 @@ public class Dialogue : MonoBehaviour
             case 20:
                 randomIndex = (DataLoader.instance.thirstDialogue20.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.thirstDialogue20.Count);
                 toPrint = DataLoader.instance.thirstDialogue20[randomIndex];
-                Debug.Log("toPrint 20: " + toPrint);
+                // Debug.Log("toPrint 20: " + toPrint);
 
                 break;
 
             case 50:
                 randomIndex = (DataLoader.instance.thirstDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.thirstDialogue50.Count);
                 toPrint = DataLoader.instance.thirstDialogue50[randomIndex];
-                Debug.Log("toPrint 50: " + toPrint);
+                // Debug.Log("toPrint 50: " + toPrint);
 
                 break;
         }
@@ -222,14 +219,14 @@ public class Dialogue : MonoBehaviour
             case 20:
                 randomIndex = (DataLoader.instance.toiletDialogue20.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.toiletDialogue20.Count);
                 toPrint = DataLoader.instance.toiletDialogue20[randomIndex];
-                Debug.Log("toPrint 20: " + toPrint);
+                // Debug.Log("toPrint 20: " + toPrint);
 
                 break;
 
             case 50: 
                 randomIndex = (DataLoader.instance.toiletDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.toiletDialogue50.Count);
                 toPrint = DataLoader.instance.toiletDialogue50[randomIndex];
-                Debug.Log("toPrint 50: " + toPrint);
+                // Debug.Log("toPrint 50: " + toPrint);
 
                 break;
         }
@@ -247,14 +244,14 @@ public class Dialogue : MonoBehaviour
             case 10:
                 randomIndex = (DataLoader.instance.sanityDialogue10.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.sanityDialogue10.Count);
                 toPrint = DataLoader.instance.sanityDialogue10[randomIndex];
-                Debug.Log("toPrint 10: " + toPrint);
+                // Debug.Log("toPrint 10: " + toPrint);
                 
                 break;
 
             case 50:
                 randomIndex = (DataLoader.instance.sanityDialogue50.Count == 1) ?  0 : Random.Range(0, DataLoader.instance.sanityDialogue50.Count);
                 toPrint = DataLoader.instance.sanityDialogue50[randomIndex];
-                Debug.Log("toPrint 50: " + toPrint);
+                // Debug.Log("toPrint 50: " + toPrint);
 
                 break;
         }
