@@ -42,8 +42,6 @@ public class MainMenu : MonoBehaviour
 
     public void playGame()
     {
-        // animateTextEnter(true);
-
         if(GameManager.instance.isNewGame)
         {
             GameManager.instance.playIntroCutscene(); 

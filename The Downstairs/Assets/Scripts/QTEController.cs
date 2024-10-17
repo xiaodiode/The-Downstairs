@@ -5,20 +5,26 @@ using UnityEngine.UI; // Required for working with UI components like Slider
 using DG.Tweening;
 
 public class QTEController : MonoBehaviour
-{
-    [SerializeField] private List<GameObject> keys;
+{   
+    [Header("QTE Mechanics")]
     [SerializeField] private int numberKeys;
+    [SerializeField] private int[] qteKeys;
+    [SerializeField] private float timeDelay = 1.0f;
+    [SerializeField] private float qteTimeLimit = 3.0f; // Time limit for each QTE
+    [Header("QTE Structure")]
+    [SerializeField] private List<GameObject> keys;
+    [SerializeField] private Transform qteSquare;
     [SerializeField] private Slider qteTimerSlider;  
+    [SerializeField] private GameObject[] qteObjects;
 
-    public Transform qteSquare;
-
-    public GameObject[] qteObjects;
-    public float scaleAmtS, scaleAmtF = 0.8f;
-    public int[] qteKeys;
-    public float timeDelay = 1.0f;
-    public int current = 0;
-    public float qteTimeLimit = 3.0f; // Time limit for each QTE
+    [Header("QTE Animation Settings")]
+    [SerializeField] private float scaleAmtS = 0.8f;    
+    [SerializeField] private float scaleAmtF = 0.8f;
+    private int currentIndex = 0;
+    
     private float qteTimer = 0f;
+
+    private float time = 0;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -26,7 +32,7 @@ public class QTEController : MonoBehaviour
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
-            current = 0;
+            currentIndex = 0;
         }
         qteObjects = new GameObject[numberKeys];
         qteKeys = new int[numberKeys];
@@ -50,7 +56,7 @@ public class QTEController : MonoBehaviour
     void Update()
     {
         // If all QTEs are completed, do nothing
-        if (current >= numberKeys)
+        if (currentIndex >= numberKeys)
         {
             return;
         }
@@ -58,7 +64,7 @@ public class QTEController : MonoBehaviour
         // Update QTE timer
         qteTimer -= Time.deltaTime;
         qteTimerSlider.value = qteTimer;   
-        if (qteTimer <= 0 && current < numberKeys)
+        if (qteTimer <= 0 && currentIndex < numberKeys)
         {
             Debug.Log("FAILED QTE");
             MoveToNextQTE(false); 
@@ -69,35 +75,38 @@ public class QTEController : MonoBehaviour
 
     private void checkInput()
     {
-        if ((Input.GetKeyDown(KeyCode.W) && qteKeys[current] == 0)
-            || (Input.GetKeyDown(KeyCode.A) && qteKeys[current] == 1)
-            || (Input.GetKeyDown(KeyCode.S) && qteKeys[current] == 2)
-            || (Input.GetKeyDown(KeyCode.D) && qteKeys[current] == 3))
+        if ((Input.GetKeyDown(KeyCode.W) && qteKeys[currentIndex] == 0)
+            || (Input.GetKeyDown(KeyCode.A) && qteKeys[currentIndex] == 1)
+            || (Input.GetKeyDown(KeyCode.S) && qteKeys[currentIndex] == 2)
+            || (Input.GetKeyDown(KeyCode.D) && qteKeys[currentIndex] == 3))
         {
             MoveToNextQTE(true);
         }
+
+        // else MoveToNextQTE(false);
     }
 
     private void MoveToNextQTE(bool success)
     {
         if (success)
         {
-            qteObjects[current].transform.DOScale(scaleAmtS, 0.25f);
+            qteObjects[currentIndex].transform.DOScale(scaleAmtS, 0.25f);
 
         }
-        if (!success)
+        else
         {
-            qteObjects[current].transform.DOScale(-scaleAmtF, 0.25f);  
+            qteObjects[currentIndex].transform.DOScale(-scaleAmtF, 0.25f);  
         }
 
-        current++;
+        currentIndex++;
 
-        if (current < numberKeys)
+        if (currentIndex < numberKeys)
         {
             qteSquare.DOLocalMoveY(10f, 0.25f).From().SetEase(Ease.OutBack);
-            this.transform.DOLocalMoveX(-current * 85.0f, .5f);
+            this.transform.DOLocalMoveX(-currentIndex * 85.0f, .5f);
             qteTimer = qteTimeLimit;
             qteTimerSlider.value = qteTimeLimit; 
+            time = timeDelay;
         }
         else
         {
@@ -108,6 +117,6 @@ public class QTEController : MonoBehaviour
 
     private void MoveToCurrentPosition()
     {
-        this.transform.DOLocalMoveX(-current * 85.0f, 0.5f);
+        this.transform.DOLocalMoveX(-currentIndex * 85.0f, 0.5f);
     }
 }

@@ -687,14 +687,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03b71995650f4520b0987e078cefe4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberKeys: 10
   keys:
   - {fileID: 9069891819534481008, guid: d18c0b8a40b594aaba2225c6ad16bcf4, type: 3}
   - {fileID: 3909277961146844026, guid: 1754a4c29de3b4fcf8d653f47a0117c4, type: 3}
   - {fileID: 3489276703465171064, guid: 039a1741ccc514023ad6f5e19a26a4cd, type: 3}
   - {fileID: 4944201995256065140, guid: 2376da9d582e242fe911bddb600e413e, type: 3}
-  numberKeys: 10
-  qteTimerSlider: {fileID: 677531943697231896}
   qteSquare: {fileID: 1542204624352409161}
+  qteTimerSlider: {fileID: 677531943697231896}
   qteObjects: []
   scaleAmtS: 0
   scaleAmtF: 0.8
