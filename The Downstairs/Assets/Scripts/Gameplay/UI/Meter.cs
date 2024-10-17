@@ -27,6 +27,8 @@ public class Meter : MonoBehaviour
 
     public bool toiletEffect;
 
+    private float secondsPassed, newSecondsPassed, newSecondsToEmpty;
+
     private float oldValue = 100;
 
     // Start is called before the first frame update
@@ -49,18 +51,20 @@ public class Meter : MonoBehaviour
     void Update()
     {
         checkDialogueIncrements();
+
+        testMeter();
     }
 
     public IEnumerator decreaseMeter()
     {
         isIdle = false;
 
-        float secondsPassed = 0;
+        secondsPassed = 0;
 
-        float newSecondsPassed = secondsPassed * currMultiplier;
-        float newSecondsToEmpty = secondsToEmpty * currMultiplier;
+        newSecondsPassed = secondsPassed * currMultiplier;
+        newSecondsToEmpty = secondsToEmpty * currMultiplier;
 
-        while(newSecondsPassed <= newSecondsToEmpty)
+        while(newSecondsPassed <= newSecondsToEmpty && !isIdle)
         {
             if(GameManager.instance.gamePaused) yield return null;
             
@@ -74,28 +78,38 @@ public class Meter : MonoBehaviour
                     newSecondsToEmpty = secondsToEmpty * currMultiplier;
                 }
 
-                if(newValueChange)
+                else if(newValueChange)
                 {
                     newValueChange = false;
 
-                    newSecondsPassed += newSecondsToEmpty * (currValueChange/meter.maxValue);
+                    newSecondsPassed -= newSecondsToEmpty * (currValueChange/meter.maxValue);
                 }
+                else 
+                {
+                    meter.value = meter.maxValue * (1 - (newSecondsPassed/newSecondsToEmpty));
 
-                meter.value = meter.maxValue * (1 - (newSecondsPassed/newSecondsToEmpty));
+                    newSecondsPassed += Time.deltaTime;
 
-                newSecondsPassed += Time.deltaTime;
+                    meterValue.text = Mathf.FloorToInt(meter.value).ToString();
 
-                meterValue.text = Mathf.CeilToInt(meter.value).ToString();
-
-                yield return null;                
+                    yield return null;
+                }
+                                
             }
 
-            
         }
 
-        isEmpty = true;
+        if(isIdle) Debug.Log("full");
 
-        Debug.Log("meter is empty");
+        else
+        {
+            isEmpty = true;
+
+            Debug.Log("meter is empty");
+        }
+
+
+        
     }
 
     public void resetMeter(float newSecondsToEmpty)
@@ -113,11 +127,11 @@ public class Meter : MonoBehaviour
 
     public void makeMeterFull()
     {
-        StopCoroutine(decreaseMeter());
-
         isIdle = true;
 
         meter.value = meter.maxValue;
+
+        meterValue.text = Mathf.FloorToInt(meter.value).ToString();
     }
 
     public void changeByAmount(float amount)
@@ -146,6 +160,19 @@ public class Meter : MonoBehaviour
             }
         }
 
+    }
+
+    private void testMeter()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            changeByAmount(-10);
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            changeMultiplier(2);
+        }
     }
 
 }

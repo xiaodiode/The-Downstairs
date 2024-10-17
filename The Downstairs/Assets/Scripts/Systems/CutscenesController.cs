@@ -83,7 +83,10 @@ public class CutscenesController : MonoBehaviour
 
         GameManager.instance.resumeGame();
 
-        StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
+        if(MetersController.instance.sanityMeter.isIdle)
+        {
+            StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
+        }
 
         stairsCutscenePlayed = true;
 

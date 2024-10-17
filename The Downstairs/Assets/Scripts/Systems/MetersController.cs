@@ -53,9 +53,9 @@ public class MetersController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SidescrollPlayerController.instance.gameObject.activeInHierarchy){
-            resetSanityMeter();
-        }
+        // if(SidescrollPlayerController.instance.gameObject.activeInHierarchy){
+        //     resetSanityMeter();
+        // }
 
         checkTriggers();
     }

@@ -58,7 +58,7 @@ public class Laundry : MonoBehaviour
             MetersController.instance.sanityMeter.changeMultiplier(0.5f);
             MetersController.instance.lockBedroom = true;
 
-            StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
+            // StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
         }
     }
 

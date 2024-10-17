@@ -20,7 +20,7 @@ public class SceneController : MonoBehaviour
 
     private Dictionary<ScenesType, GameObject> scenesDict;
     public ScenesType currentScene;
-    //private int numberOfScenes = System.Enum.GetValues(typeof(ScenesType)).Length;
+    
     public enum ScenesType
     {
         Upstairs,
@@ -54,7 +54,7 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //DebugSwitchScenes();
+        
     }
 
     public void switchScenes(ScenesType newScene)
@@ -66,32 +66,14 @@ public class SceneController : MonoBehaviour
 
         scenesDict[newScene].SetActive(true);
 
+        if(newScene == ScenesType.Bedroom) 
+        {
+            MetersController.instance.resetSanityMeter();
+        }
+
         currentScene = newScene;
 
         CandleController.instance.checkActiveLight();
     }
-
-    /*private void DebugSwitchScenes()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            currentScene ++;
-            Debug.Log("pressed j");
-            if (currentScene > (ScenesType)numberOfScenes)
-            {
-                currentScene = 0;
-            }
-            switchScenes(currentScene);
-        } else if (Input.GetKeyDown(KeyCode.K))
-        {
-            currentScene --;
-            Debug.Log("pressed k");
-            if (currentScene < 0)
-            {
-                currentScene = (ScenesType)numberOfScenes;
-            }
-            switchScenes(currentScene);
-        }
-    }*/
 
 }
