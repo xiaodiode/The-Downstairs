@@ -45,9 +45,13 @@ public class SceneController : MonoBehaviour
             { ScenesType.StairsUpDown, stairsUpDown },
             { ScenesType.Downstairs, downstairs }
         };
+<<<<<<< Updated upstream
 
         currentScene = ScenesType.Bedroom;
 
+=======
+        currentScene = ScenesType.Bedroom;
+>>>>>>> Stashed changes
         switchScenes(currentScene);
     }
 
