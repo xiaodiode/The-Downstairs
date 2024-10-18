@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     [Header("UI Screens")]
     [SerializeField] public GameObject screensCanvas;
     [SerializeField] private GameObject mainMenuScreen;
-    
+    [SerializeField] private GameObject pauseScreen;
+
 
     [Header("Gameplay")]
     [SerializeField] public GameObject gameCanvas;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         MainMenu,
         Cutscene,
+        Pause,
         Gameplay,
         Continue,
         GameOver
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
             { ScreenType.Gameplay, gameplayScreen },
             { ScreenType.Cutscene, cutsceneScreen },
             { ScreenType.Continue, continueScreen },
+            { ScreenType.Pause, pauseScreen },
             { ScreenType.GameOver, gameOverScreen }
         };
 
@@ -75,7 +78,10 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!gamePaused) pauseGame();
+            if (!gamePaused)
+            {
+                pauseGame();
+            }
 
             else resumeGame();
         }
@@ -164,6 +170,7 @@ public class GameManager : MonoBehaviour
 
     public void continueGame()
     {
+
         playGame();
 
         enableScreen(ScreenType.Continue, false);
@@ -201,11 +208,18 @@ public class GameManager : MonoBehaviour
     public void pauseGame()
     {
         gamePaused = true;
+        enableScreen(ScreenType.Pause, true);
+        Time.timeScale = 0;
+        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
+
     }
 
     public void resumeGame()
     {
         gamePaused = false;
+        enableScreen(ScreenType.Pause, false);
+        Time.timeScale = 1;
+        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
     }
     
     public void resetGame()

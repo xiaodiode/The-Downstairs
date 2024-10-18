@@ -29,12 +29,12 @@ public class InstantFont : MonoBehaviour
 
     public void StartDilation()
     {
-        DOTween.To(GetFaceDilate, SetFaceDilate, 0.0f, timeDilate);
+        DOTween.To(GetFaceDilate, SetFaceDilate, 0.0f, timeDilate).SetUpdate(true); ;
     }
 
     public void EndDilation()
     {
-        DOTween.To(GetFaceDilate, SetFaceDilate, -1.0f, timeDilate);
+        DOTween.To(GetFaceDilate, SetFaceDilate, -1.0f, timeDilate).SetUpdate(true); ;
     }
 
 }

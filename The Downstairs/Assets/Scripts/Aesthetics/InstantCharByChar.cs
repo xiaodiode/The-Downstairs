@@ -14,7 +14,7 @@ public class InstantCharByChar : MonoBehaviour
     private void Awake()
     { 
         dialogueUI = GetComponent<TextMeshProUGUI>();
-        originalText = dialogueUI.text;
+        originalText = dialogueUI.text; 
     }
 
     private void OnEnable()
@@ -25,12 +25,21 @@ public class InstantCharByChar : MonoBehaviour
     private IEnumerator PrintText()
     {
         dialogueUI.text = "";
-        yield return new WaitForSeconds(waitToPrint);
-
+        float start = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup < start + waitToPrint)
+        {
+            yield return null;
+        }
         foreach (char c in originalText)
         {
-            dialogueUI.text += c;  
-            yield return new WaitForSeconds(printSpeed);  
+            dialogueUI.text += c;
+            start = Time.realtimeSinceStartup;
+            while (Time.realtimeSinceStartup < start + printSpeed)
+            {
+                yield return null;
+            }
         }
     }
+
+     
 }
