@@ -14,11 +14,11 @@ public class InstantCharByChar : MonoBehaviour
     private void Awake()
     { 
         dialogueUI = GetComponent<TextMeshProUGUI>();
+        originalText = dialogueUI.text;
     }
 
     private void OnEnable()
     { 
-        originalText = dialogueUI.text; 
         StartCoroutine(PrintText());
     }
 
