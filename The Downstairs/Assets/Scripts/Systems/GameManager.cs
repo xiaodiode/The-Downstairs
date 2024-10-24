@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         {
             if (!gamePaused)
             {
-                pauseGame();
+                pauseGame(true);
             }
 
             else resumeGame();
@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
 
     public void triggerGameOver()
     {
-        pauseGame();
+        pauseGame(false);
 
         enableScreen(ScreenType.GameOver, true);
 
@@ -205,10 +205,10 @@ public class GameManager : MonoBehaviour
         isNewGame = false;
     }
 
-    public void pauseGame()
+    public void pauseGame(bool display)
     {
         gamePaused = true;
-        enableScreen(ScreenType.Pause, true);
+        enableScreen(ScreenType.Pause, display);
         Time.timeScale = 0;
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
