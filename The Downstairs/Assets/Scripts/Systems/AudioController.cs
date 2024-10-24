@@ -49,6 +49,14 @@ public class AudioController : MonoBehaviour
         
     }
 
+    public void setMusic(){
+        musicVolume = musicSlider.value*100f;
+    }
+
+    public void setSFX(){
+        sfxVolume = sfxSlider.value*100f;
+    }
+
     public void playGameplayMusic(){
 
         transitionMusic(gameplayMusicClip);
