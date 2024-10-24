@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CrawlingController : MonoBehaviour
 {
-    public bool ready = false;
+    public bool ready;
+    public bool crawlingFinished, isCrawling; 
 
     [Header("Animation Settings")]
     [SerializeField] public float crawlTime;
@@ -16,7 +17,7 @@ public class CrawlingController : MonoBehaviour
     [Header("Animation Mechanics")]
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorController animController;
-    [SerializeField] private bool goingDown;
+    [SerializeField] public bool goingDown;
     [SerializeField] private Queue<CrawlingState> statesQueue = new();
 
     public enum CrawlingState 
@@ -69,6 +70,9 @@ public class CrawlingController : MonoBehaviour
         setAnimSpeeds();
 
         goingDown = false;
+        
+        crawlingFinished = true;
+        isCrawling = false;
 
     }
 
@@ -138,6 +142,11 @@ public class CrawlingController : MonoBehaviour
     {
         bool justTripped = false;
 
+        crawlingFinished = false;
+        isCrawling = false;
+
+        StartCoroutine(StairsController.instance.moveStairs());
+
         while(!QTEController.instance.QTEfinished)
         {
             if(statesQueue.Count != 0)
@@ -150,6 +159,8 @@ public class CrawlingController : MonoBehaviour
 
                         else animator.Play(stateNames[CrawlingState.UpPickup], 0, 0f);
 
+                        isCrawling = false;
+
                         yield return new WaitForSeconds(pickupTime);
 
                         justTripped = false;
@@ -161,14 +172,16 @@ public class CrawlingController : MonoBehaviour
                     
                     else animator.Play(stateNames[CrawlingState.UpCrawl], 0, 0f);
 
+                    isCrawling = true;
+
                     yield return new WaitForSeconds(crawlTime);
 
-
-                    Debug.Log("finished crawling");
+                    isCrawling = false;
                 }
                 else if(statesQueue.Peek() == CrawlingState.Trip)
                 {
                     justTripped = true;
+                    isCrawling = false;
 
                     if(goingDown)
                     {
@@ -208,6 +221,8 @@ public class CrawlingController : MonoBehaviour
             yield return null;
             
         }
+
+        crawlingFinished = true;
     }
 
     public float getTripDelay()
