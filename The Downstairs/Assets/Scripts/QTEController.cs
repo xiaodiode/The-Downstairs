@@ -3,28 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Required for working with UI components like Slider
 using DG.Tweening;
+using System;
+
+[Serializable]
+public struct KeyInput
+{
+    public string keyName;
+    public KeyCode keyCode;
+    public GameObject keyObject;
+}
 
 public class QTEController : MonoBehaviour
 {   
     [Header("QTE Mechanics")]
     [SerializeField] private int numberKeys;
-    [SerializeField] private int[] qteKeys;
-    [SerializeField] private float timeDelay = 1.0f;
-    [SerializeField] private float qteTimeLimit = 3.0f; // Time limit for each QTE
+    [SerializeField] private List<KeyInput> keyInputs = new();
+    [SerializeField] private float tripDelay;
+    [SerializeField] private float qteTimeLimit;
+    
     [Header("QTE Structure")]
     [SerializeField] private List<GameObject> keys;
     [SerializeField] private Transform qteSquare;
     [SerializeField] private Slider qteTimerSlider;  
-    [SerializeField] private GameObject[] qteObjects;
 
     [Header("QTE Animation Settings")]
     [SerializeField] private float scaleAmtS = 0.8f;    
     [SerializeField] private float scaleAmtF = 0.8f;
-    private int currentIndex = 0;
-    
-    private float qteTimer = 0f;
 
-    private float time = 0;
+    private List<KeyInput> keyQTEObjects;
+    private int currentIndex = 0;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -32,71 +39,84 @@ public class QTEController : MonoBehaviour
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
-            currentIndex = 0;
-        }
-        qteObjects = new GameObject[numberKeys];
-        qteKeys = new int[numberKeys];
-
-        // Initialize qteObjects and qteKeys
-        for (int i = 0; i < numberKeys; i++)
-        {
-            int randomIndex = Random.Range(0, 4);
-            qteObjects[i] = Instantiate(keys[randomIndex], this.transform);
-            qteKeys[i] = randomIndex;
         }
 
-        qteTimer = qteTimeLimit;  
-        qteTimerSlider.maxValue = qteTimeLimit;  
-        qteTimerSlider.value = qteTimeLimit;  
-
+        resetQTE();
+        
         MoveToCurrentPosition(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If all QTEs are completed, do nothing
-        if (currentIndex >= numberKeys)
-        {
-            return;
-        }
 
-        // Update QTE timer
-        qteTimer -= Time.deltaTime;
-        qteTimerSlider.value = qteTimer;   
-        if (qteTimer <= 0 && currentIndex < numberKeys)
-        {
-            Debug.Log("FAILED QTE");
-            MoveToNextQTE(false); 
-        }
- 
-        checkInput();
     }
 
-    private void checkInput()
+    private IEnumerator playQTE()
     {
-        if ((Input.GetKeyDown(KeyCode.W) && qteKeys[currentIndex] == 0)
-            || (Input.GetKeyDown(KeyCode.A) && qteKeys[currentIndex] == 1)
-            || (Input.GetKeyDown(KeyCode.S) && qteKeys[currentIndex] == 2)
-            || (Input.GetKeyDown(KeyCode.D) && qteKeys[currentIndex] == 3))
-        {
-            MoveToNextQTE(true);
-        }
+        float timer = qteTimeLimit;
 
-        // else MoveToNextQTE(false);
+        while(currentIndex < numberKeys)
+        {
+            if(timer <= 0)
+            {
+                Debug.Log("tripped"); 
+
+                yield return new WaitForSeconds(tripDelay);
+
+                Debug.Log("finished tripping");
+
+                MoveToNextQTE();
+                timer = qteTimeLimit;
+            }
+            else if(checkInput())
+            {
+                MoveToNextQTE();
+                timer = qteTimeLimit;
+            }
+
+            timer -= Time.deltaTime;
+            qteTimerSlider.value = timer;
+
+            yield return null;
+        }
     }
 
-    private void MoveToNextQTE(bool success)
+    private void resetQTE()
     {
-        if (success)
-        {
-            qteObjects[currentIndex].transform.DOScale(scaleAmtS, 0.25f);
+        currentIndex = 0;
+        keyQTEObjects = new();
 
-        }
-        else
+        // creating new key combos
+        for (int i = 0; i < numberKeys; i++)
         {
-            qteObjects[currentIndex].transform.DOScale(-scaleAmtF, 0.25f);  
+            int randomIndex = UnityEngine.Random.Range(0, keyInputs.Count);
+
+            KeyInput newKeyQTE = keyInputs[randomIndex];
+            newKeyQTE.keyObject = Instantiate(keyInputs[randomIndex].keyObject, this.transform);
+
+            keyQTEObjects.Add(newKeyQTE);
         }
+        
+        qteTimerSlider.maxValue = qteTimeLimit;  
+        qteTimerSlider.value = qteTimeLimit;  
+
+        StartCoroutine(playQTE());
+    }
+
+    private bool checkInput()
+    {
+        if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void MoveToNextQTE()
+    {
+        keyQTEObjects[currentIndex].keyObject.transform.DOScale(scaleAmtS, 0.25f);
 
         currentIndex++;
 
@@ -104,9 +124,7 @@ public class QTEController : MonoBehaviour
         {
             qteSquare.DOLocalMoveY(10f, 0.25f).From().SetEase(Ease.OutBack);
             this.transform.DOLocalMoveX(-currentIndex * 85.0f, .5f);
-            qteTimer = qteTimeLimit;
-            qteTimerSlider.value = qteTimeLimit; 
-            time = timeDelay;
+            // qteTimerSlider.value = qteTimeLimit; 
         }
         else
         {
