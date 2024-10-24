@@ -1,0 +1,870 @@
+fileFormatVersion: 2
+guid: 22c1d0ea4a5bc6a4b886be5aa01c60b7
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_0
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 3051
+        width: 341
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 978c27dd5b37f934cbab7cf14bc4bf3c
+      internalID: -1173611064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_1
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 3051
+        width: 341
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d618a90cc0054845b711ccd14aabce0
+      internalID: -2066596671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_2
+      rect:
+        serializedVersion: 2
+        x: 2995
+        y: 3055
+        width: 334
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea9e7ff3640b7544cbf98ddf0b5f138b
+      internalID: -483754420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 4281
+        y: 3055
+        width: 328
+        height: 451
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96ad305c4d9ee1640b9898ba8715bea0
+      internalID: 444900577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_4
+      rect:
+        serializedVersion: 2
+        x: 5563
+        y: 3060
+        width: 328
+        height: 442
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618e50c7b971aba4b89dff62ec270f9f
+      internalID: 1574399372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_5
+      rect:
+        serializedVersion: 2
+        x: 6840
+        y: 3060
+        width: 327
+        height: 441
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6114c061ed4365a4c8187faade0552c8
+      internalID: -2108163535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_6
+      rect:
+        serializedVersion: 2
+        x: 8118
+        y: 3065
+        width: 328
+        height: 435
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0db6e9fc01ec604a80558a4f2ff970b
+      internalID: 636130278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_7
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 2352
+        width: 327
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a0f818f87c58e4ea8b69fc65983816
+      internalID: 1613501733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_8
+      rect:
+        serializedVersion: 2
+        x: 1713
+        y: 2360
+        width: 328
+        height: 424
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed0a6cf9a9c9c942b793131cb08c742
+      internalID: -949751555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_9
+      rect:
+        serializedVersion: 2
+        x: 2995
+        y: 2361
+        width: 328
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66b1a0d30645224d93d6fbc24b66c17
+      internalID: -51580965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_10
+      rect:
+        serializedVersion: 2
+        x: 4273
+        y: 2360
+        width: 327
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80ffc11f3b376364984ee9edbc0b8903
+      internalID: -1452310059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_11
+      rect:
+        serializedVersion: 2
+        x: 5554
+        y: 2360
+        width: 324
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c2c7a759b4b0a24f897693cd3e98854
+      internalID: -2003949677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_12
+      rect:
+        serializedVersion: 2
+        x: 6836
+        y: 2360
+        width: 323
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046f67d796669874f9a5f634574e2517
+      internalID: 928984055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_13
+      rect:
+        serializedVersion: 2
+        x: 8118
+        y: 2360
+        width: 319
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10b0702c2aba064e99363786703271a
+      internalID: -196974726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_14
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 1643
+        width: 319
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c48d7b136f7004da546a2c68233407
+      internalID: -337544114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_15
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 1643
+        width: 319
+        height: 415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317b7f182ecb92a44bee26cd286beecc
+      internalID: 1500001891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_16
+      rect:
+        serializedVersion: 2
+        x: 2997
+        y: 1643
+        width: 317
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cee1ef56d0768d9448a86700ee72d5ff
+      internalID: 147490955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_17
+      rect:
+        serializedVersion: 2
+        x: 4277
+        y: 1643
+        width: 319
+        height: 415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69562ac4436cd1740aba77c2aba3f4b6
+      internalID: 1899629216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_18
+      rect:
+        serializedVersion: 2
+        x: 5558
+        y: 1643
+        width: 320
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f53c9bc3c98a36f45b3e7d543bf3dfa3
+      internalID: 770850189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_19
+      rect:
+        serializedVersion: 2
+        x: 6836
+        y: 1638
+        width: 323
+        height: 422
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 803477d1e5897e0498603a20ff2cef7a
+      internalID: -1240265804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_20
+      rect:
+        serializedVersion: 2
+        x: 8118
+        y: 1638
+        width: 319
+        height: 422
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77537bdf055742348b1c8f2ef94e51f4
+      internalID: -1514158364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_21
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 917
+        width: 324
+        height: 424
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08efba28c6e54474db92e17327c0bdee
+      internalID: -769431873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_22
+      rect:
+        serializedVersion: 2
+        x: 1713
+        y: 921
+        width: 328
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85839d4767dd19349ae715c94449353e
+      internalID: 236770391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_23
+      rect:
+        serializedVersion: 2
+        x: 2995
+        y: 921
+        width: 328
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae16e709999bfad4bac59647fca39b66
+      internalID: 1176616395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_24
+      rect:
+        serializedVersion: 2
+        x: 4273
+        y: 921
+        width: 327
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e8b34702892e5e428e07becebe094c6
+      internalID: 857456063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_25
+      rect:
+        serializedVersion: 2
+        x: 5558
+        y: 912
+        width: 326
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93dde783081e2ba40aaa9724ebc1521c
+      internalID: -1904004685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_26
+      rect:
+        serializedVersion: 2
+        x: 6838
+        y: 908
+        width: 330
+        height: 432
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e74ab323744465428e3ca78d924013c
+      internalID: 1445092472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_27
+      rect:
+        serializedVersion: 2
+        x: 8122
+        y: 899
+        width: 324
+        height: 442
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a90da434c757c90408174a9869b29162
+      internalID: 1553573320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_28
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 177
+        width: 324
+        height: 446
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93dc7ade8a081914eb3698c645df0e81
+      internalID: -1847449921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_29
+      rect:
+        serializedVersion: 2
+        x: 1722
+        y: 173
+        width: 328
+        height: 455
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2163251b1df06c4a8b56eb09ebd5d13
+      internalID: -366366482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_30
+      rect:
+        serializedVersion: 2
+        x: 2995
+        y: 173
+        width: 334
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72fc126d7e641944ebdef3d525392726
+      internalID: -2030195336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crawling Up Spritesheet 1_31
+      rect:
+        serializedVersion: 2
+        x: 4268
+        y: 173
+        width: 341
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7407fd314e974b1418d81b67a631a395
+      internalID: 133780768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Crawling Up Spritesheet 1_0: -1173611064
+      Crawling Up Spritesheet 1_1: -2066596671
+      Crawling Up Spritesheet 1_10: -1452310059
+      Crawling Up Spritesheet 1_11: -2003949677
+      Crawling Up Spritesheet 1_12: 928984055
+      Crawling Up Spritesheet 1_13: -196974726
+      Crawling Up Spritesheet 1_14: -337544114
+      Crawling Up Spritesheet 1_15: 1500001891
+      Crawling Up Spritesheet 1_16: 147490955
+      Crawling Up Spritesheet 1_17: 1899629216
+      Crawling Up Spritesheet 1_18: 770850189
+      Crawling Up Spritesheet 1_19: -1240265804
+      Crawling Up Spritesheet 1_2: -483754420
+      Crawling Up Spritesheet 1_20: -1514158364
+      Crawling Up Spritesheet 1_21: -769431873
+      Crawling Up Spritesheet 1_22: 236770391
+      Crawling Up Spritesheet 1_23: 1176616395
+      Crawling Up Spritesheet 1_24: 857456063
+      Crawling Up Spritesheet 1_25: -1904004685
+      Crawling Up Spritesheet 1_26: 1445092472
+      Crawling Up Spritesheet 1_27: 1553573320
+      Crawling Up Spritesheet 1_28: -1847449921
+      Crawling Up Spritesheet 1_29: -366366482
+      Crawling Up Spritesheet 1_3: 444900577
+      Crawling Up Spritesheet 1_30: -2030195336
+      Crawling Up Spritesheet 1_31: 133780768
+      Crawling Up Spritesheet 1_4: 1574399372
+      Crawling Up Spritesheet 1_5: -2108163535
+      Crawling Up Spritesheet 1_6: 636130278
+      Crawling Up Spritesheet 1_7: 1613501733
+      Crawling Up Spritesheet 1_8: -949751555
+      Crawling Up Spritesheet 1_9: -51580965
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

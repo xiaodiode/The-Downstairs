@@ -28,10 +28,9 @@ public class QTEController : MonoBehaviour
 
     [Header("QTE Animation Settings")]
     [SerializeField] private float scaleAmtS = 0.8f;    
-    [SerializeField] private float scaleAmtF = 0.8f;
 
     private List<KeyInput> keyQTEObjects;
-    private int currentIndex = 0;
+    private int currentIndex;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -60,11 +59,11 @@ public class QTEController : MonoBehaviour
         {
             if(timer <= 0)
             {
-                Debug.Log("tripped"); 
+                // Debug.Log("tripped"); 
 
                 yield return new WaitForSeconds(tripDelay);
 
-                Debug.Log("finished tripping");
+                // Debug.Log("finished tripping");
 
                 MoveToNextQTE();
                 timer = qteTimeLimit;
@@ -101,7 +100,7 @@ public class QTEController : MonoBehaviour
         qteTimerSlider.maxValue = qteTimeLimit;  
         qteTimerSlider.value = qteTimeLimit;  
 
-        StartCoroutine(playQTE());
+        StartCoroutine(playQTE()); // move this later
     }
 
     private bool checkInput()
@@ -124,7 +123,6 @@ public class QTEController : MonoBehaviour
         {
             qteSquare.DOLocalMoveY(10f, 0.25f).From().SetEase(Ease.OutBack);
             this.transform.DOLocalMoveX(-currentIndex * 85.0f, .5f);
-            // qteTimerSlider.value = qteTimeLimit; 
         }
         else
         {

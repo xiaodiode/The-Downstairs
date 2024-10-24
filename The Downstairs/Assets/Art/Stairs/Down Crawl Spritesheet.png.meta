@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9dcdf7cc337fa44594895989f768c42
+guid: 20243ddc287aa414a9965b8c9ba4bef0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,190 +149,274 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_0
+      name: Down Crawl Spritesheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 480
-        width: 480
-        height: 480
+        x: 462
+        y: 799
+        width: 258
+        height: 432
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1900fd1fcf63ba3458128f5f0653dca1
-      internalID: -1912978968
+      spriteID: 2da9af1cf7df8ee418840791a52f12f3
+      internalID: 658744522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_1
+      name: Down Crawl Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 480
-        y: 480
-        width: 480
-        height: 480
+        x: 1735
+        y: 799
+        width: 258
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35e89636727708948a0b9e9c45bbf9bc
-      internalID: -399714356
+      spriteID: 813ec4301c47d714d8ae74ee48c024b5
+      internalID: 590665740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_2
+      name: Down Crawl Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 960
-        y: 480
-        width: 480
-        height: 480
+        x: 3012
+        y: 799
+        width: 258
+        height: 437
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff23fe18ca4f3c444ae1b68dcb6bcdfd
-      internalID: -1859811785
+      spriteID: 7bdeb723788e9c64db4f1f90d5a74f07
+      internalID: -1012593360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_3
+      name: Down Crawl Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 480
-        width: 480
-        height: 480
+        x: 4285
+        y: 794
+        width: 263
+        height: 442
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 959f26f8344cb1249b94983adb1b9bd4
-      internalID: -446853386
+      spriteID: 77562df7f7aca9e45b3c7ff8486fd742
+      internalID: -2003322727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_4
+      name: Down Crawl Spritesheet_4
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 480
-        width: 480
-        height: 480
+        x: 5558
+        y: 790
+        width: 272
+        height: 442
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f609d352ac6a85c44a47a3ac806b3d8e
-      internalID: 1043238581
+      spriteID: c3194472814f6834bbea0e5592a1d272
+      internalID: -925385446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_5
+      name: Down Crawl Spritesheet_5
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 480
-        width: 480
-        height: 480
+        x: 6836
+        y: 794
+        width: 276
+        height: 442
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 630d1be3795fc8646bec58a2e86d39bd
-      internalID: -1209795639
+      spriteID: fc5a84ccdeb822b438b5007510aa958c
+      internalID: 900467216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_6
+      name: Down Crawl Spritesheet_6
       rect:
         serializedVersion: 2
-        x: 2880
-        y: 480
-        width: 480
-        height: 480
+        x: 8118
+        y: 803
+        width: 275
+        height: 429
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5197fd2a656da07429f3104cf4f30c6d
-      internalID: 903655098
+      spriteID: a38e731de1ade564a807a99ec1ce33e3
+      internalID: 156569314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_7
+      name: Down Crawl Spritesheet_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 480
-        height: 480
+        x: 431
+        y: 77
+        width: 280
+        height: 437
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 005b98f7ab1f43843b27534e3f37bc6d
-      internalID: -1448974658
+      spriteID: 1f356ab58c065d24ab0619357c8e737f
+      internalID: -1187832056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_8
+      name: Down Crawl Spritesheet_8
       rect:
         serializedVersion: 2
-        x: 480
-        y: 0
-        width: 480
-        height: 480
+        x: 1717
+        y: 77
+        width: 276
+        height: 437
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e438070bc5cda724d8974b418aa054d5
-      internalID: -1745716917
+      spriteID: d816d5dabb7e9f845a45829f5385a86e
+      internalID: 1913111990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Down Crawl Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 3008
+        y: 85
+        width: 262
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 212084089a562ae468b3e832cdc68d40
+      internalID: 1194401457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Down Crawl Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 4298
+        y: 85
+        width: 250
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6781bab350f1dd45a99a554b549a55d
+      internalID: -1510104433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Down Crawl Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 5585
+        y: 85
+        width: 245
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f0997280aff364cb31cef8674f0355
+      internalID: 407203059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Down Crawl Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 6862
+        y: 81
+        width: 258
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5677b2875b0015945ae3fdb733d247f6
+      internalID: 1175543966
       vertices: []
       indices: 
       edges: []
@@ -348,20 +432,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spritesheet_0: -1912978968
-      spritesheet_1: -399714356
-      spritesheet_10: 77535844
-      spritesheet_11: -450557383
-      spritesheet_12: -596908454
-      spritesheet_13: -303102874
-      spritesheet_2: -1859811785
-      spritesheet_3: -446853386
-      spritesheet_4: 1043238581
-      spritesheet_5: -1209795639
-      spritesheet_6: 903655098
-      spritesheet_7: -1448974658
-      spritesheet_8: -1745716917
-      spritesheet_9: -521782445
+      Down Crawl Spritesheet_0: 658744522
+      Down Crawl Spritesheet_1: 590665740
+      Down Crawl Spritesheet_10: -1510104433
+      Down Crawl Spritesheet_11: 407203059
+      Down Crawl Spritesheet_12: 1175543966
+      Down Crawl Spritesheet_2: -1012593360
+      Down Crawl Spritesheet_3: -2003322727
+      Down Crawl Spritesheet_4: -925385446
+      Down Crawl Spritesheet_5: 900467216
+      Down Crawl Spritesheet_6: 156569314
+      Down Crawl Spritesheet_7: -1187832056
+      Down Crawl Spritesheet_8: 1913111990
+      Down Crawl Spritesheet_9: 1194401457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
