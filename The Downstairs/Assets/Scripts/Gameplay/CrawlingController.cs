@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CrawlingController : MonoBehaviour
 {
+    public bool ready;
+
     [Header("Animation Settings")]
     [SerializeField] public float crawlTime;
     [SerializeField] public float tripTime;
@@ -33,6 +35,19 @@ public class CrawlingController : MonoBehaviour
 
     private Dictionary<CrawlingState, string> stateNames;
 
+    public static CrawlingController instance {get; private set;}
+
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,15 +63,17 @@ public class CrawlingController : MonoBehaviour
             { CrawlingState.UpPickup, "Up Pickup" }
         };
 
+        ready = false;
+
         setAnimSpeeds();
 
         goingDown = false;
 
-        AddCrawl();
-        AddCrawl();
-        AddTrip();
-        AddCrawl();
-        StartCoroutine(StartCrawling());
+        // AddCrawl();
+        // AddCrawl();
+        // AddTrip();
+        // AddCrawl();
+        // StartCoroutine(StartCrawling());
     }
 
     // Update is called once per frame
@@ -107,6 +124,8 @@ public class CrawlingController : MonoBehaviour
             }
         
         }
+
+        ready = true;
     }
 
     public void AddCrawl()
@@ -188,6 +207,11 @@ public class CrawlingController : MonoBehaviour
 
             statesQueue.Dequeue();
         }
+    }
+
+    public float getTripDelay()
+    {
+        return tripTime + holdTime + pickupTime;
     }
 
 }

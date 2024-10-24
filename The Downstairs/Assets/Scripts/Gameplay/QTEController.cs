@@ -18,8 +18,8 @@ public class QTEController : MonoBehaviour
     [Header("QTE Mechanics")]
     [SerializeField] private int numberKeys;
     [SerializeField] private List<KeyInput> keyInputs = new();
-    [SerializeField] private float tripDelay;
-    [SerializeField] private float qteTimeLimit;
+    private float tripDelay;
+    private float qteTimeLimit;
     
     [Header("QTE Structure")]
     [SerializeField] private List<GameObject> keys;
@@ -31,6 +31,7 @@ public class QTEController : MonoBehaviour
 
     private List<KeyInput> keyQTEObjects;
     private int currentIndex;
+    private bool firstKey;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -40,7 +41,7 @@ public class QTEController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        resetQTE();
+        StartCoroutine(resetQTE());
         
         MoveToCurrentPosition(); 
     }
@@ -55,22 +56,52 @@ public class QTEController : MonoBehaviour
     {
         float timer = qteTimeLimit;
 
+        while(!Input.anyKeyDown)
+        {
+            yield return null;
+        }
+        Debug.Log("past first key");
+
+        CrawlingController.instance.AddCrawl();
+        StartCoroutine(CrawlingController.instance.StartCrawling());
+
+        yield return null;
+
+        firstKey = false;
+
         while(currentIndex < numberKeys)
         {
             if(timer <= 0)
             {
-                // Debug.Log("tripped"); 
+                CrawlingController.instance.AddTrip();
+                Debug.Log("tripping");
 
                 yield return new WaitForSeconds(tripDelay);
 
-                // Debug.Log("finished tripping");
+                Debug.Log("finished tripping");
 
+                // MoveToNextQTE();
+                timer = qteTimeLimit;
+            }
+
+            else if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
+            {
+                CrawlingController.instance.AddCrawl();
                 MoveToNextQTE();
                 timer = qteTimeLimit;
             }
-            else if(checkInput())
+
+            else if(Input.anyKeyDown && !firstKey)
             {
-                MoveToNextQTE();
+                CrawlingController.instance.AddTrip();
+
+                Debug.Log("tripping");
+
+                yield return new WaitForSeconds(tripDelay);
+
+                Debug.Log("finished tripping");
+
+                // MoveToNextQTE();
                 timer = qteTimeLimit;
             }
 
@@ -81,10 +112,16 @@ public class QTEController : MonoBehaviour
         }
     }
 
-    private void resetQTE()
+    private IEnumerator resetQTE()
     {
         currentIndex = 0;
+        firstKey = true;
         keyQTEObjects = new();
+
+        while(!CrawlingController.instance.ready) yield return null;
+        
+        tripDelay = CrawlingController.instance.getTripDelay(); 
+        qteTimeLimit = CrawlingController.instance.crawlTime;
 
         // creating new key combos
         for (int i = 0; i < numberKeys; i++)
@@ -101,16 +138,6 @@ public class QTEController : MonoBehaviour
         qteTimerSlider.value = qteTimeLimit;  
 
         StartCoroutine(playQTE()); // move this later
-    }
-
-    private bool checkInput()
-    {
-        if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
-        {
-            return true;
-        }
-
-        return false;
     }
 
     private void MoveToNextQTE()
