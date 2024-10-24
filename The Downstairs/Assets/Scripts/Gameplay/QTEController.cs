@@ -15,7 +15,12 @@ public struct KeyInput
 
 public class QTEController : MonoBehaviour
 {   
+    public bool QTEfinished;
+
     [Header("QTE Mechanics")]
+    [SerializeField] private float marginOfError;
+    [SerializeField] private Color normalColor, hitColor, errorColor;
+    [SerializeField] private Image sliderImage;
     [SerializeField] private int numberKeys;
     [SerializeField] private List<KeyInput> keyInputs = new();
     private float tripDelay;
@@ -32,8 +37,21 @@ public class QTEController : MonoBehaviour
     private List<KeyInput> keyQTEObjects;
     private int currentIndex;
     private bool firstKey;
+    private float hitTime;
 
-    // Start is called before the first frame update
+    public static QTEController instance {get; private set;}
+
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+    }
+
     void OnEnable()
     {
         foreach (Transform child in transform)
@@ -55,6 +73,7 @@ public class QTEController : MonoBehaviour
     private IEnumerator playQTE()
     {
         float timer = qteTimeLimit;
+        QTEfinished = false;
 
         while(!Input.anyKeyDown)
         {
@@ -62,7 +81,6 @@ public class QTEController : MonoBehaviour
         }
         Debug.Log("past first key");
 
-        CrawlingController.instance.AddCrawl();
         StartCoroutine(CrawlingController.instance.StartCrawling());
 
         yield return null;
@@ -71,38 +89,64 @@ public class QTEController : MonoBehaviour
 
         while(currentIndex < numberKeys)
         {
-            if(timer <= 0)
+            if(timer < 0)
             {
                 CrawlingController.instance.AddTrip();
+                changeSliderColor(errorColor);
+                
                 Debug.Log("tripping");
 
                 yield return new WaitForSeconds(tripDelay);
 
                 Debug.Log("finished tripping");
 
-                // MoveToNextQTE();
                 timer = qteTimeLimit;
+                changeSliderColor(normalColor);
             }
 
-            else if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
+            else if(timer <= hitTime && timer >= 0)
             {
-                CrawlingController.instance.AddCrawl();
-                MoveToNextQTE();
-                timer = qteTimeLimit;
+                changeSliderColor(hitColor);
+
+                if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
+                {
+                    CrawlingController.instance.AddCrawl();
+                    MoveToNextQTE();
+
+                    timer = qteTimeLimit;
+                    changeSliderColor(normalColor);
+                }
+
+                else if(Input.anyKeyDown && !firstKey)
+                {
+                    CrawlingController.instance.AddTrip();
+                    changeSliderColor(errorColor);
+                    
+                    Debug.Log("tripping");
+
+                    yield return new WaitForSeconds(tripDelay);
+
+                    Debug.Log("finished tripping");
+
+                    // MoveToNextQTE();
+                    timer = qteTimeLimit;
+                    changeSliderColor(normalColor);
+                }
             }
 
             else if(Input.anyKeyDown && !firstKey)
             {
                 CrawlingController.instance.AddTrip();
-
+                changeSliderColor(errorColor);
+                
                 Debug.Log("tripping");
 
                 yield return new WaitForSeconds(tripDelay);
 
                 Debug.Log("finished tripping");
 
-                // MoveToNextQTE();
                 timer = qteTimeLimit;
+                changeSliderColor(normalColor);
             }
 
             timer -= Time.deltaTime;
@@ -116,12 +160,8 @@ public class QTEController : MonoBehaviour
     {
         currentIndex = 0;
         firstKey = true;
-        keyQTEObjects = new();
-
-        while(!CrawlingController.instance.ready) yield return null;
         
-        tripDelay = CrawlingController.instance.getTripDelay(); 
-        qteTimeLimit = CrawlingController.instance.crawlTime;
+        keyQTEObjects = new();
 
         // creating new key combos
         for (int i = 0; i < numberKeys; i++)
@@ -133,7 +173,16 @@ public class QTEController : MonoBehaviour
 
             keyQTEObjects.Add(newKeyQTE);
         }
+
+        yield return null;
+
+        while(!CrawlingController.instance.ready) yield return null;
         
+        tripDelay = CrawlingController.instance.getTripDelay(); 
+        qteTimeLimit = CrawlingController.instance.getCrawlDelay();
+
+        hitTime = marginOfError*qteTimeLimit;
+
         qteTimerSlider.maxValue = qteTimeLimit;  
         qteTimerSlider.value = qteTimeLimit;  
 
@@ -155,11 +204,17 @@ public class QTEController : MonoBehaviour
         {
             Debug.Log("QTE Completed");
             this.gameObject.transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+            QTEfinished = true;
         }
     }
 
     private void MoveToCurrentPosition()
     {
         this.transform.DOLocalMoveX(-currentIndex * 85.0f, 0.5f);
+    }
+
+    private void changeSliderColor(Color newColor)
+    {
+        sliderImage.color = newColor;
     }
 }

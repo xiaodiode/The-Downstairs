@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CrawlingController : MonoBehaviour
 {
-    public bool ready;
+    public bool ready = false;
 
     [Header("Animation Settings")]
     [SerializeField] public float crawlTime;
@@ -64,16 +64,12 @@ public class CrawlingController : MonoBehaviour
         };
 
         ready = false;
+        Debug.Log("ready false");
 
         setAnimSpeeds();
 
         goingDown = false;
 
-        // AddCrawl();
-        // AddCrawl();
-        // AddTrip();
-        // AddCrawl();
-        // StartCoroutine(StartCrawling());
     }
 
     // Update is called once per frame
@@ -140,78 +136,88 @@ public class CrawlingController : MonoBehaviour
 
     public IEnumerator StartCrawling()
     {
-        while(statesQueue.Count == 0)
+        bool justTripped = false;
+
+        while(!QTEController.instance.QTEfinished)
         {
+            if(statesQueue.Count != 0)
+            {
+                if(statesQueue.Peek() == CrawlingState.Crawl)
+                {
+                    if(justTripped)
+                    {
+                        if(goingDown) animator.Play(stateNames[CrawlingState.DownPickup], 0, 0f);
+
+                        else animator.Play(stateNames[CrawlingState.UpPickup], 0, 0f);
+
+                        yield return new WaitForSeconds(pickupTime);
+
+                        justTripped = false;
+
+                        Debug.Log("picked up");
+                    }
+
+                    if(goingDown) animator.Play(stateNames[CrawlingState.DownCrawl], 0, 0f);
+                    
+                    else animator.Play(stateNames[CrawlingState.UpCrawl], 0, 0f);
+
+                    yield return new WaitForSeconds(crawlTime);
+
+
+                    Debug.Log("finished crawling");
+                }
+                else if(statesQueue.Peek() == CrawlingState.Trip)
+                {
+                    justTripped = true;
+
+                    if(goingDown)
+                    {
+                        animator.Play(stateNames[CrawlingState.DownTrip], 0, 0f);
+
+                        yield return new WaitForSeconds(tripTime);
+
+                        Debug.Log("tripped");
+
+                        animator.Play(stateNames[CrawlingState.DownHold], 0, 0f);
+
+                        yield return new WaitForSeconds(holdTime);
+
+                        Debug.Log("hold");
+
+                    }
+                    else
+                    {
+                        animator.Play(stateNames[CrawlingState.UpTrip], 0, 0f);
+
+                        yield return new WaitForSeconds(tripTime);
+
+                        Debug.Log("tripped");
+
+                        animator.Play(stateNames[CrawlingState.UpHold], 0, 0f);
+
+                        yield return new WaitForSeconds(holdTime);
+
+                        Debug.Log("hold");
+                    }
+                    
+                }
+
+                statesQueue.Dequeue();
+            }
+
             yield return null;
-        }
-
-        while(statesQueue.Count != 0)
-        {
-            if(statesQueue.Peek() == CrawlingState.Crawl)
-            {
-                if(goingDown) animator.Play(stateNames[CrawlingState.DownCrawl], 0, 0f);
-                
-                else animator.Play(stateNames[CrawlingState.UpCrawl], 0, 0f);
-
-                yield return new WaitForSeconds(crawlTime);
-
-
-                Debug.Log("finished crawling");
-
-            }
-            else if(statesQueue.Peek() == CrawlingState.Trip)
-            {
-                if(goingDown)
-                {
-                    animator.Play(stateNames[CrawlingState.DownTrip], 0, 0f);
-
-                    yield return new WaitForSeconds(tripTime);
-
-                    Debug.Log("tripped");
-
-                    animator.Play(stateNames[CrawlingState.DownHold], 0, 0f);
-
-                    yield return new WaitForSeconds(holdTime);
-
-                    Debug.Log("hold");
-
-                    animator.Play(stateNames[CrawlingState.DownPickup], 0, 0f);
-
-                    yield return new WaitForSeconds(pickupTime);
-
-                    Debug.Log("picked up");
-                }
-                else
-                {
-                    animator.Play(stateNames[CrawlingState.UpTrip], 0, 0f);
-
-                    yield return new WaitForSeconds(tripTime);
-
-                    Debug.Log("tripped");
-
-                    animator.Play(stateNames[CrawlingState.UpHold], 0, 0f);
-
-                    yield return new WaitForSeconds(holdTime);
-
-                    Debug.Log("hold");
-
-                    animator.Play(stateNames[CrawlingState.UpPickup], 0, 0f);
-
-                    yield return new WaitForSeconds(pickupTime);
-
-                    Debug.Log("picked up");
-                }
-                
-
-            }
-
-            statesQueue.Dequeue();
+            
         }
     }
 
     public float getTripDelay()
     {
-        return tripTime + holdTime + pickupTime;
+        return tripTime + holdTime;
+    }
+
+    public float getCrawlDelay()
+    {
+        return crawlTime + tripTime;
     }
 
 }
