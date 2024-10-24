@@ -8,7 +8,7 @@ public class CrawlingController : MonoBehaviour
     [Header("Animation Settings")]
     [SerializeField] public float crawlTime;
     [SerializeField] public float tripTime;
-    [SerializeField] public float stayTime;
+    [SerializeField] public float holdTime;
     [SerializeField] public float pickupTime;
 
     [Header("Animation Mechanics")]
@@ -23,11 +23,11 @@ public class CrawlingController : MonoBehaviour
         Trip,
         DownCrawl,
         DownTrip,
-        DownStay,
+        DownHold,
         DownPickup,
         UpCrawl,
         UpTrip,
-        UpStay,
+        UpHold,
         UpPickup
     }
 
@@ -39,18 +39,18 @@ public class CrawlingController : MonoBehaviour
         stateNames = new()
         {
             { CrawlingState.DownCrawl, "Down Crawl" },
-            { CrawlingState.DownTrip, "Down Trip"},
-            { CrawlingState.DownStay, "Down Stay"},
+            { CrawlingState.DownTrip, "Down Trip" },
+            { CrawlingState.DownHold, "Down Hold" },
             { CrawlingState.DownPickup, "Down Pickup" },
             { CrawlingState.UpCrawl, "Up Crawl" },
             { CrawlingState.UpTrip, "Up Trip" },
-            { CrawlingState.UpStay, "Up Stay" },
+            { CrawlingState.UpHold, "Up Hold" },
             { CrawlingState.UpPickup, "Up Pickup" }
         };
 
         setAnimSpeeds();
 
-        goingDown = true;
+        goingDown = false;
 
         AddCrawl();
         AddCrawl();
@@ -77,12 +77,32 @@ public class CrawlingController : MonoBehaviour
                     animator.SetFloat("Down Crawl Multiplier", clipLength/crawlTime);
                     break;
 
+                case "Down Trip":
+                    animator.SetFloat("Down Trip Multiplier", clipLength/tripTime);
+                    break;
+                
+                case "Down Hold":
+                    animator.SetFloat("Down Hold Multiplier", clipLength/holdTime);
+                    break;
+
+                case "Down Pickup":
+                    animator.SetFloat("Down Pickup Multiplier", clipLength/pickupTime);
+                    break;
+
                 case "Up Crawl":
                     animator.SetFloat("Up Crawl Multiplier", clipLength/crawlTime);
                     break;
 
                 case "Up Trip":
                     animator.SetFloat("Up Trip Multiplier", clipLength/tripTime);
+                    break;
+
+                case "Up Hold":
+                    animator.SetFloat("Up Hold Multiplier", clipLength/holdTime);
+                    break;
+
+                case "Up Pickup":
+                    animator.SetFloat("Up Pickup Multiplier", clipLength/pickupTime);
                     break;
             }
         
@@ -106,14 +126,6 @@ public class CrawlingController : MonoBehaviour
             yield return null;
         }
 
-        // animator.Play(stateNames[CrawlingState.UpCrawl]);
-
-        // yield return new WaitForSeconds(4);
-
-        // Debug.Log("playing second");
-
-        // animator.Play(stateNames[CrawlingState.UpCrawl], 0, 0f);
-
         while(statesQueue.Count != 0)
         {
             if(statesQueue.Peek() == CrawlingState.Crawl)
@@ -130,23 +142,47 @@ public class CrawlingController : MonoBehaviour
             }
             else if(statesQueue.Peek() == CrawlingState.Trip)
             {
-                animator.Play(stateNames[CrawlingState.UpTrip], 0, 0f);
+                if(goingDown)
+                {
+                    animator.Play(stateNames[CrawlingState.DownTrip], 0, 0f);
 
-                yield return new WaitForSeconds(tripTime);
+                    yield return new WaitForSeconds(tripTime);
 
-                Debug.Log("tripped");
+                    Debug.Log("tripped");
 
-                animator.Play(stateNames[CrawlingState.UpTrip], 0, 0f);
+                    animator.Play(stateNames[CrawlingState.DownHold], 0, 0f);
 
-                yield return new WaitForSeconds(tripTime);
+                    yield return new WaitForSeconds(holdTime);
 
-                Debug.Log("hold");
+                    Debug.Log("hold");
 
-                animator.Play(stateNames[CrawlingState.UpTrip], 0, 0f);
+                    animator.Play(stateNames[CrawlingState.DownPickup], 0, 0f);
 
-                yield return new WaitForSeconds(tripTime);
+                    yield return new WaitForSeconds(pickupTime);
 
-                Debug.Log("picked up");
+                    Debug.Log("picked up");
+                }
+                else
+                {
+                    animator.Play(stateNames[CrawlingState.UpTrip], 0, 0f);
+
+                    yield return new WaitForSeconds(tripTime);
+
+                    Debug.Log("tripped");
+
+                    animator.Play(stateNames[CrawlingState.UpHold], 0, 0f);
+
+                    yield return new WaitForSeconds(holdTime);
+
+                    Debug.Log("hold");
+
+                    animator.Play(stateNames[CrawlingState.UpPickup], 0, 0f);
+
+                    yield return new WaitForSeconds(pickupTime);
+
+                    Debug.Log("picked up");
+                }
+                
 
             }
 
