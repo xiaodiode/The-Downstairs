@@ -6,6 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class TopdownPlayerController : MonoBehaviour
 {
+    private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+    private static readonly int Vertical = Animator.StringToHash("Vertical");
+    private static readonly int Idle = Animator.StringToHash("Idle");
+    private static readonly int Direction1 = Animator.StringToHash("Direction");
     [Header("Player Properties")]
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
@@ -28,11 +32,12 @@ public class TopdownPlayerController : MonoBehaviour
     private Vector3 mousePosition;
     private float angle, newAngle;
     private bool clampAngle;
-
+    private bool idle = true;
     enum Direction {North, East, South, West};
     private Direction currentDirection = Direction.South;
 
     [SerializeField] private PlayerLightEclipse lightEclipse;
+    [SerializeField] private Animator animator;
 
 
     // Start is called before the first frame update
@@ -59,7 +64,7 @@ public class TopdownPlayerController : MonoBehaviour
         {
             updateCandleLight();
         }
-
+        Animate();
         // Debug.Log("Dir" + currentDirection);
     }
 
@@ -192,9 +197,18 @@ public class TopdownPlayerController : MonoBehaviour
             currentDirection = Direction.West;
         } else if (yaxis > 0) {
             currentDirection = Direction.North;
-        } else {
+        } else if (yaxis < 0) {
             currentDirection = Direction.South;
         }
     }
+    private void Animate()
+    {
+        animator.SetFloat(Horizontal, horizontalInput);
+        animator.SetFloat(Vertical, verticalInput);
+        animator.SetBool(Idle, idle);
+        animator.SetInteger(Direction1, (int)currentDirection);
+        //Debug.Log("animating");
+    }
+
 
 }
