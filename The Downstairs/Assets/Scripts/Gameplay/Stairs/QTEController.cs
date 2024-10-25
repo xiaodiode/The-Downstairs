@@ -94,6 +94,8 @@ public class QTEController : MonoBehaviour
                 CrawlingController.instance.AddTrip();
                 changeSliderColor(errorColor);
                 
+                keyQTEObjects[currentIndex].keyObject.transform.DOScale(1f, 0.25f);
+                keyQTEObjects[currentIndex].keyObject.transform.DOShakePosition(tripDelay/3, new Vector3(7, 0, 0), randomness:90);
                 Debug.Log("tripping");
 
                 yield return new WaitForSeconds(tripDelay);
@@ -107,7 +109,8 @@ public class QTEController : MonoBehaviour
             else if(timer <= hitTime && timer >= 0)
             {
                 changeSliderColor(hitColor);
-
+                keyQTEObjects[currentIndex].keyObject.transform.DOScale(1.5f, 0.25f);
+ 
                 if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
                 {
                     CrawlingController.instance.AddCrawl();
@@ -121,6 +124,8 @@ public class QTEController : MonoBehaviour
                 {
                     CrawlingController.instance.AddTrip();
                     changeSliderColor(errorColor);
+                    keyQTEObjects[currentIndex].keyObject.transform.DOScale(1f, 0.25f);
+                    keyQTEObjects[currentIndex].keyObject.transform.DOShakePosition(tripDelay/3, new Vector3(7, 0, 0), randomness:90);
                     
                     Debug.Log("tripping");
 
@@ -138,7 +143,9 @@ public class QTEController : MonoBehaviour
             {
                 CrawlingController.instance.AddTrip();
                 changeSliderColor(errorColor);
-                
+                keyQTEObjects[currentIndex].keyObject.transform.DOScale(1f, 0.25f); 
+                keyQTEObjects[currentIndex].keyObject.transform.DOShakePosition(tripDelay/3, new Vector3(7, 0, 0), randomness:90);
+
                 Debug.Log("tripping");
 
                 yield return new WaitForSeconds(tripDelay);
