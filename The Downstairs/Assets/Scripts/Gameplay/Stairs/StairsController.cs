@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StairsController : MonoBehaviour
 {
+    public bool stairsSwitched;
     public Stairs currentStairs;
     [SerializeField] private Vector3 moveTransform;
     [SerializeField] private SceneController.ScenesType targetScene;
@@ -25,7 +26,7 @@ public class StairsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        stairsSwitched = false;
     }
 
     // Update is called once per frame
@@ -36,6 +37,8 @@ public class StairsController : MonoBehaviour
 
     public IEnumerator moveStairs()
     {
+        stairsSwitched = false;
+
         if(!CrawlingController.instance.goingDown)
         {
             moveTransform *= -1;
@@ -55,6 +58,8 @@ public class StairsController : MonoBehaviour
         
         SceneController.instance.switchScenes(targetScene);
         Debug.Log("switching scenes to " + targetScene);
+
+        stairsSwitched = true;
 
         
     }

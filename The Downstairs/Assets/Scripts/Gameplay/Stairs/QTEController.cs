@@ -107,7 +107,7 @@ public class QTEController : MonoBehaviour
                 if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
                 {
                     CrawlingController.instance.AddCrawl();
-                    MoveToNextQTE();
+                    StartCoroutine(MoveToNextQTE());
 
                     timer = qteTimeLimit;
                     changeSliderColor(normalColor);
@@ -127,7 +127,6 @@ public class QTEController : MonoBehaviour
 
                     Debug.Log("finished tripping");
 
-                    // MoveToNextQTE();
                     timer = qteTimeLimit;
                     changeSliderColor(normalColor);
                 }
@@ -191,7 +190,7 @@ public class QTEController : MonoBehaviour
         StartCoroutine(playQTE()); // move this later
     }
 
-    private void MoveToNextQTE()
+    private IEnumerator MoveToNextQTE()
     {
         keyQTEObjects[currentIndex].keyObject.transform.DOScale(scaleAmtS, 0.25f);
 
@@ -205,8 +204,14 @@ public class QTEController : MonoBehaviour
         else
         {
             Debug.Log("QTE Completed");
-            this.gameObject.transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
             QTEfinished = true;
+
+            while(!StairsController.instance.stairsSwitched) yield return null;
+            
+            StairsController.instance.stairsSwitched = false;
+
+            this.gameObject.transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+            
         }
     }
 

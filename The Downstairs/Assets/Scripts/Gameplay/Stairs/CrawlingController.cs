@@ -148,6 +148,7 @@ public class CrawlingController : MonoBehaviour
 
         while(!QTEController.instance.QTEfinished)
         {
+            Debug.Log("still in here");
             if(statesQueue.Count != 0)
             {
                 if(statesQueue.Peek() == CrawlingState.Crawl)
@@ -220,7 +221,7 @@ public class CrawlingController : MonoBehaviour
             yield return null;
             
         }
-
+        Debug.Log("crawling finished");
         crawlingFinished = true;
     }
 
