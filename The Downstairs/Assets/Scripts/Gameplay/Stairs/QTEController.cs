@@ -27,6 +27,8 @@ public class QTEController : MonoBehaviour
     private float qteTimeLimit;
     
     [Header("QTE Structure")]
+    [SerializeField] private GameObject qteUI;
+    [SerializeField] private GameObject keyInputQueue;
     [SerializeField] private List<GameObject> keys;
     [SerializeField] private Transform qteSquare;
     [SerializeField] private Slider qteTimerSlider;  
@@ -52,9 +54,9 @@ public class QTEController : MonoBehaviour
 
     }
 
-    void OnEnable()
+    void Start()
     {
-        
+        qteUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -159,6 +161,8 @@ public class QTEController : MonoBehaviour
 
     public IEnumerator resetQTE()
     {
+        qteUI.SetActive(true);
+
         currentIndex = 0;
         firstKey = true;
         
@@ -170,7 +174,7 @@ public class QTEController : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, keyInputs.Count);
 
             KeyInput newKeyQTE = keyInputs[randomIndex];
-            newKeyQTE.keyObject = Instantiate(keyInputs[randomIndex].keyObject, this.transform);
+            newKeyQTE.keyObject = Instantiate(keyInputs[randomIndex].keyObject, keyInputQueue.transform);
 
             keyQTEObjects.Add(newKeyQTE);
         }
@@ -199,7 +203,7 @@ public class QTEController : MonoBehaviour
         if (currentIndex < numberKeys)
         {
             qteSquare.DOLocalMoveY(10f, 0.25f).From().SetEase(Ease.OutBack);
-            this.transform.DOLocalMoveX(-currentIndex * 85.0f, .5f);
+            keyInputQueue.transform.DOLocalMoveX(-currentIndex * 85.0f, .5f);
         }
         else
         {
@@ -210,14 +214,14 @@ public class QTEController : MonoBehaviour
             
             StairsController.instance.stairsSwitched = false;
 
-            this.gameObject.transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+            enableUI(false);
             
         }
     }
 
     private void MoveToCurrentPosition()
     {
-        this.transform.DOLocalMoveX(-currentIndex * 85.0f, 0.5f);
+        keyInputQueue.transform.DOLocalMoveX(-currentIndex * 85.0f, 0.5f);
     }
 
     private void changeSliderColor(Color newColor)
@@ -227,12 +231,17 @@ public class QTEController : MonoBehaviour
 
     public void StartStairsGameplay()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in keyInputQueue.transform)
         {
             Destroy(child.gameObject);
         }
 
         StartCoroutine(resetQTE());
         MoveToCurrentPosition(); 
+    }
+
+    private void enableUI(bool enable)
+    {
+        qteUI.SetActive(enable);
     }
 }
