@@ -71,6 +71,7 @@ public class Meter : MonoBehaviour
                     newValueChange = false;
 
                     secondsPassed -= secondsToEmpty * (currValueChange/meter.maxValue);
+
                 }
                 else 
                 {
@@ -92,6 +93,9 @@ public class Meter : MonoBehaviour
         else
         {
             isEmpty = true;
+
+            meter.value = 0;
+            meterValue.text = Mathf.FloorToInt(meter.value).ToString();
 
             Debug.Log("meter is empty");
         }
