@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3984357606078746140}
   - component: {fileID: 3784509468348764239}
   - component: {fileID: 243361429997189744}
+  - component: {fileID: 3761263988578234700}
   m_Layer: 0
   m_Name: Downstairs Player
   m_TagString: Untagged
@@ -105,13 +106,11 @@ MonoBehaviour:
   playerRB: {fileID: 3984357606078746140}
   playerCamera: {fileID: 0}
   playerSpeed: 3
-  inBedroom: 0
   isTopdown: 1
   moveLocked: 0
   cameraBedroomY: 0
-  matchController: {fileID: 0}
-  candleController: {fileID: 0}
   lightEclipse: {fileID: 0}
+  animator: {fileID: 3761263988578234700}
 --- !u!114 &1376945014203384281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +228,27 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   candleTransform: {fileID: 3075933893758010955}
+--- !u!95 &3761263988578234700
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282729628409866394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5f73c2b73871f240afc0847962996fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9053069093908239411
 GameObject:
   m_ObjectHideFlags: 0

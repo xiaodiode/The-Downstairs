@@ -54,14 +54,7 @@ public class QTEController : MonoBehaviour
 
     void OnEnable()
     {
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        StartCoroutine(resetQTE());
         
-        MoveToCurrentPosition(); 
     }
 
     // Update is called once per frame
@@ -124,6 +117,7 @@ public class QTEController : MonoBehaviour
                 {
                     CrawlingController.instance.AddTrip();
                     changeSliderColor(errorColor);
+
                     keyQTEObjects[currentIndex].keyObject.transform.DOScale(1f, 0.25f);
                     keyQTEObjects[currentIndex].keyObject.transform.DOShakePosition(tripDelay/3, new Vector3(7, 0, 0), randomness:90);
                     
@@ -143,6 +137,7 @@ public class QTEController : MonoBehaviour
             {
                 CrawlingController.instance.AddTrip();
                 changeSliderColor(errorColor);
+                
                 keyQTEObjects[currentIndex].keyObject.transform.DOScale(1f, 0.25f); 
                 keyQTEObjects[currentIndex].keyObject.transform.DOShakePosition(tripDelay/3, new Vector3(7, 0, 0), randomness:90);
 
@@ -163,7 +158,7 @@ public class QTEController : MonoBehaviour
         }
     }
 
-    private IEnumerator resetQTE()
+    public IEnumerator resetQTE()
     {
         currentIndex = 0;
         firstKey = true;
@@ -188,7 +183,7 @@ public class QTEController : MonoBehaviour
         tripDelay = CrawlingController.instance.getTripDelay(); 
         qteTimeLimit = CrawlingController.instance.getCrawlDelay();
 
-        hitTime = marginOfError*qteTimeLimit;
+        hitTime = marginOfError * qteTimeLimit;
 
         qteTimerSlider.maxValue = qteTimeLimit;  
         qteTimerSlider.value = qteTimeLimit;  
@@ -223,5 +218,16 @@ public class QTEController : MonoBehaviour
     private void changeSliderColor(Color newColor)
     {
         sliderImage.color = newColor;
+    }
+
+    public void StartStairsGameplay()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        StartCoroutine(resetQTE());
+        MoveToCurrentPosition(); 
     }
 }

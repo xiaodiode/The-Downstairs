@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StairsController : MonoBehaviour
 {
-    [SerializeField] private GameObject stairs;
+    public GameObject currentStairs;
     [SerializeField] private Vector3 moveTransform;
 
     public static StairsController instance {get; private set;}
@@ -43,7 +43,7 @@ public class StairsController : MonoBehaviour
         {
             if(CrawlingController.instance.isCrawling)
             {
-                stairs.transform.position += moveTransform;
+                currentStairs.transform.position += moveTransform;
             }
 
             yield return null;

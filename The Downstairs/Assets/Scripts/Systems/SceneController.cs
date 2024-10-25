@@ -18,8 +18,10 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject downstairs;
     [SerializeField] private GameObject basement;
 
-    private Dictionary<ScenesType, GameObject> scenesDict;
+    public Dictionary<ScenesType, GameObject> scenesDict;
     public ScenesType currentScene;
+
+    private List<ScenesType> stairsScenes;
     
     public enum ScenesType
     {
@@ -31,15 +33,28 @@ public class SceneController : MonoBehaviour
         Downstairs,
         Basement,
     }
-    
+
+    public static SceneController instance {get; private set;}
+
+    void Awake()
+    {
+        if(instance != null && instance != this){
+            Destroy(this);
+        }
+        else{
+            instance = this;
+        }
+
+    }
+
     // Start is called before the first frame update
-    void Start()
+    void Start() 
     {
         scenesDict = new()
         {
             { ScenesType.Upstairs, upstairs },
-            { ScenesType.Basement, basement},
-            { ScenesType.Bedroom, bedroom},
+            { ScenesType.Basement, basement },
+            { ScenesType.Bedroom, bedroom },
             { ScenesType.StairsBedUp, stairsBedUp },
             { ScenesType.StairsDownBase, stairsDownBase },
             { ScenesType.StairsUpDown, stairsUpDown },
@@ -47,6 +62,13 @@ public class SceneController : MonoBehaviour
         };
         currentScene = ScenesType.Downstairs;
         switchScenes(currentScene);
+
+        stairsScenes = new()
+        {
+            ScenesType.StairsBedUp,
+            ScenesType.StairsUpDown,
+            ScenesType.StairsDownBase
+        };
     }
 
     // Update is called once per frame
@@ -67,6 +89,21 @@ public class SceneController : MonoBehaviour
         if(newScene == ScenesType.Bedroom) 
         {
             MetersController.instance.resetSanityMeter();
+        }
+        else
+        {
+            // foreach(ScenesType stairs in stairsScenes)
+            // {
+            //     if(stairs == newScene)
+            //     {
+            //         StairsController.instance.currentStairs = scenesDict[newScene];
+                    
+            //         QTEController.instance.StartStairsGameplay();
+                    
+            //         break;
+            //     }
+                
+            // }
         }
 
         currentScene = newScene;
