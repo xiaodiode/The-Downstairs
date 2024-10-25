@@ -10,6 +10,8 @@ public class StairsController : MonoBehaviour
     [SerializeField] private Vector3 moveTransform;
     [SerializeField] private SceneController.ScenesType targetScene;
 
+    Vector3 newMoveTransform;
+
     public static StairsController instance {get; private set;}
 
     void Awake()
@@ -27,6 +29,8 @@ public class StairsController : MonoBehaviour
     void Start()
     {
         stairsSwitched = false;
+
+        newMoveTransform = moveTransform;
     }
 
     // Update is called once per frame
@@ -41,16 +45,20 @@ public class StairsController : MonoBehaviour
 
         if(!CrawlingController.instance.goingDown)
         {
-            moveTransform *= -1;
+            newMoveTransform = -moveTransform;
             targetScene = currentStairs.topTargetScene;
         }
-        else targetScene = currentStairs.botTargetScene;
+        else
+        {
+            targetScene = currentStairs.botTargetScene;
+            newMoveTransform = moveTransform;
+        } 
 
         while(!CrawlingController.instance.crawlingFinished)
         {
             if(CrawlingController.instance.isCrawling)
             {
-                currentStairs.transform.position += moveTransform;
+                currentStairs.transform.position += newMoveTransform;
             }
 
             yield return null;

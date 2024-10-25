@@ -66,8 +66,6 @@ public class CrawlingController : MonoBehaviour
 
         ready = false;
         Debug.Log("ready false");
-
-        goingDown = false;
         
         crawlingFinished = true;
         isCrawling = false;

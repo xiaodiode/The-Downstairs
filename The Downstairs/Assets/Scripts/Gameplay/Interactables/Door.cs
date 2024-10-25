@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Camera gameCamera;
     [SerializeField] private Transform stairsCameraPosition;
     [SerializeField] public SceneController.ScenesType targetStairs;
+    [SerializeField] private bool goingDown;
 
     private bool triggerable;
 
@@ -60,6 +61,8 @@ public class Door : MonoBehaviour
             gameCamera.gameObject.transform.position = stairsCameraPosition.position;
 
             StairsController.instance.currentStairs = SceneController.instance.stairsScenesDict[targetStairs];
+
+            CrawlingController.instance.goingDown = goingDown;
 
             QTEController.instance.StartStairsGameplay();
             
