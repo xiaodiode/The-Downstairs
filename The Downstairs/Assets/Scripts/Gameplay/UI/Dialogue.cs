@@ -5,9 +5,6 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    [Header("Dialogue File")]
-    [SerializeField] private TextAsset testing;
-
     [Header("Dialogue Appearance")]
     [SerializeField] private TextMeshProUGUI dialogueUI;
     [SerializeField] private bool fadeInAnimation;
@@ -23,7 +20,6 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private float fadeOutTime;
     [SerializeField] private float fadeDisplayTime;
     [SerializeField] private float minTextAlpha, maxTextAlpha;
-    private string[] fileLines;
 
     private Color newTextColor = new();
     private bool isPrinting;
@@ -102,7 +98,7 @@ public class Dialogue : MonoBehaviour
 
         secondsPassed = 0;
 
-        dialogueUI.text = toPrint;
+        dialogueUI.text = QTEController.instance.QTEfinished ? toPrint : "";
 
         dialogueDilation.StartDilation();
 

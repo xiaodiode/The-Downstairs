@@ -56,7 +56,9 @@ public class QTEController : MonoBehaviour
 
     void Start()
     {
-        qteUI.SetActive(false);
+        QTEfinished = true;
+        
+        enableUI(false);
     }
 
     // Update is called once per frame
@@ -87,7 +89,7 @@ public class QTEController : MonoBehaviour
             if(timer < 0)
             {
                 TripLogic();
-                
+
                 yield return new WaitForSeconds(tripDelay);
 
                 Debug.Log("finished tripping");
@@ -159,7 +161,7 @@ public class QTEController : MonoBehaviour
 
     public IEnumerator resetQTE()
     {
-        qteUI.SetActive(true);
+        enableUI(true);
 
         currentIndex = 0;
         firstKey = true;
