@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class StairsController : MonoBehaviour
 {
-    public GameObject currentStairs;
+    public Stairs currentStairs;
     [SerializeField] private Vector3 moveTransform;
+    [SerializeField] private SceneController.ScenesType targetScene;
 
     public static StairsController instance {get; private set;}
 
@@ -37,7 +39,9 @@ public class StairsController : MonoBehaviour
         if(!CrawlingController.instance.goingDown)
         {
             moveTransform *= -1;
+            targetScene = currentStairs.topTargetScene;
         }
+        else targetScene = currentStairs.botTargetScene;
 
         while(!CrawlingController.instance.crawlingFinished)
         {
@@ -48,6 +52,11 @@ public class StairsController : MonoBehaviour
 
             yield return null;
         }
+        
+        SceneController.instance.switchScenes(targetScene);
+        Debug.Log("switching scenes to " + targetScene);
+
+        
     }
 
 }

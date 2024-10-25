@@ -143,6 +143,8 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(CandleController.instance.FindActiveLight());
 
+        CrawlingController.instance.setAnimSpeeds();
+
         yield return new WaitForSeconds(3);
 
     }
@@ -208,8 +210,14 @@ public class GameManager : MonoBehaviour
     public void pauseGame(bool display)
     {
         gamePaused = true;
-        enableScreen(ScreenType.Pause, display);
-        Time.timeScale = 0;
+
+        if(display)
+        {
+            enableScreen(ScreenType.Pause, display);
+            Time.timeScale = 0;
+        }
+        
+        
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
     }

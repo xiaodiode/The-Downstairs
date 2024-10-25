@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField] private Camera gameCamera;
+
+    [Header("Room Scenes")]
+
     [Header("Bedroom")]
     [SerializeField] private GameObject bedroom;
 
     [Header("Stairs")]
-    [SerializeField] private GameObject stairsBedUp;
-    [SerializeField] private GameObject stairsUpDown;
-    [SerializeField] private GameObject stairsDownBase;
+    [SerializeField] private Stairs stairs1;
+    [SerializeField] private Stairs stairs2;
+    [SerializeField] private Stairs stairs3;
+    [SerializeField] private Transform stairsCameraPosition;
 
     [Header("The Downstairs")]
     [SerializeField] private GameObject upstairs;
@@ -19,17 +24,16 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject basement;
 
     public Dictionary<ScenesType, GameObject> scenesDict;
+    public Dictionary<ScenesType, Stairs> stairsScenesDict;
     public ScenesType currentScene;
-
-    private List<ScenesType> stairsScenes;
     
     public enum ScenesType
     {
         Upstairs,
         Bedroom,
-        StairsBedUp,
-        StairsUpDown,
-        StairsDownBase,
+        Stairs1,
+        Stairs2,
+        Stairs3,
         Downstairs,
         Basement,
     }
@@ -52,23 +56,24 @@ public class SceneController : MonoBehaviour
     {
         scenesDict = new()
         {
+            { ScenesType.Bedroom, bedroom },
             { ScenesType.Upstairs, upstairs },
             { ScenesType.Basement, basement },
-            { ScenesType.Bedroom, bedroom },
-            { ScenesType.StairsBedUp, stairsBedUp },
-            { ScenesType.StairsDownBase, stairsDownBase },
-            { ScenesType.StairsUpDown, stairsUpDown },
-            { ScenesType.Downstairs, downstairs }
+            { ScenesType.Downstairs, downstairs },
+            { ScenesType.Stairs1, stairs1.gameObject },
+            { ScenesType.Stairs2, stairs2.gameObject },
+            { ScenesType.Stairs3, stairs3.gameObject },
         };
-        currentScene = ScenesType.Upstairs;
-        switchScenes(currentScene);
 
-        stairsScenes = new()
+        stairsScenesDict = new()
         {
-            ScenesType.StairsBedUp,
-            ScenesType.StairsUpDown,
-            ScenesType.StairsDownBase
+            { ScenesType.Stairs1, stairs1 },
+            { ScenesType.Stairs2, stairs2 },
+            { ScenesType.Stairs3, stairs3 },
         };
+        
+        currentScene = ScenesType.Bedroom;
+        switchScenes(currentScene);
     }
 
     // Update is called once per frame
@@ -90,21 +95,10 @@ public class SceneController : MonoBehaviour
         {
             MetersController.instance.resetSanityMeter();
         }
-        else
-        {
-            // foreach(ScenesType stairs in stairsScenes)
-            // {
-            //     if(stairs == newScene)
-            //     {
-            //         StairsController.instance.currentStairs = scenesDict[newScene];
-                    
-            //         QTEController.instance.StartStairsGameplay();
-                    
-            //         break;
-            //     }
-                
-            // }
-        }
+        // else
+        // {
+        //     StartCoroutine(checkForStairs(newScene));
+        // }
 
         currentScene = newScene;
 

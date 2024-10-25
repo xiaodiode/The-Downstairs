@@ -10,7 +10,7 @@ class EditorDrawDoorConnection : Editor
     void OnSceneGUI()
     {
         var door = target as Door;
-        Handles.DrawLine(door.transform.position, door.target.transform.position);
+        // Handles.DrawLine(door.transform.position, door.target.transform.position);
     }
     
 }

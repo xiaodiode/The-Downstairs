@@ -6,13 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Door : MonoBehaviour
 {
-    [SerializeField] public Door target;
-    [SerializeField] public SceneController.ScenesType selfScene;
-    
-    [SerializeField] private SceneController sceneController;
+    [SerializeField] private Camera gameCamera;
+    [SerializeField] private Transform stairsCameraPosition;
+    [SerializeField] public SceneController.ScenesType targetStairs;
 
     private bool triggerable;
-    public bool isBedroom;
 
     void Start()
     {
@@ -45,7 +43,7 @@ public class Door : MonoBehaviour
     {
         if(triggerable && Input.GetKeyDown(KeyCode.Space))
         {
-            if(selfScene == SceneController.ScenesType.Bedroom)
+            if(targetStairs == SceneController.ScenesType.Stairs1)
             {
                 if(!CutscenesController.instance.stairsCutscenePlayed)
                 {
@@ -57,7 +55,14 @@ public class Door : MonoBehaviour
                     StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
                 }
             }
-            sceneController.switchScenes(target.selfScene);
+
+            SceneController.instance.switchScenes(targetStairs);
+            gameCamera.gameObject.transform.position = stairsCameraPosition.position;
+
+            StairsController.instance.currentStairs = SceneController.instance.stairsScenesDict[targetStairs];
+
+            QTEController.instance.StartStairsGameplay();
+            
         }
     }
 }

@@ -67,8 +67,6 @@ public class CrawlingController : MonoBehaviour
         ready = false;
         Debug.Log("ready false");
 
-        setAnimSpeeds();
-
         goingDown = false;
         
         crawlingFinished = true;
@@ -82,7 +80,7 @@ public class CrawlingController : MonoBehaviour
         
     }
 
-    private void setAnimSpeeds()
+    public void setAnimSpeeds()
     {
         foreach (var clip in animController.animationClips)
         {   
@@ -90,6 +88,7 @@ public class CrawlingController : MonoBehaviour
 
             switch(clip.name)
             {
+                
                 case "Down Crawl":
                     animator.SetFloat("Down Crawl Multiplier", clipLength/crawlTime);
                     break;

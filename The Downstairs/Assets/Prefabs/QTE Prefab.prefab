@@ -836,8 +836,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QTEfinished: 0
-  marginOfError: 0.07
-  normalColor: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
+  marginOfError: 0.7
+  normalColor: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 0.3764706}
   hitColor: {r: 1, g: 1, b: 1, a: 1}
   errorColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   sliderImage: {fileID: 7153792099260910019}
