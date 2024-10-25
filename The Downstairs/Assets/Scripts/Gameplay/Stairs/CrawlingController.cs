@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class CrawlingController : MonoBehaviour
 {
+    [Header("Gameplay Settings")]
     public bool ready;
     public bool crawlingFinished, isCrawling; 
+    [SerializeField] public float tripPenalty;
 
     [Header("Animation Settings")]
-    [SerializeField] public float crawlTime;
-    [SerializeField] public float tripTime;
-    [SerializeField] public float holdTime;
-    [SerializeField] public float pickupTime;
+    public float crawlTime;
+    public float tripTime;
+    public float holdTime;
+    public float pickupTime;
 
     [Header("Animation Mechanics")]
+    public bool goingDown;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorController animController;
-    [SerializeField] public bool goingDown;
     [SerializeField] private Queue<CrawlingState> statesQueue = new();
 
     public enum CrawlingState 
