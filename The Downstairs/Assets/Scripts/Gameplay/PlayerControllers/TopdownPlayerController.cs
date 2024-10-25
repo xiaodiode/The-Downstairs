@@ -71,10 +71,7 @@ public class TopdownPlayerController : MonoBehaviour
     private void Move(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
-        // if(horizontalInput == 0 && verticalInput == 0){
-        //     idle = true;
-        // }
+        idle = horizontalInput == 0 && verticalInput == 0;
         if (horizontalInput == 0 ^ verticalInput == 0) { //Updates Directional Enum taking into account the 
             SetDirection(horizontalInput,verticalInput);
         }        
