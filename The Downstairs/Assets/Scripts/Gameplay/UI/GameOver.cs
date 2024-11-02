@@ -38,7 +38,7 @@ public class GameOver : MonoBehaviour
 
     }
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         titleTextAnim = titleText.gameObject.GetComponent<EnterFont>();
 
