@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
         enableScreen(ScreenType.Pause, false);
         Time.timeScale = 1;
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
+        RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
     }
     
     public void resetGame()
