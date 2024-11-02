@@ -72,7 +72,8 @@ public class SceneController : MonoBehaviour
             { ScenesType.Stairs3, stairs3 },
         };
         
-        currentScene = ScenesType.Upstairs;
+        currentScene = ScenesType.Downstairs;
+
         switchScenes(currentScene);
     }
 
@@ -95,10 +96,6 @@ public class SceneController : MonoBehaviour
         {
             MetersController.instance.resetSanityMeter();
         }
-        // else
-        // {
-        //     StartCoroutine(checkForStairs(newScene));
-        // }
 
         currentScene = newScene;
 
