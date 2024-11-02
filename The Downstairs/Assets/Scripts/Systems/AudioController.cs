@@ -67,18 +67,20 @@ public class AudioController : MonoBehaviour
         sfxSource.volume = sfxVolume;
     }
 
-    public void playGameplayMusic(){
-
+    public void playGameplayMusic()
+    {
         transitionMusic(DownstairsBGM);
         musicSource.loop = false;
     }
 
-    public void playMainMenuMusic(){
+    public void playMainMenuMusic()
+    {
         transitionMusic(MainMenuBGM);
         musicSource.loop = true;
     }
 
-    private void transitionMusic(AudioClip newClip){
+    private void transitionMusic(AudioClip newClip)
+    {
         musicSource.Stop();
 
         musicSource.clip = newClip;

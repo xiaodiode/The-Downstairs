@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -63,20 +61,15 @@ public class Laundry : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
-        {
-            triggerable = true;
-        }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null) triggerable = true;
+        
     }
 
-    void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
-        {
-            triggerable = false;
-        }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null) triggerable = false;
     }
 
     private void useLaundry()
