@@ -66,7 +66,7 @@ public class Fridge : MonoBehaviour
             foodQuantity--;
             updateFridgeText();
 
-            MetersController.instance.adjustMeters(hungerIncrease, 0,0,0);
+            MetersController.instance.resetHungerMeter();
         }
         else
         {

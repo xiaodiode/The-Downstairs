@@ -26,7 +26,7 @@ public class Meter : MonoBehaviour
 
     public bool toiletEffect;
 
-    private float secondsPassed, newSecondsPassed, newSecondsToEmpty;
+    private float secondsPassed;
 
     private float oldValue = 100;
 
