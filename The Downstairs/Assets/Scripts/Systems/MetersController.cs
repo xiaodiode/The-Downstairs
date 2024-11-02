@@ -53,11 +53,8 @@ public class MetersController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(SidescrollPlayerController.instance.gameObject.activeInHierarchy){
-        //     resetSanityMeter();
-        // }
-
-        checkTriggers();
+        checkGameOver();
+        checkDialogueTriggers();
     }
 
     public void resetMeters()
@@ -69,7 +66,8 @@ public class MetersController : MonoBehaviour
 
     }
 
-    public void adjustMeters(float hungerchange, float thirstChange, float toiletChange, float sanityChange){
+    public void adjustMeters(float hungerchange, float thirstChange, float toiletChange, float sanityChange)
+    {
         if(hungerchange != 0){
             hungerMeter.changeByAmount(hungerchange);
         }
@@ -116,7 +114,7 @@ public class MetersController : MonoBehaviour
         toiletMeter.resetMeter(toiletSecondsToEmpty);
     }
 
-    private void checkTriggers()
+    private void checkDialogueTriggers()
     {
         if(sanityMeter.dataReady)
         {
@@ -124,6 +122,20 @@ public class MetersController : MonoBehaviour
             checkThirst();
             checkToilet();
             checkSanity();
+        }
+    }
+
+    private void checkGameOver()
+    {
+        if(hungerMeter.isEmpty || thirstMeter.isEmpty)
+        {
+            Debug.Log("passed out");
+            GameManager.instance.triggerGameOver();
+        }
+        else if(sanityMeter.isEmpty)
+        {
+            Debug.Log("panic attack");
+            GameManager.instance.triggerGameOver();
         }
     }
 

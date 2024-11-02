@@ -77,8 +77,17 @@ public class SidescrollPlayerController : MonoBehaviour
         // Debug.Log("spacebar pressed");
     }
 
-    private void OnUseMatch(){
-        CandleController.instance.lightCandle();
+    private void OnUseMatch()
+    {
+        if(SceneController.instance.currentScene == SceneController.ScenesType.Bedroom)
+        {
+            Dialogue.instance.addToDialogue("I should save my candles for the downstairs");
+        }
+        else
+        {
+            CandleController.instance.lightCandle();
+        }
+        
     }
 
     private void SetDirection(float xaxis)

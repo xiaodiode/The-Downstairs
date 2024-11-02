@@ -34,7 +34,8 @@ public class InteractableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(triggerable && Input.GetKeyDown(KeyCode.Space)){
+        if(triggerable && Input.GetKeyDown(KeyCode.Space))
+        {
             metersController.adjustMeters(hungerChange, thirstChange, toiletChange, sanityChange);
         }
     }
