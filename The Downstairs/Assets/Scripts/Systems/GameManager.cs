@@ -195,6 +195,8 @@ public class GameManager : MonoBehaviour
     {
         pauseGame(false);
 
+        
+
         enableScreen(ScreenType.GameOver, true);
 
         StartCoroutine(GameOver.instance.fadeIn());
