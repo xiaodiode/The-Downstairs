@@ -103,68 +103,74 @@ public class TopdownPlayerController : MonoBehaviour
 
             switch(currentDirection){
                 case Direction.North:
-                    if(angle <= leftNorth && angle >= rightNorth)
-                    {
-                        newAngle = angle;
-                        clampAngle = false;
-                    }
-                    else if(!clampAngle)
-                    {
-                        if(angle < rightNorth && angle >= -90) newAngle = rightNorth;
+                    // if(angle <= leftNorth && angle >= rightNorth)
+                    // {
+                    //     newAngle = angle;
+                    //     clampAngle = false;
+                    // }
+                    // else if(!clampAngle)
+                    // {
+                    //     if(angle < rightNorth && angle >= -90) newAngle = rightNorth;
                     
-                        else if((angle > leftNorth && angle <= 180) || (angle >= -180 && angle < 90)) newAngle = leftNorth;
+                    //     else if((angle > leftNorth && angle <= 180) || (angle >= -180 && angle < 90)) newAngle = leftNorth;
 
-                        clampAngle = true;
-                    }
+                    //     clampAngle = true;
+                    // }
+                    newAngle = 90;
 
                     break;
                 case Direction.South:
-                    if(angle <= rightSouth && angle >= leftSouth)
-                    {
-                        newAngle = angle;
-                        clampAngle = false;
-                    }
-                    else if(!clampAngle)
-                    {
-                        if(angle > rightSouth && angle <= 90) newAngle = rightSouth;
+                    // if(angle <= rightSouth && angle >= leftSouth)
+                    // {
+                    //     newAngle = angle;
+                    //     clampAngle = false;
+                    // }
+                    // else if(!clampAngle)
+                    // {
+                    //     if(angle > rightSouth && angle <= 90) newAngle = rightSouth;
                     
-                        else if((angle < leftSouth && angle >= -180) || (angle <= 180 && angle > 90)) newAngle = leftSouth;
+                    //     else if((angle < leftSouth && angle >= -180) || (angle <= 180 && angle > 90)) newAngle = leftSouth;
 
-                        clampAngle = true;
-                    }
+                    //     clampAngle = true;
+                    // }
+                    newAngle = -90;
 
                     break;
 
                 case Direction.East:
-                    if(angle <= topEast && angle >= botEast)
-                    {
-                        newAngle = angle;
-                        clampAngle = false;
-                    }
-                    else if(!clampAngle)
-                    {
-                        if(angle > topEast && angle <= 180) newAngle = topEast;
+                    // if(angle <= topEast && angle >= botEast)
+                    // {
+                    //     newAngle = angle;
+                    //     clampAngle = false;
+                    // }
+                    // else if(!clampAngle)
+                    // {
+                    //     if(angle > topEast && angle <= 180) newAngle = topEast;
                     
-                        else if(angle < botEast && angle >= -180) newAngle = botEast;
+                    //     else if(angle < botEast && angle >= -180) newAngle = botEast;
 
-                        clampAngle = true;
-                    }
+                    //     clampAngle = true;
+                    // }
+                    newAngle = 0;
+
                     break;
 
                 case Direction.West:
-                    if((angle <= 180 && angle >= topWest) || (angle >= -180 && angle <= botWest))
-                    {
-                        newAngle = angle;
-                        clampAngle = false;
-                    }
-                    else if(!clampAngle)
-                    {
-                        if(angle < topWest && angle >= 0) newAngle = topWest;
+                    // if((angle <= 180 && angle >= topWest) || (angle >= -180 && angle <= botWest))
+                    // {
+                    //     newAngle = angle;
+                    //     clampAngle = false;
+                    // }
+                    // else if(!clampAngle)
+                    // {
+                    //     if(angle < topWest && angle >= 0) newAngle = topWest;
                     
-                        else if(angle > botWest && angle < 0) newAngle = botWest;
+                    //     else if(angle > botWest && angle < 0) newAngle = botWest;
 
-                        clampAngle = true;
-                    }
+                    //     clampAngle = true;
+                    // }
+                    newAngle = -180;
+
                     break;
                 
             }
