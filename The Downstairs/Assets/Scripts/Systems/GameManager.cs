@@ -68,8 +68,8 @@ public class GameManager : MonoBehaviour
 
         nightCount = 1;
 
-        // isNewGame = true; 
-        isNewGame = false; // change to false to skip intro cutscene
+        isNewGame = true; 
+        // isNewGame = false; // change to false to skip intro cutscene
 
     }
 
@@ -172,7 +172,6 @@ public class GameManager : MonoBehaviour
 
     public void continueGame()
     {
-
         playGame();
 
         enableScreen(ScreenType.Continue, false);

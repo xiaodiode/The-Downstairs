@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class CrawlingController : MonoBehaviour
@@ -19,7 +18,7 @@ public class CrawlingController : MonoBehaviour
     [Header("Animation Mechanics")]
     public bool goingDown;
     [SerializeField] private Animator animator;
-    [SerializeField] private AnimatorController animController;
+    [SerializeField] private RuntimeAnimatorController animController;
     [SerializeField] private Queue<CrawlingState> statesQueue = new();
 
     public enum CrawlingState 

@@ -6,14 +6,19 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class AudioController : MonoBehaviour
 {
+    [Header("Music Clips")]
+    [SerializeField] private AudioClip MainMenuBGM;
+    [SerializeField] private AudioClip DownstairsBGM;
+    [SerializeField] private AudioClip GameOverBGM;
+
+    [Header("SFX Clips")]
+
+
     [Header("Music Components")]
     [SerializeField] private Slider musicSlider;
     [SerializeField] private float musicVolume;
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioClip mmMusicClip;
-    [SerializeField] private AudioClip gameplayMusicClip;
     [SerializeField] private AudioClip currMusicClip;
-
     [SerializeField] private float transitionDuration;
 
     [Header("Sound FX Components")]
@@ -49,22 +54,28 @@ public class AudioController : MonoBehaviour
         
     }
 
-    public void setMusic(){
+    public void setMusic()
+    {
         musicVolume = musicSlider.value*100f;
+
+        musicSource.volume = musicVolume;
     }
 
-    public void setSFX(){
+    public void setSFX()
+    {
         sfxVolume = sfxSlider.value*100f;
+
+        sfxSource.volume = sfxVolume;
     }
 
     public void playGameplayMusic(){
 
-        transitionMusic(gameplayMusicClip);
+        transitionMusic(DownstairsBGM);
         musicSource.loop = false;
     }
 
     public void playMainMenuMusic(){
-        transitionMusic(mmMusicClip);
+        transitionMusic(MainMenuBGM);
         musicSource.loop = true;
     }
 
