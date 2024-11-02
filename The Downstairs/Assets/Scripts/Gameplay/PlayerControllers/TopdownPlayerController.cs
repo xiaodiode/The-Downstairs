@@ -58,7 +58,7 @@ public class TopdownPlayerController : MonoBehaviour
     {
         input = new Vector2(horizontalInput, verticalInput);
 
-        Move();
+        if(!GameManager.instance.gamePaused) Move();
 
         if(isTopdown && lightEclipse.gameObject.activeSelf) 
         {
@@ -68,7 +68,8 @@ public class TopdownPlayerController : MonoBehaviour
         // Debug.Log("Dir" + currentDirection);
     }
 
-    private void Move(){
+    private void Move()
+    {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         idle = horizontalInput == 0 && verticalInput == 0;

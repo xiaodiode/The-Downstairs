@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(MetersController.instance.hungerMeter.decreaseMeter());
         StartCoroutine(MetersController.instance.thirstMeter.decreaseMeter());
         StartCoroutine(MetersController.instance.toiletMeter.decreaseMeter());
-        StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
+        // StartCoroutine(MetersController.instance.sanityMeter.decreaseMeter());
 
         StartCoroutine(CandleController.instance.FindActiveLight());
 

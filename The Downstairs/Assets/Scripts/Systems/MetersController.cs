@@ -53,7 +53,6 @@ public class MetersController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkGameOver();
         checkDialogueTriggers();
     }
 
@@ -125,7 +124,7 @@ public class MetersController : MonoBehaviour
         }
     }
 
-    private void checkGameOver()
+    public void checkGameOver()
     {
         if(hungerMeter.isEmpty || thirstMeter.isEmpty)
         {

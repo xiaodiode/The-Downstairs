@@ -51,10 +51,11 @@ public class SidescrollPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(!GameManager.instance.gamePaused) Move();
         //Debug.Log(currentDirection.ToString());
     }
-    private void Move(){
+    private void Move()
+    {
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         idle = horizontalInput == 0;

@@ -92,6 +92,8 @@ public class Meter : MonoBehaviour
         {
             isEmpty = true;
 
+            MetersController.instance.checkGameOver();
+
             meter.value = 0;
             meterValue.text = Mathf.FloorToInt(meter.value).ToString();
 
