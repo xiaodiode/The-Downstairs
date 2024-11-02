@@ -104,6 +104,18 @@ public class MetersController : MonoBehaviour
         hungerMeter.resetMeter(hungerSecondsToEmpty);
     }
 
+    public void resetThirstMeter()
+    {
+        thirstMeter.makeMeterFull();
+        thirstMeter.resetMeter(thirstSecondsToEmpty);
+    }
+
+    public void resetToiletMeter()
+    {
+        toiletMeter.makeMeterFull();
+        toiletMeter.resetMeter(toiletSecondsToEmpty);
+    }
+
     private void checkTriggers()
     {
         if(sanityMeter.dataReady)

@@ -68,7 +68,7 @@ public class WaterPitcher : MonoBehaviour
             waterQuantity--;
             updatePitcherText();
 
-            MetersController.instance.adjustMeters(0, thirstIncrease, 0,0);
+            MetersController.instance.resetThirstMeter();
         }
         else
         {
