@@ -60,6 +60,8 @@ public class TopdownPlayerController : MonoBehaviour
 
         if(!GameManager.instance.gamePaused) Move();
 
+        else playerRB.velocity = Vector2.zero;
+
         if(isTopdown && lightEclipse.gameObject.activeSelf) 
         {
             updateCandleLight();
@@ -72,8 +74,11 @@ public class TopdownPlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
         idle = horizontalInput == 0 && verticalInput == 0;
-        if (horizontalInput == 0 ^ verticalInput == 0) { //Updates Directional Enum taking into account the 
+
+        if (horizontalInput == 0 ^ verticalInput == 0) 
+        { //Updates Directional Enum taking into account the 
             SetDirection(horizontalInput,verticalInput);
         }        
 

@@ -52,7 +52,8 @@ public class SidescrollPlayerController : MonoBehaviour
     void Update()
     {
         if(!GameManager.instance.gamePaused) Move();
-        //Debug.Log(currentDirection.ToString());
+
+        else playerRB.velocity = Vector2.zero;
     }
     private void Move()
     {
@@ -64,8 +65,7 @@ public class SidescrollPlayerController : MonoBehaviour
         newPosition = playerRB.transform.position;
         newPosition.y = cameraBedroomY;
         
-
-        velocity.x = horizontalInput* playerSpeed;
+        velocity.x = horizontalInput * playerSpeed;
         playerRB.velocity = velocity;
 
         newPosition.z = playerCamera.transform.position.z;

@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         enableScreen(ScreenType.Continue, true);
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
-        ContinueScreen.instance.updateText();
+        // ContinueScreen.instance.updateText();
 
     }
 
@@ -195,8 +195,6 @@ public class GameManager : MonoBehaviour
     {
         pauseGame(false);
 
-        
-
         enableScreen(ScreenType.GameOver, true);
 
         StartCoroutine(GameOver.instance.fadeIn());
@@ -218,9 +216,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
         
-        
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
-
     }
 
     public void resumeGame()
