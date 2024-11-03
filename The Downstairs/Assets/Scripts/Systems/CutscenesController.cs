@@ -66,7 +66,7 @@ public class CutscenesController : MonoBehaviour
     {
         GameManager.instance.enableScreen(GameManager.ScreenType.Cutscene, true);
 
-        GameManager.instance.pauseGame(false);
+        GameManager.instance.pauseGame(false, RendererController.RendererType.VHS);
 
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 

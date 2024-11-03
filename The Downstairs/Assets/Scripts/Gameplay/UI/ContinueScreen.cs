@@ -40,7 +40,7 @@ public class ContinueScreen : MonoBehaviour
         
     }
 
-    public void OnEnable()
+    public void updateText()
     {
         nightCounter1.text = GameManager.instance.nightCount.ToString() + " NIGHTS \nSURVIVED";
         nightCounter2.text = GameManager.instance.nightCount.ToString() + " NIGHTS \nSURVIVED";

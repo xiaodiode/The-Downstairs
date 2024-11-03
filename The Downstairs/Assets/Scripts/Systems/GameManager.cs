@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         {
             if (!gamePaused)
             {
-                pauseGame(true);
+                pauseGame(true, RendererController.RendererType.VHS);
             }
 
             else resumeGame();
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         enableScreen(ScreenType.Continue, true);
         RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
-        // ContinueScreen.instance.updateText();
+        ContinueScreen.instance.updateText();
 
     }
 
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
 
     public void triggerGameOver()
     {
-        pauseGame(false);
+        pauseGame(false, RendererController.RendererType.Light2D);
 
         enableScreen(ScreenType.GameOver, true);
 
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
         isNewGame = false;
     }
 
-    public void pauseGame(bool display)
+    public void pauseGame(bool display, RendererController.RendererType renderer)
     {
         gamePaused = true;
 
@@ -215,8 +215,8 @@ public class GameManager : MonoBehaviour
             enableScreen(ScreenType.Pause, display);
             Time.timeScale = 0;
         }
-        
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
+
+        RendererController.instance.toggleGameRenderer(renderer);
     }
 
     public void resumeGame()
