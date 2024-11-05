@@ -72,7 +72,7 @@ public class SceneController : MonoBehaviour
             { ScenesType.Stairs3, stairs3 },
         };
         
-        currentScene = ScenesType.Bedroom;
+        currentScene = ScenesType.Upstairs;
 
         switchScenes(currentScene);
     }

@@ -80,7 +80,8 @@ public class GameManager : MonoBehaviour
         {
             if (!gamePaused)
             {
-                pauseGame(true, RendererController.RendererType.VHS);
+                // pauseGame(true, RendererController.RendererType.VHS);
+                pauseGame(true, RendererController.RendererType.Light2D);
             }
 
             else resumeGame();
@@ -164,7 +165,7 @@ public class GameManager : MonoBehaviour
         resetGame();
 
         enableScreen(ScreenType.Continue, true);
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
+        // RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
         ContinueScreen.instance.updateText();
 

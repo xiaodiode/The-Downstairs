@@ -7,6 +7,7 @@ public class SidescrollPlayerController : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private Camera VhsCamera;
     [SerializeField] private float playerSpeed;
     [SerializeField] private float cameraBedroomY;
 
@@ -71,6 +72,8 @@ public class SidescrollPlayerController : MonoBehaviour
         newPosition.z = playerCamera.transform.position.z;
 
         playerCamera.transform.position = newPosition;
+        VhsCamera.transform.position = newPosition; 
+        
         animator.SetBool(IsMoving, !idle);
     }
 
