@@ -5,19 +5,29 @@ using UnityEngine.UI;
 
 public class AudioController : MonoBehaviour
 {
+    [SerializeField] private AudioClip currMusicClip;
+    [SerializeField] private AudioClip currSFXClip;
+
     [Header("Music Clips")]
     [SerializeField] private AudioClip MainMenuBGM;
+    [SerializeField] private AudioClip BedroomBGM;
     [SerializeField] private AudioClip DownstairsBGM;
     [SerializeField] private AudioClip GameOverBGM;
 
     [Header("SFX Clips")]
-
+    [SerializeField] private AudioClip chewingSFX;
+    [SerializeField] private AudioClip cuckooSFX;
+    [SerializeField] private AudioClip drawerOpenSFX, drawerCloseSFX;
+    [SerializeField] private AudioClip fastBreathingSFX;
+    [SerializeField] private AudioClip fridgeOpenSFX, fridgeCloseSFX;
+    [SerializeField] private AudioClip tickingSFX;
+    [SerializeField] private AudioClip toiletFlushingSFX;
+    [SerializeField] private AudioClip waterGulpSFX;
 
     [Header("Music Components")]
     [SerializeField] private Slider musicSlider;
     [SerializeField] private float musicVolume;
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioClip currMusicClip;
     [SerializeField] private float transitionDuration;
 
     [Header("Sound FX Components")]
@@ -88,5 +98,16 @@ public class AudioController : MonoBehaviour
 
         musicSource.volume = musicVolume;
         musicSource.Play();
+    }
+
+    private void transitionSFX(AudioClip newClip)
+    {
+        sfxSource.Stop();
+
+        sfxSource.clip = newClip;
+        currSFXClip = newClip;
+
+        sfxSource.volume = sfxVolume;
+        sfxSource.Play();
     }
 }

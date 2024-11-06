@@ -48,7 +48,7 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(dialogueQueue.Count != 0 && !isPrinting && !GameManager.instance.gamePaused)
+        if(dialogueQueue.Count != 0 && !isPrinting && !GameManager.instance.gamePaused && QTEController.instance.QTEfinished)
         {
             if(fadeInAnimation)
             {
