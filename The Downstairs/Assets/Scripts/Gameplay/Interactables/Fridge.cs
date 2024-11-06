@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Fridge : MonoBehaviour
 {
-    public int foodQuantity;
+    public int currFoodQuantity;
+    [SerializeField] private int startingFoodQuantity;
     [SerializeField] private TextMeshProUGUI foodQuantityUI;
     [SerializeField] private int hungerIncrease;
 
@@ -27,10 +29,6 @@ public class Fridge : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        triggerable = false;
-
-        updateFridgeText();
-
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
@@ -43,17 +41,17 @@ public class Fridge : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<TopdownPlayerController>())
         {
             triggerable = true;
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<TopdownPlayerController>())
         {
             triggerable = false;
         }
@@ -61,9 +59,9 @@ public class Fridge : MonoBehaviour
 
     private void useFridge()
     {
-        if(foodQuantity > 0)
+        if(currFoodQuantity > 0)
         {
-            foodQuantity--;
+            currFoodQuantity--;
             updateFridgeText();
 
             MetersController.instance.resetHungerMeter();
@@ -76,6 +74,16 @@ public class Fridge : MonoBehaviour
 
     private void updateFridgeText()
     {
-        foodQuantityUI.text = "Fridge Uses: " + foodQuantity.ToString();
+        foodQuantityUI.text = "Fridge Uses: " + currFoodQuantity.ToString();
     }
+
+    public void resetFridge()
+    {
+        triggerable = false;
+
+        currFoodQuantity = startingFoodQuantity;
+
+        updateFridgeText();
+    }
+    
 }

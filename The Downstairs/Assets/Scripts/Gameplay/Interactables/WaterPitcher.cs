@@ -6,7 +6,8 @@ using TMPro;
 [RequireComponent(typeof(BoxCollider2D))]
 public class WaterPitcher : MonoBehaviour
 {
-    public int waterQuantity;
+    public int currWaterQuantity;
+    [SerializeField] private int startingWaterQuantity;
     [SerializeField] private TextMeshProUGUI waterQuantityUI;
     [SerializeField] private int thirstIncrease;
 
@@ -27,10 +28,6 @@ public class WaterPitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        triggerable = false;
-
-        updatePitcherText();
-
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
@@ -45,8 +42,7 @@ public class WaterPitcher : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
         {
             triggerable = true;
         }
@@ -54,8 +50,7 @@ public class WaterPitcher : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null || 
-            other.gameObject.GetComponent<SidescrollPlayerController>() != null)
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
         {
             triggerable = false;
         }
@@ -63,9 +58,9 @@ public class WaterPitcher : MonoBehaviour
 
     private void usePitcher()
     {
-        if(waterQuantity > 0)
+        if(currWaterQuantity > 0)
         {
-            waterQuantity--;
+            currWaterQuantity--;
             updatePitcherText();
 
             MetersController.instance.resetThirstMeter();
@@ -78,6 +73,15 @@ public class WaterPitcher : MonoBehaviour
 
     private void updatePitcherText()
     {
-        waterQuantityUI.text = "Water Pitcher Uses: " + waterQuantity.ToString();
+        waterQuantityUI.text = "Water Pitcher Uses: " + currWaterQuantity.ToString();
+    }
+
+    public void resetWater()
+    {
+        triggerable = false;
+
+        currWaterQuantity = startingWaterQuantity;
+
+        updatePitcherText();
     }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Laundry : MonoBehaviour
 {
-    public int laundryQuantity;
+    public int currLaundryQuantity;
+    [SerializeField] private int startingLaundryQuantity;
     [SerializeField] private TextMeshProUGUI laundryQuantityUI;
     private bool triggerable;
     public static Laundry instance {get; private set;}
@@ -24,9 +25,6 @@ public class Laundry : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        triggerable = false;
-
-        updateLaundryText();
     }
 
     // Update is called once per frame
@@ -74,9 +72,9 @@ public class Laundry : MonoBehaviour
 
     private void useLaundry()
     {
-        if(laundryQuantity > 0)
+        if(currLaundryQuantity > 0)
         {
-            laundryQuantity--;
+            currLaundryQuantity--;
             updateLaundryText();
 
             MetersController.instance.lockBedroom = false;
@@ -89,6 +87,15 @@ public class Laundry : MonoBehaviour
 
     private void updateLaundryText()
     {
-        laundryQuantityUI.text = "Laundry Uses: " + laundryQuantity.ToString();
+        laundryQuantityUI.text = "Laundry Uses: " + currLaundryQuantity.ToString();
+    }
+
+    public void resetLaundry()
+    {
+        triggerable = false;
+
+        currLaundryQuantity = startingLaundryQuantity;
+
+        updateLaundryText();
     }
 }

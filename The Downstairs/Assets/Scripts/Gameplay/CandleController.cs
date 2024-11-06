@@ -32,7 +32,8 @@ public class CandleController : MonoBehaviour
 
     [Header("Candle UI")]
     [SerializeField] public bool candlesFull;
-    [SerializeField] public int candleCount;
+    [SerializeField] public int currCandleCount;
+    [SerializeField] private int startingCandleCount;
     [SerializeField] private int candleCap;
     [SerializeField] private List<GameObject> candleUI = new();
     
@@ -72,11 +73,6 @@ public class CandleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initializeCandleUI();
-
-        candleInUse = false;
-
-        strikeCount = 0;
         
     }
 
@@ -112,7 +108,7 @@ public class CandleController : MonoBehaviour
             {
                 currentLight = light.GetComponent<Light2D>();
 
-                Debug.Log("currentlight: " + currentLight);
+                // Debug.Log("currentlight: " + currentLight);
 
                 enableCandlelight(candleInUse);
             }
@@ -124,7 +120,7 @@ public class CandleController : MonoBehaviour
         float randomChance = Random.Range(0.0f, 1.0f);
         Debug.Log("randomChance: " + randomChance);
 
-        if(candleCount > 0 && MatchController.instance.matchCount > 0)
+        if(currCandleCount > 0 && MatchController.instance.matchCount > 0)
         {
             if(candleInUse)
             {
@@ -221,11 +217,11 @@ public class CandleController : MonoBehaviour
 
     private void useCandle()
     {
-        candleCount--;
+        currCandleCount--;
 
         candlesFull = false;
 
-        candleUI[candleCount].SetActive(false);
+        candleUI[currCandleCount].SetActive(false);
     }
 
     private void enableCandlelight(bool enable)
@@ -235,24 +231,31 @@ public class CandleController : MonoBehaviour
         else currentLight.intensity = maxIntensity;
     }
 
-    private void initializeCandleUI(){
+    public void resetCandles()
+    {
+        strikeCount = 0;
+
+        candleInUse = false;
         candlesFull = false;
 
-        for(int i=0; i < candleCount; i++){
+        currCandleCount = startingCandleCount;
+
+        for(int i=0; i < startingCandleCount; i++){
             candleUI[i].SetActive(true);
         }
         
-        for(int j = candleCount; j < candleUI.Count; j++){
+        for(int j = currCandleCount; j < candleUI.Count; j++){
             candleUI[j].SetActive(false);
         }
     }
 
-    public void pickUpCandle(){
+    public void pickUpCandle()
+    {
         if(!candlesFull){
-            candleUI[candleCount].SetActive(true);
-            candleCount++;
+            candleUI[currCandleCount].SetActive(true);
+            currCandleCount++;
 
-            if(candleCount == candleCap)
+            if(currCandleCount == candleCap)
             {
                 candlesFull = true;
             }

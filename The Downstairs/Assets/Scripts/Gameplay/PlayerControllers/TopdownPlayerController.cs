@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics.SymbolStore;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]

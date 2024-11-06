@@ -63,12 +63,8 @@ public class GameManager : MonoBehaviour
 
         OpenMainMenu();
 
-        // enableGame(true);
-        // triggerGameOver();
+        ResetManager.instance.HardReset();
 
-        nightCount = 1;
-
-        isNewGame = true; 
         // isNewGame = false; // change to false to skip intro cutscene
 
     }
@@ -110,8 +106,6 @@ public class GameManager : MonoBehaviour
         enableGame(false);
         switchScreen(ScreenType.MainMenu);
 
-        resetGame();
-
         MainMenu.instance.startMainMenu();
     }
 
@@ -130,7 +124,6 @@ public class GameManager : MonoBehaviour
         playGame();
 
         AudioController.instance.playGameplayMusic();
-        MetersController.instance.resetMeters();
 
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
@@ -162,7 +155,7 @@ public class GameManager : MonoBehaviour
 
     public void openContinueScreen()
     {
-        resetGame();
+        ResetManager.instance.SoftReset();
 
         enableScreen(ScreenType.Continue, true);
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
@@ -182,14 +175,16 @@ public class GameManager : MonoBehaviour
         nightCount++;
         MetersController.instance.resetMeters();
 
-        ClockController.instance.resetClockHands(ClockController.instance.resetHour);
-
         ClockController.instance.startRotating();
     }
 
     public void returnToMainMenu()
     {
         OpenMainMenu();
+
+        if(GameOver.instance.isGameOver) ResetManager.instance.HardReset();
+        
+        else ResetManager.instance.SoftReset();
     }
 
     public void triggerGameOver()
@@ -226,12 +221,6 @@ public class GameManager : MonoBehaviour
         enableScreen(ScreenType.Pause, false);
         Time.timeScale = 1;
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
-    }
-    
-    public void resetGame()
-    {
-        gamePaused = true;
-        gameReset = true;
     }
 
     public void playGame()

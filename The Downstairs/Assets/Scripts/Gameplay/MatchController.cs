@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MatchController : MonoBehaviour
 {
-    public int matchCount;
     public bool matchesFull;
+    public int currMatchCount;
+    [SerializeField] private int startingMatchCount;
     [SerializeField] private int matchCap;
     [SerializeField] private int minMatchPickup, maxMatchPickup;
     [SerializeField] private List<GameObject> matchUI = new();
@@ -28,7 +29,7 @@ public class MatchController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        intializeMatchUI();
+        
     }
 
     // Update is called once per frame
@@ -37,32 +38,35 @@ public class MatchController : MonoBehaviour
         
     }
 
-    private void intializeMatchUI(){
+    public void resetMatches()
+    {
         matchesFull = false;
+        currMatchCount = startingMatchCount;
 
-        for(int i=0; i < matchCount; i++){
+        for(int i = 0; i < currMatchCount; i++){
             matchUI[i].SetActive(true);
         }
         
-        for(int j=matchCount; j < matchUI.Count; j++){
+        for(int j = currMatchCount; j < matchUI.Count; j++){
             matchUI[j].SetActive(false);
         }
     }
 
-    public void useMatch(){
+    public void useMatch()
+    {
         if(CandleController.instance.candleInUse)
         {
             Dialogue.instance.addToDialogue("Should save my matches");
         }
         else
         {
-            if(matchCount > 0 && CandleController.instance.candleCount > 0)
+            if(currMatchCount > 0 && CandleController.instance.currCandleCount > 0)
             {
-                matchCount--;
+                currMatchCount--;
 
                 matchesFull = false;
 
-                matchUI[matchCount].SetActive(false);
+                matchUI[currMatchCount].SetActive(false);
             }
             else{
                 Debug.Log("out of matches or candles");
@@ -72,23 +76,24 @@ public class MatchController : MonoBehaviour
         
     }
 
-    public void pickUpMatches(){
+    public void pickUpMatches()
+    {
         randomCount = Random.Range(minMatchPickup, maxMatchPickup + 1);
 
-        if(matchCount + randomCount > matchCap){
-            for(int i = matchCount; i < matchUI.Count; i++){
+        if(currMatchCount + randomCount > matchCap){
+            for(int i = currMatchCount; i < matchUI.Count; i++){
                 matchUI[i].SetActive(true);
             }
-            matchCount = matchCap;
+            currMatchCount = matchCap;
             matchesFull = true;
         }
         else{
-            for(int i = matchCount; i < matchCount + randomCount; i++){
+            for(int i = currMatchCount; i < currMatchCount + randomCount; i++){
                 matchUI[i].SetActive(true);
             }
-            matchCount += randomCount;
+            currMatchCount += randomCount;
 
-            if(matchCount == matchCap)
+            if(currMatchCount == matchCap)
             {
                 matchesFull = true;
             }

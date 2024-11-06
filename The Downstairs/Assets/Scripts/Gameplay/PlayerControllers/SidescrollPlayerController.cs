@@ -7,7 +7,6 @@ public class SidescrollPlayerController : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private Camera VhsCamera;
     [SerializeField] private float playerSpeed;
     [SerializeField] private float cameraBedroomY;
 
@@ -20,10 +19,8 @@ public class SidescrollPlayerController : MonoBehaviour
     private float horizontalInput;
     [SerializeField] private SpriteRenderer sprite;
 
-    
     private Vector3 velocity;
     private Vector3 newPosition;
-    
     
     enum Direction {Left, Right};
     private Direction currentDirection = Direction.Right;
@@ -72,13 +69,8 @@ public class SidescrollPlayerController : MonoBehaviour
         newPosition.z = playerCamera.transform.position.z;
 
         playerCamera.transform.position = newPosition;
-        VhsCamera.transform.position = newPosition; 
-        
-        animator.SetBool(IsMoving, !idle);
-    }
 
-    private void OnInteract(){
-        // Debug.Log("spacebar pressed");
+        animator.SetBool(IsMoving, !idle);
     }
 
     private void OnUseMatch()
@@ -105,7 +97,6 @@ public class SidescrollPlayerController : MonoBehaviour
         var scale = visualObject.transform.localScale;
         scale.z = Mathf.Sign(xaxis);
         visualObject.transform.localScale = scale;
-
 
     }
 

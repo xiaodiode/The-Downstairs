@@ -45,12 +45,12 @@ public class ContinueScreen : MonoBehaviour
         nightCounter1.text = GameManager.instance.nightCount.ToString() + " NIGHTS \nSURVIVED";
         nightCounter2.text = GameManager.instance.nightCount.ToString() + " NIGHTS \nSURVIVED";
 
-        fridgeUsage.text = Fridge.instance.foodQuantity.ToString() + "Uses Left";
+        fridgeUsage.text = Fridge.instance.currFoodQuantity.ToString() + "Uses Left";
         pitcherUsage.text = WaterPitcher.instance.waterQuantity.ToString() + "Uses Left";
         laundryUsage.text = Laundry.instance.laundryQuantity.ToString() + "Uses Left";
 
         matchCount.text = MatchController.instance.matchCount.ToString() + "Left";
-        candleCount.text = CandleController.instance.candleCount.ToString() + "Left";
+        candleCount.text = CandleController.instance.currCandleCount.ToString() + "Left";
 
         GameManager.instance.increaseNightCount();
     }

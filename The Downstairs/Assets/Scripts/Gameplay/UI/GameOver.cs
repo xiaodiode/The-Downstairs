@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
+    public bool isGameOver;
+
     [Header("Screen Elements")]
     [SerializeField] private RawImage background;
     [SerializeField] private TextMeshProUGUI titleText;
@@ -49,7 +51,8 @@ public class GameOver : MonoBehaviour
         {
            text.color = newColor;
         }
-        
+
+        isGameOver = true;
     }
 
     // Update is called once per frame
@@ -68,8 +71,6 @@ public class GameOver : MonoBehaviour
             background.color = newBgColor;
 
             secondsPassed += Time.deltaTime;
-
-            // Debug.Log("bg seconds passed: " + secondsPassed);
 
             yield return null;
         }
@@ -104,6 +105,8 @@ public class GameOver : MonoBehaviour
 
             yield return null;
         }
+
+        
         
     }
 
