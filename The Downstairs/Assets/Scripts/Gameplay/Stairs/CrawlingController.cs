@@ -133,7 +133,8 @@ public class CrawlingController : MonoBehaviour
 
     public void AddTrip()
     {
-         statesQueue.Enqueue(CrawlingState.Trip);
+        statesQueue.Clear();
+        statesQueue.Enqueue(CrawlingState.Trip);
     }
 
     public IEnumerator StartCrawling()
@@ -152,6 +153,8 @@ public class CrawlingController : MonoBehaviour
             {
                 if(statesQueue.Peek() == CrawlingState.Crawl)
                 {
+                    float totalTime;
+
                     if(justTripped)
                     {
                         if(goingDown) animator.Play(stateNames[CrawlingState.DownPickup], 0, 0f);
@@ -160,7 +163,20 @@ public class CrawlingController : MonoBehaviour
 
                         isCrawling = false;
 
-                        yield return new WaitForSeconds(pickupTime);
+                        totalTime = pickupTime;
+
+                        if(totalTime > 0)
+                        {
+                            if(statesQueue.Peek() == CrawlingState.Trip)
+                            {
+                                break;
+                            }
+                            totalTime -= Time.deltaTime;
+
+                            yield return null;
+                        }
+
+                        // yield return new WaitForSeconds(pickupTime);
 
                         justTripped = false;
 
@@ -173,7 +189,20 @@ public class CrawlingController : MonoBehaviour
 
                     isCrawling = true;
 
-                    yield return new WaitForSeconds(crawlTime);
+                    totalTime = crawlTime;
+
+                    if(totalTime > 0)
+                    {
+                        if(statesQueue.Peek() == CrawlingState.Trip)
+                        {
+                            break;
+                        }
+                        totalTime -= Time.deltaTime;
+
+                        yield return null;
+                    }
+
+                    // yield return new WaitForSeconds(crawlTime);
 
                     isCrawling = false;
                 }
