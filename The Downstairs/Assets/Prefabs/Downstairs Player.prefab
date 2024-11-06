@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lenShortAxis: 1
-  lenLongAxis: 2
+  lenLongAxis: 1.14
   objs:
   - {fileID: 0}
   - {fileID: 0}

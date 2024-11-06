@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             if (!gamePaused)
             {
                 // pauseGame(true, RendererController.RendererType.VHS);
-                pauseGame(true, RendererController.RendererType.Light2D);
+                pauseGame(true);
             }
 
             else resumeGame();
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         AudioController.instance.playGameplayMusic();
         MetersController.instance.resetMeters();
 
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
+        // RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
         StartCoroutine(Timer.instance.startTimer());
         ClockController.instance.startRotating();
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
         playGame();
 
         enableScreen(ScreenType.Continue, false);
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
+        // RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
         isNewGame = false;
         nightCount++;
@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
 
     public void triggerGameOver()
     {
-        pauseGame(false, RendererController.RendererType.Light2D);
+        pauseGame(false);
 
         enableScreen(ScreenType.GameOver, true);
 
@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
         isNewGame = false;
     }
 
-    public void pauseGame(bool display, RendererController.RendererType renderer)
+    public void pauseGame(bool display)
     {
         gamePaused = true;
 
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
 
-        RendererController.instance.toggleGameRenderer(renderer);
+        // RendererController.instance.toggleGameRenderer(renderer);
     }
 
     public void resumeGame()
@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
         enableScreen(ScreenType.Pause, false);
         Time.timeScale = 1;
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
+        // RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
     }
     
     public void resetGame()

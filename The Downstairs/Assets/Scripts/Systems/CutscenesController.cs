@@ -51,7 +51,7 @@ public class CutscenesController : MonoBehaviour
         GameManager.instance.enableGame(true);
         GameManager.instance.switchScreen(GameManager.ScreenType.Cutscene);
 
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
+        // RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
         for(int i=0; i<introCutscene.Count; i++)
         {
@@ -66,9 +66,9 @@ public class CutscenesController : MonoBehaviour
     {
         GameManager.instance.enableScreen(GameManager.ScreenType.Cutscene, true);
 
-        GameManager.instance.pauseGame(false, RendererController.RendererType.VHS);
+        GameManager.instance.pauseGame(false);
 
-        RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
+        // RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
         for(int i = 0; i < stairsCutscene.Count; i++)
         {
