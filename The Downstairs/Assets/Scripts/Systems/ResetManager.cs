@@ -58,7 +58,7 @@ public class ResetManager : MonoBehaviour
         GameManager.instance.gamePaused = true;
         GameManager.instance.gameReset = true;
 
-        GameOver.instance.isGameOver = false;
+        GameManager.instance.isGameOver = false;
     }
 
     public void SoftReset()

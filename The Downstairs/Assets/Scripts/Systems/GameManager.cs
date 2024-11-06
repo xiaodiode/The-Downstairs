@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public bool isNewGame;
-    public bool gamePaused;
-    public bool gameReset;
+    public bool gamePaused, gameReset;
+    public bool isGameOver;
 
     [Header("UI Screens")]
     [SerializeField] public GameObject screensCanvas;
@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
     {
         OpenMainMenu();
 
-        if(GameOver.instance.isGameOver) ResetManager.instance.HardReset();
+        if(isGameOver) ResetManager.instance.HardReset();
         
         else ResetManager.instance.SoftReset();
     }

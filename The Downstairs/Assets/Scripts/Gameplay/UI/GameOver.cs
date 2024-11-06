@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    public bool isGameOver;
-
     [Header("Screen Elements")]
     [SerializeField] private RawImage background;
     [SerializeField] private TextMeshProUGUI titleText;
@@ -52,7 +50,7 @@ public class GameOver : MonoBehaviour
            text.color = newColor;
         }
 
-        isGameOver = true;
+        GameManager.instance.isGameOver = true;
     }
 
     // Update is called once per frame
