@@ -84,7 +84,7 @@ public class QTEController : MonoBehaviour
 
         firstKey = false;
 
-        while(currentIndex < numberKeys)
+        while(currentIndex < numberKeys && !GameManager.instance.gameReset)
         {
             if(timer < 0)
             {
@@ -159,7 +159,7 @@ public class QTEController : MonoBehaviour
     }
 
 
-    public IEnumerator resetQTE()
+    public IEnumerator setupQTE()
     {
         enableUI(true);
 
@@ -236,12 +236,17 @@ public class QTEController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        StartCoroutine(resetQTE());
+        StartCoroutine(setupQTE());
         MoveToCurrentPosition(); 
     }
 
     private void enableUI(bool enable)
     {
         qteUI.SetActive(enable);
+    }
+
+    public void resetQTE()
+    {
+        enableUI(false);
     }
 }

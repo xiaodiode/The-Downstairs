@@ -153,13 +153,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(CutscenesController.instance.playStairsCutscene());
     }
 
-    public void openContinueScreen()
+    public IEnumerator openContinueScreen()
     {
         ResetManager.instance.SoftReset();
 
         enableScreen(ScreenType.Continue, true);
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
-
+        
+        yield return null;
         ContinueScreen.instance.updateText();
 
     }
@@ -173,6 +174,7 @@ public class GameManager : MonoBehaviour
 
         isNewGame = false;
         nightCount++;
+
         MetersController.instance.resetMeters();
 
         ClockController.instance.startRotating();

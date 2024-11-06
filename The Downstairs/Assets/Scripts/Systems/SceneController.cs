@@ -8,6 +8,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Camera gameCamera;
 
     [Header("Room Scenes")]
+    public ScenesType currentScene;
+    [SerializeField] ScenesType startingScene;
 
     [Header("Bedroom")]
     [SerializeField] private GameObject bedroom;
@@ -25,7 +27,7 @@ public class SceneController : MonoBehaviour
 
     public Dictionary<ScenesType, GameObject> scenesDict;
     public Dictionary<ScenesType, Stairs> stairsScenesDict;
-    public ScenesType currentScene;
+    
     
     public enum ScenesType
     {
@@ -72,9 +74,6 @@ public class SceneController : MonoBehaviour
             { ScenesType.Stairs3, stairs3 },
         };
         
-        currentScene = ScenesType.Upstairs;
-
-        switchScenes(currentScene);
     }
 
     // Update is called once per frame
@@ -100,6 +99,15 @@ public class SceneController : MonoBehaviour
         currentScene = newScene;
 
         CandleController.instance.checkActiveLight();
+    }
+
+    public IEnumerator ResetScenes()
+    {
+        yield return null;
+        
+        currentScene = startingScene;
+
+        switchScenes(currentScene);
     }
 
 }

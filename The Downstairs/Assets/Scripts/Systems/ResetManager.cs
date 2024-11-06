@@ -39,6 +39,12 @@ public class ResetManager : MonoBehaviour
 
     public void HardReset()
     {
+        GameManager.instance.isNewGame = true;
+        GameManager.instance.gamePaused = true;
+        GameManager.instance.gameReset = true;
+        GameManager.instance.isGameOver = false;
+        GameManager.instance.nightCount = 1;
+
         resetPlayer();
 
         MetersController.instance.resetMeters();
@@ -49,20 +55,21 @@ public class ResetManager : MonoBehaviour
 
         Dialogue.instance.resetDialogue();
 
+        StartCoroutine(SceneController.instance.ResetScenes());
+
         Fridge.instance.resetFridge();
         WaterPitcher.instance.resetWater();
         Laundry.instance.resetLaundry();
 
-        GameManager.instance.nightCount = 1;
-        GameManager.instance.isNewGame = true;
-        GameManager.instance.gamePaused = true;
-        GameManager.instance.gameReset = true;
-
-        GameManager.instance.isGameOver = false;
+        QTEController.instance.resetQTE();
     }
 
     public void SoftReset()
     {
+        GameManager.instance.isNewGame = false;
+        GameManager.instance.gamePaused = true;
+        GameManager.instance.gameReset = true;
+
         resetPlayer();
 
         MetersController.instance.resetMeters();
@@ -71,9 +78,9 @@ public class ResetManager : MonoBehaviour
 
         Dialogue.instance.resetDialogue();
 
-        GameManager.instance.isNewGame = false;
-        GameManager.instance.gamePaused = true;
-        GameManager.instance.gameReset = true;
+        StartCoroutine(SceneController.instance.ResetScenes());
+
+        QTEController.instance.resetQTE();
     }
 
     private void resetPlayer()
