@@ -155,6 +155,8 @@ public class CrawlingController : MonoBehaviour
                 {
                     float totalTime;
 
+                    isCrawling = true;
+
                     if(justTripped)
                     {
                         if(goingDown) animator.Play(stateNames[CrawlingState.DownPickup], 0, 0f);
@@ -183,11 +185,11 @@ public class CrawlingController : MonoBehaviour
                         Debug.Log("picked up");
                     }
 
+                    isCrawling = true;
+
                     if(goingDown) animator.Play(stateNames[CrawlingState.DownCrawl], 0, 0f);
                     
                     else animator.Play(stateNames[CrawlingState.UpCrawl], 0, 0f);
-
-                    isCrawling = true;
 
                     totalTime = crawlTime;
 

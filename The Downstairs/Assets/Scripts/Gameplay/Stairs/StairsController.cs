@@ -54,7 +54,7 @@ public class StairsController : MonoBehaviour
 
         while(!CrawlingController.instance.crawlingFinished)
         {
-            if(CrawlingController.instance.isCrawling)
+            if(!QTEController.instance.isTripping)
             {
                 currentStairs.transform.position += newMoveTransform;
             }

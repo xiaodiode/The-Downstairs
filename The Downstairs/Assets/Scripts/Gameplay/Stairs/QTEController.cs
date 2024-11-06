@@ -16,6 +16,7 @@ public struct KeyInput
 public class QTEController : MonoBehaviour
 {   
     public bool QTEfinished;
+    public bool isTripping;
 
     [Header("QTE Mechanics")]
     [SerializeField] private float marginOfError;
@@ -72,6 +73,8 @@ public class QTEController : MonoBehaviour
         float timer = qteTimeLimit;
         QTEfinished = false;
 
+        isTripping = true;
+
         while(!Input.anyKeyDown)
         {
             yield return null;
@@ -106,6 +109,8 @@ public class QTEController : MonoBehaviour
                 if(Input.GetKeyDown(keyQTEObjects[currentIndex].keyCode))
                 {
                     CrawlingController.instance.AddCrawl();
+                    isTripping = false;
+
                     StartCoroutine(MoveToNextQTE());
 
                     timer = qteTimeLimit;
@@ -149,7 +154,9 @@ public class QTEController : MonoBehaviour
     }
 
     private void TripLogic()
-    {
+    {   
+        isTripping = true;
+
         MetersController.instance.sanityMeter.changeByAmount(-CrawlingController.instance.tripPenalty);
         CrawlingController.instance.AddTrip();
         changeSliderColor(errorColor);
