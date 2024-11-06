@@ -51,7 +51,5 @@ public class ContinueScreen : MonoBehaviour
 
         matchCount.text = MatchController.instance.currMatchCount.ToString() + "Left";
         candleCount.text = CandleController.instance.currCandleCount.ToString() + "Left";
-
-        GameManager.instance.increaseNightCount();
     }
 }

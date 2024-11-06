@@ -102,7 +102,7 @@ public class ClockController : MonoBehaviour
             }
         }
 
-        StartCoroutine(GameManager.instance.openContinueScreen());
+        GameManager.instance.openContinueScreen();
     }
 
     public void resetClockHands(int hour)
