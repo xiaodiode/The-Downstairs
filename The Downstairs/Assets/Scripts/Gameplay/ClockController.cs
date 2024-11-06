@@ -10,7 +10,7 @@ public class ClockController : MonoBehaviour
 
     [Header("Rotation Mechanics")]
     [SerializeField] private float secondsForHour;
-    [SerializeField] public int startHour, resetHour;
+    [SerializeField] public int tutorialHour, resetHour;
     [SerializeField] public int morningHour;
     [SerializeField] private int totalHours;
 
@@ -37,7 +37,7 @@ public class ClockController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        resetClockHands(startHour);
+        resetClockHands(tutorialHour);
     }
 
     // Update is called once per frame

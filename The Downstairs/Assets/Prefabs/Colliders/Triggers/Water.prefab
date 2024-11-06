@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c7a259130f4e74fa9621238d80244d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterQuantity: 2
+  currWaterQuantity: 0
+  startingWaterQuantity: 4
   waterQuantityUI: {fileID: 0}
   thirstIncrease: 100

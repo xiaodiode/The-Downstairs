@@ -120,7 +120,7 @@ public class CandleController : MonoBehaviour
         float randomChance = Random.Range(0.0f, 1.0f);
         Debug.Log("randomChance: " + randomChance);
 
-        if(currCandleCount > 0 && MatchController.instance.matchCount > 0)
+        if(currCandleCount > 0 && MatchController.instance.currMatchCount > 0)
         {
             if(candleInUse)
             {

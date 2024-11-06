@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct PlayerReset
+public struct ObjectReset
 {
-    public GameObject playerObject;
+    public GameObject gameObject;
     public Transform resetPosition;
 }
 
 public class ResetManager : MonoBehaviour
 {
-    [SerializeField] private List<PlayerReset> playerResets = new();
+    [SerializeField] private List<ObjectReset> objectResets = new();
 
     public static ResetManager instance {get; private set;}
 
@@ -45,7 +45,9 @@ public class ResetManager : MonoBehaviour
         CandleController.instance.resetCandles();
         MatchController.instance.resetMatches();
 
-        ClockController.instance.resetClockHands(ClockController.instance.startHour);
+        ClockController.instance.resetClockHands(ClockController.instance.tutorialHour);
+
+        Dialogue.instance.resetDialogue();
 
         Fridge.instance.resetFridge();
         WaterPitcher.instance.resetWater();
@@ -67,6 +69,8 @@ public class ResetManager : MonoBehaviour
 
         ClockController.instance.resetClockHands(ClockController.instance.resetHour);
 
+        Dialogue.instance.resetDialogue();
+
         GameManager.instance.isNewGame = false;
         GameManager.instance.gamePaused = true;
         GameManager.instance.gameReset = true;
@@ -74,9 +78,9 @@ public class ResetManager : MonoBehaviour
 
     private void resetPlayer()
     {
-        foreach(PlayerReset player in playerResets)
+        foreach(ObjectReset obj in objectResets)
         {
-            player.playerObject.transform.position = player.resetPosition.position;
+            obj.gameObject.transform.position = obj.resetPosition.position;
         }
     }
 }

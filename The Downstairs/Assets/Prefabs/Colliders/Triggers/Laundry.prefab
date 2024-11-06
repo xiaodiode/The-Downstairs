@@ -90,5 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384149ede19db340a63ebc751c2b24c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laundryQuantity: 3
+  currLaundryQuantity: 0
+  startingLaundryQuantity: 3
   laundryQuantityUI: {fileID: 0}

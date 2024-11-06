@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f806d84cd50292e4b8da5a62c0188569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodQuantity: 4
+  currFoodQuantity: 0
+  startingFoodQuantity: 4
   foodQuantityUI: {fileID: 0}
   hungerIncrease: 100

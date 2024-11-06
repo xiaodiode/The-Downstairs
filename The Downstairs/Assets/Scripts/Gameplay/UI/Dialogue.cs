@@ -42,13 +42,6 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isPrinting = false;
-
-        dialogueDilation = dialogueUI.gameObject.GetComponent<EnterFont>();
-
-        newTextColor = dialogueUI.color;
-
-        clearDialogue();
         
     }
 
@@ -83,7 +76,7 @@ public class Dialogue : MonoBehaviour
 
         yield return new WaitForSeconds(printDisplaySeconds);
 
-        clearDialogue();
+        clearDialogueUI();
         
 
         isPrinting = false;
@@ -94,7 +87,7 @@ public class Dialogue : MonoBehaviour
     {
         isPrinting = true;
 
-        clearDialogue();
+        clearDialogueUI();
 
         secondsPassed = 0;
 
@@ -144,7 +137,7 @@ public class Dialogue : MonoBehaviour
         
     }
 
-    private void clearDialogue()
+    private void clearDialogueUI()
     {
         dialogueUI.text = "";
     }
@@ -152,6 +145,18 @@ public class Dialogue : MonoBehaviour
     public void addToDialogue(string newDialogue)
     {
         dialogueQueue.Enqueue(newDialogue);
+    }
+
+    public void resetDialogue()
+    {
+        isPrinting = false;
+
+        dialogueDilation = dialogueUI.gameObject.GetComponent<EnterFont>();
+
+        newTextColor = dialogueUI.color;
+
+        dialogueQueue.Clear();
+        clearDialogueUI();
     }
 
 
