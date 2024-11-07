@@ -1,15 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
+[Serializable]
+public struct Cutscene
+{
+    public Sprite cutsceneSprite;
+    public List<GameObject> visualFX;
+    public float cutsceneSeconds;
+    public bool fadeIn;
+    public float fadeInSeconds;
+    public float maxGlobalIntensity;
+}
 public class CutscenesController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer cutsceneSprite;
+    [SerializeField] private Light2D globalLight;
     
     [Header("Intro Cutscene")]
-    [SerializeField] private List<Sprite> introCutscene = new();
-    [SerializeField] private List<int> secondsPerIntroScene = new();
+    [SerializeField] private List<Cutscene> introCutscenes = new();
 
     [Header("Stairs Cutscene")]
     [SerializeField] private List<Sprite> stairsCutscene = new();
@@ -55,10 +67,43 @@ public class CutscenesController : MonoBehaviour
 
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
-        for(int i=0; i<introCutscene.Count; i++)
+        float timePassed;
+
+        for(int i = 0; i < introCutscenes.Count; i++)
         {
-            cutsceneSprite.sprite = introCutscene[i];
-            yield return new WaitForSeconds(secondsPerIntroScene[i]);
+            cutsceneSprite.sprite = introCutscenes[i].cutsceneSprite;
+         
+            globalLight.intensity = introCutscenes[i].fadeIn ? 0 : introCutscenes[i].maxGlobalIntensity;
+
+            foreach(GameObject light in introCutscenes[i].visualFX)
+            {
+                light.SetActive(true);
+            }
+
+            timePassed = 0; 
+
+            while(timePassed < introCutscenes[i].cutsceneSeconds)
+            {
+                if(introCutscenes[i].fadeIn)
+                {
+                    if(timePassed < introCutscenes[i].fadeInSeconds)
+                    {
+                        globalLight.intensity = Mathf.Lerp(0, introCutscenes[i].maxGlobalIntensity, timePassed/introCutscenes[i].fadeInSeconds);
+                    }
+
+                }
+
+                timePassed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            
+
+            foreach(GameObject light in introCutscenes[i].visualFX)
+            {
+                light.SetActive(false);
+            }
         }
 
         StartCoroutine(GameManager.instance.initializeGameStart());
@@ -91,6 +136,11 @@ public class CutscenesController : MonoBehaviour
         }
 
         stairsCutscenePlayed = true;
+
+    }
+
+    private void playTVCutscene()
+    {
 
     }
 }
