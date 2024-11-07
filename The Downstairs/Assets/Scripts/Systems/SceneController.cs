@@ -92,14 +92,17 @@ public class SceneController : MonoBehaviour
 
         scenesDict[newScene].SetActive(true);
 
-        if(newScene == ScenesType.Bedroom) 
+        if(GameManager.instance.inGame)
         {
-            MetersController.instance.resetSanityMeter();
-            AudioManager.instance.playBedroomMusic();
-        }
-        else if(currentScene == ScenesType.Bedroom)
-        {
-            AudioManager.instance.playDownstairsMusic();
+            if(newScene == ScenesType.Bedroom) 
+            {
+                MetersController.instance.resetSanityMeter();
+                AudioManager.instance.playBedroomMusic();
+            }
+            else if(currentScene == ScenesType.Bedroom)
+            {
+                AudioManager.instance.playDownstairsMusic();
+            }
         }
 
         currentScene = newScene;

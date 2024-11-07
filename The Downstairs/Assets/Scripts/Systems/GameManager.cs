@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public bool isNewGame;
+    public bool inGame;
     public bool gamePaused, gameReset;
+    
     public bool isGameOver;
 
     [Header("UI Screens")]
@@ -106,6 +108,8 @@ public class GameManager : MonoBehaviour
         enableGame(false);
         switchScreen(ScreenType.MainMenu);
 
+        inGame = false;
+
         MainMenu.instance.startMainMenu();
     }
 
@@ -123,7 +127,9 @@ public class GameManager : MonoBehaviour
 
         playGame();
 
-        // AudioController.instance.playBedroomMusic();
+        inGame= true;
+
+        AudioManager.instance.playBedroomMusic();
 
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 

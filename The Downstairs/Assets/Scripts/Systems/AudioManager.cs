@@ -136,6 +136,16 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
+    public void StopSFX()
+    {
+        sfxSource.Stop();
+    }
+
     private void transitionMusic(AudioClip newClip)
     {
         musicSource.Stop();
