@@ -41,6 +41,8 @@ public class Toilet : MonoBehaviour
     private void useToilet()
     {
         MetersController.instance.resetToiletMeter();
+        
+        AudioManager.instance.playToiletFlush();
     }
 
 }

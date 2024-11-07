@@ -64,6 +64,8 @@ public class WaterPitcher : MonoBehaviour
             updatePitcherText();
 
             MetersController.instance.resetThirstMeter();
+
+            StartCoroutine(AudioManager.instance.playDrinking());
         }
         else
         {

@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
 
         playGame();
 
-        AudioController.instance.playGameplayMusic();
+        // AudioController.instance.playBedroomMusic();
 
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.Light2D);
 
@@ -188,6 +188,8 @@ public class GameManager : MonoBehaviour
         pauseGame(false);
 
         enableScreen(ScreenType.GameOver, true);
+
+        AudioManager.instance.playGameOverMusic();
 
         StartCoroutine(GameOver.instance.fadeIn());
     }

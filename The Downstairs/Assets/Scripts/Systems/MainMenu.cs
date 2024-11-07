@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
     {
         RendererController.instance.toggleScreensRenderer(RendererController.RendererType.Light2D);
 
-        AudioController.instance.playMainMenuMusic();
+        AudioManager.instance.playMainMenuMusic();
 
         animateTextEnter();
     }

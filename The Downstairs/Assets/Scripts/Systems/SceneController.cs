@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SceneController : MonoBehaviour
 {
@@ -94,6 +95,11 @@ public class SceneController : MonoBehaviour
         if(newScene == ScenesType.Bedroom) 
         {
             MetersController.instance.resetSanityMeter();
+            AudioManager.instance.playBedroomMusic();
+        }
+        else if(currentScene == ScenesType.Bedroom)
+        {
+            AudioManager.instance.playDownstairsMusic();
         }
 
         currentScene = newScene;
@@ -104,7 +110,7 @@ public class SceneController : MonoBehaviour
     public IEnumerator ResetScenes()
     {
         yield return null;
-        
+
         currentScene = startingScene;
 
         switchScenes(currentScene);

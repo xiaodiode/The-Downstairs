@@ -65,6 +65,8 @@ public class Fridge : MonoBehaviour
             updateFridgeText();
 
             MetersController.instance.resetHungerMeter();
+
+            StartCoroutine(AudioManager.instance.playEatingSequence());
         }
         else
         {
