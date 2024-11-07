@@ -226,7 +226,12 @@ public class CandleController : MonoBehaviour
 
     private void enableCandlelight(bool enable)
     {
-        if(!alwaysLit) currentLight.intensity = enable ? maxIntensity : 0;
+        if(!alwaysLit)
+        {
+            currentLight.intensity = enable ? maxIntensity : 0;
+            currentLight.pointLightOuterRadius = enable ? lightOuterRadius : 0;
+            currentLight.pointLightInnerRadius = enable ? lightInnerRadius : 0;
+        } 
         
         else currentLight.intensity = maxIntensity;
     }
