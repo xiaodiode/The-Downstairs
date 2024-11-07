@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class CutscenesController : MonoBehaviour
 {
-    [SerializeField] private RawImage cutsceneImage;
+    [SerializeField] private SpriteRenderer cutsceneSprite;
     
     [Header("Intro Cutscene")]
-    [SerializeField] private List<Texture2D> introCutscene = new();
+    [SerializeField] private List<Sprite> introCutscene = new();
     [SerializeField] private List<int> secondsPerIntroScene = new();
 
     [Header("Stairs Cutscene")]
-    [SerializeField] private List<Texture2D> stairsCutscene = new();
+    [SerializeField] private List<Sprite> stairsCutscene = new();
     [SerializeField] private List<int> secondsPerStairsScene = new();
 
     [Header("Ending Cutscene")]
-    [SerializeField] private List<Texture2D> endingCutscene = new();
+    [SerializeField] private List<Sprite> endingCutscene = new();
     [SerializeField] private List<int> secondsPerEndingScene = new();
 
     public static CutscenesController instance {get; private set;}
@@ -52,12 +52,12 @@ public class CutscenesController : MonoBehaviour
         GameManager.instance.switchScreen(GameManager.ScreenType.Cutscene);
 
         AudioManager.instance.StopMusic();
-        
+
         // RendererController.instance.toggleGameRenderer(RendererController.RendererType.VHS);
 
         for(int i=0; i<introCutscene.Count; i++)
         {
-            cutsceneImage.texture = introCutscene[i];
+            cutsceneSprite.sprite = introCutscene[i];
             yield return new WaitForSeconds(secondsPerIntroScene[i]);
         }
 
@@ -75,7 +75,7 @@ public class CutscenesController : MonoBehaviour
 
         for(int i = 0; i < stairsCutscene.Count; i++)
         {
-            cutsceneImage.texture = stairsCutscene[0];
+            cutsceneSprite.sprite = stairsCutscene[0];
             yield return new WaitForSeconds(secondsPerStairsScene[0]);
         }
 
