@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip drawerOpenSFX, drawerCloseSFX;
     [SerializeField] private AudioClip fastBreathingSFX;
     [SerializeField] private AudioClip fridgeOpenSFX, fridgeCloseSFX;
+    [SerializeField] private AudioClip lightFlicker;
     [SerializeField] private AudioClip tickingSFX;
     [SerializeField] private AudioClip toiletFlushingSFX;
     [SerializeField] private AudioClip waterGulpSFX;
@@ -107,6 +108,14 @@ public class AudioManager : MonoBehaviour
         sfxSource.loop = false;
     }
 
+    public void playTVCutsceneAudio()
+    {
+        transitionMusic(GameOverBGM);
+
+        transitionSFX(lightFlicker);
+        sfxSource.loop = true;
+    }
+
     public IEnumerator playDrinking()
     {
         int count = 0;
@@ -139,11 +148,13 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         musicSource.Stop();
+        musicSource.loop = false;
     }
 
     public void StopSFX()
     {
         sfxSource.Stop();
+        sfxSource.loop = false;
     }
 
     private void transitionMusic(AudioClip newClip)

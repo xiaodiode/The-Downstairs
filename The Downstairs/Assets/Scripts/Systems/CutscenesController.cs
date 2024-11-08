@@ -14,9 +14,14 @@ public struct Cutscene
     public bool fadeIn;
     public float fadeInSeconds;
     public float maxGlobalIntensity;
+    public bool zoomIn;
+    public float zoomInSeconds;
+    public Vector3 zoomScale;
 }
 public class CutscenesController : MonoBehaviour
 {
+    [SerializeField] private Vector3 normalZoomScale;
+    [SerializeField] private RectTransform cutsceneSpriteRect;
     [SerializeField] private SpriteRenderer cutsceneSprite;
     [SerializeField] private Light2D globalLight;
     
@@ -71,6 +76,13 @@ public class CutscenesController : MonoBehaviour
 
         for(int i = 0; i < introCutscenes.Count; i++)
         {
+            AudioManager.instance.StopMusic();
+            AudioManager.instance.StopSFX();
+
+            cutsceneSpriteRect.localScale = normalZoomScale;
+
+            if(i == 0) AudioManager.instance.playTVCutsceneAudio();
+
             cutsceneSprite.sprite = introCutscenes[i].cutsceneSprite;
          
             globalLight.intensity = introCutscenes[i].fadeIn ? 0 : introCutscenes[i].maxGlobalIntensity;
@@ -91,6 +103,14 @@ public class CutscenesController : MonoBehaviour
                         globalLight.intensity = Mathf.Lerp(0, introCutscenes[i].maxGlobalIntensity, timePassed/introCutscenes[i].fadeInSeconds);
                     }
 
+                }
+
+                if(introCutscenes[i].zoomIn)
+                {
+                    if(timePassed < introCutscenes[i].zoomInSeconds)
+                    {
+                        cutsceneSpriteRect.localScale = Vector3.Lerp(normalZoomScale, introCutscenes[i].zoomScale, timePassed/introCutscenes[i].zoomInSeconds);
+                    }
                 }
 
                 timePassed += Time.deltaTime;
