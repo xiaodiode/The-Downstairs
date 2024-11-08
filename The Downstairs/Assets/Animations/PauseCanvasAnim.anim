@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ContinueCanvas
+  m_Name: PauseCanvasAnim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -145,7 +145,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.5
+        time: 3
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -175,7 +175,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.5
+        time: 4.0068207
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -686,7 +686,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.5
+        time: 3
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -716,7 +716,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.5
+        time: 4.0068207
         value: 1
         inSlope: Infinity
         outSlope: Infinity
