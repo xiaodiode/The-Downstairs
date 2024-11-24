@@ -61,13 +61,19 @@ public class Laundry : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null) triggerable = true;
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null) {
+            triggerable = true;
+            GameManager.instance.setInteract(true, "- laundry -");
+        }
         
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null) triggerable = false;
+        if (other.gameObject.GetComponent<TopdownPlayerController>()  != null){
+            triggerable = false;
+            GameManager.instance.setInteract(false, "- laundry -");
+        }
     }
 
     private void useLaundry()

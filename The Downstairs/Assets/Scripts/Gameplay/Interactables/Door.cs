@@ -29,7 +29,9 @@ public class Door : MonoBehaviour
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
             triggerable = true;
+            GameManager.instance.setInteract(true, "- stairs -");
         }
+
     }
 
     public void OnTriggerExit2D(Collider2D other){
@@ -37,6 +39,7 @@ public class Door : MonoBehaviour
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
             triggerable = false;
+            GameManager.instance.setInteract(false, "- stairs -");
         }
     }
 

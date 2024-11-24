@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject continueScreen;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject gameplayScreen;
+    [SerializeField] public GameObject interactNotification;    
+    [SerializeField] private TextMeshProUGUI interactUI;
+
 
     [Header("Game Properties")]
     [SerializeField] public int nightCount;
@@ -233,4 +237,8 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
     }
     
+    public void setInteract(bool interactToggle, string interactStr){
+        interactNotification.SetActive(interactToggle);
+        interactUI.text = interactStr;
+    }
 }

@@ -34,6 +34,8 @@ public class Candle : MonoBehaviour
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
             triggerable = true;
+            GameManager.instance.setInteract(true, "- candle -");
+
         }
     }
 
@@ -42,6 +44,8 @@ public class Candle : MonoBehaviour
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
             triggerable = false;
+            GameManager.instance.setInteract(false, "- candle -");
+
         }
     }
 

@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private List<EnterFont> TextElements = new();
 
     public static MainMenu instance {get; private set;}
+    public bool skipCutscene = false;
 
     void Awake()
     {
@@ -42,7 +43,7 @@ public class MainMenu : MonoBehaviour
 
     public void playGame()
     {
-        if(GameManager.instance.isNewGame)
+        if(GameManager.instance.isNewGame && !skipCutscene)
         {
             GameManager.instance.playIntroCutscene(); 
         }
@@ -58,6 +59,10 @@ public class MainMenu : MonoBehaviour
         {
             text.StartDilation();
         }
+    }
+
+    public void toggleSkip(){
+        skipCutscene = !skipCutscene;
     }
 
 }

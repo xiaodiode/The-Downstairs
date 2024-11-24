@@ -46,6 +46,7 @@ public class Fridge : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>())
         {
             triggerable = true;
+            GameManager.instance.setInteract(true, "- fridge -");
         }
     }
 
@@ -54,6 +55,7 @@ public class Fridge : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>())
         {
             triggerable = false;
+            GameManager.instance.setInteract(false, "- fridge -");
         }
     }
 

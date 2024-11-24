@@ -45,6 +45,8 @@ public class WaterPitcher : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
         {
             triggerable = true;
+            GameManager.instance.setInteract(true, "- water pitcher -");
+
         }
     }
 
@@ -53,6 +55,7 @@ public class WaterPitcher : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
         {
             triggerable = false;
+            GameManager.instance.setInteract(false, "- water pitcher -");
         }
     }
 

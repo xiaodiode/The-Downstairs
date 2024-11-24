@@ -36,6 +36,7 @@ public class Storage : MonoBehaviour
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
             StorageController.instance.currentStorage = this;
+            GameManager.instance.setInteract(true, "- storage -");
         }
     }
 
@@ -44,6 +45,7 @@ public class Storage : MonoBehaviour
             other.gameObject.GetComponent<SidescrollPlayerController>() != null)
         {
             StorageController.instance.currentStorage = null;
+            GameManager.instance.setInteract(false, "- storage -");
         }
     }
 

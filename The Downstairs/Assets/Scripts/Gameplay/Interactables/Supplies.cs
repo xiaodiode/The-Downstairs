@@ -50,6 +50,7 @@ public class Supplies : MonoBehaviour
         {
             isTriggered = true;
             // Debug.Log("is triggered " + gameObject);
+            GameManager.instance.setInteract(true, "- supplies -");
         }
     }
 
@@ -58,6 +59,7 @@ public class Supplies : MonoBehaviour
             collider.gameObject.GetComponent<TopdownPlayerController>() != null)
         {
             isTriggered = false;
+            GameManager.instance.setInteract(false, "- supplies -");
         }
     }
 }

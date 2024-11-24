@@ -28,6 +28,7 @@ public class Toilet : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
         {
             triggerable = true;
+            GameManager.instance.setInteract(true, "- toilet -");
         }
     }
 
@@ -35,6 +36,7 @@ public class Toilet : MonoBehaviour
         if (other.gameObject.GetComponent<TopdownPlayerController>()  != null)
         {
             triggerable = false;
+            GameManager.instance.setInteract(false, "- toilet -");
         }
     }
 
