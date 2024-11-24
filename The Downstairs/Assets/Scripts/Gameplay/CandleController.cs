@@ -211,6 +211,8 @@ public class CandleController : MonoBehaviour
         }
         
         enableCandlelight(false);
+
+        GameManager.instance.setInteract(true, "no light");
         candleInUse = false;
     }
 
@@ -222,6 +224,7 @@ public class CandleController : MonoBehaviour
         candlesFull = false;
 
         candleUI[currCandleCount].SetActive(false);
+        GameManager.instance.setInteract(false, "no light");
     }
 
     private void enableCandlelight(bool enable)

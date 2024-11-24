@@ -34,6 +34,7 @@ public class QTEController : MonoBehaviour
     [SerializeField] private Transform qteSquare;
     [SerializeField] private Slider qteTimerSlider;  
 
+    [SerializeField] private GameObject startingQTE;
     [Header("QTE Animation Settings")]
     [SerializeField] private float scaleAmtS = 0.8f;    
 
@@ -74,12 +75,14 @@ public class QTEController : MonoBehaviour
         QTEfinished = false;
 
         isTripping = true;
-
+        startingQTE.SetActive(true);
         while(!Input.anyKeyDown)
         {
             yield return null;
         }
         Debug.Log("past first key");
+
+        startingQTE.SetActive(false);
 
         StartCoroutine(CrawlingController.instance.StartCrawling());
 

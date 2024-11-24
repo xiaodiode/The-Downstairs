@@ -66,6 +66,7 @@ public class StairsController : MonoBehaviour
         Debug.Log("switching scenes to " + targetScene);
 
         stairsSwitched = true;
+                GameManager.instance.setInteract(true, "- light match - [shift]");
 
         
     }
