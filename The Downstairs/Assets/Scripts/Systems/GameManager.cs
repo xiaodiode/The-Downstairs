@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public bool gamePaused, gameReset;
     
     public bool isGameOver;
+    public delegate void GameStartDebug();
+    public event GameStartDebug OnGameStartDebug;
 
     [Header("UI Screens")]
     [SerializeField] public GameObject screensCanvas;
@@ -72,6 +74,13 @@ public class GameManager : MonoBehaviour
         ResetManager.instance.HardReset();
 
         // isNewGame = false; // change to false to skip intro cutscene
+
+        // Subscribe init settings for debug mode 'game start'
+        QTEDebug qtedebug = FindObjectOfType<QTEDebug>();
+        if (qtedebug != null) 
+        {
+            OnGameStartDebug += qtedebug.QTEDebugInit;
+        }
 
     }
 
@@ -149,7 +158,11 @@ public class GameManager : MonoBehaviour
 
         CrawlingController.instance.setAnimSpeeds();
 
-        yield return new WaitForSeconds(3);
+        yield return null;
+
+        // Invoke any subscribed debug settings
+        // for debug init
+        OnGameStartDebug?.Invoke();
 
     }
 
