@@ -52,7 +52,7 @@ public class Timer : MonoBehaviour
 
             else
             {
-                secondsPassed = Mathf.FloorToInt(timePassed);
+                secondsPassed = ClockController.instance.getTimeNeeded()-Mathf.FloorToInt(timePassed);
                 
                 seconds = secondsPassed % 60;
                 minutes = (secondsPassed/60) % 60;

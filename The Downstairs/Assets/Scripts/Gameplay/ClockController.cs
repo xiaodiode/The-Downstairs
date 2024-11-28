@@ -52,6 +52,10 @@ public class ClockController : MonoBehaviour
         StartCoroutine(rotateMinuteHand());
     }
 
+    public int getTimeNeeded()
+    {
+        return (int) (secondsForHour * totalHours);
+    }
     private IEnumerator rotateHourHand()
     {
         float timePassed = 0;
@@ -63,7 +67,7 @@ public class ClockController : MonoBehaviour
             if(GameManager.instance.gamePaused) yield return null;
 
             else
-            {
+            { 
                 currHourRotation = hourHand.transform.rotation.eulerAngles;
 
                 currHourRotation.z = startGameAngle - (totalHours*30)*(timePassed/(secondsForHour*totalHours));
