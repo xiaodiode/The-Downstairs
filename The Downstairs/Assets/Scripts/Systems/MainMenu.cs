@@ -6,7 +6,7 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private List<EnterFont> TextElements = new();
-
+    [SerializeField] private GameObject cutsceneVolume;
     public static MainMenu instance {get; private set;}
     public bool skipCutscene = false;
 
@@ -63,6 +63,7 @@ public class MainMenu : MonoBehaviour
 
     public void toggleSkip(){
         skipCutscene = !skipCutscene;
+        cutsceneVolume.SetActive(!skipCutscene);
     }
 
 }
