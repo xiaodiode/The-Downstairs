@@ -4,9 +4,7 @@ using UnityEngine;
 public class StairsController : MonoBehaviour
 {
     public bool stairsSwitched;
-    public Stairs currentStairs;
     [SerializeField] private Vector3 moveTransform;
-    [SerializeField] private SceneController.ScenesType targetScene;
 
     Vector3 newMoveTransform;
 
@@ -37,38 +35,15 @@ public class StairsController : MonoBehaviour
 
     }
 
-    public IEnumerator moveStairs()
-    {
-        stairsSwitched = false;
+    //public IEnumerator moveStairs()
+    //{
+    //    stairsSwitched = false;
 
-        if(!CrawlingController.instance.goingDown)
-        {
-            newMoveTransform = -moveTransform;
-            targetScene = currentStairs.topTargetScene;
-        }
-        else
-        {
-            targetScene = currentStairs.botTargetScene;
-            newMoveTransform = moveTransform;
-        } 
+    //    
+    //    //SceneController.instance.switchScenes(targetScene);
+    //    // ^Whoever thought that control major scene switches in the stair animator script needs to be shot
 
-        while(!CrawlingController.instance.crawlingFinished)
-        {
-            if(!QTEController.instance.isTripping)
-            {
-                currentStairs.transform.position += newMoveTransform;
-            }
-
-            yield return null;
-        }
-        
-        SceneController.instance.switchScenes(targetScene);
-        Debug.Log("switching scenes to " + targetScene);
-
-        stairsSwitched = true;
-                GameManager.instance.setInteract(true, "- light match - [shift]");
-
-        
-    }
+    //    
+    //}
 
 }

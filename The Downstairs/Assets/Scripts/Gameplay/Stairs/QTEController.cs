@@ -17,6 +17,12 @@ public class QTEController : MonoBehaviour
 {   
     public bool QTEfinished;
     public bool isTripping;
+    public SceneController.ScenesType targetStairs;
+    private Stairs currentStairs;
+    private SceneController.ScenesType targetScene;
+    public bool goingDown;
+    public GameObject DKJAnimationMC;
+    private DKJAnimator dkjanimator;
 
     [Header("QTE Mechanics")]
     [SerializeField] private float marginOfError;
@@ -59,8 +65,8 @@ public class QTEController : MonoBehaviour
     void Start()
     {
         QTEfinished = true;
-        
         enableUI(false);
+        dkjanimator = DKJAnimationMC.GetComponent<DKJAnimator>();
     }
 
     // Update is called once per frame
@@ -85,6 +91,7 @@ public class QTEController : MonoBehaviour
         startingQTE.SetActive(false);
 
         StartCoroutine(CrawlingController.instance.StartCrawling());
+
 
         yield return null;
 
@@ -171,8 +178,13 @@ public class QTEController : MonoBehaviour
 
     public IEnumerator setupQTE()
     {
+        CrawlingController.instance.goingDown = goingDown;
+        if (goingDown) { 
+            dkjanimator.ResetGoingDown(); 
+        } else {
+            dkjanimator.ResetGoingUp();
+        }
         enableUI(true);
-
         currentIndex = 0;
         firstKey = true;
         
@@ -209,6 +221,7 @@ public class QTEController : MonoBehaviour
         keyQTEObjects[currentIndex].keyObject.transform.DOScale(scaleAmtS, 0.25f);
 
         currentIndex++;
+        dkjanimator.IncrementOffset();
 
         if (currentIndex < numberKeys)
         {
@@ -220,9 +233,19 @@ public class QTEController : MonoBehaviour
             Debug.Log("QTE Completed");
             QTEfinished = true;
 
-            while(!StairsController.instance.stairsSwitched) yield return null;
+            // The function that controls stairsSwitched is not even in this file... lazy, bad
+            yield return null;
             
-            StairsController.instance.stairsSwitched = false;
+            currentStairs =  SceneController.instance.stairsScenesDict[targetStairs]; 
+            if (goingDown) {
+                targetScene = currentStairs.botTargetScene;
+            } else {
+                targetScene = currentStairs.topTargetScene;
+            }
+            SceneController.instance.switchScenes(targetScene);
+            Debug.Log("switching scenes to " + targetScene);
+
+            GameManager.instance.setInteract(true, "- light match - [shift]");
 
             enableUI(false);
             
@@ -245,7 +268,6 @@ public class QTEController : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
         StartCoroutine(setupQTE());
         MoveToCurrentPosition(); 
     }

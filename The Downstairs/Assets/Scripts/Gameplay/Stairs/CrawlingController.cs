@@ -144,11 +144,10 @@ public class CrawlingController : MonoBehaviour
         crawlingFinished = false;
         isCrawling = false;
 
-        StartCoroutine(StairsController.instance.moveStairs());
+        //StartCoroutine(StairsController.instance.moveStairs());
 
         while(!QTEController.instance.QTEfinished)
         {
-            Debug.Log("still in here");
             if(statesQueue.Count != 0)
             {
                 if(statesQueue.Peek() == CrawlingState.Crawl)

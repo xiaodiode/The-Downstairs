@@ -63,12 +63,9 @@ public class Door : MonoBehaviour
             SceneController.instance.switchScenes(targetStairs);
             gameCamera.gameObject.transform.position = stairsCameraPosition.position;
 
-            StairsController.instance.currentStairs = SceneController.instance.stairsScenesDict[targetStairs];
-
-            CrawlingController.instance.goingDown = goingDown;
-
+            QTEController.instance.goingDown = goingDown;
+            QTEController.instance.targetStairs = targetStairs;
             QTEController.instance.StartStairsGameplay();
-            
         }
     }
 }
