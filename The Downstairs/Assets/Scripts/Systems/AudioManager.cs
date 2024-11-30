@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip tickingSFX;
     [SerializeField] private AudioClip toiletFlushingSFX;
     [SerializeField] private AudioClip waterGulpSFX;
+    [SerializeField] private AudioClip QTEHitSFX;
+    [SerializeField] private AudioClip QTEMissSFX;
     [SerializeField] private int waterGulpLoops;
 
     [Header("Music Components")]
@@ -114,6 +116,16 @@ public class AudioManager : MonoBehaviour
 
         transitionSFX(lightFlicker);
         sfxSource.loop = true;
+    }
+    public void playQTEHit()
+    {
+            transitionSFX(QTEHitSFX);
+            sfxSource.loop = false;
+    }
+    public void playQTEMiss()
+    {
+            transitionSFX(QTEMissSFX);
+            sfxSource.loop = false;
     }
 
     public IEnumerator playDrinking()

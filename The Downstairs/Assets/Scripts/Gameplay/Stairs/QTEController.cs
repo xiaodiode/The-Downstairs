@@ -65,6 +65,9 @@ public class QTEController : MonoBehaviour
     public float targetTime = 2f;
     public float qteInterval = 3f;
     public float missPenalty = 10;
+    public float shakeMagnitude = .001f;
+    public float randomTimeInterval = 0.1f;
+
 
     void Awake()
     {
@@ -187,7 +190,7 @@ public class QTEController : MonoBehaviour
             KeyInput newKeyQTE = keyInputs[randomIndex];
             newKeyQTE.keyObject = Instantiate(gabesKeyInputs[randomIndex].keyObject, KeyTarget.transform);
             newKeyQTE.keyObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-            newKeyQTE.interval = qteInterval;
+            newKeyQTE.interval = UnityEngine.Random.Range(qteInterval-randomTimeInterval, qteInterval+randomTimeInterval);
 
             keyQTEObjects.Add(newKeyQTE);
         }

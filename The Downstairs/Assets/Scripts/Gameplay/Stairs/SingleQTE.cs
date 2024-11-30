@@ -25,6 +25,7 @@ public class SingleQTE : MonoBehaviour
     private bool miss = false;
     private float missPenalty;
     private float scaleAmtS;
+    private float shakeMagnitude;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,7 @@ public class SingleQTE : MonoBehaviour
             missVanishTime = qtec.missVanishTime;
             missPenalty = qtec.missPenalty;
             scaleAmtS = qtec.scaleAmtS;
+            shakeMagnitude = qtec.shakeMagnitude;
         }
         dkjanimator = DKJAnimationMC.GetComponent<DKJAnimator>();
         clkhlt = ClickHighlighter.GetComponent<ClickHilite>();
@@ -66,10 +68,12 @@ public class SingleQTE : MonoBehaviour
     {
         dkjanimator.StartAnimateMiss();
         MetersController.instance.sanityMeter.changeByAmount(-missPenalty);
+        AudioManager.instance.playQTEMiss();
     }
     private void recordHit()
     {
         dkjanimator.IncrementOffset();
+        AudioManager.instance.playQTEHit();
     }
 
     public IEnumerator StartQTE()
@@ -82,17 +86,22 @@ public class SingleQTE : MonoBehaviour
         SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
         Color opaque = renderer.color;
         Color transparent = new Color(opaque.r, opaque.g, opaque.b, 0f);
+        Color greentransparent = new Color(0f, opaque.g, 0f, 0f);
+        Color redtransparent = new Color(opaque.r, 0f, 0f, 0f);
 
         transform.position = startPosition;
         transform.localScale = new Vector3(scaleAmtS, scaleAmtS, 0);
         renderer.color = transparent;
         renderer.enabled = true;
 
+        Vector3 shake = Vector3.zero;
+        Vector3 originalScale = transform.localScale;
+
         while (Time.time - startTime < overshootTime)
         {
             // Linearly translate
             float t = (Time.time - startTime) / overshootTime;  
-            transform.position = Vector2.Lerp(startPosition, overshootPosition, t);
+            transform.position = Vector3.Lerp(startPosition, overshootPosition, t) + shake;
             if (Time.time - startTime < opaqueTime) {
                 // Fade in
                 float c = (Time.time - startTime) / opaqueTime;  
@@ -104,7 +113,12 @@ public class SingleQTE : MonoBehaviour
                 }
                 miss = true;
                 float c = (Time.time - hitWindowEndTime) / missVanishTime;  
-                renderer.color = Color.Lerp(opaque, transparent, c);
+                renderer.color = Color.Lerp(opaque, redtransparent, c);
+                transform.localScale = Vector3.Lerp(originalScale, originalScale*.7f, c);
+                shake = new Vector3(
+                    Random.Range(-shakeMagnitude, shakeMagnitude),
+                    Random.Range(-shakeMagnitude, shakeMagnitude),
+                    0);
             } else if (Time.time - hitWindowEndTime > missVanishTime) {
                 renderer.enabled = false;
                 done = true;
@@ -121,7 +135,8 @@ public class SingleQTE : MonoBehaviour
                         while (Time.time - hitTime < hitVanishTime) {
                             // Fade out and stop movement on hit
                             float c = (Time.time - hitTime) / hitVanishTime;  
-                            renderer.color = Color.Lerp(opaque, transparent, c);
+                            renderer.color = Color.Lerp(opaque, greentransparent, c);
+                            transform.localScale = Vector3.Lerp(originalScale, originalScale*1.5f, c);
                             yield return null;
                         }
                         renderer.enabled = false;

@@ -3,7 +3,31 @@ guid: b0c1a44c00abaa541a4e8d51d421eb8c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - currMusicClip: {instanceID: 0}
+  - currSFXClip: {instanceID: 0}
+  - MainMenuBGM: {instanceID: 0}
+  - BedroomBGM: {instanceID: 0}
+  - DownstairsBGM: {instanceID: 0}
+  - GameOverBGM: {instanceID: 0}
+  - chewingSFX: {instanceID: 0}
+  - cuckooSFX: {instanceID: 0}
+  - drawerOpenSFX: {instanceID: 0}
+  - drawerCloseSFX: {instanceID: 0}
+  - fastBreathingSFX: {instanceID: 0}
+  - fridgeOpenSFX: {instanceID: 0}
+  - fridgeCloseSFX: {instanceID: 0}
+  - lightFlicker: {instanceID: 0}
+  - tickingSFX: {instanceID: 0}
+  - toiletFlushingSFX: {instanceID: 0}
+  - waterGulpSFX: {instanceID: 0}
+  - QTEHitSFX: {fileID: 8300000, guid: ce9f235a0d31dd34f83a298f6c0d8408, type: 3}
+  - QTEMissSFX: {fileID: 8300000, guid: e660c1c9cb72381429aa07d9de5974ed, type: 3}
+  - musicSlider: {instanceID: 0}
+  - musicSource: {instanceID: 0}
+  - sfxSlider: {instanceID: 0}
+  - sfxSource: {instanceID: 0}
+  - sfxClip: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
