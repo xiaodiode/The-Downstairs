@@ -237,7 +237,8 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
     }
     
-    public void setInteract(bool interactToggle, string interactStr){
+    public void setInteract(bool interactToggle, string interactStr)
+    {
         interactNotification.SetActive(interactToggle);
         interactUI.text = interactStr;
     }
