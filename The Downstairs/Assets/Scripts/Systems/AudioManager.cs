@@ -108,6 +108,17 @@ public class AudioManager : MonoBehaviour
         sfxSource.loop = false;
     }
 
+    public void playDrawerOpenSFX()
+    {
+        transitionSFX(drawerOpenSFX);
+        sfxSource.loop = false;
+    }
+    public void playDrawerCloseSFX()
+    {
+        transitionSFX(drawerCloseSFX);
+        sfxSource.loop = false;
+    }
+
     public void playTVCutsceneAudio()
     {
         transitionMusic(GameOverBGM);

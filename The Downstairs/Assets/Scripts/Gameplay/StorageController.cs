@@ -83,12 +83,15 @@ public class StorageController : MonoBehaviour
 
             holdMeterRect.anchoredPosition = localPosition;    
         } 
+        AudioManager.instance.playDrawerOpenSFX();
     }
 
     public void hideMeters()
     {
         holdMeterRect.gameObject.SetActive(false);
         cooldownMeterRect.gameObject.SetActive(false);
+
+        AudioManager.instance.playDrawerCloseSFX();
     }
 
     private void checkInteraction()
