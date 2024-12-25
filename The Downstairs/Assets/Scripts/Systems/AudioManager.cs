@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip tickingSFX;
     [SerializeField] private AudioClip toiletFlushingSFX;
     [SerializeField] private AudioClip waterGulpSFX;
+    [SerializeField] private AudioClip candleBlowSFX;
+    [SerializeField] private AudioClip heartBeatSFX;
     [SerializeField] private int waterGulpLoops;
 
     [Header("Music Components")]
@@ -119,6 +121,16 @@ public class AudioManager : MonoBehaviour
         sfxSource.loop = false;
     }
 
+    public void playHeartbeatSFX()
+    {
+        transitionSFX(heartBeatSFX);
+        sfxSource.loop = false;
+    }
+    public void playCandleBlowSFX()
+    {
+        transitionSFX(candleBlowSFX);
+        sfxSource.loop = false;
+    }
     public void playTVCutsceneAudio()
     {
         transitionMusic(GameOverBGM);

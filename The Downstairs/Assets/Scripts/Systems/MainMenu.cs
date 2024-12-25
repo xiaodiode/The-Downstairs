@@ -61,8 +61,8 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void toggleSkip(){
-        skipCutscene = !skipCutscene;
+    public void toggleSkip(bool on){
+        skipCutscene = on;
         cutsceneVolume.SetActive(!skipCutscene);
     }
 

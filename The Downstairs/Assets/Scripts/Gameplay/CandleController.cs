@@ -213,6 +213,8 @@ public class CandleController : MonoBehaviour
         enableCandlelight(false);
 
         GameManager.instance.setInteract(true, "no light");
+
+        AudioManager.instance.playCandleBlowSFX();
         candleInUse = false;
     }
 

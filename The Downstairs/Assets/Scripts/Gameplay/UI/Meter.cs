@@ -98,6 +98,7 @@ public class Meter : MonoBehaviour
             meterValue.text = Mathf.FloorToInt(meter.value).ToString();
 
             Debug.Log("meter is empty");
+            AudioManager.instance.playHeartbeatSFX();
         }
 
 
